@@ -1,0 +1,15 @@
+##### 2019.03.04    23:04
+
+​	在中午刚配置好一个react-native的初始项目，到了晚上再进行调试就发现了如下错误
+
+<img src="./document_img/1.png">
+
+​	期初查了文章说是端口被占用，将占用端口的停了就好，后面发现是adb版本不一致的问题。虽然很奇怪，但是不知道为什么，也不知道从什么时候开始我在环境中的adb和sdk中的adb版本变得不一样了。在一篇文章上看到的
+
+<img src="./document_img/2.png">
+
+​	虽然上述的是Linux系统，但是我的情况和它一致，也是两个地方的adb版本不一致。Linux的环境是处于 **/usr/local/bin**中的 ，而Windows我苦思冥想找不到环境path在哪里，于是在windows的文档系统里搜索adb，看见在C:/windows下的adb我恍然大悟。windows下的path正是处于该路径下。
+
+​	接下来就是把sdk中的adb.exe复制到C:/windows路径下了。
+
+**整个过程耗时3个小时。  debug  不愧是程序员的痛点啊。**
