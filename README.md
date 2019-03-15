@@ -17,4 +17,8 @@
 
 <img src="./img/项目结构图.png">
 
-**以service为中心，通过调用dao读取和储存数据，反应到controller中，最后与前端完成交互** 
+**以service为中心，通过调用dao读取和储存数据，反应到controller中，最后与前端完成交互**
+
+更加抽象的层面如下图：
+
+<img src="./img/后台项目结构图.png"> 
