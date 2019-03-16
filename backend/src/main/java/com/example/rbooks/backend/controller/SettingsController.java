@@ -1,5 +1,7 @@
 package com.example.rbooks.backend.controller;
 
-public class SettingsController {
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class SettingsController {
 }
