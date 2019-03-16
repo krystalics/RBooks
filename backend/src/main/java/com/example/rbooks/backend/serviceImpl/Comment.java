@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
 * */
 
 @Service
-public class Discuss {
+public class Comment {
 
 }

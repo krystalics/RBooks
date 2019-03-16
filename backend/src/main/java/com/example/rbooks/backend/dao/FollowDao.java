@@ -1,18 +1,19 @@
 package com.example.rbooks.backend.dao;
 
+import com.example.rbooks.backend.entity.Follow;
+import java.util.List;
+
 public interface FollowDao {
 
-  void setFollowAuthorId(); //关注
+  void setFollowAuthorId(int userId,int authorId); //关注
 
-  void setFollowBookId();// 收藏
+  void setFollowBookId(int userId,int bookId); //收藏
 
-  void deleteFollowAuthorId(); //不再关注
+  void deleteFollowAuthorId(int userId,int authorId); //不再关注
 
-  void deleteFollowBookId(); //不收藏该书
+  void deleteFollowBookId(int userId,int bookId); //不收藏该书
 
-  int[] getFollowAuthorsId(); //返回关注的作者的id
-
-  int[] getFollowBooksId(); // 返回收藏的书本的id
+  List<Follow> getFollows(int userId); //返回 用户的 所有关注和收藏
 
 
 }

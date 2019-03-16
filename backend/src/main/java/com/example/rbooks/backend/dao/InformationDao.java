@@ -1,12 +1,14 @@
 package com.example.rbooks.backend.dao;
 
+import com.example.rbooks.backend.entity.Information;
+
 public interface InformationDao {
 
-  void setInformation();
+  void addInformation(Information information);
 
-  void deleteInformation();
+  void deleteInformation(int userId);
 
-  void updateInformation();
+  void updateInformation(Information information);
 
-  String readInformation();
+  Information getInformation(int userId);
 }

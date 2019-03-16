@@ -1,12 +1,19 @@
 package com.example.rbooks.backend.entity;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "information")
-public class Information {
+public class Information implements Serializable {
+
+  private static final long serialVersionUID = 5L;
+
+  public Information() {
+  }
+
   @Id
   private int userid;
   private String email;
