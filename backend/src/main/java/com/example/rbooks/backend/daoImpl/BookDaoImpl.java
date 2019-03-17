@@ -4,7 +4,6 @@ import com.example.rbooks.backend.dao.BookDao;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.BookRepository;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,9 +37,8 @@ public class BookDaoImpl implements BookDao {
   public List<Book> getBooks() {
     List<Book> bookList=new ArrayList<>();
     Iterable<Book> books=bookRepository.findAll(); //一次加载整张表中的内容，会影响响应速度，后期要优化
-    Iterator<Book> iter=books.iterator();
-    while(iter.hasNext()){
-      bookList.add(iter.next());
+    for (Book book : books) {
+      bookList.add(book);
     }
 
     return bookList;

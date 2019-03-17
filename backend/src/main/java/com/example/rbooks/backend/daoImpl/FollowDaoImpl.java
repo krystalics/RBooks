@@ -5,7 +5,6 @@ import com.example.rbooks.backend.entity.Follow;
 import com.example.rbooks.backend.entity.FollowRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -42,12 +41,12 @@ public class FollowDaoImpl implements FollowDao {
 
   @Override
   public void deleteFollowAuthorId(int userId, int authorId) {
-    followRepository.deleteByUseridAndAndFollowbookid(userId, authorId);
+    followRepository.deleteByUseridAndFollowbookid(userId, authorId);
   }
 
   @Override
   public void deleteFollowBookId(int userId, int bookId) {
-    followRepository.deleteByUseridAndAndFollowbookid(userId,bookId);
+    followRepository.deleteByUseridAndFollowbookid(userId,bookId);
   }
 
   @Override
