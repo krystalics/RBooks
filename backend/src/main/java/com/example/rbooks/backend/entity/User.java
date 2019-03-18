@@ -21,7 +21,7 @@ public class User implements Serializable {
   private int id;
   private String name;
   private String password;
-  private String role;
+  private int role;  //默认为0  表示普通用户，系统用户为2，vip为1
 
   public int getId() {
     return id;
@@ -47,11 +47,11 @@ public class User implements Serializable {
     this.password = password;
   }
 
-  public String getRole() {
+  public int getRole() {
     return role;
   }
 
-  public void setRole(String role) {
+  public void setRole(int role) {
     this.role = role;
   }
 

@@ -3,6 +3,6 @@ package com.example.rbooks.backend.serviceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Permission {
+public class MyPageServiceImpl {
 
 }

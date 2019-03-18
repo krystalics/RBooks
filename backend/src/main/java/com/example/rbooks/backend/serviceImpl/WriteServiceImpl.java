@@ -3,6 +3,6 @@ package com.example.rbooks.backend.serviceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Write {
+public class WriteServiceImpl {
 
 }

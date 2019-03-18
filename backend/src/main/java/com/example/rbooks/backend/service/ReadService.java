@@ -1,5 +1,15 @@
 package com.example.rbooks.backend.service;
 
+import com.example.rbooks.backend.entity.ChapterId;
+import com.example.rbooks.backend.entity.Comment;
+import java.util.List;
+
 public interface ReadService {
-  // 返回主页中的 书本信息以及 某书本的内容数据 包括关注和收藏  服务接口
+  // 本服务由 CommentDao ChapterDao协助完成 chapter在这里只能读，  删除和更新以及写要在writeService中
+  // 不提供删除与更改 评论服务
+  List<Comment> getComments(ChapterId chapterId);
+  List<Comment> getComments(String commentuser);
+  String getContent(ChapterId chapterId);
+  int add(Comment comment); //返回-1表示失败
+
 }

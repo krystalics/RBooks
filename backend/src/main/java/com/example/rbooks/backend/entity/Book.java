@@ -23,8 +23,11 @@ public class Book implements Serializable {
   private String author;
   private String description;
   private Date datetime;
+  private String photourl;
+  private int like;
 
-  public Book(){}
+  public Book() {
+  }
 
   public int getId() {
     return id;
@@ -66,6 +69,21 @@ public class Book implements Serializable {
     this.datetime = datetime;
   }
 
+  public String getPhotourl() {
+    return photourl;
+  }
+
+  public void setPhotourl(String photourl) {
+    this.photourl = photourl;
+  }
+
+  public int getLike() {
+    return like;
+  }
+
+  public void setLike(int like) {
+    this.like = like;
+  }
 //  @Override
 //  public String toString(){
 //    return "name: "+name+", author: "+author+",description: "+description+",date: "+datetime;

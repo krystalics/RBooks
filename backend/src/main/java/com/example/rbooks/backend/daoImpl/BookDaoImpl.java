@@ -24,13 +24,18 @@ public class BookDaoImpl implements BookDao {
   }
 
   @Override
-  public void deleteBook(int id) { //前端会传过来id的
-    bookRepository.deleteById(id);
+  public void deleteBook(Book book) { //前端会传过来id的
+    bookRepository.delete(book);
   }
 
   @Override
   public void updateBook(Book book) {
     bookRepository.save(book); //若该id存在于表中就是更新，若不是则是增加
+  }
+
+  @Override
+  public Book getBook(int id) {
+    return bookRepository.findById(id);
   }
 
   @Override
