@@ -12,17 +12,17 @@ public class Chapter implements Serializable {
   private static final long serialVersionUID = 2L;
 
   @Id
-  private ChapterId chapterId;
+  private ChapterId chapterid;
   private String content;
 
   public Chapter(){}
 
-  public ChapterId getChapterId() {
-    return chapterId;
+  public ChapterId getChapterid() {
+    return chapterid;
   }
 
-  public void setChapterId(ChapterId chapterId) {
-    this.chapterId = chapterId;
+  public void setChapterid(ChapterId chapterid) {
+    this.chapterid = chapterid;
   }
 
   public String getContent() {

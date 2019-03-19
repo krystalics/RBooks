@@ -38,12 +38,15 @@ public class UserController {
 
 
   @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public int delete(@RequestBody Map<String, String> name) {
-    return userServiceImpl.delete(name.get("username"));
+  public String delete(@RequestBody Map<String, String> name) {
+    userServiceImpl.delete(name.get("username"));
+    return "删除成功";
   }
 
+
   @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public int update(@RequestBody User user) {
-    return userServiceImpl.update(user); //默认更新成功，后面有需求再改。
+  public String update(@RequestBody User user) {
+    userServiceImpl.update(user); //默认更新成功，后面有需求再改。
+    return "更新成功";
   }
 }

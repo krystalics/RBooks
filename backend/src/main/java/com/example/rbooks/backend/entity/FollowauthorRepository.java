@@ -3,5 +3,7 @@ package com.example.rbooks.backend.entity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface FollowauthorRepository extends CrudRepository<Followauthor,Integer> {
-  Followauthor findByFollowauthorId(FollowauthorId id);
+
+  void deleteByFollowauthorid(FollowauthorId id);
+  Boolean existsByFollowauthorid(FollowauthorId id);
 }

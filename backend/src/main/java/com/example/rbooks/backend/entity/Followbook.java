@@ -9,16 +9,16 @@ public class Followbook implements Serializable {
 
   private static final long serialVersionUID = 11L;
   @Id
-  private FollowbookId followbookId;
+  private FollowbookId followbookid;
 
   public Followbook() {
   }
 
-  public FollowbookId getFollowbookId() {
-    return followbookId;
+  public FollowbookId getFollowbookid() {
+    return followbookid;
   }
 
-  public void setFollowbookId(FollowbookId followbookId) {
-    this.followbookId = followbookId;
+  public void setFollowbookid(FollowbookId followbookid) {
+    this.followbookid = followbookid;
   }
 }

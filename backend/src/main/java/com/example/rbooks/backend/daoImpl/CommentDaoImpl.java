@@ -28,7 +28,7 @@ public class CommentDaoImpl implements CommentDao {
 
   @Override
   public List<Comment> getCommentsByChapterId(ChapterId chapterId) {
-    return commentRepository.findByChapterId(chapterId);
+    return commentRepository.findByChapterid(chapterId);
   }
 
   @Override

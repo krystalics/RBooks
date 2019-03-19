@@ -9,15 +9,15 @@ public class Followauthor implements Serializable {
 
   private static final long serialVersionUID = 9L;
   @Id
-  private FollowauthorId followauthorId;
+  private FollowauthorId followauthorid;
 
   public Followauthor(){}
 
-  public FollowauthorId getFollowauthorId() {
-    return followauthorId;
+  public FollowauthorId getFollowauthorid() {
+    return followauthorid;
   }
 
-  public void setFollowauthorId(FollowauthorId followauthorId) {
-    this.followauthorId = followauthorId;
+  public void setFollowauthorid(FollowauthorId followauthorid) {
+    this.followauthorid = followauthorid;
   }
 }

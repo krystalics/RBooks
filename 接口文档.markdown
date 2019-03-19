@@ -1,3 +1,976 @@
+#### 接口简介：查看个人信息
+
+##### 请求地址
+
+/mypage
+
+##### 请求类型
+
+POST (在restful api中是 PUT)
+
+##### 请求参数格式
+
+```json
+{
+    "userid":0
+}
+```
+
+##### 正确的返回示例：
+
+```json
+{
+    "information": {
+        "userid": 2,
+        "email": "xx.com",
+        "selfintroduction": "none",
+        "photourl": "...",
+        "githubpage": "..",
+        "homepage": "fff",
+        "username": "wanwenzhuo"
+    },
+    "bookList_write": [
+        {
+            "id": 6,
+            "name": "第二本书",
+            "author": "wanwenzhuo",
+            "description": "这是用来测试的",
+            "datetime": "2019-03-18T14:10:37.000+0000",
+            "photourl": "...",
+            "love": 3
+        }
+    ],
+    "bookList_follow": [
+        {
+            "id": 1,
+            "name": "从第一本书改为测试用书",
+            "author": "krysta",
+            "description": "还是测试",
+            "datetime": "2019-03-19T00:00:00.000+0000",
+            "photourl": "url",
+            "love": 1111
+        },
+        {
+            "id": 6,
+            "name": "第二本书",
+            "author": "wanwenzhuo",
+            "description": "这是用来测试的",
+            "datetime": "2019-03-18T14:10:37.000+0000",
+            "photourl": "...",
+            "love": 3
+        }
+    ],
+    "userList_follow": [
+        {
+            "id": 3,
+            "name": "xiahongwei",
+            "password": "",
+            "role": 0
+        },
+        {
+            "id": 4,
+            "name": "jiangchen",
+            "password": "",
+            "role": 0
+        }
+    ],
+    "userList_be_followed": [
+        {
+            "id": 0,
+            "name": "krysta",
+            "password": "",
+            "role": 2
+        }
+    ]
+}
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:29:27.703+0000",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "JSON parse error: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 2]); ...",
+    "path": "/mypage"
+}
+```
+
+
+
+##### 备注说明
+
+`Content-Type= MediaType.TEXT_PLAIN_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：主页信息
+
+##### 请求地址
+
+/home
+
+##### 请求类型
+
+GET
+
+##### 正确的返回示例：
+
+```json
+[
+    {
+        "id": 1,
+        "name": "从第一本书改为测试用书",
+        "author": "krysta",
+        "description": "还是测试",
+        "datetime": "2019-03-19T00:00:00.000+0000",
+        "photourl": "url",
+        "love": 1111
+    },
+    {
+        "id": 6,
+        "name": "第二本书",
+        "author": "wanwenzhuo",
+        "description": "这是用来测试的",
+        "datetime": "2019-03-18T14:10:37.000+0000",
+        "photourl": "...",
+        "love": 3
+    },
+    {
+        "id": 7,
+        "name": "第三本书",
+        "author": "krysta",
+        "description": "这还是用来测试的",
+        "datetime": "2019-03-18T14:12:10.000+0000",
+        "photourl": "没有照片",
+        "love": 111
+    }
+]
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:29:27.703+0000",
+    "status": 400,
+    "error": "Bad Request",
+    "message":"没找到主页 自己编的",
+    "path": "/mypage"
+}
+```
+
+
+
+##### 备注说明
+
+无
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：该用户的所有评论
+
+##### 请求地址
+
+/message
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+	"username":"jiangchen"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+[
+    {
+        "chapterid": {
+            "bookid": 1,
+            "chaptername": "第二章"
+        },
+        "datetime": "2019-03-19T01:07:33.000+0000",
+        "commentuser": "jiangchen",
+        "content": "这一章不错"
+    },
+    {
+        "chapterid": {
+            "bookid": 7,
+            "chaptername": "第一章"
+        },
+        "datetime": "2019-03-19T00:00:00.000+0000",
+        "commentuser": "jiangchen",
+        "content": "这一章写的不错，"
+    }
+]
+```
+
+
+
+##### 错误的返回示例
+
+```json
+[]  //说明没有该用户或者没有评论
+```
+
+
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：增加一个书目
+
+##### 请求地址
+
+/write/addbook
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+	"name":"临虚",
+	"author":"krysta",
+	"description":"这是我很早就想写的小说了",
+	"datetime":"2019-03-19",
+	"photourl":"没有照片",
+	"love":0
+}
+```
+
+##### 正确的返回示例：
+
+```json
+12  //成功返回 该书的id  ，失败 就返回 -1
+```
+
+
+
+##### 错误的返回示例
+
+```json
+-1  
+```
+
+
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：删除一个书目
+
+##### 请求地址
+
+/write/deletebook
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+	"id":12
+}
+```
+
+##### 正确的返回示例：
+
+```json
+删除成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "No class com.example.rbooks.backend.entity.Book entity with id 11 exists!",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.TEXT_PLAIN_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：更新一个书目
+
+##### 请求地址
+
+/write/updatebook
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+	"id":1，
+	"name":"临虚-2 书名也改了",
+	"description":"这是我很早就想写的小说了，改变了介绍",
+}
+```
+
+##### 正确的返回示例：
+
+```json
+更新成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：增加一个章节
+
+##### 请求地址
+
+/write/addchapter
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "chapterid":{
+        "bookid":1,
+        "chaptername":"虚幻职业"
+    },
+    "content":"这是增加章节的测试"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+保存成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：删除一个章节
+
+##### 请求地址
+
+/write/deletechapter
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "bookid":1,
+    "chaptername":"虚幻职业"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+删除成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.TEXT_PLAIN_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：更新一个章节
+
+##### 请求地址
+
+/write/updatechapter
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "chapterid":{
+        "bookid":1,
+        "chaptername":"虚幻职业"
+    },
+    "content":"这是增加章节的测试,还更新了内容"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+更新成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：增加一个评论
+
+##### 请求地址
+
+/read/addcomment
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "chapterid":{
+        "bookid":1,
+        "chaptername":"虚幻职业"
+    },
+    "datetime":"2018-03-23",
+    "commentuser":"wanwenzhuo",
+    "content":"这是增加评论,还更新了内容"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+添加成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：获得章节内容
+
+##### 请求地址
+
+/read/getcontent
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "bookid":1,
+    "chaptername":"虚幻职业"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+这是增加章节的测试,还更新了内容  //之前增加的内容
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：获得章节的所有评论
+
+##### 请求地址
+
+/read/getcomments
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "bookid":1,
+    "chaptername":"虚幻职业"
+}
+```
+
+##### 正确的返回示例：
+
+```json
+[
+    {
+        "chapterid": {
+            "bookid": 1,
+            "chaptername": "虚幻职业"
+        },
+        "datetime": "2018-03-23T00:00:00.000+0000",
+        "commentuser": "wanwenzhuo",
+        "content": "这是增加评论,还更新了内容"
+    }
+]
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：关注一个作者
+
+##### 请求地址
+
+/read/addfollowauthor
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "userid":0,  //两个id都必须在 表中
+    "authorid":2
+}
+```
+
+##### 正确的返回示例：
+
+```json
+添加成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：取关一个作者
+
+##### 请求地址
+
+/read/deletefollowauthor
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "userid":0,  //两个id都必须在 表中
+    "authorid":2
+}
+```
+
+##### 正确的返回示例：
+
+```json
+删除成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+#### 接口简介：收藏一本书
+
+##### 请求地址
+
+/read/addfollowbook
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "userid":0,  //两个id都必须在 表中
+    "bookid":1
+}
+```
+
+##### 正确的返回示例：
+
+```json
+添加成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+#### 接口简介：不收藏某书
+
+##### 请求地址
+
+/read/deletefollowbook
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+    "userid":0,  //两个id都必须在 表中
+    "bookid":1
+}
+```
+
+##### 正确的返回示例：
+
+```json
+删除成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+---
+
+
+
+#### 接口简介：设置个人信息
+
+##### 请求地址
+
+/settings
+
+##### 请求类型
+
+POST
+
+**请求参数格式**：
+
+```json
+{
+	"userid":2,
+	"email":"这一次设置email"  //其他没有设置的，全都变为了 null
+}
+```
+
+##### 正确的返回示例：
+
+```json
+设置成功
+```
+
+
+
+##### 错误的返回示例
+
+```json
+{
+    "timestamp": "2019-03-19T13:54:58.534+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/write/deletebook"
+}
+```
+
+##### 备注说明
+
+`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+
+##### 修改日志
+
+无
+
+
+
+---
+
+
+
 #### 接口简介：用户注册
 
 ##### 请求地址
@@ -8,12 +981,16 @@
 
 POST (在restful api中是 PUT)
 
-##### 请求参数
+##### 请求参数格式
 
-| 参数名   | 类型   | 必填 | 描述     | 默认值 | 参考值    |
-| -------- | ------ | ---- | -------- | ------ | --------- |
-| name     | string | 是   | 用户账号 | -      | zhanghao1 |
-| password | string | 是   | 用户密码 | -      | 6位数以上 |
+```json
+{
+    "name":"linjiabao",
+    "password":"213"
+}
+```
+
+
 
 ##### 正确的返回示例：
 
@@ -47,14 +1024,16 @@ user的id
 
 POST 
 
-##### 请求参数
+##### 请求参数格式
 
-| 参数名   | 类型   | 必填 | 描述     | 默认值 | 参考值    |
-| -------- | ------ | ---- | -------- | ------ | --------- |
-| name     | string | 是   | 用户账号 | -      | zhanghao1 |
-| password | string | 是   | 用户密码 | -      | 6位数以上 |
+```json
+{
+    "name":"linjiabao",
+    "password":"213"
+}
+```
 
-##### 正确的返回示例：
+**正确的返回示例**
 
 user的id
 
@@ -70,189 +1049,39 @@ user的id
 
 无
 
-
-
 ---
 
 
 
-#### 接口简介：主页
+#### 接口简介：删除用户
 
 ##### 请求地址
 
-/home
+/user/delete
 
 ##### 请求类型
 
-GET
+POST 
 
-##### 正确的返回示例：
+##### 请求参数格式
 
 ```json
-[
-    {
-        "id": 1,
-        "name": "第一本书",
-        "author": "krysta",
-        "description": "这也是用来测试的",
-        "datetime": "2019-03-18T14:11:06.000+0000",
-        "photourl": "没有照片",
-        "like": 100
-    },
-    {
-        "id": 6,
-        "name": "第二本书",
-        "author": "wanwenzhuo",
-        "description": "这是用来测试的",
-        "datetime": "2019-03-18T14:10:37.000+0000",
-        "photourl": "...",
-        "like": 3
-    },
-    ...
-]
+{
+    "name":"linjiabao",
+}
+```
+
+**正确的返回示例**
+
+```json
+删除成功
 ```
 
 
 
 ##### 错误的返回示例
 
-```json
-{
-    null
-}
-```
-
-
-
-##### 备注说明
-
 无
-
-##### 修改日志
-
-无
-
-
-
----
-
-
-
-#### 接口简介：消息，用户所有的评论
-
-##### 请求地址
-
-/messages
-
-##### 请求类型
-
-GET
-
-##### 正确的返回示例：
-
-```json
-{
-    "comment":[
-        "charpterId":{
-        	"bookId":1,
-        	"chaptername":"第一章"
-        },
-		"content":"评论内容"
-    ]
-}
-```
-
-
-
-##### 错误的返回示例
-
-```json
-{
-    "comment":{
-        "连接不上服务器"
-    }
-}
-```
-
-
-
-##### 备注说明
-
-无
-
-##### 修改日志
-
-无
-
-
-
----
-
-
-
-#### 接口简介：我的个人信息
-
-##### 请求地址
-
-/mypage
-
-##### 请求类型
-
-GET
-
-##### 正确的返回示例：
-
-```json
-{
-    "Mypage":[
-        "Information":{
-        	"email":"xxx@xx.com",
-       		"selfintroduction":"自我介绍",
-        	"photourl":"...",
-       		"githubpage":"...",
-        	"homepage":"..."
-    	},
-        "books":{ //自己写的书，格式与下面相同
-			
-        },
-        "followbook":[
-            {
-                "id":1,
-                "bookname":"第一本书",
-                "author":"作者1",
-                "date":"2019-03-09",
-                "photourl":"http://.....",
-                "like":23
-            },
-            {
-                ...
-            },
-            {
-            	...    
-            }
-        ],
-        "followauthor":[
-            "author":"作者1",
-            ...
-         ]
-		
-    ]
-}
-```
-
-
-
-##### 错误的返回示例
-
-```json
-{
-    "Information":{
-        "连接不上服务器"
-    }
-}
-```
-
-
 
 ##### 备注说明
 
@@ -264,95 +1093,34 @@ GET
 
 ---
 
-
-
-#### 接口简介：设置账户信息
+#### 接口简介：更新用户
 
 ##### 请求地址
 
-/settings
+/user/update
 
 ##### 请求类型
 
-POST
+POST 
 
-##### 请求参数
-
-| 参数名           | 类型   | 必填 | 描述               | 默认值 | 参考值         |
-| ---------------- | ------ | ---- | ------------------ | ------ | -------------- |
-| email            | string | 是   | 用户的邮箱         | -      | 123@qq.com     |
-| selfintroduction | string | 否   | 用户自我介绍       | -      | 我是一个好人   |
-| photourl         | string | 否   | 用户上传的照片地址 | -      |                |
-| githubpage       | string | 否   | github的主页       | -      | github.com/... |
-| homepage         | string | 否   | 用户的网站主页     | -      | www.xxx.com    |
-
-
-
-##### 正确的返回示例：
+##### 请求参数格式
 
 ```json
-"设置成功"
+{
+	"name":"wanwenzhuo",
+	"password":"567"
+}
 ```
 
+**正确的返回示例**
 
+```json
+更新成功
+```
 
 ##### 错误的返回示例
-
-```json
-"失败，可能连接不上服务器"
-```
-
-
-
-##### 备注说明
-
-用户上传的照片专门存储在一个图片文件夹上，升级版本可能就是存在MongoDB中。
-
-这个接口相当于就是增删改查的一个综合api
-
-##### 修改日志
 
 无
-
-
-
----
-
-
-
-#### 接口简介：具体书本内容
-
-##### 请求地址
-
-/book/chapter
-
-##### 请求类型
-
-GET
-
-##### 正确的返回示例：
-
-```json
-[
-    {
-        "bookId":1,
-        "chaptername":"第一章",
-        "content":"章节内容"
-    },
-    ...
-    
-]
-```
-
-
-
-##### 错误的返回示例
-
-```json
-"失败，可能连接不上"
-```
-
-
 
 ##### 备注说明
 
@@ -361,15 +1129,3 @@ GET
 ##### 修改日志
 
 无
-
-
-
----
-
-还有关于 book，chapter，comment，user，followauthor，followbook的增删改查等接口类似于下面的格式，
-
-/book/add | delete |update| get  具体的数据格式和数据库中表的字段一致。
-
-<img src="./img/数据库结构图.png">
-
-除了user和book的id是自增的，即增加的时候不需要id，其他表的数据都是需要的。

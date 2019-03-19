@@ -32,16 +32,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReadController {
 
   // ReadService 只提供，获取 评论，获取章节内容，增加评论的服务
+  private final ReadService readServiceImpl;
+
   @Autowired
-  private ReadService readServiceImpl;
+  public ReadController(ReadService readServiceImpl) {
+    this.readServiceImpl = readServiceImpl;
+  }
 
 
   // 试过了 自增的id 是接着从user表中的id 开始的，并不是单独的表有单独的记录....如果作者不在数据库中，就会报错，，因为有外键约束
   @RequestMapping(value = "/addcomment", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public int addComment(@RequestBody Comment comment) { //没加RequestBody 会导致数据为null
+  public String addComment(@RequestBody Comment comment) { //没加RequestBody 会导致数据为null
 
     readServiceImpl.addComment(comment);
-    return 1; //默认可以添加成功
+
+    return "添加成功"; //默认可以添加成功
   }
 
   @RequestMapping(value = "/getcontent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,37 +61,29 @@ public class ReadController {
 
   @RequestMapping(value = "/addfollowauthor", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public String addFollowAuthor(@RequestBody FollowauthorId id) {
-    int success = readServiceImpl.addFollowAuthor(id);
-    if(success==-1){
-      return "添加失败";
-    }
+    readServiceImpl.addFollowAuthor(id);
+
     return "添加成功";
   }
 
   @RequestMapping(value = "/deletefollowauthor", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public String deleteFollowAuthor(@RequestBody FollowauthorId id) {
-    int success = readServiceImpl.deleteFollowAuthor(id);
-    if(success==-1){
-      return "删除失败";
-    }
+    readServiceImpl.deleteFollowAuthor(id);
+
     return "删除成功";
   }
 
   @RequestMapping(value = "/addfollowbook", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public String addFollowBook(@RequestBody FollowbookId id) {
-    int success = readServiceImpl.addFollowBook(id);
-    if(success==-1){
-      return "添加失败";
-    }
+    readServiceImpl.addFollowBook(id);
+
     return "添加成功";
   }
 
   @RequestMapping(value = "/deletefollowbook", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public String deleteFollowBook(@RequestBody FollowbookId id) {
-    int success = readServiceImpl.deleteFollowBook(id);
-    if(success==-1){
-      return "删除失败";
-    }
+    readServiceImpl.deleteFollowBook(id);
+
     return "删除成功";
   }
 

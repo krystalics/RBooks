@@ -24,34 +24,33 @@ public class WriteServiceImpl implements WriteService {
   }
 
   @Override
-  public int deleteBook(int id) {
+  public void deleteBook(int id) {
 
     bookDaoImpl.deleteBook(id);
 
-    return 1; //默认可以删除成功
   }
 
   @Override
-  public int updateBook(Book book) {
+  public void updateBook(Book book) {
     bookDaoImpl.updateBook(book);
-    return 1;
+
   }
 
   @Override
-  public int addChapter(Chapter chapter) {
+  public void addChapter(Chapter chapter) {
     chapterDaoImpl.addChapter(chapter);
-    return 1;
+
   }
 
   @Override
-  public int deleteChapter(ChapterId chapterId) {
+  public void deleteChapter(ChapterId chapterId) {
     chapterDaoImpl.deleteChapter(chapterId);
-    return 1;
+
   }
 
   @Override
-  public int updateChapter(Chapter chapter) {
+  public void updateChapter(Chapter chapter) {
     chapterDaoImpl.updateChapter(chapter);
-    return 1;
+
   }
 }

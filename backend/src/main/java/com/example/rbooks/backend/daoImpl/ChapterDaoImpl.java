@@ -27,7 +27,7 @@ public class ChapterDaoImpl implements ChapterDao {
   @Transactional //删除需要原子性，事务
   @Override
   public void deleteChapter(ChapterId chapterId) { // 前端会传输过来，它的chapterId
-    chapterRepository.deleteByChapterId(chapterId);
+    chapterRepository.deleteByChapterid(chapterId);
   }
 
   @Override
@@ -37,6 +37,6 @@ public class ChapterDaoImpl implements ChapterDao {
 
   @Override
   public Chapter getChapter(ChapterId chapterId) {
-    return chapterRepository.findByChapterId(chapterId);
+    return chapterRepository.findByChapterid(chapterId);
   }
 }

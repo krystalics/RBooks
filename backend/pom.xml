@@ -60,6 +60,8 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+      <scope>true</scope>
     </dependency>
 
   </dependencies>
@@ -77,6 +79,15 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <!-- fork:如果没有该配置，这个devtools不会起作用，即应用不会restart -->
+          <fork>true</fork>
+        </configuration>
       </plugin>
     </plugins>
   </build>

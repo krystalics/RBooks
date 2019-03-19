@@ -16,17 +16,17 @@ public class Comment implements Serializable {
   }
 
   @Id
-  private ChapterId chapterId;
+  private ChapterId chapterid;
   private Date datetime;
   private String commentuser;
   private String content;
 
-  public ChapterId getChapterId() {
-    return chapterId;
+  public ChapterId getChapterid() {
+    return chapterid;
   }
 
-  public void setChapterId(ChapterId chapterId) {
-    this.chapterId = chapterId;
+  public void setChapterid(ChapterId chapterid) {
+    this.chapterid = chapterid;
   }
 
   public Date getDatetime() {

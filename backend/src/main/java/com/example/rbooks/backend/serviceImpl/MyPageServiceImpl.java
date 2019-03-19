@@ -51,8 +51,8 @@ public class MyPageServiceImpl implements MyPageService {
     List<Followbook> all_follow_books = followDaoImpl.getAllBooks(); //要在这张表中寻找 含有userid的
     List<Book> followBooks = new ArrayList<>();
     for (Followbook followbook : all_follow_books) {
-      if (followbook.getFollowbookId().getUserid() == userid) {
-        followBooks.add(bookDaoImpl.getBookById(followbook.getFollowbookId().getBookid()));
+      if (followbook.getFollowbookid().getUserid() == userid) {
+        followBooks.add(bookDaoImpl.getBookById(followbook.getFollowbookid().getBookid()));
       }
     }
 
@@ -64,9 +64,9 @@ public class MyPageServiceImpl implements MyPageService {
     List<Followauthor> all_follow_users = followDaoImpl.getAllUsers(); //要在这张表中寻找 含有userid的
     List<User> followusers = new ArrayList<>();
     for (Followauthor followauthor : all_follow_users) {
-      if (followauthor.getFollowauthorId().getUserid() == userid) {
+      if (followauthor.getFollowauthorid().getUserid() == userid) {
         // 要把 password处理掉，
-        User user=userDaoImpl.getUser(followauthor.getFollowauthorId().getAuthorid());
+        User user=userDaoImpl.getUser(followauthor.getFollowauthorid().getAuthorid());
         user.setPassword("");
         followusers.add(user);
       }
@@ -80,8 +80,8 @@ public class MyPageServiceImpl implements MyPageService {
     List<Followauthor> all_follow_users = followDaoImpl.getAllUsers(); //要在这张表中寻找 含有userid的
     List<User> followusers = new ArrayList<>();
     for (Followauthor followauthor : all_follow_users) {
-      if (followauthor.getFollowauthorId().getAuthorid() == userid) { //与上面的区别就是，细节不一致
-        User user=userDaoImpl.getUser(followauthor.getFollowauthorId().getUserid());
+      if (followauthor.getFollowauthorid().getAuthorid() == userid) { //与上面的区别就是，细节不一致
+        User user=userDaoImpl.getUser(followauthor.getFollowauthorid().getUserid());
         user.setPassword("");
         followusers.add(user);
       }

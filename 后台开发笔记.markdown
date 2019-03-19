@@ -1,20 +1,51 @@
-##### 2019.03.04    23:04
+#### 2019.3.5----2019.3.15
 
-​	在中午刚配置好一个react-native的初始项目，到了晚上再进行调试就发现了如下错误
+## 项目需求分析
 
-<img src="./img/1.png">
+**系统名称：**一起读书吧
 
-​	期初查了文章说是端口被占用，将占用端口的停了就好，后面发现是adb版本不一致的问题。虽然很奇怪，但是不知道为什么，也不知道从什么时候开始我在环境中的adb和sdk中的adb版本变得不一样了。在一篇文章上看到的
+**数据录入：**通过用户注册收集用户数据，书本的数据在pc端增加
 
-<img src="./img/2.png">
+- 系统功能模块
 
-​	虽然上述的是Linux系统，但是我的情况和它一致，也是两个地方的adb版本不一致。Linux的环境是处于 **/usr/local/bin**中的 ，而Windows我苦思冥想找不到环境path在哪里，于是在windows的文档系统里搜索adb，看见在C:/windows下的adb我恍然大悟。windows下的path正是处于该路径下。
+<img src="./img/系统功能图.png">
 
-​	接下来就是把sdk中的adb.exe复制到C:/windows路径下了。
+- **用户与权限管理：**
 
-**整个过程耗时3个小时。  debug  不愧是程序员的痛点啊。**
+**用户角色：**一般用户，管理用户
+
+**权限级别：**管理用户比一般用户多了几个功能：删除，修改，查阅用户信息
+
+**数据可视性：**普通用户只能看见自己的信息，而管理用户可以看见所有用户信息。
+
+<img src="./img/业务流程图.png">
+
+- **用例设计图**
+
+<img src="./img/用例图.png">
 
 
+
+- **后台模块设计**
+
+<img src="./img/项目结构图.png">
+
+**以service为中心，通过调用dao读取和储存数据，反应到controller中，最后与前端完成交互**
+
+更加抽象的层面如下图：
+
+抽象的层面如下图：
+
+<img src="./img/后台项目结构图.png">
+
+划分完层次结构之后的步骤：
+
+1. 把DAO的接口设计出来，这一步基本就是将增删改查包装一下然后实现。
+2. 然后把Service的接口设计并实现，调用DAO的Bean
+3. 最后写出Controller，调用Service的Bean
+4. 前端访问Controller
+
+有时候还需要不断的和前端的设计页面对接，写出接口文档(在编写中不断的更改)，然后通过Controller需要的服务再次对之前的模块进行修正，毕竟不可能一开始就写出不需要修改的代码。只能说结构好点的代码修改的地方比较少。
 
 ---
 
@@ -51,7 +82,7 @@
 
 ---
 
-##### 2019-3.18
+#### 2019-3.18
 
 本来打算前两天就结束这个后台的0.2版本，可是开发过程并没有想象中的那么顺利。今天又是遇到了新的东西，就是接口文档，接口文档实际上并不好写，要把之前存在于想象中的数据格式具体化到json中，实际上是要花一点时间的，而且还要各种微调。以及把数据库中的一个多值依赖的表分成了两个，这样前面有工作没做完，又有新的东西加进来感觉整个人都有点混乱，所以在犹豫是否要熬个夜，把工作赶掉，明天去华科参加京东的实习招聘——去的话，回来就要打的。
 
@@ -67,7 +98,7 @@
 
 ---
 
-##### 2019.3.19
+#### 2019.3.19
 
 好了明天到了(:-) ，还是先记录一下昨天写SpringBoot的感受吧。真的是太强大了，关于CrudRepository，真的不用自己写逻辑就可以自定义按照某个字段查找返回的结果也不限定于单一的记录，也可以是一个List。完全靠自己定义，如下：
 
@@ -122,7 +153,20 @@ public @ResponseBody String dataBind() throws IOException{
 ```java
 @RequestMapping(value = "/mypage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public String getInformation(@RequestBody Map<String,String> userid) {
-  // 参数是 Map<String,Integer> 好像不行，因为会报这个错误 Could not find acceptable representation
+  // 参数是 Map<String,Integer> 好像不行，因为会报这个错误 Could not find acceptable representation，然后参考了
   return myPageServiceImpl.myPage(Integer.parseInt(userid.get("userid")));
+}
+```
+
+后面才发现，如果需要整数 需要配套的是` MediaType.TEXT_PLAIN_VALUE` ,如下：
+
+```java
+@RequestMapping(value = "/deletebook", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+public String deleteBook(@RequestBody Map<String,Integer> id_map) {
+  int success = writeServiceImpl.deleteBook(id_map.get("id")); 
+  if (success == 1) {
+    return "删除成功";
+  }
+  return "没有这本书";
 }
 ```

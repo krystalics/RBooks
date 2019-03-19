@@ -9,16 +9,23 @@ import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.entity.FollowbookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FollowDaoImpl implements FollowDao {
 
+  private final FollowauthorRepository followauthorRepository;
+  private final FollowbookRepository followbookRepository;
+
   @Autowired
-  private FollowauthorRepository followauthorRepository;
-  @Autowired
-  private FollowbookRepository followbookRepository;
+  public FollowDaoImpl(FollowauthorRepository followauthorRepository,
+      FollowbookRepository followbookRepository) {
+    this.followauthorRepository = followauthorRepository;
+    this.followbookRepository = followbookRepository;
+  }
 
   @Override
   public List<Followauthor> getAllUsers() { //将整张表遍历
@@ -44,44 +51,44 @@ public class FollowDaoImpl implements FollowDao {
   @Override
   public int addFollowAuthor(FollowauthorId id) {
     Followauthor followauthor = new Followauthor();
-    followauthor.setFollowauthorId(id);
-    if (followauthorRepository.findByFollowauthorId(id).equals(followauthor)) { //如果已经有了就返回-1
+    followauthor.setFollowauthorid(id);
+    if (followauthorRepository.existsByFollowauthorid(id)) { //如果已经有了就返回-1
       return -1;
     }
     followauthorRepository.save(followauthor);
     return 1;
   }
 
+  @Transactional //删除需要 事务
   @Override
   public int deleteFollowAuthor(FollowauthorId id) {
-    Followauthor followauthor = new Followauthor();
-    followauthor.setFollowauthorId(id);
-    if (!followauthorRepository.findByFollowauthorId(id).equals(followauthor)) {
+
+    if (!followauthorRepository.existsByFollowauthorid(id)) {
       return -1; //不包含的话，删除自然失败
     }
-    followauthorRepository.delete(followauthor);
+    followauthorRepository.deleteByFollowauthorid(id);
     return 1;
   }
 
   @Override
   public int addFollowBook(FollowbookId id) {
-    Followbook followbook=new Followbook();
-    followbook.setFollowbookId(id);
-    if(followbookRepository.findByFollowbookId(id).equals(followbook)){
+    Followbook followbook = new Followbook();
+    followbook.setFollowbookid(id);
+    if (followbookRepository.existsByFollowbookid(id)) {
       return -1;
     }
     followbookRepository.save(followbook);
     return 1;
   }
 
+  @Transactional
   @Override
   public int deleteFollowBook(FollowbookId id) {
-    Followbook followbook=new Followbook();
-    followbook.setFollowbookId(id);
-    if(!followbookRepository.findByFollowbookId(id).equals(followbook)){
+
+    if (!followbookRepository.existsByFollowbookid(id)) {
       return -1;
     }
-    followbookRepository.delete(followbook);
+    followbookRepository.deleteByFollowbookid(id);
     return 1;
   }
 }

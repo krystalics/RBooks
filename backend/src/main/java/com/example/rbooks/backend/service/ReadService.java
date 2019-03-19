@@ -14,13 +14,13 @@ public interface ReadService {
 
   String getContent(ChapterId chapterId);
 
-  int addComment(Comment comment); //返回-1表示失败
+  void addComment(Comment comment);
 
-  int addFollowAuthor(FollowauthorId id);
+  void addFollowAuthor(FollowauthorId id);
 
-  int deleteFollowAuthor(FollowauthorId id);
+  void deleteFollowAuthor(FollowauthorId id);
 
-  int addFollowBook(FollowbookId id);
+  void addFollowBook(FollowbookId id);
 
-  int deleteFollowBook(FollowbookId id);
+  void deleteFollowBook(FollowbookId id);
 }

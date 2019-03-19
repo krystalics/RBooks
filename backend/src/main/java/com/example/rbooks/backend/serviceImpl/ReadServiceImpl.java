@@ -41,28 +41,28 @@ public class ReadServiceImpl implements ReadService {
   }
 
   @Override
-  public int addComment(Comment comment) {
+  public void addComment(Comment comment) {
     commentDaoImpl.addComment(comment);
-    return 1; //默认添加成功，
+
   }
 
   @Override
-  public int addFollowAuthor(FollowauthorId id) {
-    return followDaoImpl.addFollowAuthor(id);
+  public void addFollowAuthor(FollowauthorId id) {
+    followDaoImpl.addFollowAuthor(id);
   }
 
   @Override
-  public int deleteFollowAuthor(FollowauthorId id) {
-    return followDaoImpl.deleteFollowAuthor(id);
+  public void deleteFollowAuthor(FollowauthorId id) {
+    followDaoImpl.deleteFollowAuthor(id);
   }
 
   @Override
-  public int addFollowBook(FollowbookId id) {
-    return followDaoImpl.addFollowBook(id);
+  public void addFollowBook(FollowbookId id) {
+    followDaoImpl.addFollowBook(id);
   }
 
   @Override
-  public int deleteFollowBook(FollowbookId id) {
-    return followDaoImpl.deleteFollowBook(id);
+  public void deleteFollowBook(FollowbookId id) {
+    followDaoImpl.deleteFollowBook(id);
   }
 }
