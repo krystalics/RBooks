@@ -62,3 +62,67 @@
 写到ReadController时，想到需要有人写书，不过在手机上不好写，想着还是给出网页版的链接地址，到电脑上写吧。
 
 总结：今天的工作完成了大约一半左右，难受，明天继续努力。
+
+
+
+---
+
+##### 2019.3.19
+
+好了明天到了(:-) ，还是先记录一下昨天写SpringBoot的感受吧。真的是太强大了，关于CrudRepository，真的不用自己写逻辑就可以自定义按照某个字段查找返回的结果也不限定于单一的记录，也可以是一个List。完全靠自己定义，如下：
+
+```java
+public interface BookRepository extends CrudRepository<Book,Integer> {
+  Book findById(int id);
+  List<Book> findByAuthor(String author); //找到对应作者的所有书
+}
+
+```
+
+还有就是Navicat真实比MySQL-WorkBench简单太多了，postman也很好用。生活在互联网工具高度发达的时代真爽。
+
+
+
+今天遇到的问题：可能是改版后的表中有like字段和关键字 like 冲突了，所以insert时出错了，还是要提醒自己，命名要谨慎。
+
+
+
+下午：遇到了**很麻烦的问题**，找了资料上面的解决方式都没用，所以后面我换了参数才解决。
+
+Could not find acceptable representation  讲的是前端传来的数据与后端Content-Type的要求不一致，可是在项目中两者是一致的呀。还有说是命名重复导致，我还没涉及到js文件呢。
+
+<img src="./img/8.png">
+
+<img src="./img/9.png">
+
+
+
+我先将其变为 get ，看看返回一个pojo是否可以。发现还是不行：`No converter found for return value of type` ，然后查了一下，pojo要先序列化才能用于传输，所以面向CSDN编程了下：查到如下资料
+
+仅仅调用**ObjectMapper**  来实现，我们现在举个例子，可以创建一个POJO对象来与JSON相对应，jackson默认只能序列化 public 的字段，所以下面的例子中 name和 id都是public的。
+
+```java
+
+@Autowired
+private ObjectMapper mapper;	
+ 
+@GetMapping("/serialization.json")
+public @ResponseBody String dataBind() throws IOException{
+	User user = new User();
+	user.setName("scg");
+	user.setId((long) 18);
+	String jsonStr = mapper.writeValueAsString(user);
+	return jsonStr;
+}
+
+```
+
+将参数改成`Map<String,String> ` 就可以运行了，这个问题后续还要继续Google。
+
+```java
+@RequestMapping(value = "/mypage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public String getInformation(@RequestBody Map<String,String> userid) {
+  // 参数是 Map<String,Integer> 好像不行，因为会报这个错误 Could not find acceptable representation
+  return myPageServiceImpl.myPage(Integer.parseInt(userid.get("userid")));
+}
+```

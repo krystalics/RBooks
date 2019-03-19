@@ -24,7 +24,7 @@ public class Book implements Serializable {
   private String description;
   private Date datetime;
   private String photourl;
-  private int like;
+  private int love;
 
   public Book() {
   }
@@ -77,15 +77,12 @@ public class Book implements Serializable {
     this.photourl = photourl;
   }
 
-  public int getLike() {
-    return like;
+  public int getLove() {
+    return love;
   }
 
-  public void setLike(int like) {
-    this.like = like;
+  public void setLove(int love) {
+    this.love = love;
   }
-//  @Override
-//  public String toString(){
-//    return "name: "+name+", author: "+author+",description: "+description+",date: "+datetime;
-//  }
+
 }

@@ -1,5 +1,6 @@
 package com.example.rbooks.backend.serviceImpl;
 
+import com.example.rbooks.backend.dao.UserDao;
 import com.example.rbooks.backend.daoImpl.UserDaoImpl;
 import com.example.rbooks.backend.entity.User;
 import com.example.rbooks.backend.service.UserService;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
   @Autowired
-  private UserDaoImpl userDaoImpl;
+  private UserDao userDaoImpl;
 
 
   @Override

@@ -1,9 +1,8 @@
 package com.example.rbooks.backend.controller;
 
-import com.example.rbooks.backend.daoImpl.UserDaoImpl;
 import com.example.rbooks.backend.entity.User;
+import com.example.rbooks.backend.service.UserService;
 import com.example.rbooks.backend.serviceImpl.UserServiceImpl;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-  private final UserServiceImpl userServiceImpl;
+  private final UserService userServiceImpl;
 
   @Autowired
   public UserController(UserServiceImpl userServiceImpl) {
@@ -37,10 +36,10 @@ public class UserController {
     return userServiceImpl.register(user); //失败返回一个 -1  成功则是该用户的 id
   }
 
-  // 因为spring并不知道我们需要的数据格式，而和 consumes , produces就是用来指定它的 删除需要格式更严格
-  @RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-  public int delete(@RequestBody String name) {
-    return userServiceImpl.delete(name);
+
+  @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  public int delete(@RequestBody Map<String, String> name) {
+    return userServiceImpl.delete(name.get("username"));
   }
 
   @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

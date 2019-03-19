@@ -17,16 +17,6 @@ public class InformationDaoImpl implements InformationDao {
   }
 
   @Override
-  public void addInformation(Information information) {
-    informationRepository.save(information);
-  }
-
-  @Override
-  public void deleteInformation(int userId) {
-    informationRepository.deleteById(userId);
-  }
-
-  @Override
   public void updateInformation(Information information) {
     informationRepository.save(information);
   }

@@ -1,5 +1,6 @@
 package com.example.rbooks.backend.serviceImpl;
 
+import com.example.rbooks.backend.dao.BookDao;
 import com.example.rbooks.backend.daoImpl.BookDaoImpl;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.service.HomeService;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class HomeServiceImpl implements HomeService {
 
   @Autowired
-  private BookDaoImpl bookDaoImpl;
+  private BookDao bookDaoImpl;
 
   @Override
   public List<Book> getBooksInfo() {
-    return bookDaoImpl.getBooks();
+    return bookDaoImpl.getAllBooks();
   } //直接调用
 }

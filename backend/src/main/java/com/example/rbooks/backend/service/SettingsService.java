@@ -1,5 +1,9 @@
 package com.example.rbooks.backend.service;
 
+import com.example.rbooks.backend.entity.Information;
+
 public interface SettingsService {
-  // 关于 讨论的 服务接口
+  // 只提供 更新接口
+  int update(Information information);
+
 }

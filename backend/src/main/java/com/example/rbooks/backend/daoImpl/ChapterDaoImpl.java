@@ -6,6 +6,7 @@ import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class ChapterDaoImpl implements ChapterDao {
@@ -23,6 +24,7 @@ public class ChapterDaoImpl implements ChapterDao {
     chapterRepository.save(chapter);
   }
 
+  @Transactional //删除需要原子性，事务
   @Override
   public void deleteChapter(ChapterId chapterId) { // 前端会传输过来，它的chapterId
     chapterRepository.deleteByChapterId(chapterId);

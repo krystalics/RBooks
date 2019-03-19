@@ -21,6 +21,7 @@ public class Information implements Serializable {
   private String photourl;
   private String githubpage;
   private String homepage;
+  private String username;
 
   public int getUserid() {
     return userid;
@@ -68,5 +69,13 @@ public class Information implements Serializable {
 
   public void setHomepage(String homepage) {
     this.homepage = homepage;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class BookDaoImpl implements BookDao {
@@ -23,9 +24,10 @@ public class BookDaoImpl implements BookDao {
     bookRepository.save(book);
   }
 
+  @Transactional  //删除操作 必须是 Transaction的
   @Override
-  public void deleteBook(Book book) { //前端会传过来id的
-    bookRepository.delete(book);
+  public void deleteBook(int id) { //前端会传过来id的
+    bookRepository.deleteById(id);
   }
 
   @Override
@@ -34,18 +36,28 @@ public class BookDaoImpl implements BookDao {
   }
 
   @Override
-  public Book getBook(int id) {
+  public Book getBookById(int id) {
     return bookRepository.findById(id);
   }
 
   @Override
-  public List<Book> getBooks() {
-    List<Book> bookList=new ArrayList<>();
-    Iterable<Book> books=bookRepository.findAll(); //一次加载整张表中的内容，会影响响应速度，后期要优化
+  public Book getBookByNameAndAuthor(String name, String author) {
+    return bookRepository.findByNameAndAuthor(name, author);
+  }
+
+  @Override
+  public List<Book> getAllBooks() {
+    List<Book> bookList = new ArrayList<>();
+    Iterable<Book> books = bookRepository.findAll(); //一次加载整张表中的内容，会影响响应速度，后期要优化
     for (Book book : books) {
       bookList.add(book);
     }
 
     return bookList;
+  }
+
+  @Override
+  public List<Book> getBooksByAuthor(String author) {
+    return bookRepository.findByAuthor(author);
   }
 }
