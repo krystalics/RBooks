@@ -1,6 +1,7 @@
 package com.example.rbooks.backend.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,6 +15,7 @@ public class Chapter implements Serializable {
   @Id
   private ChapterId chapterid;
   private String content;
+  private Date datetime;
 
   public Chapter(){}
 
@@ -27,6 +29,14 @@ public class Chapter implements Serializable {
 
   public String getContent() {
     return content;
+  }
+
+  public Date getDatetime() {
+    return datetime;
+  }
+
+  public void setDatetime(Date datetime) {
+    this.datetime = datetime;
   }
 
   public void setContent(String content) {

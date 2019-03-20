@@ -40,7 +40,7 @@
 
 划分完层次结构之后的步骤：
 
-1. 把DAO的接口设计出来，这一步基本就是将增删改查包装一下然后实现。
+1. 把DAO的接口设计出来，这一步基本就是将Entity中的表crud操作包装一下。
 2. 然后把Service的接口设计并实现，调用DAO的Bean
 3. 最后写出Controller，调用Service的Bean
 4. 前端访问Controller
@@ -88,7 +88,19 @@
 
 开始正经的记笔记啦！
 
-用postman测试接口的时候发现关于删除数据的操作需要加`@Transactional`注解，不然会报错。
+用postman测试接口的时候发现关于**删除数据的操作需要加`@Transactional`注解**，不然会报错。
+
+**2019.3.20** 两天之后我查了下文档：**默认情况下JPA的每个操作都是事务的，在默认情况下，JPA的事务会设置为只读**，具体可以参考SimpleJpaRepository。**只有声明了@Transactional，本质上是声明了@Transactional(readOnly=false)，这样覆盖了默认的@Transactional配置便可以执行修改操作了**。提供事务支持，如隔离性等事务特性。下面是SimpleJpaRepository的开头部分源码，整个类都是标注了  readOnly=true的，
+
+```java
+@Repository
+@Transactional(readOnly = true)
+public class SimpleJpaRepository<T, ID> implements JpaRepositoryImplementation<T, ID> {
+	....
+}
+```
+
+
 
 写到ReadController时，想到需要有人写书，不过在手机上不好写，想着还是给出网页版的链接地址，到电脑上写吧。
 
@@ -106,6 +118,7 @@
 public interface BookRepository extends CrudRepository<Book,Integer> {
   Book findById(int id);
   List<Book> findByAuthor(String author); //找到对应作者的所有书
+  Boolean exsitsByAuthor(String author); //查找该作者是否在表中
 }
 
 ```
@@ -114,7 +127,7 @@ public interface BookRepository extends CrudRepository<Book,Integer> {
 
 
 
-今天遇到的问题：可能是改版后的表中有like字段和关键字 like 冲突了，所以insert时出错了，还是要提醒自己，命名要谨慎。
+今天遇到的问题：可能是改版后的**表中有like字段和关键字 like 冲突了**，所以insert时出错了，还是要提醒自己，命名要谨慎。
 
 
 
@@ -170,3 +183,99 @@ public String deleteBook(@RequestBody Map<String,Integer> id_map) {
   return "没有这本书";
 }
 ```
+
+
+
+**总结一下上面的问题：关于content-type是json还是text/plain 的问题：据我现在的理解和对接口的测试，发现如下**： 
+
+```json
+{
+    "username":"lin",
+    "password":"32fjkl" //像这样格式的数据 json和 text/plain都是一样可行的
+}
+---
+{
+    "id":2  //有包含整数的，只能是 text/plain
+}
+
+---
+ 有明确json格式的数据  就必须是  json的
+{
+    "chapterid""{
+    	"bookid":2,
+    	"chaptername":"章节名称"
+	},
+	"content":"章节内容"
+}
+
+
+```
+
+下面是一篇关于content-type的文章：[content-type](http://homeway.me/2015/07/19/understand-http-about-content-type/)
+
+**Content-Type**是实体头域（或称为实体头部，entity header）用于向接收方指示实体（entity body）的介质类型的，或称为资源的MIME类型，现在通常称media type更为合适。
+
+ 这里简单介绍一下我认为重要的内容：**关于post的发包方式**——
+
+1. `application/x-www-form-urlencoded` 是常用的表单发包方式，普通表单提交、或者js发包默认都是通过这种方式，使用`enctype`来设置
+
+```html
+<form enctype="application/x-www-form-urlencoded" action="目标网址" method="POST">
+    <input type="text" name="name" value="homeway">
+    <input type="text" name="key" value="nokey">
+    <input type="submit" value="submit">
+</form>
+```
+
+服务器收到的 raw header类似：
+
+```html
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding:gzip, deflate
+Accept-Language:zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4,gl;q=0.2,de;q=0.2
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Length:17
+Content-Type:application/x-www-form-urlencoded
+```
+
+row body : `name=homeway&key=nokey`  就是上面的数据。
+
+2. `multipart/form-data` :用于发送文件的Post包
+
+假设用python发送一个文件给服务器：
+
+```python
+data = {
+    "key1": "123",
+    "key2": "456",
+}
+files = {'file': open('index.py', 'rb')}
+res = requests.post(url="http://localhost/upload", method="POST", data=data, files=files)
+print res
+```
+
+
+
+服务器收到的数据内容如下：
+
+```
+POST http://www.homeway.me HTTP/1.1
+Content-Type:multipart/form-data; boundary=------WebKitFormBoundaryOGkWPJsSaJCPWjZP
+
+------WebKitFormBoundaryOGkWPJsSaJCPWjZP
+Content-Disposition: form-data; name="key2"
+456
+------WebKitFormBoundaryOGkWPJsSaJCPWjZP
+Content-Disposition: form-data; name="key1"
+123
+------WebKitFormBoundaryOGkWPJsSaJCPWjZP
+Content-Disposition: form-data; name="file"; filename="index.py"
+```
+
+当文件太长，HTTP无法在一个包之内发送完毕，就需要分割数据，分割成一个一个chunk发送给服务端，
+
+那么`--`用于区分数据快，而后面的数据`633e61ebf351484f9124d63ce76d8469`就是标示区分包作用
+
+---
+
