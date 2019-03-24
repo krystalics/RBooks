@@ -33,3 +33,69 @@
 这时可以做前后端路由的同构，即前后端使用同一套路由。或者让后端统一返回index.html，让前端去匹配不同的URL。
 
 React Router 是一个基于 [React](http://facebook.github.io/react/) 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。
+
+
+
+---
+
+##### 2019.3.23
+
+进入正式的开发阶段，才发现CSS布局和标签大小真的很难搞，花了一个小时弄了个很丑很丑的界面。感觉要崩溃了，所以还是先 学习一下 rem和flex以及grid再开始项目实践吧。
+
+<img src="./img/10.png">
+
+[关于rem的文章](https://www.jianshu.com/p/1af305583b58)  
+
+rem（font size of the root element）是指相对于根元素(即HTML元素)的字体大小的单位。假设根元素的字体大小是10px，5rem=5*10=50px  。`<html>`的默认字体大小是 **16px**，所以1rem是16px
+
+```css
+html{
+    font-size:10px;
+}
+p{
+    width:2rem; 20px
+    margin:1rem;  10px
+}
+```
+
+
+
+##### 如何使用rem来做不同尺寸的屏幕适配
+
+很明显，我们会根据不同的设备宽度来调整 根元素的字体大小 ,内容尺寸。这样就会达到响应式的效果。理想的适配是把设计稿直接等比缩放在设备上，这样在任何不同的屏幕上布局都会很完美，手淘就是用的 **rem** 来进行适配的。
+
+可是我悲催的发现，我并没有画设计稿，或者说我根本就不会画！难受啊，所以我就要一步步的慢慢测试，直到满意为止。
+
+采用手淘的rem方案，将屏幕等分为20份，每份就是1rem，对应rem基准值，下面的js代码将该基准值赋给 html 的font-size:
+
+```js
+(function () {
+    var html = document.documentElement;
+
+    function onWindowResize() {
+        html.style.fontSize = html.getBoundingClientRect().width / 20 + 'px'; //这边是 网页可见宽度 
+    }
+
+    window.addEventListener('resize', onWindowResize);
+    onWindowResize();
+})();
+```
+
+想办法获得自己pc的可见宽度：我的是 1396px  也就是说在我这里`1rem=1396/20=69.8 px` 。
+
+
+
+1. 布局：第二天早上又花了2个小时，才知道 React的组件是不接受 `className` 这个属性的。我说怎么布局就这么难。利用Grid和flex共同布局形成的界面。
+
+<img src="./img/11.png">
+
+2. React-router  学习ing：看了好久的文档，搞定了几个bug，正确的使用了路由
+
+3. 接下来就是要从服务端获取数据：`fetch` 是浏览器内置对象，所以我们不用安装包，直接使用，不过很多都是需要post请求的，需要userid或者其他信息才能够发出请求。所以具体流程是这样的：
+   1. 先写register和login的页面，让用户处于登录状态，保存userid
+   2. 写个状态验证的高阶组件，用于对用户是否登录进行判定，从而确定其是否能够访问某个页面
+   3. 有了post必须的参数之后就能够对其他页面进行访问了。
+
+<img src="./img/12.png">
+
+4. 渲染数据

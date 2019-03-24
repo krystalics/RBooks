@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 
-
 // 最终由 Navigator Container Footer 三个组件构成
-class Footer extends Component {
+class Settings extends Component {
   render() {
     return (
-        <div className="App">
-          I'm a footer
+        <div>
+          登录页面
         </div>
     );
   }
 }
 
-export default Footer;
+export default Settings;
