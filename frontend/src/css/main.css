@@ -1,31 +1,32 @@
 
 .Navigator ul {
   margin-top: 0.05rem;
-  flex: 2;
+
+
+  width: 60%;
+  position: relative;
+  margin-left: 15%;
+  margin-right: auto;
   height: 100%;
   list-style: none;
 
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-family: DialogInput, serif;
 
   font-size: 0.3rem;
 }
 
 
-.Navigator ul li {
-  margin-left: 1rem;
-}
-
-.Navigator img {
+.Navigator li img {
   width: 0.7rem;
   height: 0.7rem;
 }
 
 .Navigator ul li input {
 
-  flex: 1.5;
   line-height: 0.5rem;
   border-radius:0.2rem;
   border: #666666 1px solid;

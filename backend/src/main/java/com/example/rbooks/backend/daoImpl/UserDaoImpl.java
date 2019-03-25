@@ -37,12 +37,12 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public User getUser(String name) {
+  public User getUserByName(String name) {
     return userRepository.findByName(name);
   }
 
   @Override
-  public User getUser(int id){
+  public User getUserById(int id){
     return userRepository.findById(id);
   }
 }

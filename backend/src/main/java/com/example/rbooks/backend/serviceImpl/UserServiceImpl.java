@@ -1,7 +1,6 @@
 package com.example.rbooks.backend.serviceImpl;
 
 import com.example.rbooks.backend.dao.UserDao;
-import com.example.rbooks.backend.daoImpl.UserDaoImpl;
 import com.example.rbooks.backend.entity.User;
 import com.example.rbooks.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public int register(User user) {
-    User user1 = userDaoImpl.getUser(user.getName()); //在表中寻找这个用户名
+    User user1 = userDaoImpl.getUserByName(user.getName()); //在表中寻找这个用户名
     if (user1 != null) {//说明用户名已存在
       return -1;
     }
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void delete(String name) {
-    if (userDaoImpl.getUser(name) == null) {
+    if (userDaoImpl.getUserByName(name) == null) {
       return;  //说明该用户不存在
     }
     userDaoImpl.deleteUser(name);
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void update(User user) {
-    User user1 = userDaoImpl.getUser(user.getName());
+    User user1 = userDaoImpl.getUserByName(user.getName());
     if (user1 == null) {
       return;  //说明该用户不存在
     }
@@ -45,10 +44,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public int login(User user) {
-    String name = user.getName();
-    String password = user.getPassword();
-    User user1 = userDaoImpl.getUser(name); //从表中数据 找到该用户
-    if (user1 != null && password.equals(user1.getPassword())) {// 如果密码相同的话
+
+    User user1 = userDaoImpl.getUserByName(user.getName()); //从表中数据 找到该用户
+    if (user1 != null && user.getPassword().equals(user1.getPassword())) {// 如果密码相同的话
       return user1.getId(); //返回id
     }
 

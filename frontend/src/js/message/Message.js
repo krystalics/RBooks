@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import fetch from 'cross-fetch'
 // 最终由 Navigator Container Footer 三个组件构成
 class Message extends Component {
 

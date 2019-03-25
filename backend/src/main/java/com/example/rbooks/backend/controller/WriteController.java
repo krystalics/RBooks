@@ -4,12 +4,12 @@ import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.service.WriteService;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,9 +28,9 @@ public class WriteController {
     return writeServiceImpl.addBook(book);
   }
 
-  @RequestMapping(value = "/deletebook", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-  public String deleteBook(@RequestBody Map<String, Integer> id_map) {
-    writeServiceImpl.deleteBook(id_map.get("id")); //成功的话返回1,,不过是默认成功的，，
+  @RequestMapping(value = "/deletebook")
+  public String deleteBook(@RequestParam int bookid) {
+    writeServiceImpl.deleteBook(bookid); //成功的话返回1,,不过是默认成功的，，
 
     return "删除成功";
   }
@@ -45,13 +45,13 @@ public class WriteController {
   @RequestMapping(value = "/addchapter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public String addChapter(@RequestBody Chapter chapter) { //格式因为复合主键，需要增加一层
     /*
-                       {
-                        "chapterId":{
-                          "bookid":1,
-                          "chaptername":"第一章"
-                         },
-                        "content":"该内容"
-                       }
+       {
+        "chapterId":{
+          "bookid":1,
+          "chaptername":"第一章"
+         },
+        "content":"该内容"
+       }
     * */
     writeServiceImpl.addChapter(chapter);
     return "保存成功";

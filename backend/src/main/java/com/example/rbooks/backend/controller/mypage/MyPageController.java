@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,10 +23,10 @@ public class MyPageController {
     this.myPageServiceImpl = myPageServiceImpl;
   }
 
-  @RequestMapping(value = "/mypage", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-  public String getInformation(@RequestBody Map<String,Integer> userid) {
+  @RequestMapping(value = "/mypage")
+  public String getInformation(@RequestParam int userid) {
     // 参数是 Map<String,Integer> 好像不行，因为会报这个错误 Could not find acceptable representation
-    return myPageServiceImpl.myPage(userid.get("userid"));
+    return myPageServiceImpl.myPage(userid);
   }
 
 

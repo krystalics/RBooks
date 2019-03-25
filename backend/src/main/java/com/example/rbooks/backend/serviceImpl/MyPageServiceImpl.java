@@ -66,7 +66,7 @@ public class MyPageServiceImpl implements MyPageService {
     for (Followauthor followauthor : all_follow_users) {
       if (followauthor.getFollowauthorid().getUserid() == userid) {
         // 要把 password处理掉，
-        User user=userDaoImpl.getUser(followauthor.getFollowauthorid().getAuthorid());
+        User user=userDaoImpl.getUserById(followauthor.getFollowauthorid().getAuthorid());
         user.setPassword("");
         followusers.add(user);
       }
@@ -81,7 +81,7 @@ public class MyPageServiceImpl implements MyPageService {
     List<User> followusers = new ArrayList<>();
     for (Followauthor followauthor : all_follow_users) {
       if (followauthor.getFollowauthorid().getAuthorid() == userid) { //与上面的区别就是，细节不一致
-        User user=userDaoImpl.getUser(followauthor.getFollowauthorid().getUserid());
+        User user=userDaoImpl.getUserById(followauthor.getFollowauthorid().getUserid());
         user.setPassword("");
         followusers.add(user);
       }

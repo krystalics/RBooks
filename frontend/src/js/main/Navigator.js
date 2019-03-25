@@ -28,13 +28,13 @@ class Navigator extends Component {
             <li><img src={logo} alt="RBooks"/></li>
             <li><NavLink to="/home" activeClassName="selected"> RBooks</NavLink>
             </li>
-
-            <li><NavLink to="/write"> 写书</NavLink></li>
-            <li><NavLink to="/message"> 消息</NavLink></li>
-            <li><NavLink to="/mypage">我的</NavLink></li>
             <li><input value={this.state.value} onChange={this.handleChange}
                        placeholder="搜索"/>
             </li>
+            <li><NavLink to="/write"> 写书</NavLink></li>
+            <li><NavLink to="/message"> 消息</NavLink></li>
+            <li><NavLink to="/mypage">我的</NavLink></li>
+
           </ul>
 
         </div>
