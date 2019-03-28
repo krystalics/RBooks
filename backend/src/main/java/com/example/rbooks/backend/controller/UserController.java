@@ -24,29 +24,29 @@ public class UserController {
   }
 
   //会在登录成功之后 ， 返回一个SessionId，用于后续验证，还有@CookieValue来获取cookie值
-  @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public int login(@RequestBody User user) {
-
-    return userServiceImpl.login(user); //失败返回一个 -1  成功则是该用户的 id
+    return userServiceImpl.login(user.getName(), user.getPassword()); //失败返回一个 -1  成功则是该用户的 id
   }
 
-  @RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE) //前端传来form中的信息，是这个形式
+  @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  //前端传来form中的信息，是这个形式
   public int register(@RequestBody User user) { //需要传进来个User参数
     // 传进来的参数为 {name:"" ,password:""}  ，
-    return userServiceImpl.register(user); //失败返回一个 -1  成功则是该用户的 id
+    return userServiceImpl.register(user.getName(), user.getPassword()); //失败返回一个 -1  成功则是该用户的 id
   }
 
 
   @DeleteMapping(value = "/delete")
-  public String delete(@RequestParam String name) {
+  public String delete(@RequestParam("name") String name) {
     userServiceImpl.delete(name);
     return "删除成功";
   }
 
 
-  @RequestMapping(value = "/update",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public String update(@RequestBody User user) {
-    userServiceImpl.update(user); //默认更新成功，后面有需求再改。
+    userServiceImpl.update(user.getName(), user.getPassword()); //默认更新成功，后面有需求再改。
     return "更新成功";
   }
 }

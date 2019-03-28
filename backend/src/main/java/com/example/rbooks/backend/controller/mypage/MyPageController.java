@@ -24,8 +24,7 @@ public class MyPageController {
   }
 
   @RequestMapping(value = "/mypage")
-  public String getInformation(@RequestParam int userid) {
-    // 参数是 Map<String,Integer> 好像不行，因为会报这个错误 Could not find acceptable representation
+  public String getInformation(@RequestParam("userid") int userid) {
     return myPageServiceImpl.myPage(userid);
   }
 

@@ -2,19 +2,11 @@
 
 ##### 请求地址
 
-/mypage
+/mypage?userid=...
 
 ##### 请求类型
 
-POST (在restful api中是 PUT)
-
-##### 请求参数格式
-
-```json
-{
-    "userid":0
-}
-```
+GET
 
 ##### 正确的返回示例：
 
@@ -103,11 +95,13 @@ POST (在restful api中是 PUT)
 
 ##### 备注说明
 
-`Content-Type= MediaType.TEXT_PLAIN_VALUE`
+ *`Content-Type= MediaType.TEXT_PLAIN_VALUE`*
+
+由post改为了get，所以不用这个了
 
 ##### 修改日志
 
-无
+由post改为了get后面带参数的方法
 
 ---
 
@@ -189,19 +183,11 @@ GET
 
 ##### 请求地址
 
-/message
+/message?commentuser=...
 
 ##### 请求类型
 
-POST
-
-**请求参数格式**：
-
-```json
-{
-	"username":"jiangchen"
-}
-```
+GET
 
 ##### 正确的返回示例：
 
@@ -240,11 +226,11 @@ POST
 
 ##### 备注说明
 
-`Content-Type=MediaType.APPLICATION_JSON_VALUE`
+get方法不需要这个属性了 `Content-Type=MediaType.APPLICATION_JSON_VALUE`
 
 ##### 修改日志
 
-无
+有post改为 get，
 
 ---
 
@@ -1057,19 +1043,11 @@ user的id
 
 ##### 请求地址
 
-/user/delete
+/user/delete?userid=...
 
 ##### 请求类型
 
-POST 
-
-##### 请求参数格式
-
-```json
-{
-    "name":"linjiabao",
-}
-```
+GET
 
 **正确的返回示例**
 
@@ -1089,7 +1067,7 @@ POST
 
 ##### 修改日志
 
-无
+由原来的post改为get
 
 ---
 

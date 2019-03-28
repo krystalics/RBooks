@@ -29,7 +29,7 @@ public class WriteController {
   }
 
   @RequestMapping(value = "/deletebook")
-  public String deleteBook(@RequestParam int bookid) {
+  public String deleteBook(@RequestParam("userid") int bookid) {
     writeServiceImpl.deleteBook(bookid); //成功的话返回1,,不过是默认成功的，，
 
     return "删除成功";

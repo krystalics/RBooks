@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HigherLogin from "../higher/HigherLogin";
 
 // 最终由 Navigator Container Footer 三个组件构成
 class Write extends Component {
@@ -11,4 +12,5 @@ class Write extends Component {
   }
 }
 
-export default Write;
+Write = HigherLogin(Write);
+export default  Write;

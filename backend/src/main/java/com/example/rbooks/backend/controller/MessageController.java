@@ -19,7 +19,7 @@ public class MessageController {
   }
 
   @RequestMapping(value = "/message")
-  public List<Comment> getMessages(@RequestParam String commentuser) {
+  public List<Comment> getMessages(@RequestParam("commentuser") String commentuser) {
     return messageServiceImpl.getComments(commentuser);
   }
 }

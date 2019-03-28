@@ -8,6 +8,8 @@ import Home from "../home/Home";
 import Write from "../write/Write";
 import Message from "../message/Message";
 import Mypage from "../mypage/Mypage";
+import Login from "../login/Login";
+import Settings from "../settings/Settings";
 
 class Container extends Component {
   render() {
@@ -18,6 +20,8 @@ class Container extends Component {
             <Route path="/write" component={Write}/>
             <Route path="/message" component={Message}/>
             <Route path="/mypage" component={Mypage}/>
+            <Route path="/user/login" component={Login}/>
+            <Route path="/settings" component={Settings}/>
           </Switch>
 
         </div>

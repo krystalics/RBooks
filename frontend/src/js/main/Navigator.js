@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../css/main.css'
 import '../../App.css'
+import '../../css/menu.css'
 import logo from '../../img/logo.png'
 import {NavLink} from "react-router-dom";
 
@@ -20,26 +21,55 @@ class Navigator extends Component {
     this.setState({value: event.target.value});
   }
 
+  getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i].trim();
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  checkCookie() {
+    let userid = this.getCookie("userid");
+    return !(userid === '' || userid === -1);
+    //默认是-1  而无该key 则为''
+  }
+
   render() {
-    return (
+    let item;
+    if (this.checkCookie()) { //有cookie说明登录成功了，显示我的页面
+      // item=<NavLink to="/mypage">我的</NavLink>;
+      item = <li className="dropdown">
+              <button className="dropbtn">我</button>
+               <div className="dropdown-content">
+                 <NavLink to="/mypage">主页</NavLink>
+                 <NavLink to="/settings">设置</NavLink>
+                </div>
+              </li>
+    } else {
+      item = <NavLink to="/user/login">登录</NavLink>;
+    }
 
-        <div className="Navigator">
-          <ul>
-            <li><img src={logo} alt="RBooks"/></li>
-            <li><NavLink to="/home" activeClassName="selected"> RBooks</NavLink>
-            </li>
-            <li><input value={this.state.value} onChange={this.handleChange}
-                       placeholder="搜索"/>
-            </li>
-            <li><NavLink to="/write"> 写书</NavLink></li>
-            <li><NavLink to="/message"> 消息</NavLink></li>
-            <li><NavLink to="/mypage">我的</NavLink></li>
+    return <div className="Navigator">
+      <ul>
+        <li><img src={logo} alt="RBooks"/></li>
+        <li><NavLink to="/home"> RBooks</NavLink>
+        </li>
+        <li><input value={this.state.value} onChange={this.handleChange}
+                   placeholder="搜索"/>
+        </li>
+        <li><NavLink to="/write"> 写书</NavLink></li>
+        <li><NavLink to="/message"> 消息</NavLink></li>
 
-          </ul>
+        <li>{item}</li>
 
-        </div>
+      </ul>
 
-    );
+    </div>;
   }
 }
 

@@ -100,3 +100,80 @@ p{
 
 
 
+##### 3.27 工作日志
+
+经过几个小时的查阅文档决定使用`Axios`ajax库，验证是否登录的直接检查cookie是不是还在，设置cookie时间为7天。下午碰到了一个bug，感觉很麻烦。
+
+<img src="./img/13.png">
+
+请求变成了：`message?username=krysta&&password=rbooks` 和登录的请求不一样。
+
+情况是这样的：由于`<form></form> `我并没有指定`method` 所以默认就是get方法，导致请求变成了上面这个样子。浏览器访问的是前端的服务，所以路径上显示的都是前端的路由，它会从后端获取数据然后渲染，而这里是因为 `form`的属性覆盖了 `axops.post()`方法，才导致请求出错。
+
+像下面也是这样。
+
+<img src="./img/14.png">
+
+
+
+只要把参数填明确了，就不会发生请求错误，
+
+`<form onSubmit={this.handleLogin} method="post" action="http://localhost:8080/user/login">` 虽然页面上还是显示 端口为3000 ，前端的服务提供给浏览器，它再向后端获取数据。
+
+##### 3.28 今天本打算早起修bug，但是我还是低估了自己。
+
+最新的bug是这样的：`Cannot post /user/login`  后端的代码如下：
+
+```java
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+  private final UserService userServiceImpl;
+
+  @Autowired
+  public UserController(UserServiceImpl userServiceImpl) {
+    this.userServiceImpl = userServiceImpl;
+  }
+
+  @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  public int login(@RequestBody User user) {
+    System.out.println(user.getName()+user.getPassword());
+    return userServiceImpl.login(user); //失败返回一个 -1  成功则是该用户的 id
+  }
+}
+```
+
+我找了好多文章才发现可能的错误。
+
+1. `form`的 `content-type=application/x-www-form-urlencoded` 而我后端定义的是 `application/json` 所以会报错  `content-type=application/x-www-form-urlencoded not supported ` 
+2. 我后端获取参数的方法是用`@RequestBody`，但是查了下文章发现获取参数的方法还是有区别的。
+
+**@RequestParam**
+
+A） 常用来处理简单类型的绑定，通过Request.getParameter() 获取的String可直接转换为简单类型的情况（ String--> 简单类型的转换操作由ConversionService配置的转换器来完成）；因为使用request.getParameter()方式获取参数，所以可以处理get 方式中queryString的值，也可以处理post方式中 body data的值；
+
+B）**用来处理Content-Type: 为 `application/x-www-form-urlencoded`编码的内容，提交方式GET、POST；**
+
+C) 该注解有两个属性： value、required； value用来指定要传入值的id名称，required用来指示参数是否必须绑定；
+
+**@RequestBody**
+
+该注解常用来处理Content-Type: 不是`application/x-www-form-urlencoded`编码的内容，例如**application/json**, application/xml等；
+
+这也就是我在用postman测试的时候会通过的原因了。
+
+##### 然后接着下一个bug又出现了！天哪，杀了我吧
+
+> There was an unexpected error (type=Not Acceptable, status=406).
+>
+> Could not find acceptable representation
+
+然后又在各种文章中饱受摧残，终于在这篇文章中看到这样的 Controller ：[Baeldung](https://www.baeldung.com/spring-httpmediatypenotacceptable)  ，和查阅了[consumes和produces的意义](https://blog.csdn.net/u011136197/article/details/78923000) 才明白是我**接收方式出了问题，以及返回方式也和前端的 Accept 不一致：**前端接收的如下图：
+
+<img src="./img/17.png">
+
+所以最终 后端的controller 是这样的：
+
+`@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)` 把 produces 去掉了换成consumes。
+

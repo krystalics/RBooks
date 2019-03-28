@@ -5,7 +5,7 @@ class Settings extends Component {
   render() {
     return (
         <div>
-          登录页面
+          设置页面
         </div>
     );
   }
