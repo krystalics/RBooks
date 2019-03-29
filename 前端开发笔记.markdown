@@ -98,6 +98,8 @@ p{
 
 4. 渲染数据
 
+---
+
 
 
 ##### 3.27 工作日志
@@ -176,4 +178,125 @@ C) 该注解有两个属性： value、required； value用来指定要传入值
 所以最终 后端的controller 是这样的：
 
 `@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)` 把 produces 去掉了换成consumes。
+
+
+
+最后还是被这个bug折磨的身不如死，把 `<form>`给去掉了，只保留中间的input，后台的接收方式也还原为了 'application/json' ，完成了这个功能。总的来说一开始就是个小bug，但是被我跑偏了之后就一直在修补，最后回过头来才发现，只需要撤掉身上的枷锁就可以翱翔于天际。 
+
+好的，接下来就是要渲染这些数据了。
+
+---
+
+
+
+##### 3.29  终于到了渲染数据的阶段
+
+这些数据搞了我好久还没搞定，因为react不能直接渲染数组或者对象（而我们从后端获取的数据很多时候是JSON对象），如果直接渲染报错如下。
+
+<img src="./img/18.png">
+
+所以我们必须确保整个调用链（getData->ComponentList->Concretecomponent） 都不会出现直接渲染对象的情况，都必须对其进行解析。**从对象数组到对象再到具体属性**， **从后台获取数据到UI整个过程代码如下**
+
+```js
+// 获取数据
+export default (WrappedComponent, url) => {
+  class NewComponent extends Component {
+    constructor() {
+      super();
+      this.state = {data: ''}
+    }
+
+    componentWillMount() {
+      axios.get('http://localhost:8080/' + url)
+      .then(res => {
+        this.setState({data: res.data});
+      }).catch(res => {
+        this.setState({data: "加载错误"})
+      })
+    }
+
+    render() {
+      return (
+         <WrappedComponent data={this.state.data}/>
+      );
+    }
+  }
+
+  return NewComponent
+}
+
+
+
+```
+
+之后将json对象数组进行分组  ， 记住由于传进react组件中的属性的类型对于react来说是透明的(不可知) ，所以直接调用`this.props.data.map()` 会报错，`this.props.data.map() is not a function` , 需要有个类型明确的数组，如下：
+
+```js
+// 对 数组划分
+class BookList extends Component {
+
+  data() {
+    const data = this.props.data;
+    let datas = [];
+    for (let index in data) {
+      let temp;
+      temp = {
+        id: data[index].id,
+        name: data[index].name,
+        author: data[index].author,
+        description: data[index].description,
+        datetime: data[index].datetime,
+        photourl: data[index].photourl,
+        love: data[index].love
+      };
+
+      datas.push(temp);
+    }
+
+    return datas;
+  }
+
+  render() {
+
+    return (
+        this.data().map((item, idx) => {
+          return <BookInfo key={idx} data={item}/>
+        })
+    );
+  }
+}
+
+BookList = wrapWithAjaxGetData(BookList, 'home');
+export default BookList;
+```
+
+最后对每个单独的json对象进行解析，记住不能直接`{this.props.data}` 因为react不能直接解析对象。
+
+```js
+import React, {Component} from 'react';
+
+class BookInfo extends Component {
+
+  render() {
+    return (
+        <div>
+          {this.props.data.id}
+          {this.props.data.name}
+          {this.props.data.author}
+          {this.props.data.description}
+          {this.props.data.datetime}
+          {this.props.data.photourl}
+          {this.props.data.love}
+          <hr/>
+        </div>
+    );
+  }
+}
+
+export default BookInfo;
+```
+
+所以我们最终得到 
+
+<img src="./img/19.png">
 

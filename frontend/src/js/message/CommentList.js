@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import wrapWithAjaxGetData from '../higher/wrapWithAjaxGetData';
-import BookInfo from "./BookInfo";
+import Comment from "./Comment";
 
-class BookList extends Component {
+class CommentList extends Component {
 
   data() {
     const data = this.props.data;
@@ -10,13 +10,12 @@ class BookList extends Component {
     for (let index in data) {
       let temp;
       temp = {
-        id: data[index].id,
-        name: data[index].name,
+        bookid: data[index].chapterid.bookid,
+        chaptername: data[index].chapterid.chaptername,
         author: data[index].author,
-        description: data[index].description,
         datetime: data[index].datetime,
-        photourl: data[index].photourl,
-        love: data[index].love
+        commentuser: data[index].commentuser,
+        content: data[index].content
       };
 
       datas.push(temp);
@@ -29,11 +28,12 @@ class BookList extends Component {
 
     return (
         this.data().map((item, idx) => {
-          return <BookInfo key={idx} data={item}/>
+          return <Comment key={idx} data={item}/>
         })
     );
   }
 }
 
-BookList = wrapWithAjaxGetData(BookList, 'home');
-export default BookList;
+CommentList = wrapWithAjaxGetData(CommentList,
+    `message?commentuser=${localStorage.getItem('name')}`);
+export default CommentList;

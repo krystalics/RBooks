@@ -20,7 +20,7 @@ public class SettingsController {
     this.settingsServiceImpl = settingsServiceImpl;
   }
 
-  @RequestMapping(value = "/settings",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/settings",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
   public String update(@RequestBody Information information){ //之后的版本会有需要照片上传，文件的传输之后迭代时再搞
     settingsServiceImpl.update(information);
     return "设置成功";

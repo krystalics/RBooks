@@ -45,7 +45,7 @@ class Login extends Component {
         {"name": this.state.name, "password": this.state.password},
         {headers: {'Content-Type': 'application/json'}})
     .then(res => {
-      alert(res.data);
+
       if (res.status === 200) {
         this.setState({userid: res.data}); //将返回的id赋给userid
         this.setCookie("userid", this.state.userid, 7); //设置7天的cookie

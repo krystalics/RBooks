@@ -43,13 +43,13 @@ class Navigator extends Component {
     let item;
     if (this.checkCookie()) { //有cookie说明登录成功了，显示我的页面
       // item=<NavLink to="/mypage">我的</NavLink>;
-      item = <li className="dropdown">
+      item = <div className="dropdown">
               <button className="dropbtn">我</button>
                <div className="dropdown-content">
                  <NavLink to="/mypage">主页</NavLink>
                  <NavLink to="/settings">设置</NavLink>
                 </div>
-              </li>
+              </div>
     } else {
       item = <NavLink to="/user/login">登录</NavLink>;
     }
