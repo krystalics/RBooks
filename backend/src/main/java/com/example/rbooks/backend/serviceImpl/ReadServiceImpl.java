@@ -3,6 +3,7 @@ package com.example.rbooks.backend.serviceImpl;
 import com.example.rbooks.backend.dao.ChapterDao;
 import com.example.rbooks.backend.dao.CommentDao;
 import com.example.rbooks.backend.dao.FollowDao;
+import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
 import com.example.rbooks.backend.entity.FollowauthorId;
@@ -64,5 +65,10 @@ public class ReadServiceImpl implements ReadService {
   @Override
   public void deleteFollowBook(FollowbookId id) {
     followDaoImpl.deleteFollowBook(id);
+  }
+
+  @Override
+  public List<Chapter> getBook(int bookid) {
+    return chapterDaoImpl.getBook(bookid);
   }
 }

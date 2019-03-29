@@ -1,16 +1,19 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
 import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.service.ReadService;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
@@ -41,7 +44,7 @@ public class ReadController {
 
 
   // 试过了 自增的id 是接着从user表中的id 开始的，并不是单独的表有单独的记录....如果作者不在数据库中，就会报错，，因为有外键约束
-  @RequestMapping(value = "/addcomment", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/addcomment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addComment(@RequestBody Comment comment) { //没加RequestBody 会导致数据为null
 
     readServiceImpl.addComment(comment);
@@ -49,38 +52,49 @@ public class ReadController {
     return "添加成功"; //默认可以添加成功
   }
 
-  @RequestMapping(value = "/getcontent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/getcontent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String content(@RequestBody ChapterId chapterId) { //数据格式 {bookid:1,chaptername:"第一章"}
     return readServiceImpl.getContent(chapterId);
   }
 
-  @RequestMapping(value = "/getcomments", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/getbook")
+  public List<Chapter> getBook(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
+    List<Chapter> books = readServiceImpl.getBook(bookid);
+    for(Chapter chapter:books){
+      System.out.println(chapter.getChapterid());
+      System.out.println(chapter.getDatetime());
+      System.out.println(chapter.getContent());
+    }
+    return readServiceImpl.getBook(bookid);
+  }
+
+  @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public List<Comment> getComments(@RequestBody ChapterId chapterId) {
     return readServiceImpl.getComments(chapterId);
   }
 
-  @RequestMapping(value = "/addfollowauthor", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/addfollowauthor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addFollowAuthor(@RequestBody FollowauthorId id) {
     readServiceImpl.addFollowAuthor(id);
 
     return "添加成功";
   }
 
-  @RequestMapping(value = "/deletefollowauthor", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/deletefollowauthor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String deleteFollowAuthor(@RequestBody FollowauthorId id) {
     readServiceImpl.deleteFollowAuthor(id);
 
     return "删除成功";
   }
 
-  @RequestMapping(value = "/addfollowbook", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/addfollowbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addFollowBook(@RequestBody FollowbookId id) {
     readServiceImpl.addFollowBook(id);
 
     return "添加成功";
   }
 
-  @RequestMapping(value = "/deletefollowbook", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/deletefollowbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String deleteFollowBook(@RequestBody FollowbookId id) {
     readServiceImpl.deleteFollowBook(id);
 

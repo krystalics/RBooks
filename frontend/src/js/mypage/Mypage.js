@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Information from "./Information";
-import CardNav from "./CardNav";
 import Card from "./Card";
 import HigherLogin from "../higher/HigherLogin";
 import wrapWithAjaxGetData from "../higher/wrapWithAjaxGetData";
-
+import BookList from "../home/BookList";
 
 class Mypage extends Component {
 
@@ -12,20 +11,33 @@ class Mypage extends Component {
     super(props);
     this.state = {
       information: [],
-      write_books: [],
-      follow_books: [],
-      follow_author: [],
-      be_followed: []
+      bookList_write: [],
+      bookList_follow: [],
+      userList_follow: [],
+      userList_be_followed: []
     }
+  }
+
+  getData() {
+    this.setState({
+      information: this.props.data.information,
+      bookList_write: this.props.data.bookList_write,
+      bookList_follow: this.props.data.bookList_follow,
+      userList_follow: this.props.data.userList_follow,
+      userList_be_followed: this.props.data.userList_be_followed
+    });
   }
 
   render() {
     return (
         <div>
-          {this.props.data}
-          <Information/>
-          <CardNav/>
-          <Card/>
+    
+          <Information data={this.state.information}/>
+
+          <BookList data={this.state.bookList_write}/>
+          <BookList data={this.state.bookList_follow}/>
+          <Card data={this.state.userList_follow}/>
+          <Card data={this.state.userList_be_followed}/>
         </div>
     );
   }

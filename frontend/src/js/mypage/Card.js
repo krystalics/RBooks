@@ -5,7 +5,13 @@ class Card extends Component {
   render() {
     return (
         <div>
-          卡片内容，包括作品集，书单，关注，被关注
+          {this.props.data.userid}
+          {this.props.data.username}
+          {this.props.data.email}
+          {this.props.data.selfintroduction}
+          {this.props.data.photourl}
+          {this.props.data.githubpage}
+          {this.props.data.homepage}
         </div>
     );
   }

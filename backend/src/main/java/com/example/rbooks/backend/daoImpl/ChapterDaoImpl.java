@@ -4,6 +4,7 @@ import com.example.rbooks.backend.dao.ChapterDao;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.ChapterRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +39,10 @@ public class ChapterDaoImpl implements ChapterDao {
   @Override
   public Chapter getChapter(ChapterId chapterId) {
     return chapterRepository.findByChapterid(chapterId);
+  }
+
+  @Override
+  public List<Chapter> getBook(int bookid) {
+    return chapterRepository.findByChapterid_Bookid(bookid);
   }
 }

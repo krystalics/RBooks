@@ -3,7 +3,7 @@ import wrapWithAjaxGetData from '../higher/wrapWithAjaxGetData';
 import Comment from "./Comment";
 
 
-class CommentList extends Component {
+class CommentListByChapterId extends Component {
 
   data() {
     const data = this.props.data;
@@ -36,5 +36,5 @@ class CommentList extends Component {
   }
 }
 
-CommentList = wrapWithAjaxGetData(CommentList,`message?commentuser=${localStorage.getItem('name')}`);
-export default CommentList;
+CommentListByChapterId = wrapWithAjaxGetData(CommentListByChapterId,`message?commentuser=${localStorage.getItem('name')}`);
+export default CommentListByChapterId;

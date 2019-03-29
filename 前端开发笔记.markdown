@@ -300,3 +300,55 @@ export default BookInfo;
 
 <img src="./img/19.png">
 
+
+
+---
+
+碰到一个可优化问题，在Message中需要的CommentList是By  commentsuer 的，而在阅读文章的时候我们需要的是By chapterid。而CommentList已经被高阶组件写死了是访问的commentuser，代码如下：
+
+```js
+CommentList = wrapWithAjaxGetData(CommentList,`message?commentuser=${localStorage.getItem('name')}`);
+```
+
+而需要访问chapterid接口的，则需要另外写个大部分代码和它一样的组件很明显不合理。但是现在项目还没完全搞定，先将就着写，后期再来填坑。
+
+
+
+---
+
+注意如果要在同一个类中获取数据和解析数据，注意解析数据一定要在获取之后，不是说的代码顺序而是执行的逻辑顺序，因为js是单线程异步的，所以很多时候不能够保证渲染的数据是对的。一般推荐在，获取数据的函数中：
+
+```js
+axios.get('http://localhost:8080/read/getbook?bookid=' + this.state.bookid)
+    .then(res => {
+      this.setState({data: res.data});
+      this.analyse_data(); //保证是在获取之后渲染
+    }).catch(res => {
+      this.setState({data: "加载错误"})
+    })
+```
+
+---
+
+又遇到一个bug，这个bug很让我不解：
+
+```js
+content = {
+        bookid: data[index].chapterid.bookid,
+        chaptername: data[index].chapterid.chaptername,
+        author: author,
+        datetime: data[index].datetime,
+        content: data[index].content
+      };
+
+          {JSON.stringify(this.state.contents[0])}
+          {this.state.contents[0].bookid}
+          {this.state.contents[0].chaptername}
+          {this.state.contents[0].author}
+          {this.state.contents[0].datetime}
+          {this.state.contents[0].content}
+```
+
+<img src="./img/21.png">
+
+注释掉 下面的几行`{this.state.contents[0]...}`之后就渲染成功了。这两个有什么问题吗？？？？？明天去问学长。

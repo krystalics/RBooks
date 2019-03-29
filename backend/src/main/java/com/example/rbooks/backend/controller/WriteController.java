@@ -23,7 +23,7 @@ public class WriteController {
     this.writeServiceImpl = writeServiceImpl;
   }
 
-  @RequestMapping(value = "/addbook", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/addbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public int addBook(@RequestBody Book book) { //需要返回ID
     return writeServiceImpl.addBook(book);
   }
@@ -35,14 +35,14 @@ public class WriteController {
     return "删除成功";
   }
 
-  @RequestMapping(value = "/updatebook", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/updatebook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String updateBook(@RequestBody Book book) {  //更新时需要用到 id  谨记
     writeServiceImpl.updateBook(book);
 
     return "更新成功";
   }
 
-  @RequestMapping(value = "/addchapter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/addchapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addChapter(@RequestBody Chapter chapter) { //格式因为复合主键，需要增加一层
     /*
        {
@@ -57,14 +57,14 @@ public class WriteController {
     return "保存成功";
   }
 
-  @RequestMapping(value = "/deletechapter", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+  @RequestMapping(value = "/deletechapter", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE)
   public String deleteChapter(@RequestBody ChapterId chapterid) {
     writeServiceImpl.deleteChapter(chapterid); //成功的话返回1,,不过是默认成功的，，
 
     return "删除成功";
   }
 
-  @RequestMapping(value = "/updatechapter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/updatechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String updateChapter(@RequestBody Chapter chapter) {
     writeServiceImpl.updateChapter(chapter);
 

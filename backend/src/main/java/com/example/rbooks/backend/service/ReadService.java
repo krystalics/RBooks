@@ -1,5 +1,6 @@
 package com.example.rbooks.backend.service;
 
+import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
 import com.example.rbooks.backend.entity.FollowauthorId;
@@ -23,4 +24,6 @@ public interface ReadService {
   void addFollowBook(FollowbookId id);
 
   void deleteFollowBook(FollowbookId id);
+
+  List<Chapter> getBook(int bookid);
 }

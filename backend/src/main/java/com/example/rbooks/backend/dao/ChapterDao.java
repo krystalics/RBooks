@@ -2,6 +2,7 @@ package com.example.rbooks.backend.dao;
 
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
+import java.util.List;
 
 public interface ChapterDao {
 
@@ -13,5 +14,5 @@ public interface ChapterDao {
 
   Chapter getChapter(ChapterId chapterId); // 读取章节内容
 
-
+  List<Chapter> getBook(int bookid);
 }
