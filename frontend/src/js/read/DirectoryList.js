@@ -5,7 +5,7 @@ class DirectoryList extends Component {
 
   getNames() {
     let names = [];
-    const directory=this.props.data;
+    const directory = this.props.data;
     // alert(directory); //这里出现 undefined
     for (let index in directory) {
       let temp;
@@ -17,11 +17,39 @@ class DirectoryList extends Component {
     return names;
   }
 
+  //
+  getChapter(chaptername) {
+    let chapter = {};
+    for (let item of this.props.contents) {
+      if (item.chaptername === chaptername) {
+        chapter = {
+          bookid: item.bookid,
+          chaptername: item.chaptername,
+          author: item.author,
+          datetime: item.datetime,
+          content: item.content
+        }
+      }
+    }
+    return chapter;
+  }
+
   render() {
+
     return (
-        this.getNames().map((item, idx) => {
-          return <Directory key={idx} data={item} chapterid={this.props.chapterid}/>
-        })
+
+        <div>
+
+
+          {this.getNames().map((item, idx) => {
+            let content=this.getChapter(item.name);
+            return <Directory key={idx} data={item}
+                              chapterid={this.props.chapterid}
+                              content={content}
+            />
+          })}
+        </div>
+
     );
   }
 }

@@ -3,6 +3,7 @@ import axios from "axios";
 import DirectoryList from "./DirectoryList";
 import MainContent from "./MainContent";
 import {Route} from 'react-router-dom'
+import CommentListByChapterId from "./CommentListByChapterId";
 // 由三个组件构成，目录 主要内容 评论列表
 // 这里的 CommentList和之前Message中的不一样，这里是需要根据 Chapterid 来确定评论的，而之前的是经过高级组件固定化的
 
@@ -55,22 +56,20 @@ class Read extends Component {
 
   }
 
-  getChapter(){
-
-  }
-
   // 先渲染目录和 第一章的内容  ,然后绑定目录和内容的更新关系
   render() {
     return (
         <div>
 
-          <DirectoryList data={this.state.directory} chapterid={this.props.match.params.data}/>
+          <DirectoryList data={this.state.directory}
+                         chapterid={this.props.match.params.data}
+                         contents={this.state.contents}/>
           <div>
-            <Route path="/read/:data/content/:chaptername" component={MainContent}/>
+            <Route path="/read/:data/content/:chaptername"
+                   component={MainContent}/>
           </div>
-          {/*<ContentList data={this.state.contents}/>*/}
 
-          {/*<CommentList/>*/}
+
         </div>
     );
   }

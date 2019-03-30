@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios';
 
-export default (WrappedComponent, url, data) => {
+export default (WrappedComponent, url, params) => {
   class NewComponent extends Component {
     constructor() {
       super();
@@ -9,12 +9,12 @@ export default (WrappedComponent, url, data) => {
     }
 
     componentWillMount() {
-      axios.post('http://localhost:8080/' + url,data)
+      axios.post('http://localhost:8080/' + url, params)
       .then(res => {
         if (res.data === '') {
           this.setState({data: "加载错误"});
         }
-        this.setState({data: JSON.stringify(res.data)});
+        this.setState({data: res.data});
       })
     }
 

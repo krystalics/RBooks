@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import wrapWithAjaxGetData from '../higher/wrapWithAjaxGetData';
-import Comment from "./Comment";
-
+import Comment from "./../message/Comment";
+import wrapWithAjaxPostData from "../higher/wrapWithAjaxPostData";
 
 class CommentListByChapterId extends Component {
 
   data() {
     const data = this.props.data;
     let datas = [];
-    if(data===null) return [];
+    if (data === null) {
+      return [];
+    }
     for (let index in data) {
       let temp;
       temp = {
@@ -36,5 +37,9 @@ class CommentListByChapterId extends Component {
   }
 }
 
-CommentListByChapterId = wrapWithAjaxGetData(CommentListByChapterId,`message?commentuser=${localStorage.getItem('name')}`);
+CommentListByChapterId = wrapWithAjaxPostData(CommentListByChapterId,
+    'read/getcomments', {
+      bookid: 1,
+      chaptername: "第一章"
+    });
 export default CommentListByChapterId;
