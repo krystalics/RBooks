@@ -352,3 +352,65 @@ content = {
 <img src="./img/21.png">
 
 注释掉 下面的几行`{this.state.contents[0]...}`之后就渲染成功了。这两个有什么问题吗？？？？？明天去问学长。
+
+
+
+---
+
+##### 3.30 问过学长了，他对这个问题也没什么想法，但是还是感觉比我厉害
+
+还是之前的问题，contents能够渲染，但是他的对象就不行。
+
+```js
+{JSON.stringify(this.state.contents)}
+<ReactJSON data={this.state.contents}/>
+```
+
+<img src="./img/22.png">
+
+然后将contents的东西，像之前的层次一样罗列就成功的渲染出来了。这tmd的是react的bug吗？？？？？
+
+```js
+<DirectoryList data={this.state.directory}/>
+<ContentList data={this.state.contents}/>
+```
+
+
+
+---
+
+好吧又遇到一个新的bug，从目录点击进去之后是没有问题，但是刷新之后整个App组件刷新之后，read组件也刷新它需要从url中获得参数，而这和我定义的content参数不一致，导致了报错。
+
+<img src="./img/23.png">
+
+
+
+**所以要将之前read的参数也传递到后面的路由中，**最终的结果是这样的：chapterid由read传递到directoryList再到directory ，
+
+```js
+//  directory组件
+<NavLink to=
+  {`/read/${this.props.chapterid}/content/${this.props.data.name}`}>{this.props.data.name}</NavLink>
+
+// read组件中的render方法
+<DirectoryList data={this.state.directory} chapterid={this.props.match.params.data}/>
+          <div>
+            <Route path="/read/:data/content/:chaptername" component={MainContent}/>
+          </div>
+
+```
+
+
+
+这样，bug就解决了，很安逸，，吐槽一下：难怪一般大项目都是要状态管理库（React-redux / Mobx）之类的，这个状态单靠props 传递好难受啊。
+
+
+
+
+
+
+
+
+
+
+

@@ -20,7 +20,7 @@ class DirectoryList extends Component {
   render() {
     return (
         this.getNames().map((item, idx) => {
-          return <Directory key={idx} data={item}/>
+          return <Directory key={idx} data={item} chapterid={this.props.chapterid}/>
         })
     );
   }

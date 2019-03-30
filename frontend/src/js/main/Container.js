@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../../css/main.css'
 import '../../App.css'
 
-import {Route, Switch, HashRouter} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import Home from "../home/Home";
 import Write from "../write/Write";

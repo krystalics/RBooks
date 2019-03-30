@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import MainContent from "./MainContent";
 import axios from "axios";
 import DirectoryList from "./DirectoryList";
-
+import MainContent from "./MainContent";
+import {Route} from 'react-router-dom'
 // 由三个组件构成，目录 主要内容 评论列表
 // 这里的 CommentList和之前Message中的不一样，这里是需要根据 Chapterid 来确定评论的，而之前的是经过高级组件固定化的
+
 class Read extends Component {
 
   constructor(props) {
@@ -40,6 +41,7 @@ class Read extends Component {
     for (let index in data) {
       let temp;
       temp = {
+
         bookid: data[index].chapterid.bookid,
         chaptername: data[index].chapterid.chaptername,
         author: author,
@@ -53,21 +55,21 @@ class Read extends Component {
 
   }
 
+  getChapter(){
+
+  }
+
   // 先渲染目录和 第一章的内容  ,然后绑定目录和内容的更新关系
   render() {
     return (
         <div>
 
-          {/*{JSON.stringify(this.state.directory[0])}*/}
-          {/*<hr/>*/}
-          <DirectoryList data={this.state.directory}/>
-          <MainContent data={this.state.contents}/>
-          {JSON.stringify(this.state.contents[0])}
-          {/*{this.state.contents[0].bookid}*/}
-          {/*{this.state.contents[0].chaptername}*/}
-          {/*{this.state.contents[0].author}*/}
-          {/*{this.state.contents[0].datetime}*/}
-          {/*{this.state.contents[0].content}*/}
+          <DirectoryList data={this.state.directory} chapterid={this.props.match.params.data}/>
+          <div>
+            <Route path="/read/:data/content/:chaptername" component={MainContent}/>
+          </div>
+          {/*<ContentList data={this.state.contents}/>*/}
+
           {/*<CommentList/>*/}
         </div>
     );
