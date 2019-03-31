@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import wrapWithAjaxGetData from '../higher/wrapWithAjaxGetData';
 import BookInfo from "./BookInfo";
-
+// 没经过高阶组件获取数据，可以为多个路径服务
 class BookList extends Component {
 
   data() {
@@ -35,5 +34,5 @@ class BookList extends Component {
   }
 }
 
-BookList = wrapWithAjaxGetData(BookList, 'home');
+
 export default BookList;

@@ -11,7 +11,8 @@ class MainContent extends Component {
 
         <div>
           <ReactJSON src={this.props.location.state}/>
-          <CommentListByChapterId chapterid={chapterid}/>
+
+          {JSON.stringify(chapterid)}
           {/*{this.props.match.params.chaptername}*/}
           {/*{this.props.match.params.data}*/}
           {/*{this.props.location.state.bookid}*/}

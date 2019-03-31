@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import BookList from "./BookList";
+import BookListInHome from "./BookListInHome";
 
 
 class Home extends Component {
   render() {
     return (
         <div>
-          <BookList/>
+          <BookListInHome/>
         </div>
     );
   }

@@ -40,10 +40,9 @@ class Login extends Component {
   }
 
   handleLogin() { //成功之后执行这个方法
-
+    console.log("执行handlelogin");
     axios.post("http://localhost:8080/user/login",
-        {"name": this.state.name, "password": this.state.password},
-        {headers: {'Content-Type': 'application/json'}})
+        {name: this.state.name, password: this.state.password})
     .then(res => {
 
       if (res.status === 200) {
@@ -60,19 +59,19 @@ class Login extends Component {
     return (
         <div>
 
-            <div>
-              <label htmlFor="name">账号</label>
-              <input name="name" value={this.state.name}
-                     onChange={this.handleUserInputChange}/>
-            </div>
-            <div>
-              <label htmlFor="password">密码</label>
-              <input name="password" value={this.state.password}
-                     onChange={this.handlePasswordInputChange}/>
-            </div>
-            <div>
-              <button type="submit" onSubmit={this.handleLogin}>登录</button>
-            </div>
+          <div>
+            <label htmlFor="name">账号</label>
+            <input name="name" value={this.state.name}
+                   onChange={this.handleUserInputChange}/>
+          </div>
+          <div>
+            <label htmlFor="password">密码</label>
+            <input name="password" value={this.state.password}
+                   onChange={this.handlePasswordInputChange}/>
+          </div>
+          <div>
+            <button type="submit" onClick={this.handleLogin}>登录</button>
+          </div>
 
         </div>
     );

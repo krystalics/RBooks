@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import HigherLogin from '../higher/HigherLogin';
-import CommentList from "./CommentList";
-
-
+import CommentListInMessage from "./CommentListInMessage";
 
 class Message extends Component {
 
   render() {
-    return <CommentList />
+    return <CommentListInMessage />
   }
 }
 

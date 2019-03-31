@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import DirectoryList from "./DirectoryList";
+import ChapterList from "./ChapterList";
 import MainContent from "./MainContent";
 import {Route} from 'react-router-dom'
 import CommentListByChapterId from "./CommentListByChapterId";
@@ -19,6 +19,17 @@ class Read extends Component {
       contents: []
     }
   }
+
+  // getBook(){
+  //   return axios.get('http://localhost:8080/read/getbook?bookid=' + this.state.bookid);
+  // }
+  //
+  // getComments(){
+  //   return axios.post('http://localhost:8080/read/getcomments',{
+  //     bookid: 1,
+  //     chaptername: "第一章"
+  //   });
+  // }
 
   componentWillMount() { //获得数据
     axios.get('http://localhost:8080/read/getbook?bookid=' + this.state.bookid)
@@ -61,9 +72,9 @@ class Read extends Component {
     return (
         <div>
 
-          <DirectoryList data={this.state.directory}
-                         chapterid={this.props.match.params.data}
-                         contents={this.state.contents}/>
+          <ChapterList data={this.state.directory}
+                       chapterid={this.props.match.params.data}
+                       contents={this.state.contents}/>
           <div>
             <Route path="/read/:data/content/:chaptername"
                    component={MainContent}/>

@@ -59,17 +59,19 @@ public class ReadController {
 
   @RequestMapping(value = "/getbook")
   public List<Chapter> getBook(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
-    List<Chapter> books = readServiceImpl.getBook(bookid);
-    for(Chapter chapter:books){
-      System.out.println(chapter.getChapterid());
-      System.out.println(chapter.getDatetime());
-      System.out.println(chapter.getContent());
-    }
+//    List<Chapter> books = readServiceImpl.getBook(bookid);  测试成功，所以不用在打印了
+//    for(Chapter chapter:books){
+//      System.out.println(chapter.getChapterid());
+//      System.out.println(chapter.getDatetime());
+//      System.out.println(chapter.getContent());
+//    }
     return readServiceImpl.getBook(bookid);
   }
 
   @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public List<Comment> getComments(@RequestBody ChapterId chapterId) {
+
+    System.out.println(chapterId.getBookid()+chapterId.getChaptername());
     return readServiceImpl.getComments(chapterId);
   }
 

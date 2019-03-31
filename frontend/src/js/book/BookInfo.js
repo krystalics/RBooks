@@ -20,7 +20,7 @@ class BookInfo extends Component {
             {this.props.data.datetime}
             {this.props.data.photourl}
             {this.props.data.love}
-            <hr/>
+
           </div>
         </NavLink>
     );

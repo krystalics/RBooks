@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import wrapWithAjaxGetData from '../higher/wrapWithAjaxGetData';
 import Comment from "./Comment";
-
 
 class CommentList extends Component {
 
@@ -36,5 +34,4 @@ class CommentList extends Component {
   }
 }
 
-CommentList = wrapWithAjaxGetData(CommentList,`message?commentuser=${localStorage.getItem('name')}`);
 export default CommentList;

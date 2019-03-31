@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Directory from "./Directory";
+import CommentListByChapterId from "./Read";
 
-class DirectoryList extends Component {
+class ChapterList extends Component {
 
   getNames() {
     let names = [];
@@ -48,10 +49,13 @@ class DirectoryList extends Component {
                               content={content}
             />
           })}
+
+
+
         </div>
 
     );
   }
 }
 
-export default DirectoryList;
+export default ChapterList;
