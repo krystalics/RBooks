@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HigherLogin from "../higher/HigherLogin";
 
 
 class Settings extends Component {
@@ -17,5 +18,7 @@ class Settings extends Component {
     );
   }
 }
+
+Settings = HigherLogin(Settings)
 
 export default Settings;

@@ -13,6 +13,8 @@ public interface ReadService {
   // 不提供删除与更改 评论服务
   List<Comment> getComments(ChapterId chapterId);
 
+  List<Comment> getComments(int bookid);
+
   String getContent(ChapterId chapterId);
 
   void addComment(Comment comment);
@@ -26,4 +28,5 @@ public interface ReadService {
   void deleteFollowBook(FollowbookId id);
 
   List<Chapter> getBook(int bookid);
+
 }

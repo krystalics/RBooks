@@ -32,6 +32,11 @@ public class CommentDaoImpl implements CommentDao {
   }
 
   @Override
+  public List<Comment> getCommentsByBookid(int bookid) {
+    return commentRepository.findByChapterid_Bookid(bookid);
+  }
+
+  @Override
   public List<Comment> getCommentsByUserName(String commentuser) {
     return commentRepository.findByCommentuser(commentuser);
   }

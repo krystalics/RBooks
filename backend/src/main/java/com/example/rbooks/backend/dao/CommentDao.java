@@ -10,5 +10,7 @@ public interface CommentDao {
 
   List<Comment> getCommentsByChapterId(ChapterId chapterId);
 
+  List<Comment> getCommentsByBookid(int bookid);
+
   List<Comment> getCommentsByUserName(String commentuser);
 }

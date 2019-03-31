@@ -35,6 +35,11 @@ public class ReadServiceImpl implements ReadService {
     return commentDaoImpl.getCommentsByChapterId(chapterId);
   }
 
+  @Override
+  public List<Comment> getComments(int bookid) {
+    return commentDaoImpl.getCommentsByBookid(bookid);
+  }
+
 
   @Override
   public String getContent(ChapterId chapterId) {

@@ -75,6 +75,20 @@ public class ReadController {
     return readServiceImpl.getComments(chapterId);
   }
 
+  @RequestMapping(value = "/getAllcomments")
+  public List<Comment> getComments(@RequestParam int bookid) {
+    // 获得整本书的评论，
+    List<Comment> comments=readServiceImpl.getComments(bookid);
+    for(Comment comment:comments){
+      System.out.println(comment.getChapterid().getBookid());
+      System.out.println(comment.getChapterid().getChaptername());
+      System.out.println(comment.getCommentuser());
+      System.out.println(comment.getDatetime());
+      System.out.println(comment.getContent());
+    }
+    return readServiceImpl.getComments(bookid);
+  }
+
   @RequestMapping(value = "/addfollowauthor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addFollowAuthor(@RequestBody FollowauthorId id) {
     readServiceImpl.addFollowAuthor(id);

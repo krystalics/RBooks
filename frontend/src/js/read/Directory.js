@@ -4,13 +4,16 @@ import ReactJSON from 'react-json-view'
 class Directory extends Component {
 
   render() {
-
+    let data={
+      content:this.props.content,
+      comments:this.props.comments
+    };
     return (
         <div>
           {/*<ReactJSON src={this.props.content}/>*/}
           <NavLink to={{
             pathname: `/read/${this.props.chapterid}/content/${this.props.data.name}`,
-            state: this.props.content
+            state: {data}
           }}>{this.props.data.name}</NavLink>
         </div>
     );
