@@ -20,7 +20,7 @@ class ChapterList extends Component {
   getChapter(chaptername) {
     let chapter = {};
     for (let item of this.props.contents) {
-      console.log(item);
+      // console.log(item);
       if (item.chaptername === chaptername) {
         chapter = {
           bookid: item.bookid,
@@ -38,7 +38,7 @@ class ChapterList extends Component {
     // console.log(JSON.stringify(this.props.comments));  正常显示数据
     let comments = [];
     for (let item of this.props.comments) {
-      console.log(item);
+      // console.log(item);
       let temp;
       if (item.chaptername === chaptername) {
         temp = {

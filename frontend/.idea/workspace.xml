@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="366a2d50-7f77-4ab2-bfde-7b9f7ee5b284" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/controller/ReadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/controller/ReadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/dao/CommentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/dao/CommentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/daoImpl/CommentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/daoImpl/CommentDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/entity/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/entity/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/service/ReadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/service/ReadService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/serviceImpl/ReadServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/serviceImpl/ReadServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/comment/CommentList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/comment/CommentList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/main/Navigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/main/Navigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/ChapterList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/ChapterList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/CommentListByChapterId.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Directory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Directory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/read/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/MainContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/settings/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/settings/Settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../前端开发笔记.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/../前端开发笔记.markdown" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -69,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/read/MainContent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+            <state relative-caret-position="220">
+              <caret line="10" column="71" lean-forward="true" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -81,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/comment/CommentList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="62" lean-forward="true" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+            <state relative-caret-position="352">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -168,17 +156,17 @@
         <option value="$PROJECT_DIR$/src/js/read/Directory.js" />
         <option value="$PROJECT_DIR$/src/js/read/Read.js" />
         <option value="$PROJECT_DIR$/src/js/read/ChapterList.js" />
-        <option value="$PROJECT_DIR$/src/js/comment/CommentList.js" />
         <option value="$PROJECT_DIR$/src/js/comment/Comment.js" />
+        <option value="$PROJECT_DIR$/src/js/comment/CommentList.js" />
         <option value="$PROJECT_DIR$/src/js/read/MainContent.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="977" />
-    <option name="height" value="1088" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="978" />
+    <option name="height" value="1089" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -277,7 +265,7 @@
       <updated>1552709556551</updated>
       <workItem from="1552709558562" duration="1629000" />
       <workItem from="1553266477697" duration="104787000" />
-      <workItem from="1553851286619" duration="45174000" />
+      <workItem from="1553851286619" duration="46295000" />
     </task>
     <task id="LOCAL-00001" summary="先初始化一个react项目">
       <created>1552710723632</created>
@@ -342,11 +330,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554038846061</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="增加了一个接口获取整本书的comments，并成功加载了数据，虽然有点小bug">
+      <created>1554045276836</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1554045276836</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151590000" />
+    <option name="totallyTimeSpent" value="152711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -386,7 +381,8 @@
     <MESSAGE value="搞定两个小bug，以及昨天的显示问题。接下来估计要用Mobx了，不然状态管理太难做了" />
     <MESSAGE value="搞定目录和页面的对应关系，正在搞加载评论。目前遇到bug" />
     <MESSAGE value="重构了(commentlist和booklist)结构，提高了复用。以及解决了MyPage的显示问题，还有登录的bug修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构了(commentlist和booklist)结构，提高了复用。以及解决了MyPage的显示问题，还有登录的bug修复" />
+    <MESSAGE value="增加了一个接口获取整本书的comments，并成功加载了数据，虽然有点小bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了一个接口获取整本书的comments，并成功加载了数据，虽然有点小bug" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/yarn.lock">
@@ -775,8 +771,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/comment/CommentList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="62" lean-forward="true" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+        <state relative-caret-position="352">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -785,8 +781,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/read/MainContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        <state relative-caret-position="220">
+          <caret line="10" column="71" lean-forward="true" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

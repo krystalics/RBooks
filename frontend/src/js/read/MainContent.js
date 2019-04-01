@@ -7,8 +7,8 @@ class MainContent extends Component {
     return (
         <div>
           <ReactJSON src={this.props.location.state.data.content}/>
-          <ReactJSON src={this.props.location.state.data.comments}/>
-          {/*<CommentList data={this.props.location.state.data.comments}/>*/}
+          {/*<ReactJSON src={this.props.location.state.data.comments}/>*/}
+          <CommentList data={this.props.location.state.data.comments}/>
         </div>
     );
   }
