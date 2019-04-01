@@ -1,3 +1,0 @@
-rootProject.name = 'frontend_native'
-
-include ':app'

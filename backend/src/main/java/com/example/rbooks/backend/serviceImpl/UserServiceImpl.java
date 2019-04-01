@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
     if (user != null) {//说明用户名已存在
       return -1;
     }
+    user=new User(); // 如果不存在则新建一个
     user.setName(name);
     user.setPassword(password);
     return userDaoImpl.addUser(user); //若不存在，则返回其存进表中后的id

@@ -12,7 +12,8 @@ class Login extends Component {
     };
     this.handleUserInputChange = this.handleUserInputChange.bind(this);
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleUserInputChange(e) {
@@ -39,9 +40,9 @@ class Login extends Component {
     localStorage.setItem('userid', this.state.userid);
   }
 
-  handleLogin() { //成功之后执行这个方法
-    console.log("执行handlelogin");
-    axios.post("http://localhost:8080/user/login",
+  handleSubmit(event) { //成功之后执行这个方法
+
+    axios.post("http://localhost:8080/user/"+event.target.value,
         {name: this.state.name, password: this.state.password})
     .then(res => {
 
@@ -54,6 +55,7 @@ class Login extends Component {
     });
 
   }
+
 
   render() {
     return (
@@ -70,7 +72,8 @@ class Login extends Component {
                    onChange={this.handlePasswordInputChange}/>
           </div>
           <div>
-            <button type="submit" onClick={this.handleLogin}>登录</button>
+            <button onClick={this.handleSubmit} value="login">登录</button>
+            <button onClick={this.handleSubmit} value="register">注册</button>
           </div>
 
         </div>
