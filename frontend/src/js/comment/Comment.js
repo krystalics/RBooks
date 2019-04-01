@@ -3,9 +3,12 @@ import ReactJSON from 'react-json-view'
 class Comment extends Component {
 
   render() {
+    const data=this.props.data;
+
     return (
         <div>
-          <ReactJSON src={this.props.data}/>
+
+          <ReactJSON src={data}/>
 
         </div>
     );

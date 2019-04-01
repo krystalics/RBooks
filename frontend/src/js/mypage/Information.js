@@ -3,8 +3,10 @@ import ReactJSON from 'react-json-view'
 
 class Information extends Component {
   render() {
+
     return (
         <div>
+
           <ReactJSON src={this.props.data}/>
           {/*{this.props.data.userid}*/}
           {/*{this.props.data.username}*/}

@@ -10,7 +10,8 @@ class MyPage extends Component {
   render() {
     return (
         <div>
-          {/*{JSON.stringify(this.props.data)}*/}
+
+          <br/>
           个人信息
           <Information data={this.props.data.information}/>
           <br/>

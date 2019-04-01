@@ -36,7 +36,7 @@ class Login extends Component {
 
   setLocalStorage() {
     localStorage.setItem('name', this.state.name); //把用户名name 缓存到本地
-    localStorage.setItem('password', this.state.password);
+    // localStorage.setItem('password', this.state.password);
     localStorage.setItem('userid', this.state.userid);
   }
 

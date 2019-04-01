@@ -1,4 +1,4 @@
-### 用于实践所学的小站点，reactNative springboot mysql
+### 用于实践所学的小站点，react springboot mysql
 
 ---
 
@@ -73,3 +73,9 @@ public interface BookRepository extends CrudRepository<Book,Integer> {
 ##### 3.22 
 
 实际上由于时间关系，我可能要变更技术方案，不采用ReactNative方案做Android的客户端了。决定采用更快捷的Cordova或者使用原生Android来做移动端的app。而我在写移动端的app之前，想要先写出一版pc网站，所以无疑采用Cordova是更加合适的。额，还是要看时间，因为我发现还有很多东西需要准备，不管是笔试还是面试。
+
+
+
+##### 4.1 
+
+终于搞定了前端的基本功能，暂时还没有将数据渲染美化。写书的页面也还没有完善，但是注册，登录，主页中的内容，书籍的内容，评论，都可以加载了，设置的模块也暂时没写

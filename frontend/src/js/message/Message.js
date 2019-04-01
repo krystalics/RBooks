@@ -5,7 +5,12 @@ import CommentListInMessage from "./CommentListInMessage";
 class Message extends Component {
 
   render() {
-    return <CommentListInMessage />
+
+    return (
+        <div>
+          <CommentListInMessage />
+        </div>
+        )
   }
 }
 
