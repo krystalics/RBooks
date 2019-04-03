@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Comment from "./Comment";
-
+import {ListGroup} from 'react-bootstrap'
 class CommentList extends Component {
 
   data() {
@@ -35,10 +35,12 @@ class CommentList extends Component {
   render() {
 
     return (
-        this.data().map((item, idx) => {
+        <ListGroup>
+        {this.data().map((item, idx) => {
           return <Comment key={idx} data={item}/>
-        })
-        // <ReactJSON src={this.props.data}/>
+        })}
+
+        </ListGroup>
     );
   }
 }

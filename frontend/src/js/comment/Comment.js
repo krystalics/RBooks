@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import '../../css/comment.css'
+import {ListGroupItem} from "react-bootstrap";
+
 class Comment extends Component {
-
-
-
-  constructor() {
-    super();
-
-  }
 
   _getProcessedContent(content) {
     // return content.replace(/`([\S\s]+?)`/g,`<code></code>`);
@@ -24,25 +19,22 @@ class Comment extends Component {
 
   }
 
-
   render() {
     const {data} = this.props; //获取评论数据
     return (
-        <div>
-          <div className="comment">
-            <div className="comment-user">
-              <span>{data.commentuser}</span>{' '}:
-            </div>
-            <p dangerouslySetInnerHTML={{
-              __html: this._getProcessedContent(data.content)
-            }}/>
+        <ListGroupItem action variant="light">
 
-            <span className="comment-createdtime">
-              {data.datetime}
+          <div>
+            <span className="comment-user">{data.commentuser}</span>{' '}:
+            <span className="comment-datetime">
+                {data.datetime}
             </span>
-
           </div>
-        </div>
+          <p dangerouslySetInnerHTML={{
+            __html: this._getProcessedContent(data.content)
+          }}/>
+
+        </ListGroupItem>
     );
   }
 }

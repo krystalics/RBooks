@@ -6,8 +6,8 @@ import axios from "axios";
 
 class CommentApp extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       comments: [],
     }
@@ -17,17 +17,22 @@ class CommentApp extends Component {
     this.getComments();
   }
 
-  getComments() {
-    return axios.get(
-        'http://localhost:8080/read/getAllcomments?bookid='
-        + this.props.bookid).then(res => {
-            this.setState({comments:res.data})
-    }).catch(res=>{
-      this.setState({comments:res.data});
-    });
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    let chaptername=prevProps.chapterid.chaptername;
+    let newChaptername=this.props.chapterid.chaptername;
+    if(chaptername!==newChaptername) this.getComments();
   }
 
-
+  getComments() {
+    // console.log(this.props)
+    return axios.post('http://localhost:8080/read/getcomments', this.props.chapterid)
+    .then(
+        res => {
+          this.setState({comments: res.data})
+        }).catch(res => {
+      this.setState({comments: res.data});
+    });
+  }
 
   handleSubmitComment(comment) {
     // console.log(comment);  // 一开始证明数据已经到了 CommentApp
@@ -35,9 +40,6 @@ class CommentApp extends Component {
     if (!comment) {
       return;
     } // 防止什么都没有输入，就点了发布的情况
-    if (!comment.username) {
-      return alert("你还没有输入用户名");
-    }
     if (!comment.content) {
       return alert("你还没有输入评论内容");
     }
@@ -45,13 +47,10 @@ class CommentApp extends Component {
 
     this.state.comments.push(comment); // 这里直接改变了 state，但是具体的原因有兴趣可以看 官方文档
 
-
     this.setState({
       comments: this.state.comments
     })
   }
-
-
 
   render() {
     return (
