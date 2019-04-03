@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import '../../css/main.css'
+
 import '../../App.css'
-import '../../css/menu.css'
-import logo from '../../img/logo.png'
-import {NavLink} from "react-router-dom";
+import {Button, Form, FormControl, Nav, Navbar,} from 'react-bootstrap';
 
 // 导航栏由 一个logo 5个按钮和一个搜索框组成，其中点击”我的“按钮 会检测用户是否处于登录状态，如果不是则跳转到登录页面
 // 如果不是 ， 则出现下拉框。。mypage和settings
@@ -43,27 +41,28 @@ class Navigator extends Component {
     let item;
     if (this.checkCookie()) { //有cookie说明登录成功了，显示我的页面
       // item=<NavLink to="/mypage">我的</NavLink>;
-      item = <NavLink to="/mypage">主页</NavLink>
+      item = <Nav.Link href="/mypage">{localStorage.getItem("name")}</Nav.Link>;
     } else {
-      item = <NavLink to="/user/login">登录</NavLink>;
+      item = <Nav.Link href="/user/login">登录</Nav.Link>;
     }
 
     return <div className="Navigator">
-      <ul>
-        <li><img src={logo} alt="RBooks"/></li>
-        <li><NavLink to="/home"> RBooks</NavLink>
-        </li>
-        <li><input value={this.state.value} onChange={this.handleChange}
-                   placeholder="搜索"/>
-        </li>
-        <li><NavLink to="/settings">设置</NavLink></li>
-        <li><NavLink to="/message"> 消息</NavLink></li>
+      <Navbar bg="dark" variant="dark" sticky="top">
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Navbar.Brand href="/home"> RBooks</Navbar.Brand>
+            <Nav.Link href="/settings">设置</Nav.Link>
+            <Nav.Link href="/message"> 消息</Nav.Link>
+            {item}
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-4"/>
+            <Button variant="outline-light">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
 
-        <li>{item}</li>
-
-      </ul>
-
-    </div>;
   }
 }
 

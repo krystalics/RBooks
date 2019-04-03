@@ -436,15 +436,33 @@ content = {
 
 ---
 
-##### 3.31 明天又到了，早上有个考试，各种杂乱的知识点，我想我是要凉了
+##### 4.1 明天又到了，早上有个考试，各种杂乱的知识点，我想我是要凉了
 
 包括手写一个Servlet程序（只听过，没见过）Hibernate的核心API，只在框架中用过，没见过原来的模样。
 
-查了下昨天的bug，只是重构的时候一些属性名没改过来，两分钟就解决了。
+查了下昨天的bug，只是重构的时候一些属性名没改过来，两分钟就解决了。顺便解决了设置页面，以及注册问题。
 
-终于可以开始最后的渲染了。写书的页面放在后面的版本中开发。
+终于可以开始最后的渲染了，决定采用ElementUI-react进行CSS美化工作。写书的页面放在后面的版本中开发。
 
 
+
+---
+
+##### 4.3 昨天两个笔试，感受到了暴击，要抓紧完成这个项目，刷算法题了。
+
+项目使用react-bootstrap库渲染外观，完成了部分就对项目的CommentList开始重构，开始拼接在寒假跟着教程写的commentapp组件，重构很难受，在不断的修改代码，可见前端的结构简直垃圾的一批。
+
+重构之后没点击一次目录上的章节名，就需要重新向后台发出一次请求，一开始遇到了路由变化页面却不更新的情况。解决方案看这篇文档：[React-Router 同一 URL 下，参数改变，重新发起请求](https://www.shenyujie.cc/2018/03/04/reactRouter_v1/)
+
+```js
+ componentDidUpdate(prevProps, prevState, snapshot) {
+    let chaptername=prevProps.match.params.chaptername;
+    let newChaptername=this.props.match.params.chaptername;
+    if(chaptername!==newChaptername) this.getData();
+  }
+```
+
+针对我的情况，加上以上代码就能解决问题。
 
 
 

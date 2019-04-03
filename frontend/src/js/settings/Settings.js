@@ -39,8 +39,8 @@ class Settings extends Component {
         break;
       case 'selfintroduction':
         this.setState({selfintroduction: event.target.value});
-
         break;
+      default:break;
     }
   }
 

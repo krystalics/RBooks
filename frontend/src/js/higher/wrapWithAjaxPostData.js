@@ -11,10 +11,9 @@ export default (WrappedComponent, url, params) => {
     componentWillMount() {
       axios.post('http://localhost:8080/' + url, params)
       .then(res => {
-        if (res.data === '') {
-          this.setState({data: "加载错误"});
-        }
         this.setState({data: res.data});
+      }).catch(res=>{
+        this.setState({data: "加载错误"});
       })
     }
 

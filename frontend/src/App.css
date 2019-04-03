@@ -21,36 +21,37 @@ body {
   width: 100%;
 }
 
-.App {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  flex-wrap: wrap;
-  grid-template-rows: repeat(10, 1fr);
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 0.4rem;
-}
+/*.App {*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*display: grid;*/
+  /*flex-wrap: wrap;*/
+  /*grid-template-rows: repeat(10, 1fr);*/
+  /*grid-template-columns: repeat(5, 1fr);*/
+
+/*}*/
+
+/*!**!*/
+/*.Navigator {*/
+
+  /*position: fixed;*/
+  /*top:0;*/
+
+  /*width: 100%;*/
+  /*color: #2c3e50;*/
+  /*border-bottom: 0.005rem solid rgba(80, 73, 51, 0.25);*/
+
+  /*text-align: center;*/
 
 
-.Navigator {
+/*}*/
 
-  position: fixed;
-  top:0;
-  height: 7%;
-  width: 100%;
-  color: #2c3e50;
-  border-bottom: 0.005rem solid rgba(80, 73, 51, 0.25);
+.Content {
+  margin-top: 3%;
+  width:60%;
+  margin-left: auto;
+  margin-right: auto;
 
-  text-align: center;
-
-
-}
-
-.Container {
-  grid-column: 2/4;
-  grid-row: 2/11;
-
-  font-size: 0.4rem;
 }
 
 

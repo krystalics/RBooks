@@ -6,6 +6,7 @@ import com.example.rbooks.backend.entity.Comment;
 import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.service.ReadService;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,20 +53,31 @@ public class ReadController {
     return "添加成功"; //默认可以添加成功
   }
 
-  @RequestMapping(value = "/getcontent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public String content(@RequestBody ChapterId chapterId) { //数据格式 {bookid:1,chaptername:"第一章"}
-    return readServiceImpl.getContent(chapterId);
-  }
+//  @RequestMapping(value = "/getcontent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//  public String content(@RequestBody ChapterId chapterId) { //数据格式 {bookid:1,chaptername:"第一章"}
+//    return readServiceImpl.getContent(chapterId);
+//  }
 
-  @RequestMapping(value = "/getbook")
-  public List<Chapter> getBook(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
-//    List<Chapter> books = readServiceImpl.getBook(bookid);  测试成功，所以不用在打印了
+  @RequestMapping(value = "/getdirectory")
+  public List<String> getBook(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
+    List<Chapter> books = readServiceImpl.getBook(bookid);  //测试成功，所以不用在打印了
 //    for(Chapter chapter:books){
 //      System.out.println(chapter.getChapterid());
 //      System.out.println(chapter.getDatetime());
 //      System.out.println(chapter.getContent());
 //    }
-    return readServiceImpl.getBook(bookid);
+    //直接获得整本书的内容，前端耦合程度太高了
+    List<String> directory=new ArrayList<>();
+    for(Chapter chapter:books){
+      directory.add(chapter.getChapterid().getChaptername());
+    }
+    return directory;
+  }
+
+  @RequestMapping(value = "/getchapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+  public Chapter getChapter(@RequestBody ChapterId chapterId) {
+//    System.out.println(chapterId.getBookid()+chapterId.getChaptername());
+    return readServiceImpl.getChapter(chapterId);
   }
 
   @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

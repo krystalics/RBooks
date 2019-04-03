@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import BookInfo from "./BookInfo";
+import ListGroup from "react-bootstrap/ListGroup";
+
 // 没经过高阶组件获取数据，可以为多个路径服务
 class BookList extends Component {
 
@@ -27,12 +29,13 @@ class BookList extends Component {
   render() {
 
     return (
-        this.data().map((item, idx) => {
-          return <BookInfo key={idx} data={item}/>
-        })
+        <ListGroup>
+          {this.data().map((item, idx) => {
+            return <BookInfo key={idx} data={item}/>
+          })}
+        </ListGroup>
     );
   }
 }
-
 
 export default BookList;

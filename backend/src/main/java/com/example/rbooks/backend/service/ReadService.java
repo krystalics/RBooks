@@ -15,7 +15,7 @@ public interface ReadService {
 
   List<Comment> getComments(int bookid);
 
-  String getContent(ChapterId chapterId);
+  Chapter getChapter(ChapterId chapterId);
 
   void addComment(Comment comment);
 

@@ -1,33 +1,76 @@
 
-.Navigator ul {
-  margin-top: 0.05rem;
+/*.Navigator ul {*/
+  /*margin-top: 0.05rem;*/
 
 
-  width: 60%;
-  position: relative;
-  margin-left: 15%;
-  margin-right: auto;
+  /*width: 60%;*/
+  /*position: relative;*/
+  /*margin-left: 15%;*/
+  /*margin-right: auto;*/
+  /*height: 100%;*/
+  /*list-style: none;*/
+
+
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: space-between;*/
+  /*font-family: DialogInput, serif;*/
+
+  /*font-size: 0.3rem;*/
+/*}*/
+
+
+/*.Navigator li img {*/
+  /*width: 0.7rem;*/
+  /*height: 0.7rem;*/
+/*}*/
+
+/*.Navigator ul li input {*/
+
+  /*line-height: 0.5rem;*/
+  /*border-radius:0.2rem;*/
+  /*border: #666666 1px solid;*/
+/*}*/
+
+.BookItem{
+  margin-bottom:1%;
+}
+.Author {
+  margin-left: 5%;
+  display: inline;
+}
+.Love{
+  margin-left: 5%;
+  display: inline;
+}
+
+.BookInfo{
+  display: inline;
+}
+.BookPhoto{
+  display: inline;
+}
+
+.BookPhoto img{
+  width: 80px;
+  height: 100px;
+  margin-bottom: 20%;
+  margin-left: 5%;
+}
+
+.sidebar_left{
+  position: fixed;
   height: 100%;
-  list-style: none;
+  padding: 2% 5% 2% 2%;
+  left: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.sidebar_left span{
+  border-bottom: black 1px solid;
 
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: DialogInput, serif;
-
-  font-size: 0.3rem;
 }
 
+.Directory{
+  margin-bottom: 4%;
 
-.Navigator li img {
-  width: 0.7rem;
-  height: 0.7rem;
-}
-
-.Navigator ul li input {
-
-  line-height: 0.5rem;
-  border-radius:0.2rem;
-  border: #666666 1px solid;
 }

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import '../../css/main.css'
-import '../../App.css'
-
 import {Route, Switch} from "react-router-dom";
+import {Container} from "react-bootstrap"
 
 import Home from "../home/Home";
 import Write from "../write/Write";
@@ -12,11 +10,13 @@ import Login from "../login/Login";
 import Settings from "../settings/Settings";
 import Read from "../read/Read";
 
-class Container extends Component {
+import '../../App.css'
+
+class Content extends Component {
   render() {
     return (
-        <div className="Container">
-
+        <Container>
+          <div className="Content">
             <Switch>
               <Route path="/home" exact component={Home}/>
               <Route path="/write" component={Write}/>
@@ -26,10 +26,10 @@ class Container extends Component {
               <Route path="/settings" component={Settings}/>
               <Route path="/read/:data" component={Read}/>
             </Switch>
-
-        </div>
+          </div>
+        </Container>
     );
   }
 }
 
-export default Container;
+export default Content;

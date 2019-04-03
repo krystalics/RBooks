@@ -1,28 +1,60 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
+import {Button} from 'react-bootstrap'
+import ListGroupItem from "react-bootstrap/ListGroupItem";
+import '../../css/main.css'
+import logo from '../../logo.svg'
+import Figure from "react-bootstrap/Figure";
 
 class BookInfo extends Component {
 
   render() {
-    const param = {
+    let param = {
       author: this.props.data.author,
-      bookid: this.props.data.id
+      bookid: this.props.data.id,
     };
-    const data = JSON.stringify(param);
-    let path=`/read/${data}`;  //传参数过去
+    const des = {
+      description: this.props.data.description
+    };
+    param = JSON.stringify(param);
+    let path = `/read/${param}`;  //传参数过去
     return (
-        <NavLink to={path}>
-          <div>
-            {this.props.data.id}
-            {this.props.data.name}
-            {this.props.data.author}
-            {this.props.data.description}
-            {this.props.data.datetime}
-            {this.props.data.photourl}
-            {this.props.data.love}
+        <div className="BookItem">
+          <ListGroupItem variant="light" action>
+            <div className="BookInfo">
+              <span>书籍编号：</span>{this.props.data.id}
+              <br/>
+              <NavLink to={{
+                pathname: `${path}`,
+                state: {des}
+              }}>
+                {this.props.data.name}
+              </NavLink>
+              <div className="Author">
+                {this.props.data.author}<span> 编著</span>
+              </div>
+              {/*{this.props.data.description}*/}
+              <br/>
 
-          </div>
-        </NavLink>
+              <span>更新时间：</span>{this.props.data.datetime}
+
+              {/*{this.props.data.photourl}*/}
+              <div className="Love">
+                <span>点赞：</span> {this.props.data.love}
+              </div>
+            </div>
+            {/*<div className="BookPhoto">*/}
+            {/*<Figure>*/}
+            {/*<Figure.Image*/}
+            {/*width={80}*/}
+            {/*height={100}*/}
+            {/*alt="80x100"*/}
+            {/*src={logo}*/}
+            {/*/>*/}
+            {/*</Figure>*/}
+            {/*</div>*/}
+          </ListGroupItem>
+        </div>
     );
   }
 }

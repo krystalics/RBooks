@@ -42,8 +42,8 @@ public class ReadServiceImpl implements ReadService {
 
 
   @Override
-  public String getContent(ChapterId chapterId) {
-    return chapterDaoImpl.getChapter(chapterId).getContent();
+  public Chapter getChapter(ChapterId chapterId) {
+    return chapterDaoImpl.getChapter(chapterId);
   }
 
   @Override
