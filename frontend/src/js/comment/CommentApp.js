@@ -3,6 +3,7 @@ import CommentInput from './CommentInput'
 import CommentList from './CommentList'
 import '../../css/comment.css'
 import axios from "axios";
+import HigherLogin from "../higher/HigherLogin";
 
 class CommentApp extends Component {
 
@@ -80,5 +81,7 @@ class CommentApp extends Component {
     )
   }
 }
+
+CommentApp = HigherLogin(CommentApp);
 
 export default CommentApp
