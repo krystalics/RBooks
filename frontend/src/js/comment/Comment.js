@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import '../../css/comment.css'
 import {ListGroupItem} from "react-bootstrap";
+import Time from "../Time";
 
 class Comment extends Component {
 
@@ -18,17 +19,30 @@ class Comment extends Component {
     .replace(/`([\S\s]+?)`/g, `<code></code>`);
 
   }
-
+  //
+  // getDate(){
+  //   const {data} = this.props;
+  //   let date={
+  //     year:data.datetime
+  //   };
+  //   return date;
+  // }
   render() {
     const {data} = this.props; //获取评论数据
+    let datetime=data.commentid.datetime;  //在用户评论后更新评论列表时
+    //用户评论是 时间戳，在这里解析会报错
+    // console.log(datetime);
+    // datetime=JSON.stringify(datetime);
+    // let date=datetime.split("T");
+    // let time=date[1].split(".");
+
     return (
         <ListGroupItem action variant="light">
 
           <div>
             <span className="comment-user">{data.commentuser}</span>{' '}:
-            <span className="comment-datetime">
-                {data.datetime}
-            </span>
+            {/*<Time data={datetime}/>*/}
+            {JSON.stringify(datetime)}
           </div>
           <p dangerouslySetInnerHTML={{
             __html: this._getProcessedContent(data.content)

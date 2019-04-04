@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import '../../css/comment.css'
 import {InputGroup,FormControl,Button }from "react-bootstrap";
-
+import axios from 'axios'
 class CommentInput extends Component {
 
   static propTypes = {
@@ -28,15 +28,17 @@ class CommentInput extends Component {
     })
   }
 
-  handleSubmit(e) {
+  handleSubmit(e) {  //把onSubmit 提到父组件中是为了及时更新列表
     if (this.props.onSubmit) {  //判断是否传入了 onSubmit 属性，有的话就调用该函数
-      var {content, datetime} = this.state;
-      datetime = new Date().toLocaleDateString() + " : "
-          + new Date().toLocaleTimeString();
+      let {content, datetime} = this.state;
+      datetime=new Date().getTime();
+
       this.props.onSubmit({content, datetime});
     }
     // 现在 comment 包括  content ,createdTime
-    this.setState({content: ''}) //重新将评论内容设置为空
+    this.setState({content: ''}); //重新将评论内容设置为空
+
+
   }
 
   render() {
@@ -46,7 +48,7 @@ class CommentInput extends Component {
             <FormControl
               placeholder="评论"
               aria-label="评论"
-              aria-describedby="basic-addon2"
+              onChange={this.handleContentChange.bind(this)}
               />
             <InputGroup.Append>
               <Button variant="outline-secondary" onClick={this.handleSubmit.bind(this)}>提交</Button>

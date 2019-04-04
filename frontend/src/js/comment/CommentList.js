@@ -17,11 +17,11 @@ class CommentList extends Component {
         continue;
       }
       temp = {
-        chapterid: {
-          bookid: data[index].chapterid.bookid,
-          chaptername: data[index].chapterid.chaptername
+        commentid: {
+          bookid: data[index].commentid.bookid,
+          chaptername: data[index].commentid.chaptername,
+          datetime: data[index].commentid.datetime,
         },
-        datetime: data[index].datetime,
         commentuser: data[index].commentuser,
         content: data[index].content
       };

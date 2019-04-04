@@ -7,7 +7,6 @@ import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.service.ReadService;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -47,7 +46,10 @@ public class ReadController {
   // 试过了 自增的id 是接着从user表中的id 开始的，并不是单独的表有单独的记录....如果作者不在数据库中，就会报错，，因为有外键约束
   @RequestMapping(value = "/addcomment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addComment(@RequestBody Comment comment) { //没加RequestBody 会导致数据为null
-
+//    System.out.println(comment.getDatetime());
+//    System.out.println(comment.getContent());
+//    System.out.println(comment.getCommentid());
+//    System.out.println(comment.getCommentuser());
     readServiceImpl.addComment(comment);
 
     return "添加成功"; //默认可以添加成功
@@ -62,7 +64,7 @@ public class ReadController {
   public List<String> getBook(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
     List<Chapter> books = readServiceImpl.getBook(bookid);  //测试成功，所以不用在打印了
 //    for(Chapter chapter:books){
-//      System.out.println(chapter.getChapterid());
+//      System.out.println(chapter.getCommentid());
 //      System.out.println(chapter.getDatetime());
 //      System.out.println(chapter.getContent());
 //    }
@@ -82,7 +84,13 @@ public class ReadController {
 
   @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public List<Comment> getComments(@RequestBody ChapterId chapterId) {
+    List<Comment> comments=readServiceImpl.getComments(chapterId);
+    for(Comment comment:comments){
+      System.out.println(comment.getContent());
+      System.out.println(comment.getCommentid());
+      System.out.println(comment.getCommentuser());
 
+    }
 //    System.out.println(chapterId.getBookid()+chapterId.getChaptername());
     return readServiceImpl.getComments(chapterId);
   }
@@ -92,8 +100,8 @@ public class ReadController {
     // 获得整本书的评论，
 //    List<Comment> comments=readServiceImpl.getComments(bookid);
 //    for(Comment comment:comments){
-//      System.out.println(comment.getChapterid().getBookid());
-//      System.out.println(comment.getChapterid().getChaptername());
+//      System.out.println(comment.getCommentid().getBookid());
+//      System.out.println(comment.getCommentid().getChaptername());
 //      System.out.println(comment.getCommentuser());
 //      System.out.println(comment.getDatetime());
 //      System.out.println(comment.getContent());

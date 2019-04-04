@@ -466,3 +466,28 @@ content = {
 
 
 
+然后遇到了几个小bug，就没有记进来。之后在添加评论功能的时候发生了时间格式不一致问题，出现了bug。
+
+<img src="./img/27.png">
+
+<img src="./img/28.png">
+
+这前后端的时间是如何匹配的呢？在网上google了一下，都说前后端由于Date的格式并不统一，所以基本上都用时间戳的形式来传递Date，而Js获得时间戳：`let time=new Date().getTime()` 直接将时间戳传到后台，而后台传到前端的Date要求那么严格(毕竟后台的数据由SpringMvc把关)，就可以定义传输到前端的格式：
+
+```java
+@Entity
+public class tablename{
+@JsonFormat(timezone = "GMT+8") //向前端传去的数据格式,中国时区
+  private Date datetime;
+    ...
+}
+```
+
+同时也发现了前期忽略的一个bug，那就是comment的主键不应该是chapterid，而是要加上date才能够准确辨别每一个记录。	
+
+<img src="./img/29.png">
+
+写到这里不禁想起了一个困扰我一段时间的问题：chapter表中的字段和这张表几乎一模一样，我当初为什么要分成两张表来搞呢？因为二者应用的场景不同，如果放在一张表中就需要加个字段来区分文章和评论，而且这两张表的主键是不同的，分开来逻辑关系更加清晰明确。(这段是我自问自答)
+
+基本上就修完了之前的bug。
+

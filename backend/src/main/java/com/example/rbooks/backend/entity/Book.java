@@ -1,5 +1,6 @@
 package com.example.rbooks.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,6 +23,7 @@ public class Book implements Serializable {
   private String name;
   private String author;
   private String description;
+  @JsonFormat(timezone = "GMT+8")
   private Date datetime;
   private String photourl;
   private int love;
