@@ -8,13 +8,13 @@
 
 先给出项目运行时的一些截图：
 
-<img src="E:/RBooks/img/30.png">
+<img src="./img/30.png">
 
-<img src="E:/RBooks/img/31.png">
+<img src="./img/31.png">
 
-<img src="E:/RBooks/img/32.png">
+<img src="./img/32.png">
 
-<img src="E:/RBooks/img/33.png">
+<img src="./img/33.png">
 
 
 
