@@ -39,7 +39,6 @@ class CommentList extends Component {
         {this.data().map((item, idx) => {
           return <Comment key={idx} data={item}/>
         })}
-
         </ListGroup>
     );
   }

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 
-
 export default (WrappedComponent) => {
   class  NewComponent extends Component {
     // 这里定义登录权限组件， 如果缓存的logined = true 则渲染该组件，否则渲染成Login组件

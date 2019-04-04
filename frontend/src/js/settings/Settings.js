@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import HigherLogin from "../higher/HigherLogin";
 import Axios from 'axios';
+import {Button, Form} from 'react-bootstrap'
+import '../../css/main.css'
 
 class Settings extends Component {
 
@@ -40,7 +42,8 @@ class Settings extends Component {
       case 'selfintroduction':
         this.setState({selfintroduction: event.target.value});
         break;
-      default:break;
+      default:
+        break;
     }
   }
 
@@ -92,39 +95,48 @@ class Settings extends Component {
 
   }
 
-  handleFile(event){
-    this.setState({file:event.target.file});
+  handleFile(event) {
+    this.setState({file: event.target.file});
   }
 
   render() {
     return (
         <div>
-          <label>账户设置</label>
+          <Form.Label>账户设置</Form.Label>
           <hr/>
-          <label>选择照片作为头像：</label>
-          <input type="file" accept="image/png, image/jpg" onChange={this.handleFile}/>
+          <Form.Label>选择照片作为头像：</Form.Label>
+          <Form.Control type="file" accept="image/png, image/jpg"
+                        onChange={this.handleFile}/>
 
-          <label>邮箱：</label><input type="email"
-                                   onChange={this.handleInputChange}
-                                   value={this.state.email} name="email"/>
-          <label>个人主页：</label><input type="text"
-                                     onChange={this.handleInputChange}
-                                     value={this.state.homepage}
-                                     name="homepage"/>
-          <label>github主页：</label><input type="text"
-                                         onChange={this.handleInputChange}
-                                         value={this.state.githubpage}
-                                         name="githubpage"/>
-          <label>个人介绍：</label><input type="text"
-                                     onChange={this.handleInputChange}
-                                     value={this.state.selfintroduction}
-                                     name="selfintroduction"/>
-          <button onClick={this.handleClick}>保存设置</button>
+          <Form.Label>邮箱：</Form.Label>
+          <Form.Control type="email"
+                        onChange={this.handleInputChange}
+                        value={this.state.email}
+                        name="email"/>
+          <Form.Label>个人主页：</Form.Label>
+          <Form.Control type="text"
+                        onChange={this.handleInputChange}
+                        value={this.state.homepage}
+                        name="homepage"/>
+          <Form.Label>github主页：</Form.Label>
+          <Form.Control type="text"
+                        onChange={this.handleInputChange}
+                        value={this.state.githubpage}
+                        name="githubpage"/>
+          <Form.Label>个人介绍：</Form.Label>
+          <Form.Control type="text"
+                        onChange={this.handleInputChange}
+                        value={this.state.selfintroduction}
+                        name="selfintroduction"/>
+          <hr/>
+          <div className="savesettings">
+            <Button variant="primary" onClick={this.handleClick} size="lg">保存设置</Button>
+          </div>
         </div>
     );
   }
 }
 
-Settings = HigherLogin(Settings)
+Settings = HigherLogin(Settings);
 
 export default Settings;

@@ -74,3 +74,21 @@
   margin-bottom: 4%;
 
 }
+
+.lg{
+  margin-top: 5%;
+}
+.login{
+  display: inline-block;
+  margin-left: 20%;
+}
+
+.register{
+  display: inline-block;
+  margin-left: 20%;
+}
+
+.savesettings{
+  margin-left: 35%;
+
+}

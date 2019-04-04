@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import '../../css/comment.css'
-import {InputGroup,FormControl,Button }from "react-bootstrap";
-import axios from 'axios'
+import {Button, FormControl, InputGroup} from "react-bootstrap";
+
 class CommentInput extends Component {
 
   static propTypes = {

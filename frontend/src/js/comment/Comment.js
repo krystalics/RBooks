@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import '../../css/comment.css'
+import '../../css/content.css'
 import {ListGroupItem} from "react-bootstrap";
 import Time from "../Time";
 
@@ -39,9 +39,9 @@ class Comment extends Component {
     return (
         <ListGroupItem action variant="light">
 
-          <div>
+          <div className="comment-margin">
             <span className="comment-user">{data.commentuser}</span>{' '}:
-            <Time data={datetime}/>
+            <span className="title-date"><Time data={datetime}/></span>
             {/*{datetime}*/}
           </div>
           <p dangerouslySetInnerHTML={{

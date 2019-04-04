@@ -84,13 +84,13 @@ public class ReadController {
 
   @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public List<Comment> getComments(@RequestBody ChapterId chapterId) {
-    List<Comment> comments=readServiceImpl.getComments(chapterId);
-    for(Comment comment:comments){
-      System.out.println(comment.getContent());
-      System.out.println(comment.getCommentid());
-      System.out.println(comment.getCommentuser());
-
-    }
+//    List<Comment> comments=readServiceImpl.getComments(chapterId);
+//    for(Comment comment:comments){
+//      System.out.println(comment.getContent());
+//      System.out.println(comment.getCommentid());
+//      System.out.println(comment.getCommentuser());
+//
+//    }
 //    System.out.println(chapterId.getBookid()+chapterId.getChaptername());
     return readServiceImpl.getComments(chapterId);
   }

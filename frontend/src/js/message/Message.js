@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import HigherLogin from '../higher/HigherLogin';
 import CommentListInMessage from "./CommentListInMessage";
-
+import '../../css/comment.css'
 class Message extends Component {
 
   render() {
 
     return (
-        <div>
+        <div className="comment-margin">
+          迄今为止发过的评论:
           <CommentListInMessage />
         </div>
         )

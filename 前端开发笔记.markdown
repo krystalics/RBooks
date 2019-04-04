@@ -530,3 +530,9 @@ class Time extends Component {
 export default Time
 ```
 
+***暂时不能渲染书本简介。准备在写write模块的时候一起解决，发出两个请求，一个是addbook，另一个是addchapter，直接将书本介绍作为一章加入进chapter表中***还有消息界面的CommentList要显示书名，与评论中有点不同。需要在修改。
+
+
+
+下午18:44基本所有的外观都已经渲染完成了。还有缺陷就是**不能显示书的介绍，mypage里面不能直接加载下面导航的内容，而且进入其他人的页面不能再继续深入下去。 还不能传输文件**
+

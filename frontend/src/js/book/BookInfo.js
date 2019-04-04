@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
-import {Button} from 'react-bootstrap'
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import '../../css/main.css'
-import logo from '../../logo.svg'
-import Figure from "react-bootstrap/Figure";
+import Time from "../Time";
 
 class BookInfo extends Component {
 
@@ -36,7 +34,7 @@ class BookInfo extends Component {
               {/*{this.props.data.description}*/}
               <br/>
 
-              <span>更新时间：</span>{this.props.data.datetime}
+              <span>更新时间：</span> <Time data={this.props.data.datetime}/>
 
               {/*{this.props.data.photourl}*/}
               <div className="Love">

@@ -8,8 +8,11 @@
     "bootstrap": "^4.3.1",
     "cross-fetch": "^3.0.1",
     "element-theme-default": "^1.4.13",
+    "highlight.js": "^9.15.6",
     "jquery": "^3.3.1",
+    "markd": "^1.2.0",
     "mobx-react": "^5.4.3",
+    "prop-types": "latest",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.4",
@@ -17,8 +20,7 @@
     "react-json-view": "^1.19.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
-    "prop-types": "latest"
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -31,7 +31,7 @@ class Time extends Component {
       // console.log(renderTime)
     }
 
-    return <span className="title-date">{renderTime}</span>
+    return <span>{renderTime}</span>
   }
 }
 

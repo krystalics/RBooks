@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import ReactJSON from 'react-json-view'
 import CommentApp from "../comment/CommentApp";
 import '../../css/content.css'
 import axios from "axios";
 import Time from "../Time";
+
+import marked from 'marked';
+import hljs from 'highlight.js';
 
 var chapterid = {};
 
@@ -24,7 +26,19 @@ class MainContent extends Component {
   }
 
   componentWillMount(){
-   
+    marked.setOptions({ //设置markdown相关配置
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: true,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false,
+      highlight: function(code) {
+        return hljs.highlightAuto(code).value;
+      },
+    });
     this.getData()
   }
 
@@ -65,7 +79,7 @@ class MainContent extends Component {
 
   render() {
     // console.log(this.state.bookid)
-    let id=this.state.bookid;
+    // let id=this.state.bookid;
     let time=this.state.datetime;
     return (
         <div>
@@ -73,12 +87,22 @@ class MainContent extends Component {
             <span><h3>{this.state.chaptername}</h3></span>
             <span className="title-author">{this.state.author}</span>
             {/*<span className="title-date">{time}</span>*/}
-            <Time data={time}/>
+            <span className="title-date"><Time data={time}/></span>
             <hr/>
           </div>
-          <div>
-            {this.state.content}
+          {/*<div>*/}
+            {/*{this.state.content}*/}
+          {/*</div>*/}
+          <div className="content">
+            <div
+                id="content"
+                className="article-detail"
+                dangerouslySetInnerHTML={{
+                  __html: this.state.content ? marked(this.state.content) : null,
+                }}
+            />
           </div>
+
           <div className="comment">
             <CommentApp chapterid={chapterid}/>
           </div>

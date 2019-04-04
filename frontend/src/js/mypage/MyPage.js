@@ -1,40 +1,21 @@
 import React, {Component} from 'react';
-import Information from "./Information";
 import HigherLogin from "../higher/HigherLogin";
 import wrapWithAjaxGetData from "../higher/wrapWithAjaxGetData";
-import BookList from './../book/BookList'
-import ReactJSON from 'react-json-view'
+import '../../css/mypage.css'
+import Page from "./Page";
 
 class MyPage extends Component {
 
   render() {
+    // console.log(this.props);
     return (
-        <div>
-
-          <br/>
-          个人信息
-          <Information data={this.props.data.information}/>
-          <br/>
-          作品集
-          <BookList data={this.props.data.bookList_write}/>
-          <br/>
-          收藏书单
-          <BookList data={this.props.data.bookList_follow}/>
-          <br/>
-          关注
-          <ReactJSON src={this.props.data.userList_follow} />
-          <br/>
-          被谁关注
-          <ReactJSON src={this.props.data.userList_be_followed} />
-
-
-        </div>
+        <Page param="mypage" data={this.props.data}/>
     );
   }
 }
 
 MyPage = wrapWithAjaxGetData(MyPage,
-    `mypage?userid=${localStorage.getItem('userid')}`)
+    `mypage?userid=${localStorage.getItem('userid')}`);
 
 MyPage = HigherLogin(MyPage); //验证是否登录
 

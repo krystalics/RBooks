@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
-import {Nav} from 'react-bootstrap'
 import '../../css/main.css'
-import ReactJSON from 'react-json-view'
 
 class Directory extends Component {
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
+import {Form, Button} from 'react-bootstrap'
+import '../../css/main.css'
 class Login extends Component {
 
   constructor(props) {
@@ -42,7 +43,7 @@ class Login extends Component {
 
   handleSubmit(event) { //成功之后执行这个方法
 
-    axios.post("http://localhost:8080/user/"+event.target.value,
+    axios.post("http://localhost:8080/user/" + event.target.value,
         {name: this.state.name, password: this.state.password})
     .then(res => {
 
@@ -56,26 +57,32 @@ class Login extends Component {
 
   }
 
-
   render() {
     return (
         <div>
 
           <div>
-            <label htmlFor="name">账号</label>
-            <input name="name" value={this.state.name}
-                   onChange={this.handleUserInputChange}/>
+            <Form.Label>账号</Form.Label>
+            <Form.Control type="text" value={this.state.name}
+                          placeholder="username"
+                          onChange={this.handleUserInputChange}/>
           </div>
           <div>
-            <label htmlFor="password">密码</label>
-            <input name="password" value={this.state.password}
-                   onChange={this.handlePasswordInputChange}/>
+            <Form.Label>密码</Form.Label>
+            <Form.Control type="password" value={this.state.password}
+                          placeholder="password"
+                          onChange={this.handlePasswordInputChange}/>
           </div>
-          <div>
-            <button onClick={this.handleSubmit} value="login">登录</button>
-            <button onClick={this.handleSubmit} value="register">注册</button>
+          <div className="lg">
+            <div className="login">
+              <Button variant="outline-success" onClick={this.handleSubmit} size="lg"
+                      value="login">登录</Button>
+            </div>
+            <div className="register">
+              <Button variant="outline-primary" onClick={this.handleSubmit} size="lg"
+                      value="register">注册</Button>
+            </div>
           </div>
-
         </div>
     );
   }

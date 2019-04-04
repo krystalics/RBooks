@@ -3,7 +3,6 @@ import CommentInput from './CommentInput'
 import CommentList from './CommentList'
 import '../../css/comment.css'
 import axios from "axios";
-import {Alert} from "react-bootstrap";
 
 class CommentApp extends Component {
 
