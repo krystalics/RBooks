@@ -3,6 +3,7 @@ import ReactJSON from 'react-json-view'
 import CommentApp from "../comment/CommentApp";
 import '../../css/content.css'
 import axios from "axios";
+import Time from "../Time";
 
 var chapterid = {};
 
@@ -71,7 +72,8 @@ class MainContent extends Component {
           <div className="title">
             <span><h3>{this.state.chaptername}</h3></span>
             <span className="title-author">{this.state.author}</span>
-            <span className="title-date">{time}</span>
+            {/*<span className="title-date">{time}</span>*/}
+            <Time data={time}/>
             <hr/>
           </div>
           <div>

@@ -29,7 +29,7 @@ class CommentApp extends Component {
     return axios.post('http://localhost:8080/read/getcomments', this.props.chapterid)
     .then(
         res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.setState({comments: res.data})
         }).catch(res => {
       this.setState({comments: res.data});
@@ -48,7 +48,7 @@ class CommentApp extends Component {
     // 将评论数据压入，，然后重新渲染
 
     // let datetime=comment.date;
-    console.log(comment.datetime);
+    // console.log(comment.datetime);
     let newComment={
       commentid:{
         bookid:this.props.chapterid.bookid,
@@ -66,9 +66,9 @@ class CommentApp extends Component {
 
     axios.post('http://localhost:8080/read/addcomment',newComment)
     .then(res=>{
-      return <Alert variant="success">{res.data}</Alert>
+      // alert(res.data);
     }).catch(err=>{
-      return <Alert variant="danger">{err.data}</Alert>
+      alert(err.data)
     })
   }
 

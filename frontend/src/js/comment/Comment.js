@@ -41,8 +41,8 @@ class Comment extends Component {
 
           <div>
             <span className="comment-user">{data.commentuser}</span>{' '}:
-            {/*<Time data={datetime}/>*/}
-            {JSON.stringify(datetime)}
+            <Time data={datetime}/>
+            {/*{datetime}*/}
           </div>
           <p dangerouslySetInnerHTML={{
             __html: this._getProcessedContent(data.content)

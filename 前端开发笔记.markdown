@@ -491,3 +491,42 @@ public class tablename{
 
 基本上就修完了之前的bug。
 
+---
+
+##### 4.4  现在的情况是前端用时间戳传输给后端，后端完美接受。后端传给前端一个date的字符串。也可以解析，但是要在评论之后不用手动刷新页面就能够在评论列表中加入刚才的评论，是将该列表提到CommentList的父组件中再进行更新传入它，
+
+问题是如何同时解析时间戳与字符串两种类型的Date，于是我创建了个Time组件，专门处理这个问题
+
+```js
+import React, {Component} from 'react';
+import '../css/content.css'
+// 渲染时间的显示，第一个是时间戳，第二个是后台传来的Date
+class Time extends Component {
+
+  render() {
+    let {data} = this.props; //获取评论数据
+    let renderTime = '';
+    if (typeof data === "number") { //时间戳是数值型的
+      let date = new Date(data); //利用时间戳获取Date对象
+      renderTime = date.getFullYear() + "-" + date.getMonth() + 1 + "-"
+          + date.getDay() + " " + date.getHours() + ":" + date.getMinutes()
+          + ":" + date.getSeconds();
+    }
+    if (typeof data === "string"&&data.indexOf("T")!==-1) { //后台传来的
+        //也可能由于数据格式不对，导致解析出错，所以在开头要检验一下是否含有T字母
+      let date = data.split("T");
+      console.log(date)
+      let time = date[1].split(".");
+      console.log(time)
+
+      renderTime = date[0] + " " + time[0];
+      // console.log(renderTime)
+    }
+
+    return <span className="title-date">{renderTime}</span>
+  }
+}
+
+export default Time
+```
+
