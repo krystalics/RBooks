@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="366a2d50-7f77-4ab2-bfde-7b9f7ee5b284" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/comment/CommentApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/comment/CommentApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/comment/CommentInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/comment/CommentInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../后台开发笔记.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/../后台开发笔记.markdown" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/comment/CommentApp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+            <state relative-caret-position="517">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -238,7 +234,7 @@
       <workItem from="1553851286619" duration="54942000" />
       <workItem from="1554183506032" duration="27801000" />
       <workItem from="1554278549312" duration="36189000" />
-      <workItem from="1554389271861" duration="1719000" />
+      <workItem from="1554389271861" duration="1935000" />
     </task>
     <task id="LOCAL-00001" summary="先初始化一个react项目">
       <created>1552710723632</created>
@@ -373,11 +369,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554375249117</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="修复获取评论小bug">
+      <created>1554391180196</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1554391180196</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227067000" />
+    <option name="totallyTimeSpent" value="227283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="762" y="0" width="781" height="870" extended-state="0" />
@@ -427,7 +430,8 @@
     <MESSAGE value="搞定时间显示bug" />
     <MESSAGE value="所有页面外观渲染完毕" />
     <MESSAGE value="修改不登录就能评论的小bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改不登录就能评论的小bug" />
+    <MESSAGE value="修复获取评论小bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复获取评论小bug" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/js/home/BookInfo.js" />
@@ -810,8 +814,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/comment/CommentApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+        <state relative-caret-position="517">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
