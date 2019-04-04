@@ -3,7 +3,6 @@ import CommentInput from './CommentInput'
 import CommentList from './CommentList'
 import '../../css/comment.css'
 import axios from "axios";
-import HigherLogin from "../higher/HigherLogin";
 
 class CommentApp extends Component {
 
@@ -14,21 +13,20 @@ class CommentApp extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getComments();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    let chaptername=prevProps.chapterid.chaptername;
-    let newChaptername=this.props.chapterid.chaptername;
-    if(chaptername!==newChaptername) this.getComments();
+    let comemntid={...prevProps.commentid};
+    let newCommentid={...this.props.commentid};
+    if(comemntid.chaptername!==newCommentid.chaptername) this.getComments();
   }
 
   getComments() {
     // console.log(this.props)
-    return axios.post('http://localhost:8080/read/getcomments', this.props.chapterid)
-    .then(
-        res => {
+   axios.post('http://localhost:8080/read/getcomments', this.props.chapterid)
+    .then(res => {
           // console.log(res.data);
           this.setState({comments: res.data})
         }).catch(res => {
@@ -82,6 +80,5 @@ class CommentApp extends Component {
   }
 }
 
-CommentApp = HigherLogin(CommentApp);
 
 export default CommentApp
