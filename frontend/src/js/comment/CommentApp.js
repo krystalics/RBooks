@@ -18,9 +18,12 @@ class CommentApp extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    let comemntid={...prevProps.commentid};
-    let newCommentid={...this.props.commentid};
-    if(comemntid.chaptername!==newCommentid.chaptername) this.getComments();
+
+    let chapter={...prevProps};
+    let newChapter={...this.props};
+    // console.log(chaptername);
+    // console.log(newChaptername);
+    if(chapter.chapterid.chaptername!==newChapter.chapterid.chaptername) this.getComments();
   }
 
   getComments() {
