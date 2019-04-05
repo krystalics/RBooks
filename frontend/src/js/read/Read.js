@@ -3,6 +3,7 @@ import axios from "axios";
 import DirectoryList from "./DirectoryList";
 import MainContent from "./MainContent";
 import {Route} from 'react-router-dom'
+import Content from "./Content";
 
 
 // 由三个组件构成，目录 主要内容 评论列表
@@ -66,9 +67,10 @@ class Read extends Component {
             {/*{`书本内容简介：${this.state.description}`}*/}
           </div>
           <div id="article">
+            <Content data={this.props.location.state}/>
 
-            <Route path="/read/:param/content/:chaptername"
-                   component={MainContent}/>
+            {/*<Route path="/read/:param/content/:chaptername"*/}
+                   {/*component={MainContent}/>*/}
           </div>
 
 

@@ -36,6 +36,16 @@
 
 ---
 
+环境配置：Node.js （最好是高版本的,react对这有要求），然后就可以安装npm或者yarn了
+
+MySQL 5.7+  
+
+JDK 1.8
+
+IDE：IDEA ，WebStorm
+
+
+
 项目运行流程：
 
 1. 先down下本项目 (如果顺便给个star那简直完美)
