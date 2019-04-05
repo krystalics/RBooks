@@ -88,13 +88,7 @@ GET
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:29:27.703+0000",
-    "status": 400,
-    "error": "Bad Request",
-    "message": "JSON parse error: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (PushbackInputStream); line: 1, column: 2]); ...",
-    "path": "/mypage"
-}
+[]
 ```
 
 
@@ -162,13 +156,7 @@ GET
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:29:27.703+0000",
-    "status": 400,
-    "error": "Bad Request",
-    "message":"没找到主页 自己编的",
-    "path": "/mypage"
-}
+[]
 ```
 
 
@@ -200,20 +188,22 @@ GET
 ```json
 [
     {
-        "chapterid": {
+        "commentid": {
             "bookid": 1,
-            "chaptername": "第二章"
+            "chaptername": "第二章",
+            "datetime": "2019-03-19T01:07:33.000+0000"
         },
-        "datetime": "2019-03-19T01:07:33.000+0000",
+        
         "commentuser": "jiangchen",
         "content": "这一章不错"
     },
     {
-        "chapterid": {
+        "commentid": {
             "bookid": 7,
-            "chaptername": "第一章"
+            "chaptername": "第一章",
+            "datetime": "2019-03-19T00:00:00.000+0000"
         },
-        "datetime": "2019-03-19T00:00:00.000+0000",
+       
         "commentuser": "jiangchen",
         "content": "这一章写的不错，"
     }
@@ -297,11 +287,11 @@ POST
 
 ##### 请求地址
 
-/write/deletebook
+/write/deletebook?bookid=
 
 ##### 请求类型
 
-POST
+GET
 
 **请求参数格式**：
 
@@ -322,13 +312,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "message": "No class com.example.rbooks.backend.entity.Book entity with id 11 exists!",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -374,12 +358,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -412,7 +391,8 @@ POST
         "bookid":1,
         "chaptername":"虚幻职业"
     },
-    "content":"这是增加章节的测试"
+    "content":"这是增加章节的测试"，
+    datetime:"2019...."
 }
 ```
 
@@ -427,12 +407,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -477,12 +452,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -515,7 +485,8 @@ POST
         "bookid":1,
         "chaptername":"虚幻职业"
     },
-    "content":"这是增加章节的测试,还更新了内容"
+    "content":"这是增加章节的测试,还更新了内容"，
+     datetime:"2019...."
 }
 ```
 
@@ -530,12 +501,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+更新失败
 ```
 
 ##### 备注说明
@@ -564,11 +530,12 @@ POST
 
 ```json
 {
-    "chapterid":{
+    "commentid":{
         "bookid":1,
-        "chaptername":"虚幻职业"
+        "chaptername":"虚幻职业",
+         "datetime":"2018-03-23"
     },
-    "datetime":"2018-03-23",
+   
     "commentuser":"wanwenzhuo",
     "content":"这是增加评论,还更新了内容"
 }
@@ -585,12 +552,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -635,12 +597,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -679,11 +636,12 @@ POST
 ```json
 [
     {
-        "chapterid": {
+        "commentid": {
             "bookid": 1,
-            "chaptername": "虚幻职业"
+            "chaptername": "虚幻职业",
+            "datetime": "2018-03-23T00:00:00.000+0000",
         },
-        "datetime": "2018-03-23T00:00:00.000+0000",
+        
         "commentuser": "wanwenzhuo",
         "content": "这是增加评论,还更新了内容"
     }
@@ -695,12 +653,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -745,12 +698,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -795,12 +743,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -843,12 +786,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -891,12 +829,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -941,12 +874,7 @@ POST
 ##### 错误的返回示例
 
 ```json
-{
-    "timestamp": "2019-03-19T13:54:58.534+0000",
-    "status": 500,
-    "error": "Internal Server Error",
-    "path": "/write/deletebook"
-}
+失败
 ```
 
 ##### 备注说明
@@ -971,7 +899,7 @@ POST
 
 ##### 请求类型
 
-POST (在restful api中是 PUT)
+POST 
 
 ##### 请求参数格式
 
