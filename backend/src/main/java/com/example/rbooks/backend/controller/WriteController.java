@@ -3,7 +3,9 @@ package com.example.rbooks.backend.controller;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
+import com.example.rbooks.backend.service.MyPageService;
 import com.example.rbooks.backend.service.WriteService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class WriteController {
 
   private final WriteService writeServiceImpl;
-
+  @Autowired
+  private MyPageService myPageServiceImpl;
   @Autowired
   public WriteController(WriteService writeServiceImpl) {
     this.writeServiceImpl = writeServiceImpl;
+  }
+  @RequestMapping("/getwrite")
+  public List<Book> getWrites(@RequestParam String author) {
+    return myPageServiceImpl.getBooks_write(author);
   }
 
   @RequestMapping(value = "/addbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

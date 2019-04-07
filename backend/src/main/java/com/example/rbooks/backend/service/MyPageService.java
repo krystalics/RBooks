@@ -29,4 +29,6 @@ public interface MyPageService {
   Boolean isFollowAuthor(FollowauthorId followauthorId);
 
   Boolean isFollowBook(FollowbookId followbookId);
+
+
 }
