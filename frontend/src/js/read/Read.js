@@ -54,6 +54,7 @@ class Read extends Component {
     // if(content.val===''){
     //   content.val=`{书本内容简介：${this.props.location.state.des.description}`;
     // }
+
     return (
         <div>
 

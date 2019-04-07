@@ -15,7 +15,7 @@ class ReadSideBar extends Component {
     };
     this.handleFollowAuthor = this.handleFollowAuthor.bind(this);
     this.handleFollowBook = this.handleFollowBook.bind(this);
-    this.handleTop=this.handleTop.bind(this);
+    this.handleTop = this.handleTop.bind(this);
   }
 
   componentWillMount() {
@@ -29,7 +29,7 @@ class ReadSideBar extends Component {
     .then(res => {
       if (res.data) { //如果已经点赞过了
         this.setState({followbook: "取消点赞"});
-      }else{
+      } else {
         this.setState({followbook: "点赞收藏"});
       }
     }).catch(err => {
@@ -43,9 +43,9 @@ class ReadSideBar extends Component {
     axios.get(
         `http://localhost:8080/read/isfollowauthor?userid=${param.userid}&authorname=${param.authorname}`)
     .then(res => {
-      if(res.data){
+      if (res.data) {
         this.setState({followauthor: "取消关注"});
-      }else{
+      } else {
         this.setState({followauthor: "关注作者"});
       }
     }).catch(err => {
@@ -69,7 +69,7 @@ class ReadSideBar extends Component {
       .then(res => {
         //点赞之后变更显示
         this.setState({followbook: "取消点赞"});
-        alert("收藏成功")
+        // alert("收藏成功")
       }).catch(err => {
         alert("收藏失败" + err.data);
       })
@@ -77,7 +77,7 @@ class ReadSideBar extends Component {
       axios.post("http://localhost:8080/read/deletefollowbook", followbookid)
       .then(res => {
         this.setState({followbook: "点赞收藏"});
-        alert("取消成功")
+        // alert("取消成功")
       }).catch(err => {
         alert("取消失败" + err.data);
       })
@@ -100,7 +100,7 @@ class ReadSideBar extends Component {
       .then(res => {
         //点赞之后变更显示
         this.setState({followauthor: "取消关注"});
-        alert("关注成功")
+        // alert("关注成功")
       }).catch(err => {
         alert("关注失败" + err.data);
       })
@@ -110,14 +110,14 @@ class ReadSideBar extends Component {
       .then(res => {
         //点赞之后变更显示
         this.setState({followauthor: "关注作者"});
-        alert("取消成功")
+        // alert("取消成功")
       }).catch(err => {
         alert("取消失败" + err.data);
       })
     }
   }
 
-  handleTop(){
+  handleTop() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
@@ -132,7 +132,8 @@ class ReadSideBar extends Component {
             <li onClick={this.handleFollowAuthor}><ListGroup.Item action
                                                                   variant="primary">{this.state.followauthor}</ListGroup.Item>
             </li>
-            <li onClick={this.handleTop}><ListGroup.Item action variant="success">到顶部</ListGroup.Item>
+            <li onClick={this.handleTop}><ListGroup.Item action
+                                                         variant="success">到顶部</ListGroup.Item>
             </li>
 
           </ListGroup>

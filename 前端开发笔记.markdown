@@ -519,3 +519,46 @@ export default Time
 
 
 ##### 4.5 修复不能显示书的简介bug
+
+
+
+##### 4.7 前几天没什么时间搞项目的事，今天补上
+
+增加了关注和点赞以及更改了Message中的CommentList的显示。更新了Mypage中的选项卡，用了Tab做而不是向Link一样做导航。21:00 正在做write的部分，**遇到了动态增加的form元素无法onChange的问题。** 
+
+在网上查了好久都说：不要把该它存到state中，然后说推荐用antd的方案，我看那些东西看的有点蒙蔽。
+
+自己写了个壳子，将textarea包进去，然后就可以了
+
+```js
+import React, {Component} from 'react';
+import '../../css/main.css'
+class Textarea extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state={
+      content:this.props.content
+    };
+    this.handleChange=this.handleChange.bind(this);
+  }
+
+  handleChange(event){
+    this.setState({content:event.target.value})
+  }
+
+  render (){
+    return <textarea className="textarea" value={this.state.content} onChange={this.handleChange}/>
+  }
+
+}
+
+export default Textarea;
+```
+
+
+
+
+
+
+

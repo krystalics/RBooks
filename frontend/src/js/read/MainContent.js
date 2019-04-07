@@ -7,6 +7,8 @@ import Time from "../Time";
 import marked from 'marked';
 import hljs from 'highlight.js';
 import ReadSideBar from "./Read";
+import {ListGroupItem} from "react-bootstrap";
+import Textarea from "./Textarea";
 
 var chapterid = {};
 
@@ -22,11 +24,15 @@ class MainContent extends Component {
       chaptername: '',
       commentuser: '',
       content: '',
-      datetime: ''
-    }
+      datetime: '',
+      contentItem: true //用于更换Edit
+    };
+
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
-  componentWillMount(){
+  componentWillMount() {
+
     marked.setOptions({ //设置markdown相关配置
       renderer: new marked.Renderer(),
       gfm: true,
@@ -36,7 +42,7 @@ class MainContent extends Component {
       sanitize: true,
       smartLists: true,
       smartypants: false,
-      highlight: function(code) {
+      highlight: function (code) {
         return hljs.highlightAuto(code).value;
       },
     });
@@ -44,18 +50,20 @@ class MainContent extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(typeof (this.props.match)==="undefined") {
-      return ;
+    if (typeof (this.props.match) === "undefined") {
+      return;
     }
-    let chaptername=prevProps.match.params.chaptername;
-    let newChaptername=this.props.match.params.chaptername;
-    if(chaptername!==newChaptername) this.getData();
+    let chaptername = prevProps.match.params.chaptername;
+    let newChaptername = this.props.match.params.chaptername;
+    if (chaptername !== newChaptername) {
+      this.getData();
+    }
   }
 
   getData() {
     // console.log(this.props)
-    if(typeof (this.props.match)==="undefined") {
-      return ;
+    if (typeof (this.props.match) === "undefined") {
+      return;
     }
     chapterid = {
       bookid: JSON.parse(this.props.match.params.param).bookid,
@@ -82,35 +90,57 @@ class MainContent extends Component {
       author: JSON.parse(this.props.match.params.param).author,
       content: data.content,
       datetime: data.datetime
+    });
+
+    this.setState({
+      contentItem: <div className="content">
+        <div
+            id="content"
+            className="article-detail"
+            dangerouslySetInnerHTML={{
+              __html: this.state.content ? marked(this.state.content) : null,
+            }}/>
+      </div>
+    });
+  }
+
+  handleEdit() {
+    let chapterid = {
+      bookid: JSON.parse(this.props.match.params.param).bookid,
+      chaptername: this.props.match.params.chaptername
+    };
+
+    this.setState({
+      contentItem: <Textarea content={this.state.content} chapterid={chapterid}/>
     })
   }
 
   render() {
-    // console.log(this.state.bookid)
-    // let id=this.state.bookid;
-    let time=this.state.datetime;
+
+    let time = this.state.datetime;
+    let item = "";
+    if (this.state.author === localStorage.getItem("name")) {
+      item = <ul>
+        <li><ListGroupItem action
+                           variant="warning"
+                           onClick={this.handleEdit}>更新章节</ListGroupItem></li>
+      </ul>;
+    }
+
     return (
         <div>
+          <span className="content-edit">{item}</span>
           <div className="title">
             <span><h3>{this.state.chaptername}</h3></span>
+
             <span className="title-author">{this.state.author}</span>
             {/*<span className="title-date">{time}</span>*/}
             <span className="title-date"><Time data={time}/></span>
+
             <hr/>
           </div>
-          {/*<div>*/}
-            {/*{this.state.content}*/}
-          {/*</div>*/}
-          <div className="content">
-            <div
-                id="content"
-                className="article-detail"
-                dangerouslySetInnerHTML={{
-                  __html: this.state.content ? marked(this.state.content) : null,
-                }}
-            />
-          </div>
-          {/*<ReadSideBar/>*/}
+
+          {this.state.contentItem}
 
           <div className="comment">
             <CommentApp chapterid={chapterid}/>
@@ -119,6 +149,5 @@ class MainContent extends Component {
     );
   }
 }
-
 
 export default MainContent;

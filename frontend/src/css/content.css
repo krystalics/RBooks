@@ -11,7 +11,7 @@
   margin-left: 20%;
 }
 .title hr{
-  border:0.3px solid rgba(0,0,0,0.15);
+  border:1px solid rgba(0,0,0,0.15);
 }
 
 .wrapper{
@@ -71,3 +71,27 @@ p img{
   color: #009a61;
 }
 
+.content-edit{
+  position: fixed;
+  right: 5%;
+  top:40%;
+}
+
+.content-edit ul{
+  list-style: none;
+}
+
+.content-edit ul li{
+  margin-bottom: 10%;
+}
+
+.textarea{
+  display: block;
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
+  width: 100%;
+  margin-bottom: 5%;
+}
