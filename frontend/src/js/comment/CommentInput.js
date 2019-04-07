@@ -54,10 +54,9 @@ class CommentInput extends Component {
       if (this.props.onSubmit) {  //判断是否传入了 onSubmit 属性，有的话就调用该函数
         let {content, datetime} = this.state;
         datetime = new Date().getTime();
-
         this.props.onSubmit({content, datetime});
       }
-      // 现在 comment 包括  content ,createdTime
+
       this.setState({content: ''}); //重新将评论内容设置为空
     } else {
       alert("请先登录！");
@@ -71,6 +70,7 @@ class CommentInput extends Component {
             <FormControl
                 placeholder="评论"
                 aria-label="评论"
+                value={this.state.content}
                 onChange={this.handleContentChange.bind(this)}
             />
             <InputGroup.Append>
@@ -78,19 +78,6 @@ class CommentInput extends Component {
                       onClick={this.handleSubmit.bind(this)}>提交</Button>
             </InputGroup.Append>
           </InputGroup>
-
-          {/*<div className="comment-field">*/}
-          {/*<textarea*/}
-          {/*ref={(textarea) => this.textarea = textarea}*/}
-          {/*value={this.state.content}*/}
-          {/*onChange={this.handleContentChange.bind(this)}/>*/}
-          {/*</div>*/}
-
-          {/*<div className="comment-field-button">*/}
-          {/*<button onClick={this.handleSubmit.bind(this)}>*/}
-          {/*发布*/}
-          {/*</button>*/}
-          {/*</div>*/}
 
 
         </div>

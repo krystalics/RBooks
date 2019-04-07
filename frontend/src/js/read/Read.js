@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import DirectoryList from "./DirectoryList";
-import MainContent from "./MainContent";
-import {Route} from 'react-router-dom'
 import Content from "./Content";
-
 
 // 由三个组件构成，目录 主要内容 评论列表
 // 这里的 CommentList和之前Message中的不一样，这里是需要根据 Chapterid 来确定评论的，而之前的是经过高级组件固定化的
