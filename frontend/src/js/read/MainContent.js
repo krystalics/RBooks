@@ -6,6 +6,7 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
+import ReadSideBar from "./ReadSideBar";
 
 var chapterid = {};
 
@@ -103,6 +104,7 @@ class MainContent extends Component {
             />
           </div>
 
+          <ReadSideBar/>
           <div className="comment">
             <CommentApp chapterid={chapterid}/>
           </div>

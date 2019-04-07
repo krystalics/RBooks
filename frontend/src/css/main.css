@@ -92,3 +92,18 @@
   margin-left: 35%;
 
 }
+
+.sidebar_right{
+  position: fixed;
+  right:5%;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+.sidebar_right {
+  list-style-type: none;
+}
+
+.sidebar_right  li{
+  margin-bottom: 10%;
+}

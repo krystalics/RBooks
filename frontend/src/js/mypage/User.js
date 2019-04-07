@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../../css/mypage.css'
 import {ListGroupItem} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
 
 class User extends Component {
 
@@ -13,11 +12,11 @@ class User extends Component {
     // console.log(this.props);
     return (
         <div className="user">
-          <NavLink to={`/otheruser/${data.id}`}>
+
             <ListGroupItem action variant="light">
               {data.name}
             </ListGroupItem>
-          </NavLink>
+
         </div>
     );
   }

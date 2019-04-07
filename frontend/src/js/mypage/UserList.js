@@ -6,7 +6,11 @@ import {ListGroup} from "react-bootstrap";
 class UserList extends Component {
 
   analyseData(){
-    const data=this.props.location.state;
+    const data=this.props.data;
+    // console.log(this.props);
+    if(typeof(data)=== "undefined"){
+      return [];
+    }
     let users=[];
     for(let item of data){
       // console.log(item)
