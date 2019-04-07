@@ -15,6 +15,7 @@ class ReadSideBar extends Component {
     };
     this.handleFollowAuthor = this.handleFollowAuthor.bind(this);
     this.handleFollowBook = this.handleFollowBook.bind(this);
+    this.handleTop=this.handleTop.bind(this);
   }
 
   componentWillMount() {
@@ -116,6 +117,10 @@ class ReadSideBar extends Component {
     }
   }
 
+  handleTop(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+
   render() {
 
     return (
@@ -127,7 +132,7 @@ class ReadSideBar extends Component {
             <li onClick={this.handleFollowAuthor}><ListGroup.Item action
                                                                   variant="primary">{this.state.followauthor}</ListGroup.Item>
             </li>
-            <li><ListGroup.Item action variant="success">到顶部</ListGroup.Item>
+            <li onClick={this.handleTop}><ListGroup.Item action variant="success">到顶部</ListGroup.Item>
             </li>
 
           </ListGroup>
