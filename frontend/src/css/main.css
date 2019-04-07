@@ -107,3 +107,26 @@
 .sidebar_right  li{
   margin-bottom: 10%;
 }
+
+.textarea{
+  padding: 10px;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.newbook{
+  position: relative;
+  left: 40%;
+}
+
+.nav-booklist{
+  position: absolute;
+  left: 0;
+  top:10%;
+  padding-left:3%;
+
+}

@@ -26,6 +26,7 @@ class Content extends Component {
               <Route path="/user/login" component={Login}/>
               <Route path="/settings" component={Settings}/>
               <Route path="/read/:data" component={Read}/>
+              <Route path="/write" component={Write}/>
               <Route path="/otheruser/:id" component={OtherPage}/>
             </Switch>
           </div>

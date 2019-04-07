@@ -53,6 +53,8 @@ class Navigator extends Component {
             <Navbar.Brand href="/home"> RBooks</Navbar.Brand>
             <Nav.Link href="/settings">设置</Nav.Link>
             <Nav.Link href="/message"> 消息</Nav.Link>
+            <Nav.Link href="/write"> 写书</Nav.Link>
+
             {item}
           </Nav>
           <Form inline>
