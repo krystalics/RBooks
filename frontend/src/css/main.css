@@ -59,7 +59,7 @@
 }
 
 .sidebar_left{
-  position: fixed;
+  position: absolute;
   height: 100%;
   padding: 2% 5% 2% 2%;
   left: 0;
@@ -129,4 +129,12 @@
   top:10%;
   padding-left:3%;
 
+}
+
+.chapter_plus{
+  position: absolute;
+  left: 0%;
+  top:8.5%;
+  /*width:4%;*/
+  /*height:4%;*/
 }
