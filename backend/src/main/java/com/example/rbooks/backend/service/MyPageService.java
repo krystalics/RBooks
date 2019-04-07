@@ -1,6 +1,8 @@
 package com.example.rbooks.backend.service;
 
 import com.example.rbooks.backend.entity.Book;
+import com.example.rbooks.backend.entity.FollowauthorId;
+import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.entity.Information;
 import com.example.rbooks.backend.entity.User;
 import java.util.List;
@@ -23,4 +25,8 @@ public interface MyPageService {
   List<User> getUsers_be_followed(int authorid);
 
   String myPage(int userid);
+
+  Boolean isFollowAuthor(FollowauthorId followauthorId);
+
+  Boolean isFollowBook(FollowbookId followbookId);
 }

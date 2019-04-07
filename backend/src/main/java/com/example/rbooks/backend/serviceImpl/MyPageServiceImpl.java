@@ -7,10 +7,13 @@ import com.example.rbooks.backend.dao.InformationDao;
 import com.example.rbooks.backend.dao.UserDao;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Followauthor;
+import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.Followbook;
+import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.entity.Information;
 import com.example.rbooks.backend.entity.User;
 import com.example.rbooks.backend.service.MyPageService;
+import com.example.rbooks.backend.service.ReadService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -21,20 +24,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyPageServiceImpl implements MyPageService {
 
-  @Autowired
-  private InformationDao informationDaoImpl;
+
+  private final InformationDao informationDaoImpl;
+
+  private final BookDao bookDaoImpl;
+
+  private final FollowDao followDaoImpl;
+
+  private final UserDao userDaoImpl;
+
+  private final ObjectMapper mapper;
 
   @Autowired
-  private BookDao bookDaoImpl;
-
-  @Autowired
-  private FollowDao followDaoImpl;
-
-  @Autowired
-  private UserDao userDaoImpl;
-
-  @Autowired
-  private ObjectMapper mapper;
+  public MyPageServiceImpl(InformationDao informationDaoImpl, BookDao bookDaoImpl,
+      FollowDao followDaoImpl, UserDao userDaoImpl, ObjectMapper mapper) {
+    this.informationDaoImpl = informationDaoImpl;
+    this.bookDaoImpl = bookDaoImpl;
+    this.followDaoImpl = followDaoImpl;
+    this.userDaoImpl = userDaoImpl;
+    this.mapper = mapper;
+  }
 
   @Override
   public Information getInformation(int userid) {
@@ -66,7 +75,7 @@ public class MyPageServiceImpl implements MyPageService {
     for (Followauthor followauthor : all_follow_users) {
       if (followauthor.getFollowauthorid().getUserid() == userid) {
         // 要把 password处理掉，
-        User user=userDaoImpl.getUserById(followauthor.getFollowauthorid().getAuthorid());
+        User user = userDaoImpl.getUserById(followauthor.getFollowauthorid().getAuthorid());
         user.setPassword("");
         followusers.add(user);
       }
@@ -81,7 +90,7 @@ public class MyPageServiceImpl implements MyPageService {
     List<User> followusers = new ArrayList<>();
     for (Followauthor followauthor : all_follow_users) {
       if (followauthor.getFollowauthorid().getAuthorid() == userid) { //与上面的区别就是，细节不一致
-        User user=userDaoImpl.getUserById(followauthor.getFollowauthorid().getUserid());
+        User user = userDaoImpl.getUserById(followauthor.getFollowauthorid().getUserid());
         user.setPassword("");
         followusers.add(user);
       }
@@ -91,9 +100,17 @@ public class MyPageServiceImpl implements MyPageService {
 
   }
 
-  public String myPage(int userid){
+  public Boolean isFollowAuthor(FollowauthorId followauthorId) {
+    return followDaoImpl.exsitsFollowAuthor(followauthorId);
+  }
+
+  public Boolean isFollowBook(FollowbookId followbookId) {
+    return followDaoImpl.exsitsFollowBook(followbookId);
+  }
+
+  public String myPage(int userid) {
     Information information = getInformation(userid);
-    if(information==null){
+    if (information == null) {
       return "找不到该用户";
     }
 

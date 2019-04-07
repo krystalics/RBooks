@@ -12,6 +12,10 @@ public interface FollowDao {
 
   List<Followbook> getAllBooks();
 
+  Boolean exsitsFollowAuthor(FollowauthorId followauthorId);
+
+  Boolean exsitsFollowBook(FollowbookId followbookId);
+
   int addFollowAuthor(FollowauthorId id);
 
   int deleteFollowAuthor(FollowauthorId id);

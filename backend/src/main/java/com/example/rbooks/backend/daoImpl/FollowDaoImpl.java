@@ -49,6 +49,16 @@ public class FollowDaoImpl implements FollowDao {
   }
 
   @Override
+  public Boolean exsitsFollowAuthor(FollowauthorId followauthorId) {
+    return followauthorRepository.existsByFollowauthorid(followauthorId);
+  }
+
+  @Override
+  public Boolean exsitsFollowBook(FollowbookId followbookId) {
+    return followbookRepository.existsByFollowbookid(followbookId);
+  }
+
+  @Override
   public int addFollowAuthor(FollowauthorId id) {
     Followauthor followauthor = new Followauthor();
     followauthor.setFollowauthorid(id);

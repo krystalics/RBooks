@@ -13,6 +13,8 @@ public class UserServiceImpl implements UserService {
   private UserDao userDaoImpl;
 
 
+
+
   @Override
   public int register(String name,String password) {
     User user = userDaoImpl.getUserByName(name); //在表中寻找这个用户名
@@ -55,6 +57,11 @@ public class UserServiceImpl implements UserService {
     }
 
     return -1; //说明表中没有该用户 或者密码错误
+  }
+
+  @Override
+  public User getUserByName(String name) {
+    return userDaoImpl.getUserByName(name);
   }
 
 

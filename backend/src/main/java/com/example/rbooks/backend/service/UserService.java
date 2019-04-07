@@ -14,4 +14,6 @@ public interface UserService {
 
   int login(String name,String password); //成功就返回 user id  失败返回-1
 
+  User getUserByName(String name);
+
 }

@@ -6,7 +6,7 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import ReadSideBar from "./ReadSideBar";
+import ReadSideBar from "./Read";
 
 var chapterid = {};
 
@@ -44,12 +44,19 @@ class MainContent extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    if(typeof (this.props.match)==="undefined") {
+      return ;
+    }
     let chaptername=prevProps.match.params.chaptername;
     let newChaptername=this.props.match.params.chaptername;
     if(chaptername!==newChaptername) this.getData();
   }
 
   getData() {
+    // console.log(this.props)
+    if(typeof (this.props.match)==="undefined") {
+      return ;
+    }
     chapterid = {
       bookid: JSON.parse(this.props.match.params.param).bookid,
       chaptername: this.props.match.params.chaptername
@@ -103,8 +110,8 @@ class MainContent extends Component {
                 }}
             />
           </div>
+          {/*<ReadSideBar/>*/}
 
-          <ReadSideBar/>
           <div className="comment">
             <CommentApp chapterid={chapterid}/>
           </div>

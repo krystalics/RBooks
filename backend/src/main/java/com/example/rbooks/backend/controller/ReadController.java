@@ -1,11 +1,16 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.controller.mypage.MyPage;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
 import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
+import com.example.rbooks.backend.entity.User;
+import com.example.rbooks.backend.service.MyPageService;
 import com.example.rbooks.backend.service.ReadService;
+import com.example.rbooks.backend.service.UserService;
+import com.example.rbooks.backend.serviceImpl.UserServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +39,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/read")
 public class ReadController {
 
+  @Autowired
+  private UserService userServiceImpl;
   // ReadService 只提供，获取 评论，获取章节内容，增加评论的服务
   private final ReadService readServiceImpl;
 
+  private final MyPageService myPageServiceImpl;
+
   @Autowired
-  public ReadController(ReadService readServiceImpl) {
+  public ReadController(ReadService readServiceImpl,
+      MyPageService myPageServiceImpl) {
     this.readServiceImpl = readServiceImpl;
+    this.myPageServiceImpl = myPageServiceImpl;
   }
 
 
@@ -109,17 +120,33 @@ public class ReadController {
     return readServiceImpl.getComments(bookid);
   }
 
-  @RequestMapping(value = "/addfollowauthor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public String addFollowAuthor(@RequestBody FollowauthorId id) {
+  @RequestMapping(value = "/isfollowauthor")
+  public Boolean isFollowAuthor(@RequestParam int userid,@RequestParam String authorname) {
+
+    FollowauthorId id=genFollowAuthorId(userid,authorname);
+
+    return myPageServiceImpl.isFollowAuthor(id);
+  }
+
+  @RequestMapping(value = "/isfollowbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+  public Boolean isFollowBook(@RequestBody FollowbookId id) {
+    return myPageServiceImpl.isFollowBook(id);
+  }
+
+  @RequestMapping(value = "/addfollowauthor")
+  public String addFollowAuthor(@RequestParam int userid,@RequestParam String authorname) {
+    FollowauthorId id=genFollowAuthorId(userid,authorname);
+
     readServiceImpl.addFollowAuthor(id);
 
     return "添加成功";
   }
 
-  @RequestMapping(value = "/deletefollowauthor", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public String deleteFollowAuthor(@RequestBody FollowauthorId id) {
-    readServiceImpl.deleteFollowAuthor(id);
+  @RequestMapping(value = "/deletefollowauthor")
+  public String deleteFollowAuthor(@RequestParam int userid,@RequestParam String authorname) {
+    FollowauthorId id=genFollowAuthorId(userid,authorname);
 
+    readServiceImpl.deleteFollowAuthor(id);
     return "删除成功";
   }
 
@@ -133,8 +160,16 @@ public class ReadController {
   @RequestMapping(value = "/deletefollowbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String deleteFollowBook(@RequestBody FollowbookId id) {
     readServiceImpl.deleteFollowBook(id);
-
     return "删除成功";
+  }
+
+
+  public FollowauthorId genFollowAuthorId(int userid,String authorname){
+    User user =userServiceImpl.getUserByName(authorname);
+    FollowauthorId id=new FollowauthorId();
+    id.setUserid(userid);
+    id.setAuthorid(user.getId());
+    return id;
   }
 
 }
