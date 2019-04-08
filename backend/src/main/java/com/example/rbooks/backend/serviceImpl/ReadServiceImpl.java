@@ -1,8 +1,11 @@
 package com.example.rbooks.backend.serviceImpl;
 
+import com.example.rbooks.backend.dao.BookDao;
 import com.example.rbooks.backend.dao.ChapterDao;
 import com.example.rbooks.backend.dao.CommentDao;
 import com.example.rbooks.backend.dao.FollowDao;
+import com.example.rbooks.backend.daoImpl.BookDaoImpl;
+import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
@@ -19,6 +22,8 @@ public class ReadServiceImpl implements ReadService {
   private final ChapterDao chapterDaoImpl;
 
   private final CommentDao commentDaoImpl;
+
+  private BookDao bookDaoImpl;
 
   @Autowired
   private FollowDao followDaoImpl;
@@ -75,5 +80,10 @@ public class ReadServiceImpl implements ReadService {
   @Override
   public List<Chapter> getBook(int bookid) {
     return chapterDaoImpl.getBook(bookid);
+  }
+
+  @Override
+  public Book getBookById(int bookid) {
+    return bookDaoImpl.getBookById(bookid);
   }
 }

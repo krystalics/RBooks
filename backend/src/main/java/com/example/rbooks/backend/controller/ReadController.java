@@ -1,6 +1,7 @@
 package com.example.rbooks.backend.controller;
 
-import com.example.rbooks.backend.controller.mypage.MyPage;
+import com.example.rbooks.backend.entity.Book;
+import com.example.rbooks.backend.entity.BookRepository;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
@@ -10,7 +11,6 @@ import com.example.rbooks.backend.entity.User;
 import com.example.rbooks.backend.service.MyPageService;
 import com.example.rbooks.backend.service.ReadService;
 import com.example.rbooks.backend.service.UserService;
-import com.example.rbooks.backend.serviceImpl.UserServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +42,9 @@ public class ReadController {
   @Autowired
   private UserService userServiceImpl;
   // ReadService 只提供，获取 评论，获取章节内容，增加评论的服务
+  @Autowired
+  private BookRepository bookRepository;
+
   private final ReadService readServiceImpl;
 
   private final MyPageService myPageServiceImpl;
@@ -153,13 +156,27 @@ public class ReadController {
   @RequestMapping(value = "/addfollowbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addFollowBook(@RequestBody FollowbookId id) {
     readServiceImpl.addFollowBook(id);
-
+//    System.out.println(id.getBookid());
+    Book book=bookRepository.findById(id.getBookid());
+//    System.out.println("book是"+book);
+    int love=book.getLove();
+    love++;
+    book.setLove(love);
+    bookRepository.save(book); //更新
     return "添加成功";
   }
 
   @RequestMapping(value = "/deletefollowbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String deleteFollowBook(@RequestBody FollowbookId id) {
     readServiceImpl.deleteFollowBook(id);
+//    System.out.println(id.getBookid());
+    Book book=bookRepository.findById(id.getBookid());
+//    System.out.println("book是"+book);
+
+    int love=book.getLove();
+    love--;
+    book.setLove(love);
+    bookRepository.save(book); //更新
     return "删除成功";
   }
 

@@ -28,6 +28,7 @@ class ReadSideBar extends Component {
     axios.post("http://localhost:8080/read/isfollowbook", followbookid)
     .then(res => {
       if (res.data) { //如果已经点赞过了
+        // alert(res.data);
         this.setState({followbook: "取消点赞"});
       } else {
         this.setState({followbook: "点赞收藏"});

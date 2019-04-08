@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 20/03/2019 15:51:12
+ Date: 08/04/2019 08:31:16
 */
 
 SET NAMES utf8mb4;
@@ -32,16 +32,16 @@ CREATE TABLE `book`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `author`(`author`) USING BTREE,
   CONSTRAINT `book_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES (1, '临虚-2 书名也改了', NULL, '这是我很早就想写的小说了，改变了介绍', NULL, NULL, 0);
+INSERT INTO `book` VALUES (1, '临虚-2 书名也改了', 'krysta', '这是我很早就想写的小说了，改变了介绍', '2019-03-28 22:48:07', '...', 0);
 INSERT INTO `book` VALUES (6, '第二本书', 'wanwenzhuo', '这是用来测试的', '2019-03-18 22:10:37', '...', 3);
 INSERT INTO `book` VALUES (7, '第三本书', 'krysta', '这还是用来测试的', '2019-03-18 22:12:10', '没有照片', 111);
 INSERT INTO `book` VALUES (8, '第三本书', 'jiangchen', '测试', '2019-03-18 22:12:29', '没有照片', 44);
-INSERT INTO `book` VALUES (13, '临虚-2 书名也改了', NULL, '这是我很早就想写的小说了，改变了介绍', NULL, NULL, 0);
+INSERT INTO `book` VALUES (21, '前端开书测试', 'krysta', '在前端测试能不能增加书籍', '2019-04-07 22:15:11', NULL, 0);
 
 -- ----------------------------
 -- Table structure for chapter
@@ -60,7 +60,7 @@ CREATE TABLE `chapter`  (
 -- ----------------------------
 -- Records of chapter
 -- ----------------------------
-INSERT INTO `chapter` VALUES (1, '第一章', '该内容', '2019-03-20 15:37:12');
+INSERT INTO `chapter` VALUES (1, '第一章', '前端测试更改内容', '2019-04-07 21:55:27');
 INSERT INTO `chapter` VALUES (1, '第二章', '内容更新', '2019-03-20 15:37:16');
 INSERT INTO `chapter` VALUES (1, '虚幻职业', '这是增加章节的测试,还更新了内容', '2019-03-20 15:37:20');
 INSERT INTO `chapter` VALUES (6, '第一章', '第一章内容2', '2019-03-20 15:37:25');
@@ -78,7 +78,7 @@ CREATE TABLE `comment`  (
   `datetime` datetime(0) NOT NULL,
   `commentuser` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `content` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`bookid`, `chaptername`) USING BTREE,
+  PRIMARY KEY (`bookid`, `chaptername`, `datetime`) USING BTREE,
   INDEX `discussusername`(`commentuser`) USING BTREE,
   INDEX `chaptername`(`chaptername`) USING BTREE,
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`commentuser`) REFERENCES `user` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -89,12 +89,30 @@ CREATE TABLE `comment`  (
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES (1, '第一章', '2019-03-19 08:00:00', 'krysta', '这一章写的不错，');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-03 23:21:44', 'krysta', '平了法');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-04 11:39:22', 'krysta', '放大');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-04 11:56:32', 'krysta', '前端测试评论');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-04 12:15:28', 'krysta', '测试2');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-04 12:20:37', 'krysta', '时间显示测试');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-04 14:26:21', 'krysta', '`第买`');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-04 14:26:32', 'krysta', '`cjkl `');
+INSERT INTO `comment` VALUES (1, '第一章', '2019-04-07 14:28:25', 'krysta', '陈');
 INSERT INTO `comment` VALUES (1, '第二章', '2019-03-19 09:07:33', 'jiangchen', '这一章不错');
+INSERT INTO `comment` VALUES (1, '第二章', '2019-04-04 13:26:59', 'krysta', '前端评论测试');
 INSERT INTO `comment` VALUES (1, '虚幻职业', '2018-03-23 08:00:00', 'wanwenzhuo', '这是增加评论,还更新了内容');
+INSERT INTO `comment` VALUES (1, '虚幻职业', '2019-04-07 15:30:50', 'krysta', '贫冷');
+INSERT INTO `comment` VALUES (1, '虚幻职业', '2019-04-07 15:33:35', 'krysta', '不是我');
 INSERT INTO `comment` VALUES (6, '第一章', '2019-03-19 08:00:00', 'wanwenzhuo', '这一章写的不错，');
+INSERT INTO `comment` VALUES (6, '第一章', '2019-04-04 13:28:48', 'krysta', '频率');
+INSERT INTO `comment` VALUES (6, '第一章', '2019-04-04 13:41:51', 'krysta', '法');
+INSERT INTO `comment` VALUES (6, '第一章', '2019-04-04 13:44:45', 'krysta', '你');
+INSERT INTO `comment` VALUES (6, '第二章', '2019-04-04 13:36:15', 'krysta', '这里还没有评论吗');
 INSERT INTO `comment` VALUES (7, '第一章', '2019-03-19 08:00:00', 'jiangchen', '这一章写的不错，');
+INSERT INTO `comment` VALUES (7, '第一章', '2019-04-04 13:45:33', 'krysta', '评论继续测试');
+INSERT INTO `comment` VALUES (7, '第一章', '2019-04-04 13:46:56', 'krysta', '还是要测试');
+INSERT INTO `comment` VALUES (7, '第一章', '2019-04-04 13:48:19', 'krysta', '时间终于要搞定了吗');
 INSERT INTO `comment` VALUES (8, '第一章', '2019-03-19 08:00:00', 'xiahongwei', '这一章写的不错，');
+INSERT INTO `comment` VALUES (8, '第一章', '2019-04-04 23:11:27', 'krysta', '评论测试');
 
 -- ----------------------------
 -- Table structure for followauthor
@@ -114,10 +132,10 @@ CREATE TABLE `followauthor`  (
 -- ----------------------------
 INSERT INTO `followauthor` VALUES (3, 0);
 INSERT INTO `followauthor` VALUES (4, 0);
+INSERT INTO `followauthor` VALUES (0, 2);
 INSERT INTO `followauthor` VALUES (3, 2);
 INSERT INTO `followauthor` VALUES (0, 3);
 INSERT INTO `followauthor` VALUES (2, 3);
-INSERT INTO `followauthor` VALUES (0, 4);
 INSERT INTO `followauthor` VALUES (2, 4);
 
 -- ----------------------------
@@ -156,9 +174,9 @@ CREATE TABLE `hibernate_sequence`  (
 -- ----------------------------
 -- Records of hibernate_sequence
 -- ----------------------------
-INSERT INTO `hibernate_sequence` VALUES (14);
-INSERT INTO `hibernate_sequence` VALUES (14);
-INSERT INTO `hibernate_sequence` VALUES (14);
+INSERT INTO `hibernate_sequence` VALUES (22);
+INSERT INTO `hibernate_sequence` VALUES (22);
+INSERT INTO `hibernate_sequence` VALUES (22);
 
 -- ----------------------------
 -- Table structure for information
@@ -182,9 +200,10 @@ CREATE TABLE `information`  (
 -- Records of information
 -- ----------------------------
 INSERT INTO `information` VALUES (0, 'krysta', 'anti_light@qq.com', 'whuter', '...', 'https://github.com/krystalics', 'krysta.cn');
-INSERT INTO `information` VALUES (2, NULL, '这一次设置email', NULL, NULL, NULL, NULL);
+INSERT INTO `information` VALUES (2, 'wanwenzhuo', '这一次设置email', 'w', 'f', 'f', 'f');
 INSERT INTO `information` VALUES (3, 'xiahongwei', 'yy@com', 'whuter from 423', '...', 'none', 'none');
 INSERT INTO `information` VALUES (4, 'jiangchen', 'zz@com', 'whuter ', '...', 'none', 'none');
+INSERT INTO `information` VALUES (19, 'tesing', '259927@whut.edu.cn', '测试', '', 'krysta', 'none');
 
 -- ----------------------------
 -- Table structure for user
@@ -197,14 +216,16 @@ CREATE TABLE `user`  (
   `role` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (0, 'krysta', 'rbooks', 2);
-INSERT INTO `user` VALUES (2, 'wanwenzhuo', '567', 0);
+INSERT INTO `user` VALUES (2, 'wanwenzhuo', '123', 0);
 INSERT INTO `user` VALUES (3, 'xiahongwei', '123', 0);
-INSERT INTO `user` VALUES (4, 'jiangchen', '321', 0);
+INSERT INTO `user` VALUES (4, 'jiangchen', '123', 0);
+INSERT INTO `user` VALUES (19, 'tesing', '123', 0);
+INSERT INTO `user` VALUES (20, 'lin', '123', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
