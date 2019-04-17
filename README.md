@@ -49,7 +49,7 @@ IDE：IDEA ，WebStorm
 项目运行流程：
 
 1. 先down下本项目 (如果顺便给个star那简直完美)
-2. 将项目中的rbooks.sql文件导入你的MySQL数据库(我的数据库版本是5.7+)，如果数据库版本不兼容可以参照我的数据库设计图(在前期分析文档中) 自己创建一个数据库，可能比较麻烦。
-3. 用IDEA 打开backend，然后点击运行
+2. 将项目中的rbooks.sql文件导入你的MySQL数据库(我的数据库版本是5.7+)，如果数据库版本不兼容可以参照我的数据库设计图(在前期分析文档中) 自己创建一个数据库，可能比较麻烦。然后需要在MySQL中创建一个角色`username=user_rbooks  password=123456` ，赋予它关于rbooks数据库的权限。
+3. 用IDEA 打开backend，然后点击运行。中间可能出现各种bug，很可能是Maven版本，或者各个依赖的版不一样。
 4. 然后用WebStorm 打开frontend文件夹，直接在前端项目的根目录`npm start | yarn start`就可以在浏览器的 `http://localhost:3000` 看到运行情况了，如果不出意外的话。
 

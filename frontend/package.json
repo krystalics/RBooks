@@ -2,12 +2,14 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://krystalics.github.io/frontend",
   "dependencies": {
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "cross-fetch": "^3.0.1",
     "element-theme-default": "^1.4.13",
+    "gh-pages": "^2.0.1",
     "highlight.js": "^9.15.6",
     "jquery": "^3.3.1",
     "markd": "^1.2.0",
@@ -26,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
