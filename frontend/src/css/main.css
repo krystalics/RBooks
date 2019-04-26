@@ -65,15 +65,27 @@
   left: 0;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
-.sidebar_left span{
-  border-bottom: black 1px solid;
 
+.sidebar_left Button{
+  position: relative;
+  bottom:20%;
+  margin-bottom: 4%;
+  margin-top: 10%;
+}
+
+
+.sidebar_left_span{
+  border-bottom: black 1px solid;
+  position: absolute;
+  top:-3%;
+  left: 5%;
+  width:95%;
 }
 
 .Directory{
   margin-bottom: 4%;
-
 }
+
 
 .lg{
   margin-top: 5%;
@@ -119,22 +131,14 @@
 }
 
 .newbook{
-  position: relative;
-  left: 40%;
+  position: absolute;
+  left: 50%;
+  top:15%;
 }
 
 .nav-booklist{
   position: absolute;
   left: 0;
-  top:10%;
   padding-left:3%;
-
 }
 
-.chapter_plus{
-  position: absolute;
-  left: 0%;
-  top:8.5%;
-  /*width:4%;*/
-  /*height:4%;*/
-}

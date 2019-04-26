@@ -8,7 +8,7 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import ReadSideBar from "./Read";
 import {ListGroupItem} from "react-bootstrap";
-import Textarea from "./Textarea";
+import Chapter from "../write/Chapter";
 
 var chapterid = {};
 
@@ -111,7 +111,7 @@ class MainContent extends Component {
     };
 
     this.setState({
-      contentItem: <Textarea content={this.state.content} chapterid={chapterid}/>
+      contentItem: <Chapter content={this.state.content} chapterid={chapterid}/>
     })
   }
 

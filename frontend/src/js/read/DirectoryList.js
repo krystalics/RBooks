@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Directory from "./Directory";
-import {Nav} from 'react-bootstrap'
+import {Button, Nav} from 'react-bootstrap'
+import '../../css/main.css'
 
 class DirectoryList extends Component {
 
@@ -49,12 +50,16 @@ class DirectoryList extends Component {
   // }
 
   getNames() {
-    const directory=this.props.directory;
-    let names=[];
-    for(let item of directory){
+    const directory = this.props.directory;
+    let names = [];
+    for (let item of directory) {
       names.push(item);
     }
     return names;
+
+  }
+
+  handleDelete(){
 
   }
 
@@ -62,7 +67,7 @@ class DirectoryList extends Component {
     // console.log(this.props.param) 有数据
     return (
         <div className="sidebar_left">
-          <span>目录</span>
+          <div className="sidebar_left_span">目录</div>
           <Nav className="flex-column">
             {this.getNames().map((item, idx) => {
 
@@ -71,7 +76,13 @@ class DirectoryList extends Component {
               return <Directory key={idx} chaptername={item}
                                 param={this.props.param}/>
             })}
+
+
+            <Nav.Link href="/write/chapter"><Button variant="success">增加章节</Button></Nav.Link>
+            <Button variant="danger" onClick={()=>{}}>删除章节</Button>
+
           </Nav>
+
         </div>
 
     );

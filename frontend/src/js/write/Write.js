@@ -62,8 +62,23 @@ class Write extends Component {
   }
 
   render() {
+    let item;
+    // console.log(this.state.booklist);
+    if(this.state.booklist==='undefined'||this.state.booklist.length===0){
+      item=<div className="nav-booklist">
+        <h4>作品集: ></h4>
+
+      </div>
+    }else{
+      item= <div className="nav-booklist">
+        <h4>作品集</h4>
+        <BookList data={this.state.booklist}/>
+      </div>
+    }
+
     return (
         <div>
+          {item}
           <div className="newbook">
             开始一本新书:
             <br/>
@@ -83,9 +98,7 @@ class Write extends Component {
             <br/>
             <Button variant="success" onClick={this.handleSubmit}>保存</Button>
           </div>
-          <div className="nav-booklist">
-            <BookList data={this.state.booklist}/>
-          </div>
+
         </div>
     );
   }

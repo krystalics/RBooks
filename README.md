@@ -12,7 +12,11 @@
 
 <img src="./img/31.png">
 
+<img src="./img/31-2.png">
+
 <img src="./img/32.png">
+
+<img src="./img/34-2.png">
 
 <img src="./img/33.png">
 

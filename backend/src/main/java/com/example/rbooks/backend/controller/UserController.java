@@ -24,9 +24,10 @@ public class UserController {
   }
 
   //会在登录成功之后 ， 返回一个SessionId，用于后续验证，还有@CookieValue来获取cookie值
+
   @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public int login(@RequestBody User user) {
-    return userServiceImpl.login(user.getName(), user.getPassword()); //失败返回一个 -1  成功则是该用户的 id
+    return userServiceImpl.login(user.getName(), user.getPassword());
   }
 
   @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

@@ -3,7 +3,6 @@ import axios from "axios";
 import DirectoryList from "./DirectoryList";
 import Content from "./Content";
 import ReadSideBar from "./ReadSideBar";
-import Button from "react-bootstrap/Button";
 
 import '../../css/main.css'
 // 由三个组件构成，目录 主要内容 评论列表
@@ -49,17 +48,12 @@ class Read extends Component {
     // }
   }
 
-  // 先渲染目录和 第一章的内容  ,然后绑定目录和内容的更新关系
+
   render() {
-    // let content=document.getElementById("article");
-    // console.log(content);
-    // if(content.val===''){
-    //   content.val=`{书本内容简介：${this.props.location.state.des.description}`;
-    // }
 
     return (
         <div>
-          <Button className="chapter_plus" variant="light">增加章节</Button>
+
           <ReadSideBar id={this.state.bookid} author={this.state.author}/>
           <DirectoryList directory={this.state.directory}
                          param={this.props.match.params.data}/>

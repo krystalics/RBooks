@@ -9,9 +9,8 @@ import MyPage from "../mypage/MyPage";
 import Login from "../login/Login";
 import Settings from "../settings/Settings";
 import Read from "../read/Read";
-
+import Chapter from '../write/Chapter';
 import '../../App.css'
-import OtherPage from "../mypage/OtherPage";
 
 class Content extends Component {
   render() {
@@ -26,8 +25,7 @@ class Content extends Component {
               <Route path="/user/login" component={Login}/>
               <Route path="/settings" component={Settings}/>
               <Route path="/read/:data" component={Read}/>
-              <Route path="/write" component={Write}/>
-              <Route path="/otheruser/:id" component={OtherPage}/>
+              <Route path="/write/chapter" component={Chapter}/>
             </Switch>
           </div>
         </Container>
