@@ -8,10 +8,12 @@ import {Form} from "react-bootstrap";
 class Chapter extends Component {
 
   constructor(props) {
+    // console.log(props);
+
     super(props);
     this.state = {
-      content: this.props.content,
-      chaptername: this.props.chapterid.chaptername
+      content: typeof (this.props.location.state.data.content)==="undefined"?"内容":this.props.location.state.data.content,
+      chaptername: typeof (this.props.location.state.data.chaptername)==="undefined"?"请输入章节名字":this.props.location.state.data.chaptername
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,8 +27,8 @@ class Chapter extends Component {
   handleSubmit() {
     let chapter = {
       chapterid: {
-        bookid:this.props.chapterid.bookid,
-        chaptername:this.state.chaptername
+        bookid: this.props.location.state.data.bookid,
+        chaptername: this.state.chaptername
       },
       content: this.state.content,
       datetime: new Date()
@@ -48,7 +50,8 @@ class Chapter extends Component {
   }
 
   render() {
-    let save = <Button onClick={this.handleSubmit} action
+    // console.log(this.props.location.state.data)
+    let save = <Button onClick={this.handleSubmit}
                        variant="outline-success">保存</Button>;
     return (
         <div>
@@ -57,7 +60,7 @@ class Chapter extends Component {
                         value={this.state.chaptername}
                         name="chaptername"/>
 
-          <textarea className="textarea" value={this.state.content}
+          <textarea className="Textarea" value={this.state.content}
                     onChange={this.handleChange}/>
 
           {save}

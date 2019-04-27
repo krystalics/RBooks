@@ -7,8 +7,9 @@ import Time from "../Time";
 import marked from 'marked';
 import hljs from 'highlight.js';
 import ReadSideBar from "./Read";
-import {ListGroupItem} from "react-bootstrap";
+import {Button, ListGroupItem} from "react-bootstrap";
 import Chapter from "../write/Chapter";
+import {NavLink} from "react-router-dom";
 
 var chapterid = {};
 
@@ -25,7 +26,7 @@ class MainContent extends Component {
       commentuser: '',
       content: '',
       datetime: '',
-      contentItem: true //用于更换Edit
+
     };
 
     this.handleEdit = this.handleEdit.bind(this);
@@ -105,26 +106,29 @@ class MainContent extends Component {
   }
 
   handleEdit() {
-    let chapterid = {
+    let data = {
       bookid: JSON.parse(this.props.match.params.param).bookid,
-      chaptername: this.props.match.params.chaptername
+      chaptername: this.props.match.params.chaptername,
+      content:this.state.content
     };
-
-    this.setState({
-      contentItem: <Chapter content={this.state.content} chapterid={chapterid}/>
-    })
   }
 
   render() {
-
+    let data = {
+      bookid: JSON.parse(this.props.match.params.param).bookid,
+      chaptername: this.props.match.params.chaptername,
+      content:this.state.content
+    };
     let time = this.state.datetime;
     let item = "";
     if (this.state.author === localStorage.getItem("name")) {
-      item = <ul>
-        <li><ListGroupItem action
-                           variant="warning"
-                           onClick={this.handleEdit}>更新章节</ListGroupItem></li>
-      </ul>;
+      item =
+          <NavLink to={{
+            pathname: '/writing/chapter',
+            state:{data}
+          }}>
+            <Button variant="outline-success">更新章节</Button>
+          </NavLink>
     }
 
     return (

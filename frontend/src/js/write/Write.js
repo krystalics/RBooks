@@ -65,21 +65,21 @@ class Write extends Component {
     let item;
     // console.log(this.state.booklist);
     if(this.state.booklist==='undefined'||this.state.booklist.length===0){
-      item=<div className="nav-booklist">
+      item=<div>
         <h4>作品集: ></h4>
 
       </div>
     }else{
-      item= <div className="nav-booklist">
+      item= <div>
         <h4>作品集</h4>
         <BookList data={this.state.booklist}/>
       </div>
     }
 
     return (
-        <div>
+        <div className="wrap_write">
           {item}
-          <div className="newbook">
+          <div>
             开始一本新书:
             <br/>
             <Form.Label>书名：</Form.Label>
@@ -89,7 +89,7 @@ class Write extends Component {
                           name="bookname"/>
             <Form.Label>书本介绍：</Form.Label>
             <br/>
-            <textarea className="textarea"
+            <textarea className="Textarea"
                       onChange={this.handleChange}
                       value={this.state.description}
                       name="bookname"

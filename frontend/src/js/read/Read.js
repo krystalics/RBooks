@@ -48,7 +48,6 @@ class Read extends Component {
     // }
   }
 
-
   render() {
 
     return (
@@ -56,7 +55,9 @@ class Read extends Component {
 
           <ReadSideBar id={this.state.bookid} author={this.state.author}/>
           <DirectoryList directory={this.state.directory}
-                         param={this.props.match.params.data}/>
+                         param={this.props.match.params.data}
+                         bookid={this.state.bookid}
+                         author={this.state.author}/>
           <div>
           </div>
           <div id="article">
