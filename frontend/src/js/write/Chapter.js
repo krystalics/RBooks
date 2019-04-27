@@ -42,7 +42,7 @@ class Chapter extends Component {
       if(this.state.oldName===this.state.chaptername)
         window.history.back(0);
       else {
-        window.history.back(-2);
+        window.history.back(-2); //更新名字了之后，之前的页面路径发送变化，获取不到后台数据，所以往回退两个页面
       }
     })
     .catch(err => {

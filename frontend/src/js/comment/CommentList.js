@@ -28,7 +28,7 @@ class CommentList extends Component {
 
       datas.push(temp);
     }
-
+    datas=datas.reverse(); //最新增加的评论显示在上层，所以需要 reverse
     return datas;
   }
 
