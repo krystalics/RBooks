@@ -20,6 +20,14 @@
 
 **0.4版本**：修复上一版本的各种bug并将外观渲染完毕 , 用的react-bootstrap **2019.4.1~2019.4.4**
 
+之后增加各种细节，功能完善。
+
+**1.0版本正式发布**：目前存在的bug：1，更新章节之后评论消失。 2.增加评论之后，时间显示有问题，刷新之后就可以正常显示。 3.删除章节之后，目录不能更新，需要手动刷新  4.更新设置的时候，数据库会发生主键冲突 
+
+
+
+
+
 **2019.3.19** [后端开发文档](https://github.com/krystalics/RBooks/blob/master/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.markdown) [前端开发文档](https://github.com/krystalics/RBooks/blob/master/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.markdown)
 
 ------

@@ -7,7 +7,7 @@ class Message extends Component {
   render() {
 
     return (
-        <div className="comment-margin">
+        <div>
           迄今为止发过的评论:
           <CommentListInMessage />
         </div>
