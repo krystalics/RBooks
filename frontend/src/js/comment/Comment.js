@@ -6,6 +6,7 @@ import Time from "../Time";
 import hljs from "highlight.js";
 import marked from 'marked';
 import axios from 'axios'
+import {NavLink} from "react-router-dom";
 
 class Comment extends Component {
 
@@ -17,8 +18,13 @@ class Comment extends Component {
 
   handleDelete(){
     const {data} = this.props;
-    alert(data.commentid);
-    axios.post()
+    let comment={
+      commentid:data.commentid,
+      commentuser:data.commentuser,
+      content:data.content
+    };
+
+    this.props.onDelete(comment);
   }
 
   componentWillMount() {
@@ -40,6 +46,10 @@ class Comment extends Component {
   render() {
     const {data} = this.props; //获取评论数据
     let datetime = data.commentid.datetime;  //在用户评论后更新评论列表时
+    let item=undefined;  //删除评论的原则是  自己发出的评论才能够由自己删除
+    if (data.commentuser === localStorage.getItem("name")) {
+      item = <Button variant="outline-danger" style={{marginLeft:"10%"}} onClick={this.handleDelete}>删除</Button>
+    }
 
     return (
         <ListGroupItem action variant="light">
@@ -47,7 +57,7 @@ class Comment extends Component {
           <div className="comment-margin">
             <span className="comment-user">{data.commentuser}</span>{' '}:
             <span className="title-date"><Time data={datetime}/></span>
-            <Button variant="outline-danger" style={{marginLeft:"10%"}} onClick={this.handleDelete}>删除</Button>
+            {item}
           </div>
           <p
               id="content"
@@ -55,8 +65,6 @@ class Comment extends Component {
               dangerouslySetInnerHTML={{
                 __html: data.content ? marked(data.content) : null,
               }}/>
-
-
 
         </ListGroupItem>
     );

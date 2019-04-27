@@ -73,11 +73,27 @@ class CommentApp extends Component {
     })
   }
 
+  handleDeleteComment(comment){
+
+    let index=this.state.comments.indexOf(comment);
+    this.state.comments.splice(index,1); //删除该下标的一个元素
+    this.setState({
+      comments: this.state.comments
+    });
+
+    axios.post("http://localhost:8080/read/deletecomment",comment.commentid)
+    .then(res=>{
+
+    }).catch(err=>{
+      alert(err);
+    })
+  }
+
   render() {
     return (
         <div className="wrapper">
           <CommentInput onSubmit={this.handleSubmitComment.bind(this)}/>
-          <CommentList data={this.state.comments}/>
+          <CommentList onDelete={this.handleDeleteComment.bind(this)} data={this.state.comments}/>
         </div>
     )
   }

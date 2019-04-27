@@ -37,7 +37,7 @@ class CommentList extends Component {
     return (
         <ListGroup>
         {this.data().map((item, idx) => {
-          return <Comment key={idx} data={item}/>
+          return <Comment key={idx} data={item} onDelete={this.props.onDelete}/>
         })}
         </ListGroup>
     );
