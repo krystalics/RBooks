@@ -18,6 +18,7 @@ public class InformationDaoImpl implements InformationDao {
 
   @Override
   public void updateInformation(Information information) {
+
     informationRepository.save(information);
   }
 

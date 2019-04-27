@@ -21,12 +21,9 @@ class Read extends Component {
     }
   }
 
-  componentWillMount() {
-
-  }
 
   componentDidMount() { //获得数据
-    // console.log(this.state.bookid); 有数据
+
     axios.get(
         'http://localhost:8080/read/getdirectory?bookid=' + this.state.bookid)
     .then(res => {
@@ -37,15 +34,6 @@ class Read extends Component {
       // this.setState({directory: "加载错误"})
     });
 
-    //   axios.all([this.getBook(), this.getComments()]).then(
-    //       axios.spread((res1, res2) => {
-    //         // alert(JSON.stringify(res2.data)); 评论正常获取
-    //         this.setState({data: res1.data, commentsdata: res2.data});
-    //         this.getData(); //保证是在获取之后渲染
-    //       })).catch((res1, res2) => {
-    //     this.setState({data: "加载错误", comments: "加载错误"})
-    //   });
-    // }
   }
 
   render() {

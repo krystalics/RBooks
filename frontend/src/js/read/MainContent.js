@@ -20,6 +20,7 @@ class MainContent extends Component {
     // console.log(chapterid)
     this.state = {
       data: '',
+      author:'',
       bookid: '',
       chaptername: '',
       commentuser: '',
@@ -158,7 +159,7 @@ class MainContent extends Component {
           </div>
 
           <div className="comment">
-            <CommentApp chapterid={chapterid}/>
+            <CommentApp author={JSON.parse(this.props.match.params.param).author} chapterid={chapterid}/>
           </div>
 
         <hr/>

@@ -21,6 +21,10 @@ public interface ReadService {
 
   Chapter getChapter(ChapterId chapterId);
 
+  void deleteChapter(ChapterId chapterId);
+
+  void deleteBook(int bookid);
+
   void addComment(Comment comment);
 
   void addFollowAuthor(FollowauthorId id);

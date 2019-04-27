@@ -58,6 +58,16 @@ public class ReadServiceImpl implements ReadService {
   }
 
   @Override
+  public void deleteChapter(ChapterId chapterId) {
+    chapterDaoImpl.deleteChapter(chapterId);
+  }
+
+  @Override
+  public void deleteBook(int bookid) {
+    bookDaoImpl.deleteBook(bookid);
+  }
+
+  @Override
   public void addComment(Comment comment) {
     commentDaoImpl.addComment(comment);
 

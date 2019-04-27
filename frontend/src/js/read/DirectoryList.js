@@ -28,7 +28,7 @@ class DirectoryList extends Component {
         pathname: '/writing/chapter',
         state: {data}
       }}>
-        <Button variant="success">增加章节</Button>
+        <Button variant="outline-success">增加章节</Button>
       </NavLink>
     } else {
       item = undefined;

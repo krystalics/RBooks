@@ -97,7 +97,7 @@ class CommentApp extends Component {
     return (
         <div className="wrapper">
           <CommentInput onSubmit={this.handleSubmitComment.bind(this)}/>
-          <CommentList onDelete={this.handleDeleteComment.bind(this)} data={this.state.comments}/>
+          <CommentList onDelete={this.handleDeleteComment.bind(this)} data={this.state.comments} author={this.props.author}/>
         </div>
     )
   }

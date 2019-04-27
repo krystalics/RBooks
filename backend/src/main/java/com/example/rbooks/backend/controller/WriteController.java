@@ -36,7 +36,7 @@ public class WriteController {
   }
 
   @RequestMapping(value = "/deletebook")
-  public String deleteBook(@RequestParam("userid") int bookid) {
+  public String deleteBook(@RequestParam int bookid) {
     writeServiceImpl.deleteBook(bookid); //成功的话返回1,,不过是默认成功的，，
 
     return "删除成功";
@@ -64,12 +64,7 @@ public class WriteController {
     return "保存成功";
   }
 
-  @RequestMapping(value = "/deletechapter", method = RequestMethod.POST, consumes = MediaType.TEXT_PLAIN_VALUE)
-  public String deleteChapter(@RequestBody ChapterId chapterid) {
-    writeServiceImpl.deleteChapter(chapterid); //成功的话返回1,,不过是默认成功的，，
 
-    return "删除成功";
-  }
 
   @RequestMapping(value = "/updatechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String updateChapter(@RequestParam String oldName,@RequestBody Chapter chapter) {

@@ -63,6 +63,26 @@ class Write extends Component {
 
   }
 
+  handleDeleteBook(book){
+    let del=window.confirm("是否删除本书");
+    if(!del){
+      return;
+    }
+
+    console.log(book);
+    let index=this.state.booklist.indexOf(book);
+    this.state.booklist.splice(index-1,1);
+    this.setState({bookList:this.state.booklist});
+
+    axios.get(`http://localhost:8080/write/deletebook?bookid=${book.id}`)
+    .then(res=>{
+
+    }).catch(err=>{
+      alert(err.data);
+    })
+
+  }
+
   render() {
     let item;
     // console.log(this.state.booklist);
@@ -74,7 +94,7 @@ class Write extends Component {
     }else{
       item= <div>
         <h4>作品集</h4>
-        <BookList data={this.state.booklist}/>
+        <BookList onDeleteBook={this.handleDeleteBook.bind(this)} data={this.state.booklist}/>
       </div>
     }
 

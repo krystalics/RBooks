@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import wrapWithAjaxGetData from '../higher/wrapWithAjaxGetData';
-import CommentList from "./CommentList";
+import CommentList from "../comment/CommentList";
 
 class CommentListInMessage extends Component {
 

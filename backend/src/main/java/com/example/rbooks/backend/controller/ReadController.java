@@ -102,6 +102,12 @@ public class ReadController {
     return readServiceImpl.getChapter(chapterId);
   }
 
+  @RequestMapping(value = "/deletechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+  public String deleteChapter(@RequestBody ChapterId chapterId) {
+    readServiceImpl.deleteChapter(chapterId);
+    return "删除成功";
+  }
+
   @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public List<Comment> getComments(@RequestBody ChapterId chapterId) {
 //    List<Comment> comments=readServiceImpl.getComments(chapterId);

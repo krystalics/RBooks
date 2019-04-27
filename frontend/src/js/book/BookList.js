@@ -31,7 +31,7 @@ class BookList extends Component {
     return (
         <ListGroup>
           {this.data().map((item, idx) => {
-            return <BookInfo key={idx} data={item}/>
+            return <BookInfo onDeleteBook={this.props.onDeleteBook} key={idx} data={item}/>
           })}
         </ListGroup>
     );

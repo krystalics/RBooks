@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
+import {ListGroupItem,Button} from "react-bootstrap";
 import '../../css/main.css'
 import Time from "../Time";
 
+
 class BookInfo extends Component {
+
+
+  handleDelete(){
+    // console.log(this.props.data)
+    this.props.onDeleteBook(this.props.data);
+  }
 
   render() {
     let param = {
@@ -16,11 +23,17 @@ class BookInfo extends Component {
     };
     param = JSON.stringify(param);
     let path = `/read/${param}`;  //传参数过去
+
+    let item=undefined;
+    if(typeof (this.props.onDeleteBook) !=="undefined"){
+      item= <Button style={{marginLeft:"20%"}} variant="outline-danger" onClick={this.handleDelete.bind(this)}>删除</Button>
+    }
     return (
         <div className="BookItem">
-          <ListGroupItem variant="light" action>
+          <ListGroupItem variant="light">
             <div className="BookInfo">
               <span>书籍编号：</span>{this.props.data.id}
+              {item}
               <br/>
               <NavLink to={{
                 pathname: `${path}`,

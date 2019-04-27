@@ -5,6 +5,7 @@ import {Button, ListGroupItem} from "react-bootstrap";
 import Time from "../Time";
 import hljs from "highlight.js";
 import marked from 'marked';
+import {NavLink} from "react-router-dom";
 
 class Comment extends Component {
 
@@ -48,6 +49,14 @@ class Comment extends Component {
     if (data.commentuser === localStorage.getItem("name")) {
       item = <Button variant="outline-danger" style={{marginLeft:"10%"}} onClick={this.handleDelete}>删除</Button>
     }
+    let param = {
+      author: this.props.author,
+      bookid: data.commentid.bookid,
+    };
+    console.log(param);
+
+    param = JSON.stringify(param);
+    let path = `/read/${param}/content/${data.commentid.chaptername}`;
 
     return (
         <ListGroupItem action variant="light">
@@ -57,12 +66,15 @@ class Comment extends Component {
             <span className="title-date"><Time data={datetime}/></span>
             {item}
           </div>
-          <p
+          <NavLink to={{
+            pathname:`${path}`,
+          }}><p
               id="content"
               className="article-detail"
               dangerouslySetInnerHTML={{
                 __html: data.content ? marked(data.content) : null,
               }}/>
+          </NavLink>
 
         </ListGroupItem>
     );
