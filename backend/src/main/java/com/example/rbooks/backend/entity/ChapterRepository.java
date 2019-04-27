@@ -5,9 +5,12 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ChapterRepository extends CrudRepository<Chapter, Integer> {
 
-   Chapter findByChapterid(ChapterId chapterId);
-   void deleteByChapterid(ChapterId chapterId);
+  Chapter findByChapterid(ChapterId chapterId);
 
-   List<Chapter> findByChapterid_Bookid(int bookid);
+  void deleteByChapterid(ChapterId chapterId);
+
+  List<Chapter> findByChapterid_Bookid(int bookid);
+
+
 
 }

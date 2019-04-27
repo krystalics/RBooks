@@ -16,9 +16,6 @@ class DirectoryList extends Component {
 
   }
 
-  handleDelete() {
-
-  }
 
   render() {
 

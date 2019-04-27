@@ -13,7 +13,8 @@ class Chapter extends Component {
     super(props);
     this.state = {
       content: typeof (this.props.location.state.data.content)==="undefined"?"内容":this.props.location.state.data.content,
-      chaptername: typeof (this.props.location.state.data.chaptername)==="undefined"?"请输入章节名字":this.props.location.state.data.chaptername
+      chaptername: typeof (this.props.location.state.data.chaptername)==="undefined"?"请输入章节名字":this.props.location.state.data.chaptername,
+      oldName: typeof (this.props.location.state.data.chaptername)==="undefined"?"请输入章节名字":this.props.location.state.data.chaptername
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,11 +35,15 @@ class Chapter extends Component {
       datetime: new Date()
     };
 
-    axios.post("http://localhost:8080/write/updatechapter", chapter) //新建的章节也可以是这样
+    axios.post(`http://localhost:8080/write/updatechapter?oldName=${this.state.oldName}`, chapter) //新建的章节也可以是这样
     .then(res => {
       alert(res.data);
       //这里需要重定向到之前的页面
-      window.history.back(0);
+      if(this.state.oldName===this.state.chaptername)
+        window.history.back(0);
+      else {
+        window.history.back(-2);
+      }
     })
     .catch(err => {
       alert(err.data)
