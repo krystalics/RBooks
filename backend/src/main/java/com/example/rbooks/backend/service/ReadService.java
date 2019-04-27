@@ -4,6 +4,7 @@ import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
+import com.example.rbooks.backend.entity.CommentId;
 import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
 import java.util.List;
@@ -15,6 +16,8 @@ public interface ReadService {
   List<Comment> getComments(ChapterId chapterId);
 
   List<Comment> getComments(int bookid);
+
+  void deleteComment(CommentId commentId);
 
   Chapter getChapter(ChapterId chapterId);
 

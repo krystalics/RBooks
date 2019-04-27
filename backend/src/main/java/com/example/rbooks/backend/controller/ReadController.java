@@ -5,6 +5,7 @@ import com.example.rbooks.backend.entity.BookRepository;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
+import com.example.rbooks.backend.entity.CommentId;
 import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.entity.User;
@@ -69,6 +70,11 @@ public class ReadController {
     return "添加成功"; //默认可以添加成功
   }
 
+  @RequestMapping(value = "/deletecomment",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
+  public String deleteComment(@RequestBody CommentId commentId){
+    readServiceImpl.deleteComment(commentId);
+    return "删除成功";
+  }
 //  @RequestMapping(value = "/getcontent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 //  public String content(@RequestBody ChapterId chapterId) { //数据格式 {bookid:1,chaptername:"第一章"}
 //    return readServiceImpl.getContent(chapterId);

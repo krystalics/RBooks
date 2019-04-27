@@ -3,6 +3,7 @@ package com.example.rbooks.backend.daoImpl;
 import com.example.rbooks.backend.dao.CommentDao;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
+import com.example.rbooks.backend.entity.CommentId;
 import com.example.rbooks.backend.entity.CommentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ public class CommentDaoImpl implements CommentDao {
   @Override
   public List<Comment> getCommentsByUserName(String commentuser) {
     return commentRepository.findByCommentuser(commentuser);
+  }
+
+  @Override
+  public void deleteComment(CommentId commentId) {
+    commentRepository.deleteByCommentid(commentId);
   }
 
 

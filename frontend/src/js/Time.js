@@ -7,7 +7,7 @@ class Time extends Component {
     let {data} = this.props; //获取评论数据
     //在用户评论后更新评论列表时
     //用户评论是 时间戳，在这里解析会报错
-    // console.log(datetime);
+    // console.log(data);
     let renderTime = '';
     // console.log(data instanceof Number);
     // console.log(data instanceof String);

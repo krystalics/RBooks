@@ -11,4 +11,5 @@ public interface CommentRepository extends CrudRepository<Comment, Integer> {
 
   List<Comment> findByCommentid_Bookid(int bookid); //当用户评论一多，返回的自然是 List而非一个Comment
 
+  void deleteByCommentid(CommentId commentId);
 }

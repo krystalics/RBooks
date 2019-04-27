@@ -55,7 +55,14 @@ body {
 
 }
 
+.footer{
+  position: absolute;
 
+  margin-top: 4%;
+
+  left: auto;
+  right: auto;
+}
 
 
 

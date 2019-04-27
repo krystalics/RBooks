@@ -1,12 +1,25 @@
 import React, {Component} from 'react';
 import '../../css/comment.css'
 import '../../css/content.css'
-import {ListGroupItem} from "react-bootstrap";
+import {ListGroupItem, Button} from "react-bootstrap";
 import Time from "../Time";
 import hljs from "highlight.js";
 import marked from 'marked';
+import axios from 'axios'
 
 class Comment extends Component {
+
+  constructor(props){
+    super(props);
+
+    this.handleDelete=this.handleDelete.bind(this);
+  }
+
+  handleDelete(){
+    const {data} = this.props;
+    alert(data.commentid);
+    axios.post()
+  }
 
   componentWillMount() {
     marked.setOptions({ //设置markdown相关配置
@@ -24,24 +37,9 @@ class Comment extends Component {
     });
   }
 
-  _getProcessedContent(content) {
-    // return content.replace(/`([\S\s]+?)`/g,`<code></code>`);
-    // 将content 中的`` 替换成 <code></code>
-    // 这样做会有严重的 Xss漏洞， 所以我们必须要手动把这些HTML标签转义，
-    return content
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&$quot;")
-    .replace(/'/g, "&#039;")
-    .replace(/`([\S\s]+?)`/g, `<code></code>`);
-
-  }
-
   render() {
     const {data} = this.props; //获取评论数据
-    let datetime=data.commentid.datetime;  //在用户评论后更新评论列表时
-
+    let datetime = data.commentid.datetime;  //在用户评论后更新评论列表时
 
     return (
         <ListGroupItem action variant="light">
@@ -49,7 +47,7 @@ class Comment extends Component {
           <div className="comment-margin">
             <span className="comment-user">{data.commentuser}</span>{' '}:
             <span className="title-date"><Time data={datetime}/></span>
-
+            <Button variant="outline-danger" style={{marginLeft:"10%"}} onClick={this.handleDelete}>删除</Button>
           </div>
           <p
               id="content"
@@ -57,6 +55,8 @@ class Comment extends Component {
               dangerouslySetInnerHTML={{
                 __html: data.content ? marked(data.content) : null,
               }}/>
+
+
 
         </ListGroupItem>
     );

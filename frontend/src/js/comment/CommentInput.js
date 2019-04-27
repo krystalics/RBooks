@@ -67,7 +67,7 @@ class CommentInput extends Component {
     return (
         <div>
           <InputGroup className="mb-3">
-            <FormControl
+            <FormControl as="textarea"
                 placeholder="评论"
                 aria-label="评论"
                 value={this.state.content}

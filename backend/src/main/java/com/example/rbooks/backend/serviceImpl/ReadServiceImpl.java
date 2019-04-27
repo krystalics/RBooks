@@ -9,6 +9,7 @@ import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.entity.Comment;
+import com.example.rbooks.backend.entity.CommentId;
 import com.example.rbooks.backend.entity.FollowauthorId;
 import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.service.ReadService;
@@ -43,6 +44,11 @@ public class ReadServiceImpl implements ReadService {
   @Override
   public List<Comment> getComments(int bookid) {
     return commentDaoImpl.getCommentsByBookid(bookid);
+  }
+
+  @Override
+  public void deleteComment(CommentId commentId) {
+    commentDaoImpl.deleteComment(commentId);
   }
 
 
