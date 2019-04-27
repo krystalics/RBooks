@@ -27,6 +27,7 @@ class MainContent extends Component {
       datetime: '',
 
     };
+    this.handleDeleteChapter=this.handleDeleteChapter.bind(this);
   }
 
   componentWillMount() {
@@ -92,7 +93,27 @@ class MainContent extends Component {
 
   }
 
+  handleDeleteChapter(){
 
+    let del=window.confirm("是否删除本章节");
+    if(!del){
+      return;
+    }
+
+    let chapterid={
+      bookid: this.state.bookid,
+      chaptername: this.state.chaptername
+    };
+    axios.post("http://localhost:8080/read/deletechapter",chapterid)
+    .then(res=>{
+
+      window.history.back(-1);
+
+      // window.location.reload();
+    }).catch(err=>{
+      alert(err.data);
+    })
+  }
 
   render() {
     let data = {
@@ -103,13 +124,15 @@ class MainContent extends Component {
     let time = this.state.datetime;
     let item = "";
     if (this.state.author === localStorage.getItem("name")) {
-      item =
+      item =<div className="editchapter">
           <NavLink to={{
             pathname: '/writing/chapter',
             state:{data}
           }}>
             <Button variant="outline-success">更新章节</Button>
           </NavLink>
+          <Button variant="outline-danger" onClick={this.handleDeleteChapter}>删除章节</Button>
+      </div>
     }
 
     return (

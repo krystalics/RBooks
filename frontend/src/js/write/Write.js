@@ -52,8 +52,10 @@ class Write extends Component {
     axios.post("http://localhost:8080/write/addbook", book)
     .then(res => {
       if (res.data !== -1) {
-        alert("添加成功")
+        alert("添加成功");
+        window.location.reload();
       }
+
     })
     .catch(err => {
       alert(err.data)

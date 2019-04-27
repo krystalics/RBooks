@@ -24,6 +24,8 @@ class Directory extends Component {
               to={`/read/${info}/content/${chaptername}`}>
             {chaptername}
           </NavLink>
+
+
         </div>
     );
   }

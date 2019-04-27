@@ -85,6 +85,15 @@ p img{
   margin-bottom: 10%;
 }
 
+.editchapter{
+  display: flex;
+  flex-direction: column;
+
+}
+.editchapter Button{
+  margin-top: 5%  ;
+}
+
 /*.Textarea{*/
   /*display: block;*/
   /*padding: 10px;*/

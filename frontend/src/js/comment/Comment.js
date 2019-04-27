@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import '../../css/comment.css'
 import '../../css/content.css'
-import {ListGroupItem, Button} from "react-bootstrap";
+import {Button, ListGroupItem} from "react-bootstrap";
 import Time from "../Time";
 import hljs from "highlight.js";
 import marked from 'marked';
-import axios from 'axios'
-import {NavLink} from "react-router-dom";
 
 class Comment extends Component {
 

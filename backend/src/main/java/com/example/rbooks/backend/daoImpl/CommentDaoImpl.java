@@ -8,6 +8,7 @@ import com.example.rbooks.backend.entity.CommentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class CommentDaoImpl implements CommentDao {
@@ -41,6 +42,7 @@ public class CommentDaoImpl implements CommentDao {
     return commentRepository.findByCommentuser(commentuser);
   }
 
+  @Transactional
   @Override
   public void deleteComment(CommentId commentId) {
     commentRepository.deleteByCommentid(commentId);

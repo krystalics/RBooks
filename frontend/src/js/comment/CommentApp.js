@@ -75,6 +75,10 @@ class CommentApp extends Component {
 
   handleDeleteComment(comment){
 
+    let del=window.confirm("确认删除吗！");
+    if(!del){
+      return;
+    }
     let index=this.state.comments.indexOf(comment);
     this.state.comments.splice(index,1); //删除该下标的一个元素
     this.setState({
