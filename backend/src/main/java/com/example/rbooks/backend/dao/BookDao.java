@@ -19,4 +19,9 @@ public interface BookDao {
   List<Book> getAllBooks(); //获得除了id的其他书本信息，用于展示在页面上
 
   List<Book> getBooksByAuthor(String author); //用于 mypage服务
+
+  List<Book> getHotBooks();
+
+  List<Book> getNewBooks();
+
 }

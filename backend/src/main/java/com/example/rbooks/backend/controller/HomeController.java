@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
+@RequestMapping("/home")
 public class HomeController {
 
   private final HomeService homeServiceImpl;
@@ -19,9 +20,22 @@ public class HomeController {
   }
 
   // 负责加载 主页的信息，注入 HomeService Bean
-  @RequestMapping("/home")
+  @RequestMapping("/getall")
   public List<Book> home() {
     return homeServiceImpl.getBooksInfo();
   }
+
+  @RequestMapping("/gethot")
+  public List<Book> getHot(){
+//    Iterable<Book> books=homeServiceImpl.
+    return homeServiceImpl.getHotBooksInfo();
+  }
+
+  @RequestMapping("/getnew")
+  public List<Book> getNew(){
+//    Iterable<Book> books=homeServiceImpl.
+    return homeServiceImpl.getNewBooksInfo();
+  }
+
 
 }

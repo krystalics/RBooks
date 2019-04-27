@@ -6,6 +6,8 @@ import com.example.rbooks.backend.entity.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,5 +61,33 @@ public class BookDaoImpl implements BookDao {
   @Override
   public List<Book> getBooksByAuthor(String author) {
     return bookRepository.findByAuthor(author);
+  }
+
+  @Override
+  public List<Book> getHotBooks() {
+    return getBooks("love");
+  }
+
+  @Override
+  public List<Book> getNewBooks() {
+    return getBooks("datetime");
+  }
+
+  public List<Book> getBooks(String properties){
+    Sort sort=new Sort(Direction.DESC,properties);
+    Iterable<Book> iterable=bookRepository.findAll(sort);
+    //我们先取前10条
+
+    List<Book> books=new ArrayList<>();
+    int i=0;
+    for(Book book:iterable){
+      if(i<10){
+        books.add(book);
+        i++;
+      }else{
+        break;
+      }
+    }
+    return books;
   }
 }

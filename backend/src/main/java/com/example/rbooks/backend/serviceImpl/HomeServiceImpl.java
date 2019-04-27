@@ -18,4 +18,14 @@ public class HomeServiceImpl implements HomeService {
   public List<Book> getBooksInfo() {
     return bookDaoImpl.getAllBooks();
   } //直接调用
+
+  @Override
+  public List<Book> getHotBooksInfo() {
+    return bookDaoImpl.getHotBooks();
+  }
+
+  @Override
+  public List<Book> getNewBooksInfo() {
+    return bookDaoImpl.getNewBooks();
+  }
 }

@@ -57,10 +57,7 @@ class Navigator extends Component {
 
             {item}
           </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-4"/>
-            <Button variant="outline-light">Search</Button>
-          </Form>
+
         </Navbar.Collapse>
       </Navbar>
     </div>

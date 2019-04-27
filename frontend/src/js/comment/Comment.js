@@ -53,7 +53,7 @@ class Comment extends Component {
       author: this.props.author,
       bookid: data.commentid.bookid,
     };
-    console.log(param);
+    // console.log(param);
 
     param = JSON.stringify(param);
     let path = `/read/${param}/content/${data.commentid.chaptername}`;

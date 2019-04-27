@@ -6,4 +6,8 @@ import java.util.List;
 public interface HomeService {
 
   List<Book> getBooksInfo();
+
+  List<Book> getHotBooksInfo();
+
+  List<Book> getNewBooksInfo();
 }
