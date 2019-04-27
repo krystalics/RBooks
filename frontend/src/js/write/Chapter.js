@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
 import axios from 'axios'
-import {Form} from "react-bootstrap";
+import {Form, InputGroup} from "react-bootstrap";
 
 class Chapter extends Component {
 
@@ -12,9 +12,9 @@ class Chapter extends Component {
 
     super(props);
     this.state = {
-      content: typeof (this.props.location.state.data.content)==="undefined"?"内容":this.props.location.state.data.content,
-      chaptername: typeof (this.props.location.state.data.chaptername)==="undefined"?"请输入章节名字":this.props.location.state.data.chaptername,
-      oldName: typeof (this.props.location.state.data.chaptername)==="undefined"?"请输入章节名字":this.props.location.state.data.chaptername
+      content: typeof (this.props.location.state.data.content)==="undefined"?"":this.props.location.state.data.content,
+      chaptername: typeof (this.props.location.state.data.chaptername)==="undefined"?"":this.props.location.state.data.chaptername,
+      oldName: typeof (this.props.location.state.data.chaptername)==="undefined"?"":this.props.location.state.data.chaptername
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,20 +55,24 @@ class Chapter extends Component {
   }
 
   render() {
-    // console.log(this.props.location.state.data)
-    let save = <Button onClick={this.handleSubmit}
-                       variant="outline-success">保存</Button>;
+
     return (
         <div>
+          <InputGroup>
           <Form.Control type="text"
+                        placeholder="请输入文章标题"
                         onChange={this.handleNameChange}
                         value={this.state.chaptername}
                         name="chaptername"/>
+            <InputGroup.Append>
+              <Button onClick={this.handleSubmit}
+                      variant="success">保存</Button>
+            </InputGroup.Append>
+          </InputGroup>
 
           <textarea className="Textarea" value={this.state.content}
+                    placeholder="writing in ..."
                     onChange={this.handleChange}/>
-
-          {save}
         </div>
     );
   }

@@ -30,7 +30,7 @@ class BookInfo extends Component {
     }
     return (
         <div className="BookItem">
-          <ListGroupItem variant="light">
+          <ListGroupItem variant="none">
             <div className="BookInfo">
               <span>书籍编号：</span>{this.props.data.id}
               {item}

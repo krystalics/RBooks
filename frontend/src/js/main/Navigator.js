@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import '../../App.css'
-import {Button, Form, FormControl, Nav, Navbar,} from 'react-bootstrap';
+import {Nav, Navbar,} from 'react-bootstrap';
 
 // 导航栏由 一个logo 5个按钮和一个搜索框组成，其中点击”我的“按钮 会检测用户是否处于登录状态，如果不是则跳转到登录页面
 // 如果不是 ， 则出现下拉框。。mypage和settings
@@ -41,24 +41,24 @@ class Navigator extends Component {
     let item;
     if (this.checkCookie()) { //有cookie说明登录成功了，显示我的页面
       // item=<NavLink to="/mypage">我的</NavLink>;
-      item = <Nav.Link href="/mypage">{localStorage.getItem("name")}</Nav.Link>;
+      item =
+          <li><Nav.Link href="/mypage">{localStorage.getItem("name")}</Nav.Link>
+          </li>;
     } else {
-      item = <Nav.Link href="/user/login">登录</Nav.Link>;
+      item = <li><Nav.Link href="/user/login">登录</Nav.Link></li>;
     }
 
     return <div className="Navigator">
-      <Navbar bg="dark" variant="dark" sticky="top">
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Navbar.Brand href="/home"> RBooks</Navbar.Brand>
-            <Nav.Link href="/settings">设置</Nav.Link>
-            <Nav.Link href="/message"> 消息</Nav.Link>
-            <Nav.Link href="/write"> 写书</Nav.Link>
-
-            {item}
-          </Nav>
-
-        </Navbar.Collapse>
+      <Navbar bg="none" variant="light" sticky="top">
+        <ul>
+          <li><Nav.Link href="/home"> RBooks</Nav.Link></li>
+          <li><Nav.Link href="/write"> 写书</Nav.Link></li>
+        </ul>
+        <ul>
+          <li><Nav.Link href="/settings">设置</Nav.Link></li>
+          <li><Nav.Link href="/message"> 消息</Nav.Link></li>
+          {item}
+        </ul>
       </Navbar>
     </div>
 

@@ -6,22 +6,6 @@
 
 项目建立时间是2019.2.24 ，当时只是有这个模糊的想法，直到后面才开始陆续启动工作。
 
-先给出项目运行时的一些截图：
-
-<img src="./img/30.png">
-
-<img src="./img/31.png">
-
-<img src="./img/31-2.png">
-
-<img src="./img/32.png">
-
-<img src="./img/34-2.png">
-
-<img src="./img/33.png">
-
-
-
 
 
 **0.1版本**: 完成了前期的设计工作。**2019.3.4~2019.3.14**
@@ -38,7 +22,7 @@
 
 **2019.3.19** [后端开发文档](https://github.com/krystalics/RBooks/blob/master/%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.markdown) [前端开发文档](https://github.com/krystalics/RBooks/blob/master/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.markdown)
 
----
+------
 
 环境配置：Node.js （最好是高版本的,react对这有要求），然后就可以安装npm或者yarn了
 
@@ -56,4 +40,31 @@ IDE：IDEA ，WebStorm
 2. 将项目中的rbooks.sql文件导入你的MySQL数据库(我的数据库版本是5.7+)，如果数据库版本不兼容可以参照我的数据库设计图(在前期分析文档中) 自己创建一个数据库，可能比较麻烦。然后需要在MySQL中创建一个角色`username=user_rbooks  password=123456` ，赋予它关于rbooks数据库的权限。
 3. 用IDEA 打开backend，然后点击运行。中间可能出现各种bug，很可能是Maven版本，或者各个依赖的版不一样。
 4. 然后用WebStorm 打开frontend文件夹，直接在前端项目的根目录`npm start | yarn start`就可以在浏览器的 `http://localhost:3000` 看到运行情况了，如果不出意外的话。
+
+
+
+最后给出项目运行时的一些截图：
+
+<img src="./img/30.png">
+
+<img src="./img/30-1.png">
+
+<img src="./img/30-2.png">
+
+<img src="./img/31.png">
+
+<img src="./img/31-2.png">
+
+<img src="./img/31-3.png">
+
+<img src="./img/31-4.png">
+
+<img src="./img/32.png">
+
+<img src="./img/34-2.png">
+
+<img src="./img/33.png">
+
+
+
 

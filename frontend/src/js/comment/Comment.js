@@ -47,7 +47,7 @@ class Comment extends Component {
     let datetime = data.commentid.datetime;  //在用户评论后更新评论列表时
     let item=undefined;  //删除评论的原则是  自己发出的评论才能够由自己删除
     if (data.commentuser === localStorage.getItem("name")) {
-      item = <Button variant="outline-danger" style={{marginLeft:"10%"}} onClick={this.handleDelete}>删除</Button>
+      item = <Button variant="outline-danger"  onClick={this.handleDelete}>删除</Button>
     }
     let param = {
       author: this.props.author,
@@ -62,7 +62,7 @@ class Comment extends Component {
         <ListGroupItem action variant="light">
 
           <div className="comment-margin">
-            <span className="comment-user">{data.commentuser}</span>{' '}:
+            <span className="comment-user">{data.commentuser}{' '}:</span>
             <span className="title-date"><Time data={datetime}/></span>
             {item}
           </div>

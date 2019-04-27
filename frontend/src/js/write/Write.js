@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import HigherLogin from "../higher/HigherLogin";
-import {Form} from "react-bootstrap";
+import {Form, InputGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import '../../css/main.css'
 import axios from 'axios'
@@ -63,21 +63,21 @@ class Write extends Component {
 
   }
 
-  handleDeleteBook(book){
-    let del=window.confirm("是否删除本书");
-    if(!del){
+  handleDeleteBook(book) {
+    let del = window.confirm("是否删除本书");
+    if (!del) {
       return;
     }
 
     console.log(book);
-    let index=this.state.booklist.indexOf(book);
-    this.state.booklist.splice(index-1,1);
-    this.setState({bookList:this.state.booklist});
+    let index = this.state.booklist.indexOf(book);
+    this.state.booklist.splice(index - 1, 1);
+    this.setState({bookList: this.state.booklist});
 
     axios.get(`http://localhost:8080/write/deletebook?bookid=${book.id}`)
-    .then(res=>{
+    .then(res => {
 
-    }).catch(err=>{
+    }).catch(err => {
       alert(err.data);
     })
 
@@ -86,15 +86,17 @@ class Write extends Component {
   render() {
     let item;
     // console.log(this.state.booklist);
-    if(this.state.booklist==='undefined'||this.state.booklist.length===0){
-      item=<div>
+    if (this.state.booklist === 'undefined' || this.state.booklist.length
+        === 0) {
+      item = <div>
         <h4>作品集: ></h4>
 
       </div>
-    }else{
-      item= <div>
-        <h4>作品集</h4>
-        <BookList onDeleteBook={this.handleDeleteBook.bind(this)} data={this.state.booklist}/>
+    } else {
+      item = <div>
+        之前的作品集
+        <BookList onDeleteBook={this.handleDeleteBook.bind(this)}
+                  data={this.state.booklist}/>
       </div>
     }
 
@@ -102,15 +104,20 @@ class Write extends Component {
         <div className="wrap_write">
           {item}
           <div>
-            开始一本新书:
+            开始一本新书
             <br/>
-            <Form.Label>书名：</Form.Label>
-            <Form.Control type="text"
-                          onChange={this.handleNameChange}
-                          value={this.state.bookname}
-                          name="bookname"/>
-            <Form.Label>书本介绍：</Form.Label>
-            <br/>
+            <InputGroup>
+              <Form.Control type="text"
+                            onChange={this.handleNameChange}
+                            placeholder="书名"
+                            value={this.state.bookname}
+                            name="bookname"/>
+              <InputGroup.Append>
+                <Button variant="success"
+                        onClick={this.handleSubmit}>保存</Button>
+              </InputGroup.Append>
+            </InputGroup>
+
             <textarea className="Textarea"
                       onChange={this.handleChange}
                       value={this.state.description}
@@ -118,7 +125,6 @@ class Write extends Component {
                       placeholder="关于本书你想说些啥呢？"
             />
             <br/>
-            <Button variant="success" onClick={this.handleSubmit}>保存</Button>
           </div>
 
         </div>

@@ -1,36 +1,30 @@
 
-/*.Navigator ul {*/
-  /*margin-top: 0.05rem;*/
+.Navigator{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Navigator ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) ;
+}
 
 
-  /*width: 60%;*/
-  /*position: relative;*/
-  /*margin-left: 15%;*/
-  /*margin-right: auto;*/
-  /*height: 100%;*/
-  /*list-style: none;*/
+.Navigator li a {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
 
 
-  /*display: flex;*/
-  /*align-items: center;*/
-  /*justify-content: space-between;*/
-  /*font-family: DialogInput, serif;*/
-
-  /*font-size: 0.3rem;*/
-/*}*/
-
-
-/*.Navigator li img {*/
-  /*width: 0.7rem;*/
-  /*height: 0.7rem;*/
-/*}*/
-
-/*.Navigator ul li input {*/
-
-  /*line-height: 0.5rem;*/
-  /*border-radius:0.2rem;*/
-  /*border: #666666 1px solid;*/
-/*}*/
 
 .BookItem{
   margin-bottom:1%;
@@ -75,9 +69,10 @@
 
 
 .sidebar_left_span{
-  border-bottom: black 1px solid;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) ;
+
   position: absolute;
-  top:-3%;
+  top:-5%;
   left: 5%;
   width:95%;
 }
