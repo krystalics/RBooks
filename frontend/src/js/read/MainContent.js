@@ -6,9 +6,7 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import ReadSideBar from "./Read";
-import {Button, ListGroupItem} from "react-bootstrap";
-import Chapter from "../write/Chapter";
+import {Button} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 
 var chapterid = {};
@@ -28,8 +26,6 @@ class MainContent extends Component {
       datetime: '',
 
     };
-
-    this.handleEdit = this.handleEdit.bind(this);
   }
 
   componentWillMount() {
@@ -93,25 +89,9 @@ class MainContent extends Component {
       datetime: data.datetime
     });
 
-    this.setState({
-      contentItem: <div className="content">
-        <div
-            id="content"
-            className="article-detail"
-            dangerouslySetInnerHTML={{
-              __html: this.state.content ? marked(this.state.content) : null,
-            }}/>
-      </div>
-    });
   }
 
-  handleEdit() {
-    let data = {
-      bookid: JSON.parse(this.props.match.params.param).bookid,
-      chaptername: this.props.match.params.chaptername,
-      content:this.state.content
-    };
-  }
+
 
   render() {
     let data = {
@@ -144,7 +124,14 @@ class MainContent extends Component {
             <hr/>
           </div>
 
-          {this.state.contentItem}
+          <div className="content">
+            <div
+                id="content"
+                className="article-detail"
+                dangerouslySetInnerHTML={{
+                  __html: this.state.content ? marked(this.state.content) : null,
+                }}/>
+          </div>
 
           <div className="comment">
             <CommentApp chapterid={chapterid}/>

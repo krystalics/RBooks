@@ -37,7 +37,7 @@ class Chapter extends Component {
 
     axios.post(`http://localhost:8080/write/updatechapter?oldName=${this.state.oldName}`, chapter) //新建的章节也可以是这样
     .then(res => {
-      alert(res.data);
+
       //这里需要重定向到之前的页面
       if(this.state.oldName===this.state.chaptername)
         window.history.back(0);

@@ -3,8 +3,26 @@ import '../../css/comment.css'
 import '../../css/content.css'
 import {ListGroupItem} from "react-bootstrap";
 import Time from "../Time";
+import hljs from "highlight.js";
+import marked from 'marked';
 
 class Comment extends Component {
+
+  componentWillMount() {
+    marked.setOptions({ //设置markdown相关配置
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: true,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false,
+      highlight: function (code) {
+        return hljs.highlightAuto(code).value;
+      },
+    });
+  }
 
   _getProcessedContent(content) {
     // return content.replace(/`([\S\s]+?)`/g,`<code></code>`);
@@ -19,22 +37,11 @@ class Comment extends Component {
     .replace(/`([\S\s]+?)`/g, `<code></code>`);
 
   }
-  //
-  // getDate(){
-  //   const {data} = this.props;
-  //   let date={
-  //     year:data.datetime
-  //   };
-  //   return date;
-  // }
+
   render() {
     const {data} = this.props; //获取评论数据
     let datetime=data.commentid.datetime;  //在用户评论后更新评论列表时
-    //用户评论是 时间戳，在这里解析会报错
-    // console.log(datetime);
-    // datetime=JSON.stringify(datetime);
-    // let date=datetime.split("T");
-    // let time=date[1].split(".");
+
 
     return (
         <ListGroupItem action variant="light">
@@ -42,11 +49,14 @@ class Comment extends Component {
           <div className="comment-margin">
             <span className="comment-user">{data.commentuser}</span>{' '}:
             <span className="title-date"><Time data={datetime}/></span>
-            {/*{datetime}*/}
+
           </div>
-          <p dangerouslySetInnerHTML={{
-            __html: this._getProcessedContent(data.content)
-          }}/>
+          <p
+              id="content"
+              className="article-detail"
+              dangerouslySetInnerHTML={{
+                __html: data.content ? marked(data.content) : null,
+              }}/>
 
         </ListGroupItem>
     );
