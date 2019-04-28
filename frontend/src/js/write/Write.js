@@ -3,10 +3,9 @@ import HigherLogin from "../higher/HigherLogin";
 import {Form, InputGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import '../../css/main.css'
-import axios from 'axios'
 import BookList from "../book/BookList";
+import {_addBook, _deleteBook, _getWrite} from '../api'
 
-// 最终由 Navigator Content Footer 三个组件构成
 class Write extends Component {
   constructor(props) {
     super(props);
@@ -21,14 +20,16 @@ class Write extends Component {
   }
 
   componentWillMount() {
-    axios.get(
-        `http://localhost:8080/write/getwrite?author=${localStorage.getItem(
-            'name')}`)
-    .then(res => {
+    this.getData();
+  }
+
+  async getData(){
+    const res=await _getWrite(localStorage.getItem('name'));
+    if(res.status===200){
       this.setState({booklist: res.data})
-    }).catch(err => {
-      alert(err.data);
-    })
+    }else {
+      alert(res.data);
+    }
   }
 
   handleNameChange(e) {
@@ -40,7 +41,7 @@ class Write extends Component {
 
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     // id photourl love  都不填
     let book = {
       name: this.state.bookname,
@@ -49,43 +50,34 @@ class Write extends Component {
       datetime: new Date()
     };
 
-    axios.post("http://localhost:8080/write/addbook", book)
-    .then(res => {
-      if (res.data !== -1) {
-        alert("添加成功");
-        window.location.reload();
-      }
-
-    })
-    .catch(err => {
-      alert(err.data)
-    })
-
+    const res=await _addBook(book);
+    if (res.data !== -1) {
+      window.location.reload();
+    }else {
+      alert(res.data);
+    }
   }
 
-  handleDeleteBook(book) {
+ async handleDeleteBook(book) {
     let del = window.confirm("是否删除本书");
     if (!del) {
       return;
     }
-
     console.log(book);
     let index = this.state.booklist.indexOf(book);
     this.state.booklist.splice(index - 1, 1);
     this.setState({bookList: this.state.booklist});
 
-    axios.get(`http://localhost:8080/write/deletebook?bookid=${book.id}`)
-    .then(res => {
-
-    }).catch(err => {
-      alert(err.data);
-    })
+    const res=await _deleteBook(book.id);
+    if(res.status!==200){
+      alert(res.data);
+    }
 
   }
 
   render() {
     let item;
-    // console.log(this.state.booklist);
+
     if (this.state.booklist === 'undefined' || this.state.booklist.length
         === 0) {
       item = <div>

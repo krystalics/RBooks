@@ -17,4 +17,9 @@ public class SettingsServiceImpl implements SettingsService {
     informationDaoImpl.updateInformation(information);
     return 1; //默认可以更新陈宫
   }
+
+  @Override
+  public Information getInformation(int userid) {
+    return informationDaoImpl.getInformation(userid);
+  }
 }

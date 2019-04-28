@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import CommentInput from './CommentInput'
 import CommentList from './CommentList'
 import '../../css/comment.css'
-import axios from "axios";
+import {_addComment, _deleteComment, _getComments} from '../api';
 
 class CommentApp extends Component {
 
@@ -26,18 +26,14 @@ class CommentApp extends Component {
     if(chapter.chapterid.chaptername!==newChapter.chapterid.chaptername) this.getComments();
   }
 
-  getComments() {
-    // console.log(this.props)
-   axios.post('http://localhost:8080/read/getcomments', this.props.chapterid)
-    .then(res => {
-          // console.log(res.data);
-          this.setState({comments: res.data})
-        }).catch(res => {
-      this.setState({comments: res.data});
-    });
+  async getComments() {
+
+    const res=await _getComments(this.props.chapterid);
+    this.setState({comments:res.data});
+
   }
 
-  handleSubmitComment(comment) {
+  async handleSubmitComment(comment) {
     // console.log(comment);  // 一开始证明数据已经到了 CommentApp
 
     if (!comment) {
@@ -65,15 +61,12 @@ class CommentApp extends Component {
       comments: this.state.comments
     });
 
-    axios.post('http://localhost:8080/read/addcomment',newComment)
-    .then(res=>{
-      // alert(res.data);
-    }).catch(err=>{
-      alert(err.data)
-    })
+
+    await _addComment(newComment);
+
   }
 
-  handleDeleteComment(comment){
+  async handleDeleteComment(comment){
 
     let del=window.confirm("确认删除吗！");
     if(!del){
@@ -85,12 +78,8 @@ class CommentApp extends Component {
       comments: this.state.comments
     });
 
-    axios.post("http://localhost:8080/read/deletecomment",comment.commentid)
-    .then(res=>{
 
-    }).catch(err=>{
-      alert(err);
-    })
+    await _deleteComment(comment.commentid);
   }
 
   render() {

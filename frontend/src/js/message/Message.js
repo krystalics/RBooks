@@ -1,15 +1,32 @@
 import React, {Component} from 'react';
 import HigherLogin from '../higher/HigherLogin';
-import CommentListInMessage from "./CommentListInMessage";
-import '../../css/comment.css'
+import {_getCommentsByUserName} from '../api'
+import CommentList from "../comment/CommentList";
+
 class Message extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state={
+      data:''
+    }
+  }
+
+  componentWillMount() {
+    this.getData();
+  }
+
+  async getData(){
+    const res= await _getCommentsByUserName();
+    this.setState({data:res.data})
+  }
 
   render() {
 
     return (
         <div>
           迄今为止发过的评论:
-          <CommentListInMessage />
+          <CommentList data={this.state.data}/>
         </div>
         )
   }

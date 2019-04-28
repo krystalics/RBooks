@@ -6,4 +6,6 @@ public interface SettingsService {
   // 只提供 更新接口
   int update(Information information);
 
+  Information getInformation(int userid);
+
 }

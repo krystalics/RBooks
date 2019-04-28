@@ -7,7 +7,7 @@ class UserList extends Component {
 
   analyseData(){
     const data=this.props.data;
-    // console.log(this.props);
+
     if(typeof(data)=== "undefined"){
       return [];
     }
@@ -24,15 +24,10 @@ class UserList extends Component {
   }
 
   render() {
-    // const data={...this.props.state};
-    // console.log(data);
-    // const data={...this.props.location.state};
-    // console.log(data);
 
     return (
         <ListGroup>
           {this.analyseData().map((item,idx)=>{
-            // console.log(item);
             return <User data={item} key={idx}/>
           })}
 

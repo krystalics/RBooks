@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import CommentApp from "../comment/CommentApp";
 import '../../css/content.css'
-import axios from "axios";
 import Time from "../Time";
 
 import marked from 'marked';
@@ -9,6 +8,7 @@ import hljs from 'highlight.js';
 import {Button} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import Footer from "../main/Footer";
+import {_deleteChapter, _getChapter} from "../api"
 
 var chapterid = {};
 
@@ -60,7 +60,7 @@ class MainContent extends Component {
     }
   }
 
-  getData() {
+  async getData() {
     // console.log(this.props)
     if (typeof (this.props.match) === "undefined") {
       return;
@@ -69,16 +69,10 @@ class MainContent extends Component {
       bookid: JSON.parse(this.props.match.params.param).bookid,
       chaptername: this.props.match.params.chaptername
     };
-    // console.log(chapterid);
-    axios.post('http://localhost:8080/read/getchapter', chapterid)
-    .then(res => {
-      this.setState({data: res.data});
-      this.analyse();
-    }).catch(res => {
-      this.setState({data: "加载错误"});
-    });
-    // console.log(this.props);
 
+    const res=await _getChapter(chapterid);
+    this.setState({data:res.data});
+    this.analyse();
   }
 
   analyse() {
@@ -94,7 +88,7 @@ class MainContent extends Component {
 
   }
 
-  handleDeleteChapter(){
+  async handleDeleteChapter(){
 
     let del=window.confirm("是否删除本章节");
     if(!del){
@@ -105,15 +99,14 @@ class MainContent extends Component {
       bookid: this.state.bookid,
       chaptername: this.state.chaptername
     };
-    axios.post("http://localhost:8080/read/deletechapter",chapterid)
-    .then(res=>{
 
-      window.history.back(-1);
+    const res=await _deleteChapter(chapterid);
+    if(res.status===404){
+      alert(res.data);
+    }
+    window.history.back(-1);
 
-      // window.location.reload();
-    }).catch(err=>{
-      alert(err.data);
-    })
+
   }
 
   render() {

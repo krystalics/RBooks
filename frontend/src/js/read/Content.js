@@ -7,8 +7,7 @@ import {Route} from "react-router-dom";
 class Content extends Component {
 
   render() {
-    // console.log("Directory" + this.props.param);
-    // console.log(this.props.data);
+
     let item = '';
     if (typeof (this.props.data)=== 'undefined') {
       item = <Route path="/read/:param/content/:chaptername"

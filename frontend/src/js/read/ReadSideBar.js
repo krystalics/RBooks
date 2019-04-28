@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 
 import '../../css/main.css'
 import {ListGroup} from "react-bootstrap";
-import axios from 'axios'
+
+import {
+  _addFollowAuthor,
+  _addFollowBook,
+  _deleteFollowAuthor,
+  _deleteFollowBook,
+  _isFollowAuthor,
+  _isFollowBook
+} from '../api'
 
 // 这个组件渲染  关注，收藏 到顶端，
 class ReadSideBar extends Component {
@@ -18,44 +26,45 @@ class ReadSideBar extends Component {
     this.handleTop = this.handleTop.bind(this);
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     //需要先获得是否有关注或者收藏
+
+    this.isFollowBook();
+    this.isFollowAuthor();
+  }
+
+  async isFollowBook(){
     let followbookid = {
       bookid: this.props.id,
       userid: localStorage.getItem('userid')
     };
 
-    axios.post("http://localhost:8080/read/isfollowbook", followbookid)
-    .then(res => {
-      if (res.data) { //如果已经点赞过了
-        // alert(res.data);
-        this.setState({followbook: "取消点赞"});
-      } else {
-        this.setState({followbook: "点赞收藏"});
-      }
-    }).catch(err => {
-      alert(err.data);
-    });
+    const res1=await _isFollowBook(followbookid);
+    if (res1.data) { //如果已经点赞过了
+      this.setState({followbook: "取消点赞"});
+    } else {
+      this.setState({followbook: "点赞收藏"});
+    }
 
+  }
+
+  async isFollowAuthor(){
     let param = {
       userid: localStorage.getItem('userid'),
       authorname: this.props.author
     };
-    axios.get(
-        `http://localhost:8080/read/isfollowauthor?userid=${param.userid}&authorname=${param.authorname}`)
-    .then(res => {
-      if (res.data) {
-        this.setState({followauthor: "取消关注"});
-      } else {
-        this.setState({followauthor: "关注作者"});
-      }
-    }).catch(err => {
-      alert(err.data);
-    })
+
+
+    const res2=await _isFollowAuthor(param);
+    if (res2.data) {
+      this.setState({followauthor: "取消关注"});
+    } else {
+      this.setState({followauthor: "关注作者"});
+    }
   }
 
-  handleFollowBook() { //需要bookid 和 userid
-    // axios.post();
+  async handleFollowBook() { //需要bookid 和 userid
+
     if (typeof (this.props.id) === "undefined" || localStorage.getItem(
         'userid')
         === "undefined") {
@@ -65,28 +74,26 @@ class ReadSideBar extends Component {
       bookid: this.props.id,
       userid: localStorage.getItem('userid')
     };
+
     if (this.state.followbook === "点赞收藏") {
-      axios.post("http://localhost:8080/read/addfollowbook", followbookid)
-      .then(res => {
-        //点赞之后变更显示
+      const res1=await _addFollowBook(followbookid);
+      if(res1.status===200)
         this.setState({followbook: "取消点赞"});
-        // alert("收藏成功")
-      }).catch(err => {
-        alert("收藏失败" + err.data);
-      })
+      else
+        alert("收藏失败" + res1.data);
+
     } else {
-      axios.post("http://localhost:8080/read/deletefollowbook", followbookid)
-      .then(res => {
+      const res2=await _deleteFollowBook(followbookid);
+      if(res2.status===200)
         this.setState({followbook: "点赞收藏"});
-        // alert("取消成功")
-      }).catch(err => {
-        alert("取消失败" + err.data);
-      })
+
+      else
+        alert("取消失败" + res2.data);
     }
 
   }
 
-  handleFollowAuthor() { //需要authorid 和 userid
+  async handleFollowAuthor() { //需要authorid 和 userid
     if (typeof (this.props.author) === "undefined" || localStorage.getItem(
         'userid') === "undefined") {
       return;
@@ -95,26 +102,22 @@ class ReadSideBar extends Component {
       userid: localStorage.getItem('userid'),
       authorname: this.props.author
     };
-    if (this.state.followauthor === "关注作者") {
-      axios.get(
-          `http://localhost:8080/read/addfollowauthor?userid=${param.userid}&authorname=${param.authorname}`)
-      .then(res => {
-        //点赞之后变更显示
-        this.setState({followauthor: "取消关注"});
-        // alert("关注成功")
-      }).catch(err => {
-        alert("关注失败" + err.data);
-      })
-    } else {
-      axios.get(
-          `http://localhost:8080/read/deletefollowauthor?userid=${param.userid}&authorname=${param.authorname}`)
-      .then(res => {
-        //点赞之后变更显示
+    if (this.state.followauthor === "关注作者") { //当点击时，显示的是关注作者，说明之前没有关注过
+      const res=await _addFollowAuthor(param);
+      if (res.status===200) {
+        this.setState({followauthor: "取消关注"}); //关注完之后，变成取消关注
+      } else {
+        alert("关注失败" + res.data);
+      }
+
+    } else if(this.state.followauthor === "取消关注"){
+      const res=await _deleteFollowAuthor(param);
+      if (res.status===200) {
         this.setState({followauthor: "关注作者"});
-        // alert("取消成功")
-      }).catch(err => {
-        alert("取消失败" + err.data);
-      })
+      } else {
+        alert("取消失败" + res.data);
+      }
+
     }
   }
 

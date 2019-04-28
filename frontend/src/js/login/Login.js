@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Form, Button} from 'react-bootstrap'
+import {Button, Form} from 'react-bootstrap'
 import '../../css/main.css'
+import {_login, _register} from '../api'
+
 class Login extends Component {
 
   constructor(props) {
@@ -13,8 +14,8 @@ class Login extends Component {
     };
     this.handleUserInputChange = this.handleUserInputChange.bind(this);
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleRegisterSubmit=this.handleRegisterSubmit.bind(this);
   }
 
   handleUserInputChange(e) {
@@ -41,21 +42,32 @@ class Login extends Component {
     localStorage.setItem('userid', this.state.userid);
   }
 
-  handleSubmit(event) { //成功之后执行这个方法
+  async handleLoginSubmit() { //成功之后执行这个方法
 
-    axios.post("http://localhost:8080/user/" + event.target.value,
-        {name: this.state.name, password: this.state.password})
-    .then(res => {
-
-      if (res.status === 200) {
-        this.setState({userid: res.data}); //将返回的id赋给userid
-        this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
-        this.setLocalStorage(); //把数据顺便缓存到本地
-        this.props.history.push("/home"); //登录成功之后 重定向到 home
-      }
-    });
+    const res = await _login(
+        {name: this.state.name, password: this.state.password});
+    if (res.status === 200) {
+      this.setState({userid: res.data}); //将返回的id赋给userid
+      this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
+      this.setLocalStorage(); //把数据顺便缓存到本地
+      this.props.history.push("/home"); //登录成功之后 重定向到 home
+    }
 
   }
+
+  async handleRegisterSubmit() { //成功之后执行这个方法
+
+    const res = await _register(
+        {name: this.state.name, password: this.state.password});
+    if (res.status === 200) {
+      this.setState({userid: res.data}); //将返回的id赋给userid
+      this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
+      this.setLocalStorage(); //把数据顺便缓存到本地
+      this.props.history.push("/home"); //登录成功之后 重定向到 home
+    }
+
+  }
+
 
   render() {
     return (
@@ -75,11 +87,13 @@ class Login extends Component {
           </div>
           <div className="lg">
             <div className="login">
-              <Button variant="outline-success" onClick={this.handleSubmit} size="lg"
+              <Button variant="outline-success" onClick={this.handleLoginSubmit}
+                      size="lg"
                       value="login">登录</Button>
             </div>
             <div className="register">
-              <Button variant="outline-primary" onClick={this.handleSubmit} size="lg"
+              <Button variant="outline-primary" onClick={this.handleRegisterSubmit}
+                      size="lg"
                       value="register">注册</Button>
             </div>
           </div>

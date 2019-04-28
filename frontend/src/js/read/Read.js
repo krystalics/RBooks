@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import DirectoryList from "./DirectoryList";
 import Content from "./Content";
 import ReadSideBar from "./ReadSideBar";
+import {_getDirectory} from '../api'
 
 import '../../css/main.css'
 // 由三个组件构成，目录 主要内容 评论列表
@@ -24,15 +24,13 @@ class Read extends Component {
 
   componentDidMount() { //获得数据
 
-    axios.get(
-        'http://localhost:8080/read/getdirectory?bookid=' + this.state.bookid)
-    .then(res => {
-      // console.log(res.data); //有数据
-      this.setState({directory: res.data});
-    }).catch(res => {
-      // alert(res.data);
-      // this.setState({directory: "加载错误"})
-    });
+    this.getData();
+
+  }
+
+  async getData(){
+    const res=await _getDirectory(this.state.bookid);
+    this.setState({directory: res.data});
 
   }
 

@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
-import axios from 'axios'
 import {Form, InputGroup} from "react-bootstrap";
+import {_updateChapter} from '../api'
 
 class Chapter extends Component {
 
   constructor(props) {
-    // console.log(props);
 
     super(props);
     this.state = {
@@ -25,7 +24,7 @@ class Chapter extends Component {
     this.setState({content: event.target.value})
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     let chapter = {
       chapterid: {
         bookid: this.props.location.state.data.bookid,
@@ -35,19 +34,18 @@ class Chapter extends Component {
       datetime: new Date()
     };
 
-    axios.post(`http://localhost:8080/write/updatechapter?oldName=${this.state.oldName}`, chapter) //新建的章节也可以是这样
-    .then(res => {
 
-      //这里需要重定向到之前的页面
+    const res=await _updateChapter(this.state.oldName,chapter);
+    if(res.status===200){
       if(this.state.oldName===this.state.chaptername)
         window.history.back(0);
       else {
         window.history.back(-2); //更新名字了之后，之前的页面路径发送变化，获取不到后台数据，所以往回退两个页面
       }
-    })
-    .catch(err => {
-      alert(err.data)
-    });
+    }else{
+      alert(res.data);
+    }
+
   }
 
   handleNameChange(e) {

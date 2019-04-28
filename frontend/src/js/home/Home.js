@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import axios from 'axios'
 import BookList from "../book/BookList";
+import {_getHot, _getNew} from '../api'
 
 class Home extends Component {
 
@@ -12,8 +12,8 @@ class Home extends Component {
       search: '',
       color1: 'link',
       color2: 'none',
-      data:'暂无数据',
-      oldData:'暂无数据'
+      data: '暂无数据',
+      oldData: '暂无数据'
     };
   }
 
@@ -24,51 +24,46 @@ class Home extends Component {
 
   handleSearchChange(e) {
     this.setState({search: e.target.value});
-    if(e.target.value===""){ //当输入框中为空时，恢复原先的数据
-      this.setState({data:this.state.oldData});
+    if (e.target.value === "") { //当输入框中为空时，恢复原先的数据
+      this.setState({data: this.state.oldData});
     }
   }
 
   handleSearch() {
-    let {data}=this.state;
-    data=data.filter(item=>{
-      return item.name.indexOf(this.state.search)!==-1||item.id===parseInt(this.state.search); //如果等于-1说明不在里面
+    let {data} = this.state;
+    data = data.filter(item => {
+      return item.name.indexOf(this.state.search) !== -1 || item.id
+          === parseInt(this.state.search); //如果等于-1说明不在里面
     });
 
-    this.setState({data:data});
+    this.setState({data: data});
   }
 
-  handleHot() {
+  async handleHot() {
     this.setState({color1: 'link', color2: 'none'});
-    axios.get("http://localhost:8080/home/gethot")
-    .then(res=>{
-      this.setState({data:res.data,oldData:res.data});
-    }).catch(err=>{
-    })
+
+    const res = await _getHot();
+    this.setState({data: res.data, oldData: res.data});
   }
 
-  handleNew() {
+  async handleNew() {
     this.setState({color1: 'none', color2: 'link'});
-    axios.get("http://localhost:8080/home/getnew")
-    .then(res=>{
-      this.setState({data:res.data,oldData:res.data});
 
-    }).catch(err=>{
+    const res = await _getNew();
+    this.setState({data: res.data, oldData: res.data});
 
-    })
   }
 
-  handleKeyUp(e){
-    if(e.keyCode===13){
+  handleKeyUp(e) {
+    if (e.keyCode === 13) {
       this.handleSearch();
     }
   }
 
-
   render() {
-    let item=<h4>找不到数据</h4>;
-    if(this.state.data.length>0){
-      item=<BookList data={this.state.data}/>
+    let item = <h4>找不到数据</h4>;
+    if (this.state.data.length > 0) {
+      item = <BookList data={this.state.data}/>
     }
 
     return (

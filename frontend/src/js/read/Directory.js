@@ -5,19 +5,10 @@ import '../../css/main.css'
 class Directory extends Component {
 
   render() {
-    // console.log("Directory" + this.props.param);
+
     let info=this.props.param; //先取出数据
     const chaptername=this.props.chaptername;
-    // let param={
-    //   chapterid:{
-    //     bookid:JSON.parse(info).bookid,
-    //     chaptername:this.props.chaptername
-    //   },
-    //   author:JSON.parse(info).author
-    // };
 
-    // param=JSON.stringify(param); //要字符串才能传进去
-    // console.log(param);
     return (
         <div className="Directory">
           <NavLink
