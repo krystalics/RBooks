@@ -1,8 +1,8 @@
 .information{
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 2%;
-  padding-left:5%;
 
+  padding-left:5%;
+  border-left: 1px solid rgba(9, 24, 203, 0.12);
+  border-bottom:  1px solid rgba(203, 26, 126, 0.16);
   padding-bottom:1%;
   margin-bottom: 5%;
 }

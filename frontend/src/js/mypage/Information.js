@@ -10,7 +10,7 @@ class Information extends Component {
     return (
         <div className="information">
           <span className="information-title"><h1>{data.username}</h1></span>
-          <Container>
+          <Container style={{backgroud:"white"}}>
             <label>邮箱：</label> <span>{data.email}</span><br/>
             <label>自我介绍：</label> <span>{data.selfintroduction}</span><br/>
             <label>github：</label> <span>{data.githubpage}</span><br/>
