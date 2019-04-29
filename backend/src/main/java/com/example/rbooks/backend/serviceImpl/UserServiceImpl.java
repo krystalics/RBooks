@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public int register(String name,String password) {
     User user = userDaoImpl.getUserByName(name); //在表中寻找这个用户名
+
     if (user != null) {//说明用户名已存在
       return -1;
     }

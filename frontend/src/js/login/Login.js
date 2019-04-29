@@ -47,10 +47,16 @@ class Login extends Component {
     const res = await _login(
         {name: this.state.name, password: this.state.password});
     if (res.status === 200) {
-      this.setState({userid: res.data}); //将返回的id赋给userid
-      this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
-      this.setLocalStorage(); //把数据顺便缓存到本地
-      this.props.history.push("/home"); //登录成功之后 重定向到 home
+      if(res.data!==-1){
+        this.setState({userid: res.data}); //将返回的id赋给userid
+        this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
+        this.setLocalStorage(); //把数据顺便缓存到本地
+        this.props.history.push("/home"); //登录成功之后 重定向到 home
+      }else{
+        alert("账号或密码错误");
+      }
+    }else{
+      alert("网络错误");
     }
 
   }
@@ -60,10 +66,16 @@ class Login extends Component {
     const res = await _register(
         {name: this.state.name, password: this.state.password});
     if (res.status === 200) {
-      this.setState({userid: res.data}); //将返回的id赋给userid
-      this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
-      this.setLocalStorage(); //把数据顺便缓存到本地
-      this.props.history.push("/home"); //登录成功之后 重定向到 home
+      if(res.data!==-1){
+        this.setState({userid: res.data}); //将返回的id赋给userid
+        this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
+        this.setLocalStorage(); //把数据顺便缓存到本地
+        this.props.history.push("/settings"); //登录成功之后 重定向到 home
+      }else{
+        alert("账号已存在");
+      }
+    }else{
+      alert("网络错误");
     }
 
   }

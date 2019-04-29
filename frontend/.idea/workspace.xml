@@ -2,29 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="366a2d50-7f77-4ab2-bfde-7b9f7ee5b284" name="Default Changelist" comment="从消息那里可以删除和定位到章节那里，但是有点小bug，就是不能正确显示关注与否。">
-      <change afterPath="$PROJECT_DIR$/src/js/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/rbooks/backend/serviceImpl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/comment/CommentApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/comment/CommentApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/higher/wrapWithAjaxGetData.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/higher/wrapWithAjaxPostData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/home/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/main/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/main/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/message/CommentListInMessage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/message/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mypage/Book.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mypage/MyPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mypage/MyPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mypage/OtherPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mypage/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mypage/UserList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Directory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Directory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/MainContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/ReadSideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/ReadSideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/settings/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/settings/Settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/write/Chapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/write/Chapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/write/Write.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/write/Write.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/mypage/Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mypage/Page.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,17 +35,65 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="121" column="66" selection-start-line="121" selection-start-column="66" selection-end-line="121" selection-end-column="66" />
+            <state relative-caret-position="429">
+              <caret line="49" column="81" lean-forward="true" selection-start-line="49" selection-start-column="81" selection-end-line="49" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/mypage/Page.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/home/Home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/mypage/MyPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/settings/Settings.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-352">
-              <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+              <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -122,7 +153,6 @@
         <option value="$PROJECT_DIR$/src/js/higher/wrapWithAjaxPostData.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/js/mypage/OtherPage.js" />
-        <option value="$PROJECT_DIR$/src/js/mypage/Page.js" />
         <option value="$PROJECT_DIR$/src/js/mypage/User.js" />
         <option value="$PROJECT_DIR$/build/index.html" />
         <option value="$PROJECT_DIR$/src/js/read/Textarea.js" />
@@ -146,8 +176,6 @@
         <option value="$PROJECT_DIR$/src/js/comment/Comment.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/js/comment/CommentApp.js" />
-        <option value="$PROJECT_DIR$/src/js/home/Home.js" />
-        <option value="$PROJECT_DIR$/src/js/login/Login.js" />
         <option value="$PROJECT_DIR$/src/js/main/Footer.js" />
         <option value="$PROJECT_DIR$/src/js/message/CommentListInMessage.js" />
         <option value="$PROJECT_DIR$/src/js/message/Message.js" />
@@ -160,9 +188,12 @@
         <option value="$PROJECT_DIR$/src/js/read/Read.js" />
         <option value="$PROJECT_DIR$/src/js/read/ReadSideBar.js" />
         <option value="$PROJECT_DIR$/src/js/write/Chapter.js" />
-        <option value="$PROJECT_DIR$/src/js/api.js" />
         <option value="$PROJECT_DIR$/src/js/write/Write.js" />
         <option value="$PROJECT_DIR$/src/js/settings/Settings.js" />
+        <option value="$PROJECT_DIR$/src/js/login/Login.js" />
+        <option value="$PROJECT_DIR$/src/js/api.js" />
+        <option value="$PROJECT_DIR$/src/js/mypage/Page.js" />
+        <option value="$PROJECT_DIR$/src/js/home/Home.js" />
       </list>
     </option>
   </component>
@@ -215,6 +246,27 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="higher" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="mypage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
@@ -318,7 +370,7 @@
       <workItem from="1554728073069" duration="92000" />
       <workItem from="1554802709921" duration="4400000" />
       <workItem from="1556202378843" duration="36160000" />
-      <workItem from="1556452595117" duration="8744000" />
+      <workItem from="1556452595117" duration="12687000" />
     </task>
     <task id="LOCAL-00001" summary="先初始化一个react项目">
       <created>1552710723632</created>
@@ -562,7 +614,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="309423000" />
+    <option name="totallyTimeSpent" value="313366000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -658,16 +710,6 @@
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mypage/Page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -856,26 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/home/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/main/Content.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -986,16 +1008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/mypage/MyPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/mypage/Information.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1066,13 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="121" column="66" selection-start-line="121" selection-start-column="66" selection-end-line="121" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/write/Write.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1364">
@@ -1086,7 +1091,54 @@
     <entry file="file://$PROJECT_DIR$/src/js/settings/Settings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-352">
-          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+          <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="67" column="29" lean-forward="true" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="49" column="81" lean-forward="true" selection-start-line="49" selection-start-column="81" selection-end-line="49" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mypage/MyPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/mypage/Page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/home/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

@@ -34,7 +34,7 @@ export function _login(data) {
 }
 
 export function _register(data) {
-  return axios.post(`${baseURL}/user/login`,data);
+  return axios.post(`${baseURL}/user/register`,data);
 }
 
 
