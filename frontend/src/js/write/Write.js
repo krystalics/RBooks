@@ -110,7 +110,7 @@ class Write extends Component {
               </InputGroup.Append>
             </InputGroup>
 
-            <textarea className="Textarea"
+            <textarea className="Textarea_write"
                       onChange={this.handleChange}
                       value={this.state.description}
                       name="bookname"

@@ -143,7 +143,7 @@ class ReadSideBar extends Component {
           </ListGroup>
         </div>
     )
-        ;
+
   }
 }
 

@@ -21,9 +21,9 @@ class CommentApp extends Component {
 
     let chapter={...prevProps};
     let newChapter={...this.props};
-    // console.log(chaptername);
-    // console.log(newChaptername);
-    if(chapter.chapterid.chaptername!==newChapter.chapterid.chaptername) this.getComments();
+
+    if(chapter.chapterid.chaptername!==newChapter.chapterid.chaptername)
+      this.getComments();
   }
 
   async getComments() {
@@ -34,7 +34,6 @@ class CommentApp extends Component {
   }
 
   async handleSubmitComment(comment) {
-    // console.log(comment);  // 一开始证明数据已经到了 CommentApp
 
     if (!comment) {
       return;
@@ -44,8 +43,7 @@ class CommentApp extends Component {
     }
     // 将评论数据压入，，然后重新渲染
 
-    // let datetime=comment.date;
-    // console.log(comment.datetime);
+    // console.log("commentApp " +new Date(comment.datetime)); 时间显示正常
     let newComment={
       commentid:{
         bookid:this.props.chapterid.bookid,
@@ -55,6 +53,7 @@ class CommentApp extends Component {
       commentuser:localStorage.getItem('name'),
       content:comment.content,
     };
+
     this.state.comments.push(newComment); // 这里直接改变了 state，但是具体的原因有兴趣可以看 官方文档
 
     this.setState({

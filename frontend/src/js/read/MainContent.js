@@ -115,7 +115,7 @@ class MainContent extends Component {
       content:this.state.content
     };
     let time = this.state.datetime;
-    let item = "";
+    let item = undefined;
     if (this.state.author === localStorage.getItem("name")) {
       item =<div className="editchapter">
           <NavLink to={{
@@ -125,8 +125,15 @@ class MainContent extends Component {
             <Button variant="outline-success">更新章节</Button>
           </NavLink>
           <Button variant="outline-danger" onClick={this.handleDeleteChapter}>删除章节</Button>
+        <NavLink to={{
+          pathname: '/writing/chapter',
+          state: {data}
+        }}>
+          <Button variant="outline-success">增加章节</Button>
+        </NavLink>
       </div>
     }
+
 
     return (
         <div>
@@ -135,7 +142,7 @@ class MainContent extends Component {
             <span><h3>{this.state.chaptername}</h3></span>
 
             <span className="title-author">{this.state.author}</span>
-            {/*<span className="title-date">{time}</span>*/}
+            {' '}
             <span className="title-date"><Time data={time}/></span>
 
             <hr/>
