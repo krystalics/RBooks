@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
     // 进入这一层的方法，说明表中没有该用户名
     userRepository.save(user); //存进表中之后，id会是表中自增的那个数
     User user1 = userRepository.findByName(user.getName());
+
     return user1.getId();
   }
 

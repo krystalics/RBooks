@@ -24,10 +24,8 @@ class Page extends Component {
               </Tab>
               <Tab eventKey="love" title="书单">
                 <BookList data={this.props.data.bookList_follow}/>
-
               </Tab>
               <Tab eventKey="focus" title="关注" >
-                {console.log(this.props.data)}
                 <UserList data={this.props.data.userList_follow}/>
               </Tab>
               <Tab eventKey="befollowed" title="被关注" >

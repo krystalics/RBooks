@@ -109,10 +109,13 @@ public class MyPageServiceImpl implements MyPageService {
   }
 
   public String myPage(int userid) {
+    System.out.println(userid);
+
     Information information = getInformation(userid);
     if (information == null) {
       return "找不到该用户";
     }
+//    System.out.println(information.getUsername());
 
     List<Book> bookList_write = getBooks_write(information.getUsername()); //获得用户写的书集
     List<Book> bookList_follow = getBooks_follow(userid);

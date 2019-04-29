@@ -25,8 +25,7 @@ public class MyPageController {
 
   @RequestMapping(value = "/mypage")
   public String getInformation(@RequestParam("userid") int userid) {
-//    String s=myPageServiceImpl.myPage(userid);
-//    System.out.println(s);
+
     return myPageServiceImpl.myPage(userid);
   }
 
