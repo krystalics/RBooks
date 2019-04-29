@@ -20,12 +20,12 @@ public class HomeServiceImpl implements HomeService {
   } //直接调用
 
   @Override
-  public List<Book> getHotBooksInfo() {
-    return bookDaoImpl.getHotBooks();
+  public List<Book> getHotBooksInfo(int page) {
+    return bookDaoImpl.getHotBooks(page);
   }
 
   @Override
-  public List<Book> getNewBooksInfo() {
-    return bookDaoImpl.getNewBooks();
+  public List<Book> getNewBooksInfo(int page) {
+    return bookDaoImpl.getNewBooks(page);
   }
 }

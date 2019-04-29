@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import '../../css/main.css'
-import {ListGroup} from "react-bootstrap";
+import {Button, ListGroup} from "react-bootstrap";
 
 import {
   _addFollowAuthor,
@@ -11,6 +11,7 @@ import {
   _isFollowAuthor,
   _isFollowBook
 } from '../api'
+import {NavLink} from "react-router-dom";
 
 // 这个组件渲染  关注，收藏 到顶端，
 class ReadSideBar extends Component {
@@ -126,7 +127,20 @@ class ReadSideBar extends Component {
   }
 
   render() {
-
+    let item = undefined;
+    let data={
+      bookid:this.props.id,
+      content:'',
+      chaptername:""
+    };
+    if (this.props.author === localStorage.getItem("name")) {
+      item = <NavLink to={{
+        pathname: '/writing/chapter',
+        state:{data}
+      }}>
+          <ListGroup.Item variant="outline-success">增加章节</ListGroup.Item>
+        </NavLink>
+    }
     return (
         <div className="sidebar_right">
           <ListGroup>
@@ -139,8 +153,12 @@ class ReadSideBar extends Component {
             <li onClick={this.handleTop}><ListGroup.Item action
                                                          variant="success">到顶部</ListGroup.Item>
             </li>
+            <li>
+              {item}
+            </li>
 
           </ListGroup>
+
         </div>
     )
 

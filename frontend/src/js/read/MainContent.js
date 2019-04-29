@@ -5,7 +5,7 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import {Button} from "react-bootstrap";
+import {Button, ListGroup} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {_deleteChapter, _getChapter} from "../api"
 
@@ -19,7 +19,7 @@ class MainContent extends Component {
     // console.log(chapterid)
     this.state = {
       data: '',
-      author:'',
+      author: '',
       bookid: '',
       chaptername: '',
       commentuser: '',
@@ -27,7 +27,7 @@ class MainContent extends Component {
       datetime: '',
 
     };
-    this.handleDeleteChapter=this.handleDeleteChapter.bind(this);
+    this.handleDeleteChapter = this.handleDeleteChapter.bind(this);
   }
 
   componentWillMount() {
@@ -69,8 +69,8 @@ class MainContent extends Component {
       chaptername: this.props.match.params.chaptername
     };
 
-    const res=await _getChapter(chapterid);
-    this.setState({data:res.data});
+    const res = await _getChapter(chapterid);
+    this.setState({data: res.data});
     this.analyse();
   }
 
@@ -87,24 +87,23 @@ class MainContent extends Component {
 
   }
 
-  async handleDeleteChapter(){
+  async handleDeleteChapter() {
 
-    let del=window.confirm("是否删除本章节");
-    if(!del){
+    let del = window.confirm("是否删除本章节");
+    if (!del) {
       return;
     }
 
-    let chapterid={
+    let chapterid = {
       bookid: this.state.bookid,
       chaptername: this.state.chaptername
     };
 
-    const res=await _deleteChapter(chapterid);
-    if(res.status===404){
+    const res = await _deleteChapter(chapterid);
+    if (res.status === 404) {
       alert(res.data);
     }
     window.history.back(-1);
-
 
   }
 
@@ -112,32 +111,36 @@ class MainContent extends Component {
     let data = {
       bookid: JSON.parse(this.props.match.params.param).bookid,
       chaptername: this.props.match.params.chaptername,
-      content:this.state.content
+      content: this.state.content
     };
     let time = this.state.datetime;
     let item = undefined;
+
+
+
     if (this.state.author === localStorage.getItem("name")) {
-      item =<div className="editchapter">
-          <NavLink to={{
-            pathname: '/writing/chapter',
-            state:{data}
-          }}>
-            <Button variant="outline-success">更新章节</Button>
-          </NavLink>
-          <Button variant="outline-danger" onClick={this.handleDeleteChapter}>删除章节</Button>
-        <NavLink to={{
-          pathname: '/writing/chapter',
-          state: {data}
-        }}>
-          <Button variant="outline-success">增加章节</Button>
-        </NavLink>
+      item = <div className="editchapter">
+        <ListGroup>
+          <li>
+            <ListGroup.Item variant="success" action>
+              <NavLink to={{
+                pathname: '/writing/chapter',
+                state: {data}
+              }} variant="none">更新章节</NavLink>
+            </ListGroup.Item>
+          </li>
+          <li>
+            <ListGroup.Item variant="danger" action
+                            onClick={this.handleDeleteChapter}>删除章节</ListGroup.Item>
+          </li>
+        </ListGroup>
       </div>
     }
 
 
     return (
         <div>
-          <span className="content-edit">{item}</span>
+          {item}
           <div className="title">
             <span><h3>{this.state.chaptername}</h3></span>
 
@@ -153,15 +156,18 @@ class MainContent extends Component {
                 id="content"
                 className="article-detail"
                 dangerouslySetInnerHTML={{
-                  __html: this.state.content ? marked(this.state.content) : null,
+                  __html: this.state.content ? marked(this.state.content)
+                      : null,
                 }}/>
           </div>
 
           <div className="comment">
-            <CommentApp author={JSON.parse(this.props.match.params.param).author} chapterid={chapterid}/>
+            <CommentApp
+                author={JSON.parse(this.props.match.params.param).author}
+                chapterid={chapterid}/>
           </div>
 
-        <hr/>
+          <hr/>
 
 
         </div>

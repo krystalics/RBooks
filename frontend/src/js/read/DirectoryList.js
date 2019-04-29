@@ -31,9 +31,7 @@ class DirectoryList extends Component {
                                 param={this.props.param}/>
             })}
           </Nav>
-
         </div>
-
     );
   }
 }

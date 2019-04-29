@@ -74,7 +74,7 @@ p img{
 .content-edit{
   position: fixed;
   right: 5%;
-  top:40%;
+  top:44%;
 }
 
 .content-edit ul{
@@ -86,11 +86,13 @@ p img{
 }
 
 .editchapter{
+  position: fixed;
+  right:5%;
+  margin-top: 23.7%;
+  list-style-type: none;
   display: flex;
-  flex-direction: column;
-
 }
-.editchapter Button{
-  margin-top: 5%  ;
+.editchapter li{
+  margin-bottom: 10%;
 }
 

@@ -20,8 +20,8 @@ public interface BookDao {
 
   List<Book> getBooksByAuthor(String author); //用于 mypage服务
 
-  List<Book> getHotBooks();
+  List<Book> getHotBooks(int page);
 
-  List<Book> getNewBooks();
+  List<Book> getNewBooks(int page);
 
 }

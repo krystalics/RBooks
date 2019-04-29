@@ -5,6 +5,7 @@ import com.example.rbooks.backend.service.HomeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,15 +27,15 @@ public class HomeController {
   }
 
   @RequestMapping("/gethot")
-  public List<Book> getHot(){
+  public List<Book> getHot(@RequestParam int page){
 //    Iterable<Book> books=homeServiceImpl.
-    return homeServiceImpl.getHotBooksInfo();
+    return homeServiceImpl.getHotBooksInfo(page);
   }
 
   @RequestMapping("/getnew")
-  public List<Book> getNew(){
+  public List<Book> getNew(@RequestParam int page){
 //    Iterable<Book> books=homeServiceImpl.
-    return homeServiceImpl.getNewBooksInfo();
+    return homeServiceImpl.getNewBooksInfo(page);
   }
 
 

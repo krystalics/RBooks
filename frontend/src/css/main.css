@@ -129,11 +129,9 @@
   right:5%;
   margin-top: auto;
   margin-bottom: auto;
-
-}
-.sidebar_right {
   list-style-type: none;
 }
+
 
 .sidebar_right  li{
   margin-bottom: 10%;
@@ -171,4 +169,11 @@
 .pagenation{
   margin: 5% 25% 10%;
 
+}
+
+.nodata{
+  border:1px solid rgba(134, 102, 153, 0.16);
+  text-align: center;
+  height:100px;
+  line-height: 100px;
 }

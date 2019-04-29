@@ -4,6 +4,7 @@ import com.example.rbooks.backend.dao.BookDao;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.BookRepository;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -64,29 +65,39 @@ public class BookDaoImpl implements BookDao {
   }
 
   @Override
-  public List<Book> getHotBooks() {
-    return getBooks("love");
+  public List<Book> getHotBooks(int page) {
+    return getBooks("love",page);
   }
 
   @Override
-  public List<Book> getNewBooks() {
-    return getBooks("datetime");
+  public List<Book> getNewBooks(int page) {
+    return getBooks("datetime",page);
   }
 
-  public List<Book> getBooks(String properties){
+  public List<Book> getBooks(String properties,int page){
     Sort sort=new Sort(Direction.DESC,properties);
     Iterable<Book> iterable=bookRepository.findAll(sort);
-    //我们先取前10条
+    //
 
     List<Book> books=new ArrayList<>();
+
+    // 获得第page页的内容
+
+    int count=0;
     int i=0;
+    int index=page*10;
     for(Book book:iterable){
-      if(i<10){
-        books.add(book);
-        i++;
-      }else{
-        break;
+      if(i<index) i++;
+      else{
+        if(count<=10) {  //从第 page * 10 个记录开始，获取10个记录
+          count++;
+          books.add(book);
+        }
+        else {
+          break;
+        }
       }
+
     }
     return books;
   }

@@ -7,7 +7,7 @@ public interface HomeService {
 
   List<Book> getBooksInfo();
 
-  List<Book> getHotBooksInfo();
+  List<Book> getHotBooksInfo(int page);
 
-  List<Book> getNewBooksInfo();
+  List<Book> getNewBooksInfo(int page);
 }

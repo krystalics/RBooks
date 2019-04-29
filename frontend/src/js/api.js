@@ -19,12 +19,12 @@ export function _deleteComment(data) {
 
 // 接下来两个方法是在 home中的
 
-export function _getHot() {
-  return axios.get(`${baseURL}/home/gethot`);
+export function _getHot(page) {
+  return axios.get(`${baseURL}/home/gethot?page=${page}`);
 }
 
-export function _getNew() {
-  return axios.get(`${baseURL}/home/getnew`);
+export function _getNew(page) {
+  return axios.get(`${baseURL}/home/getnew?page=${page}`);
 }
 
 //接下来2个方法是在 login组件中
