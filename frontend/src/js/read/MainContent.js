@@ -104,7 +104,6 @@ class MainContent extends Component {
       alert(res.data);
     }
     window.history.back(-1);
-
   }
 
   render() {
