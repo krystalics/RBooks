@@ -3,6 +3,7 @@ import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import BookList from "../book/BookList";
 import {_getHot, _getNew} from '../api'
+import Pagenate from "./Pagenate";
 
 class Home extends Component {
 
@@ -36,7 +37,7 @@ class Home extends Component {
     let {oldData} = this.state;
     let data = oldData.filter(item => {
       return item.name.indexOf(this.state.search) !== -1 || item.id
-          === parseInt(this.state.search); //如果等于-1说明不在里面
+          === parseInt(this.state.search)||item.author.indexOf(this.state.search) !== -1; //如果等于-1说明不在里面
     });
 
     this.setState({data: data,count:this.state.count+1});
@@ -74,7 +75,7 @@ class Home extends Component {
         <div>
           <div>
             <InputGroup>
-              <FormControl placeholder="输入书名或者编号"
+              <FormControl placeholder="输入书名|编号|作者"
                            value={this.state.search}
                            onKeyUp={this.handleKeyUp.bind(this)}
                            onChange={this.handleSearchChange.bind(this)}
@@ -96,6 +97,9 @@ class Home extends Component {
           <hr/>
 
           {item}
+
+          <Pagenate/>
+
         </div>
 
     );

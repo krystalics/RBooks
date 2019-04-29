@@ -4,7 +4,6 @@ import {Button, Form} from 'react-bootstrap'
 import '../../css/main.css'
 import {_getSettings, _updateSettings} from '../api'
 import Row from "react-bootstrap/Row";
-import Footer from "../main/Footer";
 import Col from "react-bootstrap/Col";
 
 class Settings extends Component {
@@ -85,57 +84,57 @@ class Settings extends Component {
             <Form.Group as={Row} controlId="file">
               <Form.Label column sm="2">头像</Form.Label>
               <Col sm="10">
-              <Form.Control type="file" accept="image/png, image/jpg"
-                            onChange={this.handleFile}/>
+                <Form.Control type="file" accept="image/png, image/jpg"
+                              onChange={this.handleFile}/>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="username">
               <Form.Label column sm="2">用户名</Form.Label>
               <Col sm="10">
-              <Form.Control plaintext readOnly
-                            defaultValue={this.state.username}/>
+                <Form.Control plaintext readOnly
+                              defaultValue={this.state.username}/>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="email">
               <Form.Label column sm="2">邮箱</Form.Label>
               <Col sm="10">
-              <Form.Control type="email"
-                            name="email"
-                            onChange={this.handleInputChange}
-                            value={this.state.email}
-              />
+                <Form.Control type="email"
+                              name="email"
+                              onChange={this.handleInputChange}
+                              value={this.state.email}
+                />
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="homepage">
               <Form.Label column sm="2">个人主页</Form.Label>
               <Col sm="10">
-              <Form.Control type="text"
-                            onChange={this.handleInputChange}
-                            value={this.state.homepage}
-                            name="homepage"/>
+                <Form.Control type="text"
+                              onChange={this.handleInputChange}
+                              value={this.state.homepage}
+                              name="homepage"/>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="githubpage">
               <Form.Label column sm="2">github</Form.Label>
               <Col sm="10">
-              <Form.Control type="text"
-                            onChange={this.handleInputChange}
-                            value={this.state.githubpage}
-                            name="githubpage"/>
+                <Form.Control type="text"
+                              onChange={this.handleInputChange}
+                              value={this.state.githubpage}
+                              name="githubpage"/>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="self">
               <Form.Label column sm="2">个人介绍</Form.Label>
               <Col sm="10">
-              <Form.Control type="text"
-                            onChange={this.handleInputChange}
-                            value={this.state.selfintroduction}
-                            name="selfintroduction"/>
+                <Form.Control type="text"
+                              onChange={this.handleInputChange}
+                              value={this.state.selfintroduction}
+                              name="selfintroduction"/>
               </Col>
             </Form.Group>
           </Form>
@@ -144,7 +143,7 @@ class Settings extends Component {
             <Button variant="primary" onClick={this.handleClick}
                     size="lg">保存设置</Button>
           </div>
-          <Footer/>
+
         </div>
     );
   }

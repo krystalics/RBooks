@@ -59,7 +59,7 @@ class Comment extends Component {
     let path = `/read/${param}/content/${data.commentid.chaptername}`;
 
     return (
-        <ListGroupItem action variant="light">
+        <ListGroupItem  variant="none">
 
           <div className="comment-margin">
             <span className="comment-user">{data.commentuser}{' '}:</span>

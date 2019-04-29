@@ -52,6 +52,8 @@ class Login extends Component {
         this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
         this.setLocalStorage(); //把数据顺便缓存到本地
         this.props.history.push("/home"); //登录成功之后 重定向到 home
+        window.location.reload();
+
       }else{
         alert("账号或密码错误");
       }
@@ -71,6 +73,7 @@ class Login extends Component {
         this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
         this.setLocalStorage(); //把数据顺便缓存到本地
         this.props.history.push("/settings"); //登录成功之后 重定向到 home
+        window.location.reload();
       }else{
         alert("账号已存在");
       }

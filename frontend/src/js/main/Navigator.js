@@ -49,17 +49,16 @@ class Navigator extends Component {
     }
 
     return <div className="Navigator">
-      <Navbar bg="none" variant="light" sticky="top">
-        <ul>
+
+        <ul className="Navigator_ul_1">
           <li><Nav.Link href="/home"> RBooks</Nav.Link></li>
           <li><Nav.Link href="/write"> 写书</Nav.Link></li>
         </ul>
-        <ul>
+        <ul className="Navigator_ul_2">
           <li><Nav.Link href="/settings">设置</Nav.Link></li>
           <li><Nav.Link href="/message"> 消息</Nav.Link></li>
           {item}
         </ul>
-      </Navbar>
     </div>
 
   }

@@ -1,14 +1,37 @@
 
 .Navigator{
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Navigator ul {
+  position: fixed;
+  width: 100%;
+  top:0;
   display: flex;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  z-index: 10;
+
+}
+
+.Navigator_ul_1 {
+
+  background-color: rgba(216, 216, 216, 0.2);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09) ;
+}
+
+.Navigator_ul_2 {
+
+  background-color: rgba(216, 216, 216, 0.2);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 100%;
 
   margin-left: auto;
@@ -17,6 +40,7 @@
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) ;
 }
+
 
 
 .Navigator li a {
@@ -133,3 +157,7 @@
 
 }
 
+.pagenation{
+  margin: 5% auto 5%;
+  text-align: center;
+}

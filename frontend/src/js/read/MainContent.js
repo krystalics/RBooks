@@ -7,7 +7,6 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import {Button} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import Footer from "../main/Footer";
 import {_deleteChapter, _getChapter} from "../api"
 
 var chapterid = {};
@@ -157,7 +156,7 @@ class MainContent extends Component {
 
         <hr/>
 
-        <Footer/>
+
         </div>
     );
   }
