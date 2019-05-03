@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="366a2d50-7f77-4ab2-bfde-7b9f7ee5b284" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/content.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/content.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/mypage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/mypage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/book/BookInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/book/BookInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/home/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/main/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/main/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/main/Navigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/main/Navigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/message/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/mypage/Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/mypage/Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Directory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Directory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/DirectoryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/DirectoryList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/MainContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/MainContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/Read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/read/ReadSideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/read/ReadSideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/settings/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/settings/Settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/write/Chapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/write/Chapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/write/Write.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/write/Write.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="58" column="7" lean-forward="true" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
+            <state relative-caret-position="275">
+              <caret line="47" column="19" lean-forward="true" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -129,7 +109,6 @@
         <option value="$PROJECT_DIR$/src/js/read/Read.js" />
         <option value="$PROJECT_DIR$/src/css/home.css" />
         <option value="$PROJECT_DIR$/src/js/book/BookInfo.js" />
-        <option value="$PROJECT_DIR$/src/js/login/Login.js" />
         <option value="$PROJECT_DIR$/src/js/read/Directory.js" />
         <option value="$PROJECT_DIR$/src/js/read/MainContent.js" />
         <option value="$PROJECT_DIR$/src/js/read/DirectoryList.js" />
@@ -138,6 +117,7 @@
         <option value="$PROJECT_DIR$/src/js/write/Write.js" />
         <option value="$PROJECT_DIR$/src/css/main.css" />
         <option value="$PROJECT_DIR$/src/js/home/Home.js" />
+        <option value="$PROJECT_DIR$/src/js/login/Login.js" />
       </list>
     </option>
   </component>
@@ -301,7 +281,7 @@
       <workItem from="1554728073069" duration="92000" />
       <workItem from="1554802709921" duration="4400000" />
       <workItem from="1556202378843" duration="36160000" />
-      <workItem from="1556452595117" duration="49102000" />
+      <workItem from="1556452595117" duration="49444000" />
     </task>
     <task id="LOCAL-00001" summary="先初始化一个react项目">
       <created>1552710723632</created>
@@ -576,11 +556,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556547419560</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="完成所有页面重构">
+      <created>1556875714169</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1556875714169</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="349781000" />
+    <option name="totallyTimeSpent" value="350123000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -621,7 +608,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修完评论的bug，更改了comment的主键。遇到了时间显示上的bug" />
     <MESSAGE value="搞定时间显示bug" />
     <MESSAGE value="所有页面外观渲染完毕" />
     <MESSAGE value="修改不登录就能评论的小bug" />
@@ -646,7 +632,8 @@
     <MESSAGE value="修改整体布局排版" />
     <MESSAGE value="修改显示排版，以及时间戳不能正常显示时间的bug，估计是版本改了，getDay==&gt;getDate()" />
     <MESSAGE value="修复改版之后不能增加章节的部分，以及实现首页分页获取数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复改版之后不能增加章节的部分，以及实现首页分页获取数据" />
+    <MESSAGE value="完成所有页面重构" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成所有页面重构" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/js/message/CommentList.js" />
@@ -1094,8 +1081,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="58" column="7" lean-forward="true" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
+        <state relative-caret-position="275">
+          <caret line="47" column="19" lean-forward="true" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

@@ -42,7 +42,15 @@ class Login extends Component {
     localStorage.setItem('userid', this.state.userid);
   }
 
-  async handleLoginSubmit() { //成功之后执行这个方法
+  checkUserAndPass(username,password){
+    if(username.length<6||password.length<6){
+      alert("账号或密码格式不正确");
+      return false;
+    }
+    return true;
+  }
+
+  async handleLoginSubmit() {
 
     const res = await _login(
         {name: this.state.name, password: this.state.password});
@@ -63,8 +71,10 @@ class Login extends Component {
 
   }
 
-  async handleRegisterSubmit() { //成功之后执行这个方法
-
+  async handleRegisterSubmit() {
+    if(!this.checkUserAndPass(this.state.name,this.state.password)){
+      return;
+    }
     const res = await _register(
         {name: this.state.name, password: this.state.password});
     if (res.status === 200) {
@@ -92,12 +102,12 @@ class Login extends Component {
             <div className="mainLogin">
               <Form.Label>账号</Form.Label>
               <Form.Control type="text" value={this.state.name}
-                            placeholder="username"
+                            placeholder="长度至少6位"
                             onChange={this.handleUserInputChange}/>
 
               <Form.Label>密码</Form.Label>
               <Form.Control type="password" value={this.state.password}
-                            placeholder="password"
+                            placeholder="长度至少6位"
                             onChange={this.handlePasswordInputChange}/>
 
               <div className="loginButton">
