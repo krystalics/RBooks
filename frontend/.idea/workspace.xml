@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="366a2d50-7f77-4ab2-bfde-7b9f7ee5b284" name="Default Changelist" comment="">
+    <list default="true" id="366a2d50-7f77-4ab2-bfde-7b9f7ee5b284" name="Default Changelist" comment="对注册进行账号和密码格式限制，页面重新设计">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/home/Home.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,23 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/home/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="200" column="59" lean-forward="true" selection-start-line="200" selection-start-column="59" selection-end-line="200" selection-end-column="59" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="47" column="19" lean-forward="true" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+            <state relative-caret-position="264">
+              <caret line="145" column="38" selection-start-line="145" selection-start-column="38" selection-end-line="145" selection-end-column="38" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -41,10 +31,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/css/main.css">
+        <entry file="file://$PROJECT_DIR$/src/js/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="103" column="15" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
+            <state relative-caret-position="495">
+              <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -94,7 +84,6 @@
         <option value="$PROJECT_DIR$/src/js/comment/CommentApp.js" />
         <option value="$PROJECT_DIR$/src/js/Time.js" />
         <option value="$PROJECT_DIR$/src/js/home/Pagenate.js" />
-        <option value="$PROJECT_DIR$/src/js/api.js" />
         <option value="$PROJECT_DIR$/src/js/home/BookListInHome.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/css/paiban.css" />
@@ -115,9 +104,10 @@
         <option value="$PROJECT_DIR$/src/js/main/Content.js" />
         <option value="$PROJECT_DIR$/src/js/read/ReadSideBar.js" />
         <option value="$PROJECT_DIR$/src/js/write/Write.js" />
-        <option value="$PROJECT_DIR$/src/css/main.css" />
-        <option value="$PROJECT_DIR$/src/js/home/Home.js" />
         <option value="$PROJECT_DIR$/src/js/login/Login.js" />
+        <option value="$PROJECT_DIR$/src/css/main.css" />
+        <option value="$PROJECT_DIR$/src/js/api.js" />
+        <option value="$PROJECT_DIR$/src/js/home/Home.js" />
       </list>
     </option>
   </component>
@@ -163,27 +153,6 @@
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
@@ -281,7 +250,7 @@
       <workItem from="1554728073069" duration="92000" />
       <workItem from="1554802709921" duration="4400000" />
       <workItem from="1556202378843" duration="36160000" />
-      <workItem from="1556452595117" duration="49444000" />
+      <workItem from="1556452595117" duration="51562000" />
     </task>
     <task id="LOCAL-00001" summary="先初始化一个react项目">
       <created>1552710723632</created>
@@ -563,11 +532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556875714169</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="对注册进行账号和密码格式限制，页面重新设计">
+      <created>1556876264048</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1556876264048</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="350123000" />
+    <option name="totallyTimeSpent" value="352241000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -608,7 +584,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="搞定时间显示bug" />
     <MESSAGE value="所有页面外观渲染完毕" />
     <MESSAGE value="修改不登录就能评论的小bug" />
     <MESSAGE value="修复获取评论小bug" />
@@ -633,7 +608,8 @@
     <MESSAGE value="修改显示排版，以及时间戳不能正常显示时间的bug，估计是版本改了，getDay==&gt;getDate()" />
     <MESSAGE value="修复改版之后不能增加章节的部分，以及实现首页分页获取数据" />
     <MESSAGE value="完成所有页面重构" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成所有页面重构" />
+    <MESSAGE value="对注册进行账号和密码格式限制，页面重新设计" />
+    <option name="LAST_COMMIT_MESSAGE" value="对注册进行账号和密码格式限制，页面重新设计" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/js/message/CommentList.js" />
@@ -978,13 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="65" column="66" lean-forward="true" selection-start-line="65" selection-start-column="66" selection-end-line="65" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/content.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1064,25 +1033,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="103" column="15" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
+        <state relative-caret-position="363">
+          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/home/Home.js">
+    <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="200" column="59" lean-forward="true" selection-start-line="200" selection-start-column="59" selection-end-line="200" selection-end-column="59" />
+        <state relative-caret-position="231">
+          <caret line="101" column="34" lean-forward="true" selection-start-line="101" selection-start-column="34" selection-end-line="101" selection-end-column="34" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/login/Login.js">
+    <entry file="file://$PROJECT_DIR$/src/js/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="47" column="19" lean-forward="true" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+        <state relative-caret-position="495">
+          <caret line="31" column="1" lean-forward="true" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/home/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="145" column="38" selection-start-line="145" selection-start-column="38" selection-end-line="145" selection-end-column="38" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

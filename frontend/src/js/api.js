@@ -27,6 +27,10 @@ export function _getNew(page) {
   return axios.get(`${baseURL}/home/getnew?page=${page}`);
 }
 
+export function _getSearch(word) {
+  return axios.get(`${baseURL}/home/getsearch?word=${word}`);
+}
+
 //接下来2个方法是在 login组件中
 
 export function _login(data) {

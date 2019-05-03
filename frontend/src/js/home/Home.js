@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {_getHot, _getNew} from '../api'
+import {_getHot, _getNew, _getSearch} from '../api'
 import BookListInHome from "./BookListInHome";
 import '../../css/home.css'
 import ListGroup from "react-bootstrap/ListGroup";
@@ -27,11 +27,11 @@ class Home extends Component {
 
     this.handleMove = this.handleMove.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleTag = this.handleTag.bind(this);
   }
 
   componentWillMount() {
     this.handleHot();
-
   }
 
   handleSearchChange(e) {
@@ -39,24 +39,31 @@ class Home extends Component {
     this.setState({search: e.target.value});
     if (e.target.value === "") { //当输入框中为空时，恢复原先的数据,搜索次数恢复为0
       this.setState({data: this.state.oldData, count: 0});
-
     }
   }
 
-  handleSearch() {
-    let {oldData} = this.state;
-    let data = oldData.filter(item => {
-      return item.name.indexOf(this.state.search) !== -1 || item.id
-          === parseInt(this.state.search) || item.author.indexOf(
-              this.state.search) !== -1; //如果等于-1说明不在里面
-    });
+  handleSearchButton() {
+    // let {oldData} = this.state;
+    // let data = oldData.filter(item => {
+    //   return item.name.indexOf(this.state.search) !== -1 || item.id
+    //       === parseInt(this.state.search) || item.author.indexOf(
+    //           this.state.search) !== -1; //如果等于-1说明不在里面
+    // });
+    this.searchSubmit(this.state.search);
+  }
 
-    this.setState({data: data, count: this.state.count + 1});
+  handleTag(e) {
+    this.searchSubmit(e.target.value);
+  }
+
+  async searchSubmit(word) {
+    const res = await _getSearch(word);
+    this.setState({data: res.data, count: this.state.count + 1});
   }
 
   handleKeyUp(e) {
     if (e.keyCode === 13) {
-      this.handleSearch();
+      this.handleSearchButton();
     }
   }
 
@@ -136,26 +143,36 @@ class Home extends Component {
 
         <div className="Content">
           <div className="content-left">
-            <ListGroup className="home-tag" variant="none" as="ul">
-              <ListGroup.Item as="li">推荐</ListGroup.Item>
-              <ListGroup.Item as="li" variant="light" action>前端</ListGroup.Item>
-              <ListGroup.Item as="li" variant="light" action>后端</ListGroup.Item>
-              <ListGroup.Item as="li" variant="light" action>云计算</ListGroup.Item>
-              <ListGroup.Item as="li" variant="light" action>数据库</ListGroup.Item>
-              <ListGroup.Item as="li" variant="light" action>Android</ListGroup.Item>
-            </ListGroup>
+            <div className="home-tag">
+              <Button>推荐</Button>
+              <Button variant="light"
+                      onClick={this.handleTag}
+                      value="前端">前端</Button>
+              <Button variant="light"
+                      onClick={this.handleTag}
+                      value="后端">后端</Button>
+              <Button variant="light"
+                      onClick={this.handleTag}
+                      value="云计算">云计算</Button>
+              <Button variant="light"
+                      onClick={this.handleTag}
+                      value="数据库">数据库</Button>
+              <Button variant="light"
+                      onClick={this.handleTag}
+                      value="Android">Android</Button>
+            </div>
           </div>
 
           <div className="content-middle">
             <InputGroup>
-              <FormControl placeholder="输入书名|编号|作者"
+              <FormControl placeholder="输入书名|作者"
                            value={this.state.search}
                            onKeyUp={this.handleKeyUp.bind(this)}
                            onChange={this.handleSearchChange.bind(this)}
               />
               <InputGroup.Append>
                 <Button variant="outline-secondary"
-                        onClick={this.handleSearch.bind(this)}>搜索</Button>
+                        onClick={this.handleSearchButton.bind(this)}>搜索</Button>
               </InputGroup.Append>
             </InputGroup>
             <ButtonGroup>
@@ -170,7 +187,7 @@ class Home extends Component {
 
             <hr style={{
               marginBottom: "1rem",
-              marginTop:"0",
+              marginTop: "0",
             }}/>
 
             {item}
@@ -206,7 +223,8 @@ class Home extends Component {
           <div className="content-right">
             <div className="introduction">
               RBooks 是一个博客站点，喜欢写小说也没关系。这就是一个实验性质的站点，目前还没有正式运营。
-              想知道具体的开发过程吗？欢迎探索：<br/><a href="https://github.com/krystalics/Rbooks">RBooks项目</a>
+              想知道具体的开发过程吗？欢迎探索：<br/><a
+                href="https://github.com/krystalics/Rbooks">RBooks项目</a>
             </div>
           </div>
 

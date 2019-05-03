@@ -78,7 +78,7 @@
 
 
 .pagenation{
-  margin: 5% 20% 10% 20%;
+  margin: 10px auto 60px;
 }
 
 .nodata{
@@ -98,8 +98,9 @@
   right:0;
   width: 100px;
 }
-.home-tag li{
+.home-tag button{
   margin-top: 5px;
+  width:80px;
 }
 
 .introduction{
