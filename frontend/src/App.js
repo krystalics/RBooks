@@ -9,7 +9,7 @@ import Footer from "./js/main/Footer";
 class App extends Component {
   render() {
     return (
-        <div className="App">
+        <div className="app">
           <Navigator/>
           <Content/>
           <Footer/>

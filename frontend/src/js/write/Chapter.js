@@ -11,9 +11,12 @@ class Chapter extends Component {
 
     super(props);
     this.state = {
-      content: typeof (this.props.location.state.data.content)==="undefined"?"":this.props.location.state.data.content,
-      chaptername: typeof (this.props.location.state.data.chaptername)==="undefined"?"":this.props.location.state.data.chaptername,
-      oldName: typeof (this.props.location.state.data.chaptername)==="undefined"?"":this.props.location.state.data.chaptername
+      content: typeof (this.props.location.state.data.content) === "undefined"
+          ? "" : this.props.location.state.data.content,
+      chaptername: typeof (this.props.location.state.data.chaptername)
+      === "undefined" ? "" : this.props.location.state.data.chaptername,
+      oldName: typeof (this.props.location.state.data.chaptername)
+      === "undefined" ? "" : this.props.location.state.data.chaptername
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,15 +37,14 @@ class Chapter extends Component {
       datetime: new Date()
     };
 
-
-    const res=await _updateChapter(this.state.oldName,chapter);
-    if(res.status===200){
-      if(this.state.oldName===this.state.chaptername)
+    const res = await _updateChapter(this.state.oldName, chapter);
+    if (res.status === 200) {
+      if (this.state.oldName === this.state.chaptername) {
         window.history.back(0);
-      else {
+      } else {
         window.history.back(-2); //更新名字了之后，之前的页面路径发送变化，获取不到后台数据，所以往回退两个页面
       }
-    }else{
+    } else {
       alert(res.data);
     }
 
@@ -55,22 +57,28 @@ class Chapter extends Component {
   render() {
 
     return (
-        <div>
-          <InputGroup>
-          <Form.Control type="text"
-                        placeholder="请输入文章标题"
-                        onChange={this.handleNameChange}
-                        value={this.state.chaptername}
-                        name="chaptername"/>
-            <InputGroup.Append>
-              <Button onClick={this.handleSubmit}
-                      variant="success">保存</Button>
-            </InputGroup.Append>
-          </InputGroup>
+        <div className="Content">
+          <div className="content-left">
+          </div>
+          <div className="content-middle">
+            <InputGroup>
+              <Form.Control type="text"
+                            placeholder="请输入文章标题"
+                            onChange={this.handleNameChange}
+                            value={this.state.chaptername}
+                            name="chaptername"/>
+              <InputGroup.Append>
+                <Button onClick={this.handleSubmit}
+                        variant="success">保存</Button>
+              </InputGroup.Append>
+            </InputGroup>
 
-          <textarea className="Textarea" value={this.state.content}
-                    placeholder="writing in ..."
-                    onChange={this.handleChange}/>
+            <textarea className="Textarea" value={this.state.content}
+                      placeholder="writing in ..."
+                      onChange={this.handleChange}/>
+          </div>
+          <div className="content-right">
+          </div>
         </div>
     );
   }

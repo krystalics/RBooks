@@ -18,20 +18,15 @@ class DirectoryList extends Component {
 
   render() {
 
-    let data = {
-      bookid: this.props.bookid
-    };
-
     return (
-        <div className="sidebar_left">
-          <div className="sidebar_left_span">目录</div>
+
           <Nav className="flex-column">
             {this.getNames().map((item, idx) => {
               return <Directory key={idx} chaptername={item}
                                 param={this.props.param}/>
             })}
           </Nav>
-        </div>
+
     );
   }
 }

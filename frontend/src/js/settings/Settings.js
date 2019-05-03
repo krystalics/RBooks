@@ -77,72 +77,78 @@ class Settings extends Component {
 
   render() {
     return (
-        <div>
-          <Form>
-            <Form.Label><h5>账户设置</h5></Form.Label>
+        <div className="Content">
+
+          <div className="content-left"></div>
+          <div className="content-middle">
+            <Form>
+              <Form.Label><h5>账户设置</h5></Form.Label>
+              <hr/>
+              <Form.Group as={Row} controlId="file">
+                <Form.Label column sm="2">头像</Form.Label>
+                <Col sm="10">
+                  <Form.Control type="file" accept="image/png, image/jpg"
+                                onChange={this.handleFile}/>
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} controlId="username">
+                <Form.Label column sm="2">用户名</Form.Label>
+                <Col sm="10">
+                  <Form.Control plaintext readOnly
+                                defaultValue={this.state.username}/>
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} controlId="email">
+                <Form.Label column sm="2">邮箱</Form.Label>
+                <Col sm="10">
+                  <Form.Control type="email"
+                                name="email"
+                                onChange={this.handleInputChange}
+                                value={this.state.email}
+                  />
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} controlId="homepage">
+                <Form.Label column sm="2">个人主页</Form.Label>
+                <Col sm="10">
+                  <Form.Control type="text"
+                                onChange={this.handleInputChange}
+                                value={this.state.homepage}
+                                name="homepage"/>
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} controlId="githubpage">
+                <Form.Label column sm="2">github</Form.Label>
+                <Col sm="10">
+                  <Form.Control type="text"
+                                onChange={this.handleInputChange}
+                                value={this.state.githubpage}
+                                name="githubpage"/>
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} controlId="self">
+                <Form.Label column sm="2">个人介绍</Form.Label>
+                <Col sm="10">
+                  <Form.Control as="textarea"
+                                onChange={this.handleInputChange}
+                                value={this.state.selfintroduction}
+                                name="selfintroduction"/>
+                </Col>
+              </Form.Group>
+            </Form>
             <hr/>
-            <Form.Group as={Row} controlId="file">
-              <Form.Label column sm="2">头像</Form.Label>
-              <Col sm="10">
-                <Form.Control type="file" accept="image/png, image/jpg"
-                              onChange={this.handleFile}/>
-              </Col>
-            </Form.Group>
+            <div className="savesettings">
+              <Button variant="primary" onClick={this.handleClick}
+                      size="lg">保存设置</Button>
+            </div>
 
-            <Form.Group as={Row} controlId="username">
-              <Form.Label column sm="2">用户名</Form.Label>
-              <Col sm="10">
-                <Form.Control plaintext readOnly
-                              defaultValue={this.state.username}/>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} controlId="email">
-              <Form.Label column sm="2">邮箱</Form.Label>
-              <Col sm="10">
-                <Form.Control type="email"
-                              name="email"
-                              onChange={this.handleInputChange}
-                              value={this.state.email}
-                />
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} controlId="homepage">
-              <Form.Label column sm="2">个人主页</Form.Label>
-              <Col sm="10">
-                <Form.Control type="text"
-                              onChange={this.handleInputChange}
-                              value={this.state.homepage}
-                              name="homepage"/>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} controlId="githubpage">
-              <Form.Label column sm="2">github</Form.Label>
-              <Col sm="10">
-                <Form.Control type="text"
-                              onChange={this.handleInputChange}
-                              value={this.state.githubpage}
-                              name="githubpage"/>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} controlId="self">
-              <Form.Label column sm="2">个人介绍</Form.Label>
-              <Col sm="10">
-                <Form.Control type="text"
-                              onChange={this.handleInputChange}
-                              value={this.state.selfintroduction}
-                              name="selfintroduction"/>
-              </Col>
-            </Form.Group>
-          </Form>
-          <hr/>
-          <div className="savesettings">
-            <Button variant="primary" onClick={this.handleClick}
-                    size="lg">保存设置</Button>
           </div>
+          <div className="content-right"></div>
 
         </div>
     );

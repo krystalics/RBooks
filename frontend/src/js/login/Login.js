@@ -15,7 +15,7 @@ class Login extends Component {
     this.handleUserInputChange = this.handleUserInputChange.bind(this);
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-    this.handleRegisterSubmit=this.handleRegisterSubmit.bind(this);
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
   }
 
   handleUserInputChange(e) {
@@ -47,17 +47,17 @@ class Login extends Component {
     const res = await _login(
         {name: this.state.name, password: this.state.password});
     if (res.status === 200) {
-      if(res.data!==-1){
+      if (res.data !== -1) {
         this.setState({userid: res.data}); //将返回的id赋给userid
         this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
         this.setLocalStorage(); //把数据顺便缓存到本地
         this.props.history.push("/home"); //登录成功之后 重定向到 home
         window.location.reload();
 
-      }else{
+      } else {
         alert("账号或密码错误");
       }
-    }else{
+    } else {
       alert("网络错误");
     }
 
@@ -68,52 +68,55 @@ class Login extends Component {
     const res = await _register(
         {name: this.state.name, password: this.state.password});
     if (res.status === 200) {
-      if(res.data!==-1){
+      if (res.data !== -1) {
         this.setState({userid: res.data}); //将返回的id赋给userid
         this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
         this.setLocalStorage(); //把数据顺便缓存到本地
         this.props.history.push("/settings"); //登录成功之后 重定向到 home
         window.location.reload();
-      }else{
+      } else {
         alert("账号已存在");
       }
-    }else{
+    } else {
       alert("网络错误");
     }
 
   }
 
-
   render() {
     return (
-        <div>
+        <div className="Content">
+          <div className="content-left"></div>
 
-          <div>
-            <Form.Label>账号</Form.Label>
-            <Form.Control type="text" value={this.state.name}
-                          placeholder="username"
-                          onChange={this.handleUserInputChange}/>
-          </div>
-          <div>
-            <Form.Label>密码</Form.Label>
-            <Form.Control type="password" value={this.state.password}
-                          placeholder="password"
-                          onChange={this.handlePasswordInputChange}/>
-          </div>
-          <div className="lg">
-            <div className="login">
-              <Button variant="outline-success" onClick={this.handleLoginSubmit}
-                      size="lg"
-                      value="login">登录</Button>
+          <div className="content-middle">
+            <div className="mainLogin">
+              <Form.Label>账号</Form.Label>
+              <Form.Control type="text" value={this.state.name}
+                            placeholder="username"
+                            onChange={this.handleUserInputChange}/>
+
+              <Form.Label>密码</Form.Label>
+              <Form.Control type="password" value={this.state.password}
+                            placeholder="password"
+                            onChange={this.handlePasswordInputChange}/>
+
+              <div className="loginButton">
+                <Button variant="outline-success"
+                        onClick={this.handleLoginSubmit}
+                        size="lg"
+                        value="login">登录</Button>
+                <Button variant="outline-primary"
+                        onClick={this.handleRegisterSubmit}
+                        size="lg"
+                        value="register">注册</Button>
+              </div>
             </div>
-            <div className="register">
-              <Button variant="outline-primary" onClick={this.handleRegisterSubmit}
-                      size="lg"
-                      value="register">注册</Button>
-            </div>
           </div>
+          <div className="content-right"></div>
         </div>
-    );
+
+    )
+        ;
   }
 }
 

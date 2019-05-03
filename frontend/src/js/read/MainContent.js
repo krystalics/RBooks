@@ -5,7 +5,7 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import {Button, ListGroup} from "react-bootstrap";
+import {ListGroup} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {_deleteChapter, _getChapter} from "../api"
 
@@ -150,7 +150,7 @@ class MainContent extends Component {
             <hr/>
           </div>
 
-          <div className="content">
+          <div>
             <div
                 id="content"
                 className="article-detail"

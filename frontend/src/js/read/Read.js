@@ -21,34 +21,39 @@ class Read extends Component {
     }
   }
 
-
   componentDidMount() { //获得数据
 
     this.getData();
 
   }
 
-  async getData(){
-    const res=await _getDirectory(this.state.bookid);
+  async getData() {
+    const res = await _getDirectory(this.state.bookid);
     this.setState({directory: res.data});
-
   }
 
   render() {
 
     return (
-        <div>
+        <div className="Content">
 
-          <ReadSideBar id={this.state.bookid} author={this.state.author}/>
-          <DirectoryList directory={this.state.directory}
-                         param={this.props.match.params.data}
-                         bookid={this.state.bookid}
-                         author={this.state.author}/>
-          <div>
+          <div className="content-left">
+            <DirectoryList directory={this.state.directory}
+                           param={this.props.match.params.data}
+                           bookid={this.state.bookid}
+                           author={this.state.author}/>
           </div>
-          <div id="article">
+
+
+          <div id="article" className="content-middle">
             <Content data={this.props.location.state}/>
           </div>
+
+
+          <div className="content-right">
+            <ReadSideBar id={this.state.bookid} author={this.state.author}/>
+          </div>
+
         </div>
     );
   }

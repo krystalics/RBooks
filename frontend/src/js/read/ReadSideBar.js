@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import '../../css/main.css'
-import {Button, ListGroup} from "react-bootstrap";
+import {ListGroup} from "react-bootstrap";
 
 import {
   _addFollowAuthor,

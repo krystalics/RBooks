@@ -89,13 +89,16 @@ class Write extends Component {
         之前的作品集
         <BookList onDeleteBook={this.handleDeleteBook.bind(this)}
                   data={this.state.booklist}/>
+
       </div>
     }
 
     return (
-        <div className="wrap_write">
+        <div className="Content">
+          <div className="content-left">
           {item}
-          <div>
+          </div>
+          <div className="content-middle">
             开始一本新书
             <br/>
             <InputGroup>
@@ -116,7 +119,7 @@ class Write extends Component {
                       name="bookname"
                       placeholder="关于本书你想说些啥呢？"
             />
-            <br/>
+
           </div>
 
         </div>

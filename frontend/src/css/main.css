@@ -1,55 +1,4 @@
 
-.Navigator{
-  position: fixed;
-  width: 100%;
-  top:0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  z-index: 10;
-
-}
-
-.Navigator_ul_1 {
-
-  background-color: rgb(247, 247, 247);
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-
-  margin-left: auto;
-  margin-right: auto;
-  list-style: none;
-
-  border-bottom: 1px solid rgba(0, 0, 0, 0.09) ;
-}
-
-.Navigator_ul_2 {
-
-  background-color: rgb(247, 247, 247);
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-
-  margin-left: auto;
-  margin-right: auto;
-  list-style: none;
-
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) ;
-}
-
-
-
-.Navigator li a {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-
-
 .BookItem{
   margin-bottom:1%;
 }
@@ -76,62 +25,27 @@
   margin-left: 5%;
 }
 
-.sidebar_left{
-  position: absolute;
-  height: 100%;
-  padding: 2% 5% 2% 2%;
-  left: 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+.mainLogin{
+  margin-top:20%;
+  margin-left: auto;
+  margin-right: auto;
+  width:50%;
 }
 
-.sidebar_left Button{
-  position: relative;
-  bottom:20%;
-  margin-bottom: 4%;
-  margin-top: 10%;
-}
-
-
-.sidebar_left_span{
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) ;
-
-  position: absolute;
-  top:-3%;
-  left: 5%;
-  width:95%;
-}
-
-.Directory{
-  margin-bottom: 4%;
-}
-
-
-.lg{
+.loginButton{
+  display: flex;
+  justify-content: space-around;
   margin-top: 5%;
 }
-.login{
-  display: inline-block;
-  margin-left: 20%;
-}
 
-.register{
-  display: inline-block;
-  margin-left: 20%;
-}
-
-.savesettings{
-  margin-left: 35%;
-
-}
 
 .sidebar_right{
   position: fixed;
   right:5%;
   margin-top: 5%;
-
   list-style-type: none;
 }
-
 
 .sidebar_right  li{
   margin-bottom: 10%;
@@ -159,16 +73,9 @@
   margin-top: 3%;
 }
 
-.wrap_write{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-
-}
 
 .pagenation{
-  margin: 5% 25% 10%;
-
+  margin: 5% 20% 10% 20%;
 }
 
 .nodata{
@@ -176,4 +83,26 @@
   text-align: center;
   height:100px;
   line-height: 100px;
+}
+
+.chaptername{
+  margin-top: 3%;
+  font-size: 18px;
+}
+
+.home-tag{
+  position: absolute;
+  right:0;
+  width: 100px;
+}
+.home-tag li{
+  margin-top: 5px;
+}
+
+.introduction{
+  width:200px;
+  height: 100%;
+  border:1px solid ;
+  border-radius: 5px;
+  padding: 5px;
 }

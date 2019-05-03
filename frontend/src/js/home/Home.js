@@ -3,6 +3,8 @@ import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import {_getHot, _getNew} from '../api'
 import BookListInHome from "./BookListInHome";
+import '../../css/home.css'
+import ListGroup from "react-bootstrap/ListGroup";
 
 class Home extends Component {
 
@@ -112,15 +114,16 @@ class Home extends Component {
     this.setState({active: active});
 
     let res;
-    if(this.state.color1==='link')  //如果处于hot的情况下，访问hot
+    if (this.state.color1 === 'link')  //如果处于hot的情况下，访问hot
+    {
       res = await _getHot(e.target.value - this.state.first);
-    else{
+    } else {
       res = await _getNew(e.target.value - this.state.first);
     }
-    if(res.data.length>0)
+    if (res.data.length > 0) {
       this.setState({data: res.data, oldData: res.data});
-    else{
-      this.setState({data:"暂无更多数据"})
+    } else {
+      this.setState({data: "暂无更多数据"})
     }
   }
 
@@ -130,8 +133,20 @@ class Home extends Component {
       item = <div><BookListInHome data={this.state.data}/></div>
     }
     return (
-        <div>
-          <div>
+
+        <div className="Content">
+          <div className="content-left">
+            <ListGroup className="home-tag" variant="none" as="ul">
+              <ListGroup.Item as="li">推荐</ListGroup.Item>
+              <ListGroup.Item as="li" variant="light" action>前端</ListGroup.Item>
+              <ListGroup.Item as="li" variant="light" action>后端</ListGroup.Item>
+              <ListGroup.Item as="li" variant="light" action>云计算</ListGroup.Item>
+              <ListGroup.Item as="li" variant="light" action>数据库</ListGroup.Item>
+              <ListGroup.Item as="li" variant="light" action>Android</ListGroup.Item>
+            </ListGroup>
+          </div>
+
+          <div className="content-middle">
             <InputGroup>
               <FormControl placeholder="输入书名|编号|作者"
                            value={this.state.search}
@@ -151,36 +166,50 @@ class Home extends Component {
                   variant={this.state.color2}
                   onClick={this.handleNew.bind(this)}>最新</Button>
             </ButtonGroup>
+
+
+            <hr style={{
+              marginBottom: "1rem",
+              marginTop:"0",
+            }}/>
+
+            {item}
+
+            <ButtonGroup className="pagenation">
+              <Button name="first" onClick={this.handleMove}
+                      variant="secondary">&lt;&lt;</Button>
+              <Button name="prev" onClick={this.handleMove}
+                      variant="outline-primary">&lt;</Button>
+              <Button active={this.state.active[0]} variant="outline-primary"
+                      onClick={this.handlePageClick}
+                      value={this.state.first}>{this.state.first}</Button>
+              <Button active={this.state.active[1]} variant="outline-primary"
+                      onClick={this.handlePageClick}
+                      value={this.state.second}>{this.state.second}</Button>
+              <Button active={this.state.active[2]} variant="outline-primary"
+                      onClick={this.handlePageClick}
+                      value={this.state.third}>{this.state.third}</Button>
+              <Button active={this.state.active[3]} variant="outline-primary"
+                      onClick={this.handlePageClick}
+                      value={this.state.fourth}>{this.state.fourth}</Button>
+              <Button active={this.state.active[4]} variant="outline-primary"
+                      onClick={this.handlePageClick}
+                      value={this.state.fifth}>{this.state.fifth}</Button>
+              <Button name="next" onClick={this.handleMove}
+                      variant="outline-primary">&gt;</Button>
+              <Button name="last" onClick={this.handleMove}
+                      variant="secondary">&gt;&gt;</Button>
+            </ButtonGroup>
+
           </div>
-          <hr/>
 
-          {item}
+          <div className="content-right">
+            <div className="introduction">
+              RBooks 是一个博客站点，喜欢写小说也没关系。这就是一个实验性质的站点，目前还没有正式运营。
+              想知道具体的开发过程吗？欢迎探索：<br/><a href="https://github.com/krystalics/Rbooks">RBooks项目</a>
+            </div>
+          </div>
 
-          <ButtonGroup className="pagenation">
-            <Button name="first" onClick={this.handleMove}
-                    variant="secondary">&lt;&lt;</Button>
-            <Button name="prev" onClick={this.handleMove}
-                    variant="outline-primary">&lt;</Button>
-            <Button active={this.state.active[0]} variant="outline-primary"
-                    onClick={this.handlePageClick}
-                    value={this.state.first}>{this.state.first}</Button>
-            <Button active={this.state.active[1]} variant="outline-primary"
-                    onClick={this.handlePageClick}
-                    value={this.state.second}>{this.state.second}</Button>
-            <Button active={this.state.active[2]} variant="outline-primary"
-                    onClick={this.handlePageClick}
-                    value={this.state.third}>{this.state.third}</Button>
-            <Button active={this.state.active[3]} variant="outline-primary"
-                    onClick={this.handlePageClick}
-                    value={this.state.fourth}>{this.state.fourth}</Button>
-            <Button active={this.state.active[4]} variant="outline-primary"
-                    onClick={this.handlePageClick}
-                    value={this.state.fifth}>{this.state.fifth}</Button>
-            <Button name="next" onClick={this.handleMove}
-                    variant="outline-primary">&gt;</Button>
-            <Button name="last" onClick={this.handleMove}
-                    variant="secondary">&gt;&gt;</Button>
-          </ButtonGroup>
 
         </div>
 

@@ -7,8 +7,8 @@ class Message extends Component {
 
   constructor(props) {
     super(props);
-    this.state={
-      data:''
+    this.state = {
+      data: ''
     }
   }
 
@@ -16,19 +16,24 @@ class Message extends Component {
     this.getData();
   }
 
-  async getData(){
-    const res= await _getCommentsByUserName();
-    this.setState({data:res.data})
+  async getData() {
+    const res = await _getCommentsByUserName();
+    this.setState({data: res.data})
   }
 
   render() {
 
     return (
-        <div>
-          迄今为止发过的评论:
-          <CommentList data={this.state.data}/>
+        <div className="Content">
+          <div className="content-left"></div>
+          <div className="content-middle">
+            迄今为止发过的评论:
+            <CommentList data={this.state.data}/>
+          </div>
+          <div className="content-right"></div>
+
         </div>
-        )
+    )
   }
 }
 

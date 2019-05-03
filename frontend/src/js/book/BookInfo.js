@@ -7,9 +7,7 @@ import Time from "../Time";
 
 class BookInfo extends Component {
 
-
   handleDelete(){
-    // console.log(this.props.data)
     this.props.onDeleteBook(this.props.data);
   }
 
@@ -26,15 +24,14 @@ class BookInfo extends Component {
 
     let item=undefined;
     if(typeof (this.props.onDeleteBook) !=="undefined"){
-      item= <Button style={{marginLeft:"20%"}} variant="outline-danger" onClick={this.handleDelete.bind(this)}>删除</Button>
+      item= <Button style={{marginLeft:"5px",display:"inline"}} variant="outline-danger" onClick={this.handleDelete.bind(this)}>删除</Button>
+
     }
     return (
         <div className="BookItem">
           <ListGroupItem variant="none">
             <div className="BookInfo">
-              <span>书籍编号：</span>{this.props.data.id}
-              {item}
-              <br/>
+
               <NavLink to={{
                 pathname: `${path}`,
                 state: {des}
@@ -43,27 +40,19 @@ class BookInfo extends Component {
               </NavLink>
               <div className="Author">
                 {this.props.data.author}<span> 编著</span>
+
               </div>
-              {/*{this.props.data.description}*/}
+              {item}
               <br/>
 
               <span>更新时间：</span> <Time data={this.props.data.datetime}/>
 
-              {/*{this.props.data.photourl}*/}
               <div className="Love">
                 <span>点赞：</span> {this.props.data.love}
               </div>
+
             </div>
-            {/*<div className="BookPhoto">*/}
-            {/*<Figure>*/}
-            {/*<Figure.Image*/}
-            {/*width={80}*/}
-            {/*height={100}*/}
-            {/*alt="80x100"*/}
-            {/*src={logo}*/}
-            {/*/>*/}
-            {/*</Figure>*/}
-            {/*</div>*/}
+
           </ListGroupItem>
         </div>
     );
