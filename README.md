@@ -55,8 +55,6 @@ IDE：IDEA ，WebStorm
 
 <img src="./img/30.png">
 
-<img src="./img/30-1.png">
-
 <img src="./img/30-2.png">
 
 <img src="./img/31.png">
