@@ -1,9 +1,9 @@
 package com.example.rbooks.backend.serviceImpl;
 
 import com.example.rbooks.backend.dao.BookDao;
-import com.example.rbooks.backend.daoImpl.BookDaoImpl;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.service.HomeService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +27,19 @@ public class HomeServiceImpl implements HomeService {
   @Override
   public List<Book> getNewBooksInfo(int page) {
     return bookDaoImpl.getNewBooks(page);
+  }
+
+  @Override
+  public List<Book> getSearchBooksInfo(String word) {
+    List<Book> allbooks = bookDaoImpl.getAllBooks();
+    List<Book> res = new ArrayList<>();
+    for (Book book : allbooks) { //如果书名或者作者名或者描述中  有包括word
+      if (book.getAuthor().contains(word) || book.getName().contains(word) || book.getDescription()
+          .contains(word)) {
+        res.add(book);
+      }
+    }
+
+    return res;
   }
 }

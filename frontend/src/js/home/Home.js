@@ -16,7 +16,7 @@ class Home extends Component {
       color2: 'none',
       data: '暂无数据',
       oldData: '暂无数据',
-      count: 0,  //记录一次搜索中的搜索次数,
+
       first: 1,
       second: 2,
       third: 3,
@@ -58,7 +58,7 @@ class Home extends Component {
 
   async searchSubmit(word) {
     const res = await _getSearch(word);
-    this.setState({data: res.data, count: this.state.count + 1});
+    this.setState({data: res.data});
   }
 
   handleKeyUp(e) {
@@ -135,7 +135,7 @@ class Home extends Component {
   }
 
   render() {
-    let item = <div className="nodata">第 {this.state.count} 次找不到数据</div>;
+    let item = <div className="nodata">找不到该数据</div>;
     if (this.state.data.length > 0) {
       item = <div><BookListInHome data={this.state.data}/></div>
     }
@@ -144,7 +144,7 @@ class Home extends Component {
         <div className="Content">
           <div className="content-left">
             <div className="home-tag">
-              <Button>推荐</Button>
+              <Button onClick={this.handlePageClick} value="0">推荐</Button>
               <Button variant="light"
                       onClick={this.handleTag}
                       value="前端">前端</Button>

@@ -10,4 +10,6 @@ public interface HomeService {
   List<Book> getHotBooksInfo(int page);
 
   List<Book> getNewBooksInfo(int page);
+
+  List<Book> getSearchBooksInfo(String word);
 }

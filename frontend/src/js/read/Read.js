@@ -37,20 +37,18 @@ class Read extends Component {
     return (
         <div className="Content">
 
-          <div className="content-left">
+          <div className="content-left" style={{height:"800px",borderRight:"1px solid rgba(0,0,0,0.1)",width:"200px"}}>
             <DirectoryList directory={this.state.directory}
                            param={this.props.match.params.data}
                            bookid={this.state.bookid}
                            author={this.state.author}/>
           </div>
 
-
-          <div id="article" className="content-middle">
+          <div id="article" className="content-middle" style={{marginLeft:"3%",width:"60%"}}>
             <Content data={this.props.location.state}/>
           </div>
 
-
-          <div className="content-right">
+          <div className="content-right" style={{marginLeft:"3%",width:"150px"}}>
             <ReadSideBar id={this.state.bookid} author={this.state.author}/>
           </div>
 

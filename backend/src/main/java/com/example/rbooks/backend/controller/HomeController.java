@@ -27,15 +27,19 @@ public class HomeController {
   }
 
   @RequestMapping("/gethot")
-  public List<Book> getHot(@RequestParam int page){
-//    Iterable<Book> books=homeServiceImpl.
+  public List<Book> getHot(@RequestParam int page) {
     return homeServiceImpl.getHotBooksInfo(page);
   }
 
   @RequestMapping("/getnew")
-  public List<Book> getNew(@RequestParam int page){
-//    Iterable<Book> books=homeServiceImpl.
+  public List<Book> getNew(@RequestParam int page) {
+
     return homeServiceImpl.getNewBooksInfo(page);
+  }
+
+  @RequestMapping("/getsearch")
+  public List<Book> getSearch(@RequestParam String word) {
+    return homeServiceImpl.getSearchBooksInfo(word);
   }
 
 

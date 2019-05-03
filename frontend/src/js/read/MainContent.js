@@ -104,6 +104,7 @@ class MainContent extends Component {
       alert(res.data);
     }
     window.history.back(-1);
+
   }
 
   render() {
@@ -114,8 +115,6 @@ class MainContent extends Component {
     };
     let time = this.state.datetime;
     let item = undefined;
-
-
 
     if (this.state.author === localStorage.getItem("name")) {
       item = <div className="editchapter">
@@ -160,7 +159,7 @@ class MainContent extends Component {
                 }}/>
           </div>
 
-          <div className="comment">
+          <div className="comment" >
             <CommentApp
                 author={JSON.parse(this.props.match.params.param).author}
                 chapterid={chapterid}/>

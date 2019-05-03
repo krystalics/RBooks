@@ -68,28 +68,5 @@ p img{
   color: #009a61;
 }
 
-.content-edit{
-  position: fixed;
-  right: 5%;
-  top:44%;
-}
 
-.content-edit ul{
-  list-style: none;
-}
-
-.content-edit ul li{
-  margin-bottom: 10%;
-}
-
-.editchapter{
-  position: fixed;
-  right:5%;
-  margin-top: 22.6%;
-  list-style-type: none;
-  display: flex;
-}
-.editchapter li{
-  margin-bottom: 10%;
-}
 

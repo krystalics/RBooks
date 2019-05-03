@@ -46,13 +46,25 @@
 .sidebar_right{
   position: fixed;
   right:5%;
-  margin-top: 5%;
+  margin-top: 50px;
   list-style-type: none;
 }
 
 .sidebar_right  li{
-  margin-bottom: 10%;
+  margin-bottom: 10px;
 }
+
+.editchapter{
+  position: fixed;
+  right:5%;
+  margin-top: 260px;
+  list-style-type: none;
+  display: flex;
+}
+.editchapter li{
+  margin-bottom: 10px;
+}
+
 
 .Textarea{
   padding: 10px;
@@ -72,7 +84,7 @@
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px #999;
   width: 100%;
-  height: 100px;
+  height: 150px;
   margin-top: 3%;
 }
 
@@ -106,7 +118,7 @@
 .introduction{
   width:200px;
   height: 100%;
-  border:1px solid ;
+  border:1px solid rgba(7, 34, 203, 0.21);
   border-radius: 5px;
   padding: 5px;
 }
