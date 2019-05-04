@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import DirectoryList from "./DirectoryList";
 import Content from "./Content";
-import ReadSideBar from "./ReadSideBar";
 import {_getDirectory} from '../api'
 
 import '../../css/main.css'
@@ -64,14 +63,14 @@ class Read extends Component {
           <div id="article" className="content-middle"
                style={{marginLeft: "3%", width: "60%"}}>
 
-            <Button onClick={this.handleStyleChange.bind(this)} variant="light">+</Button>
+            <Button onClick={this.handleStyleChange.bind(this)} className="mulu-left" variant="light">+</Button>
             <Content data={this.props.location.state}/>
           </div>
 
-          <div className="content-right"
-               style={{marginLeft: "3%", width: "150px"}}>
-            <ReadSideBar id={this.state.bookid} author={this.state.author}/>
-          </div>
+          {/*<div className="content-right"*/}
+               {/*style={{marginLeft: "3%", width: "150px"}}>*/}
+            {/*/!*<ReadSideBar id={this.state.bookid} author={this.state.author}/>*!/*/}
+          {/*</div>*/}
 
         </div>
     );

@@ -45,28 +45,17 @@
   margin-top: 5%;
 }
 
-
-.sidebar_right {
-  position: fixed;
-  right: 5%;
-  margin-top: 50px;
-  list-style-type: none;
-}
-
-.sidebar_right li {
-  margin-bottom: 10px;
-}
-
 .editchapter {
-  position: fixed;
-  right: 5%;
-  margin-top: 260px;
+  /*position: fixed;*/
+  /*right: 5%;*/
+  /*margin-top: 60px;*/
   list-style-type: none;
   display: flex;
+  flex-direction: row;
 }
 
 .editchapter li {
-  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 
@@ -148,6 +137,6 @@
     display: none;
   }
   .mulu-left{
-    display: inline-block;
+    display: inline;
   }
 }
