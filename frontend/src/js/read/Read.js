@@ -5,6 +5,7 @@ import ReadSideBar from "./ReadSideBar";
 import {_getDirectory} from '../api'
 
 import '../../css/main.css'
+import Button from "react-bootstrap/Button";
 // 由三个组件构成，目录 主要内容 评论列表
 // 这里的 CommentList和之前Message中的不一样，这里是需要根据 Chapterid 来确定评论的，而之前的是经过高级组件固定化的
 
@@ -18,6 +19,7 @@ class Read extends Component {
       author: JSON.parse(this.props.match.params.data).author,
       directory: [],
       // description:this.props.location.state.des.description
+      style:this.styleIn
     }
   }
 
@@ -32,23 +34,42 @@ class Read extends Component {
     this.setState({directory: res.data});
   }
 
+  styleIn = {
+    height: "800px", borderRight: "1px solid rgba(0,0,0,0.1)", width: "200px"
+  };
+  styleOut={
+    display:"none"
+  };
+
+  handleStyleChange(){
+    if(this.state.style===this.styleOut){
+      this.setState({style:this.styleIn})
+    }else {
+      this.setState({style:this.styleOut})
+    }
+  }
+
   render() {
 
     return (
         <div className="Content">
+          <div className="content-left" style={this.state.style}>
 
-          <div className="content-left" style={{height:"800px",borderRight:"1px solid rgba(0,0,0,0.1)",width:"200px"}}>
             <DirectoryList directory={this.state.directory}
                            param={this.props.match.params.data}
                            bookid={this.state.bookid}
                            author={this.state.author}/>
           </div>
 
-          <div id="article" className="content-middle" style={{marginLeft:"3%",width:"60%"}}>
+          <div id="article" className="content-middle"
+               style={{marginLeft: "3%", width: "60%"}}>
+
+            <Button onClick={this.handleStyleChange.bind(this)} variant="light">+</Button>
             <Content data={this.props.location.state}/>
           </div>
 
-          <div className="content-right" style={{marginLeft:"3%",width:"150px"}}>
+          <div className="content-right"
+               style={{marginLeft: "3%", width: "150px"}}>
             <ReadSideBar id={this.state.bookid} author={this.state.author}/>
           </div>
 

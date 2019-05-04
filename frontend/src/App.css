@@ -32,37 +32,29 @@ body {
 }
 
 .Navigator{
-
   width: 100%;
   top:0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  z-index: 10;
 }
 
 .Navigator_ul {
 
   background-color: rgb(247, 247, 247);
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
 
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   list-style: none;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.09) ;
 }
 
-
-
-
 .Navigator li a {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
 .Content {
   position: relative;
   width:100%;
@@ -73,8 +65,10 @@ body {
   justify-content: flex-start;
 }
 
+
+
 .footer{
-  position: fixed;
+  position: relative;
   width:100%;
   bottom:0;
   text-align:center;
@@ -82,7 +76,7 @@ body {
   height: 40px;
   line-height: 40px;
 
-  background-color: rgb(247, 247, 247);
+  /*background-color: rgb(247, 247, 247);*/
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 

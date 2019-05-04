@@ -159,7 +159,7 @@ class MainContent extends Component {
                 }}/>
           </div>
 
-          <div className="comment" >
+          <div className="comment">
             <CommentApp
                 author={JSON.parse(this.props.match.params.param).author}
                 chapterid={chapterid}/>

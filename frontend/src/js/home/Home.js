@@ -4,7 +4,6 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import {_getHot, _getNew, _getSearch} from '../api'
 import BookListInHome from "./BookListInHome";
 import '../../css/home.css'
-import ListGroup from "react-bootstrap/ListGroup";
 
 class Home extends Component {
 

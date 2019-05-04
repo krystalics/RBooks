@@ -1,24 +1,27 @@
 
-.BookItem{
-  margin-bottom:1%;
+.BookItem {
+  margin-bottom: 1%;
 }
+
 .Author {
   margin-left: 5%;
   display: inline;
 }
-.Love{
+
+.Love {
   margin-left: 5%;
   display: inline;
 }
 
-.BookInfo{
-  display: inline;
-}
-.BookPhoto{
+.BookInfo {
   display: inline;
 }
 
-.BookPhoto img{
+.BookPhoto {
+  display: inline;
+}
+
+.BookPhoto img {
   width: 80px;
   height: 100px;
   margin-bottom: 20%;
@@ -26,47 +29,48 @@
 }
 
 
-.mainLogin{
-  border:1px solid ;
+.mainLogin {
+  border: 1px solid;
   border-radius: 5px;
   padding: 20px;
-  margin-top:20%;
+  margin-top: 20%;
   margin-left: auto;
   margin-right: auto;
-  width:350px;
+  width: 350px;
 }
 
-.loginButton{
+.loginButton {
   display: flex;
   justify-content: space-around;
   margin-top: 5%;
 }
 
 
-.sidebar_right{
+.sidebar_right {
   position: fixed;
-  right:5%;
+  right: 5%;
   margin-top: 50px;
   list-style-type: none;
 }
 
-.sidebar_right  li{
+.sidebar_right li {
   margin-bottom: 10px;
 }
 
-.editchapter{
+.editchapter {
   position: fixed;
-  right:5%;
+  right: 5%;
   margin-top: 260px;
   list-style-type: none;
   display: flex;
 }
-.editchapter li{
+
+.editchapter li {
   margin-bottom: 10px;
 }
 
 
-.Textarea{
+.Textarea {
   padding: 10px;
   line-height: 1.5;
   border-radius: 5px;
@@ -77,7 +81,7 @@
   margin-top: 3%;
 }
 
-.Textarea_write{
+.Textarea_write {
   padding: 10px;
   line-height: 1.5;
   border-radius: 5px;
@@ -89,36 +93,61 @@
 }
 
 
-.pagenation{
+.pagenation {
   margin: 10px auto 60px;
 }
 
-.nodata{
-  border:1px solid rgba(134, 102, 153, 0.16);
+.nodata {
+  border: 1px solid rgba(134, 102, 153, 0.16);
   text-align: center;
-  height:100px;
+  height: 100px;
   line-height: 100px;
 }
 
-.chaptername{
+.chaptername {
   margin-top: 3%;
   font-size: 18px;
 }
 
-.home-tag{
-  position: absolute;
-  right:0;
-  width: 100px;
-}
-.home-tag button{
-  margin-top: 5px;
-  width:80px;
+
+
+
+
+@media screen and (max-width: 1500px){
+  .introduction {
+    width: 200px;
+    border: 1px solid rgba(7, 34, 203, 0.21);
+    border-radius: 5px;
+    padding: 5px;
+  }
+  .home-tag {
+    position: absolute;
+    right: 0;
+    width: 100px;
+  }
+
+  .home-tag button {
+    margin-top: 5px;
+    width: 80px;
+  }
+  .mulu-left{
+    display: none;
+  }
 }
 
-.introduction{
-  width:200px;
-  height: 100%;
-  border:1px solid rgba(7, 34, 203, 0.21);
-  border-radius: 5px;
-  padding: 5px;
+
+@media screen and (max-width: 600px){
+  .introduction {
+    display: none;
+  }
+  .home-tag {
+    display: none;
+  }
+
+  .home-tag button {
+    display: none;
+  }
+  .mulu-left{
+    display: inline-block;
+  }
 }

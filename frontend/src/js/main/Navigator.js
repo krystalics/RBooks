@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import '../../App.css'
 import {Nav,} from 'react-bootstrap';
+import Button from "react-bootstrap/Button";
 
 // 导航栏由 一个logo 5个按钮和一个搜索框组成，其中点击”我的“按钮 会检测用户是否处于登录状态，如果不是则跳转到登录页面
 // 如果不是 ， 则出现下拉框。。mypage和settings

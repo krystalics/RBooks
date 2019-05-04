@@ -1,27 +1,51 @@
 
-.content-left{
-  position: relative;
-  top:0;
-  width:26%;
-  height: 100%;
-  display: inline-block;
-  margin-right: 3%;
 
+
+@media screen and (max-width: 1500px){
+  .content-left{
+    position: relative;
+    top:0;
+    width:26%;
+    height: 100%;
+
+    display: inline-block;
+    margin-right: 3%;
+
+  }
+  .content-right{
+    width:25%;
+    height: 100%;
+    margin-left: 3%;
+    display: inline-block;
+  }
 }
+
+@media screen and (max-width: 600px){
+  .content-left{
+    position: relative;
+    top:0;
+    width:26%;
+    height: 100%;
+    /*min-width: 100px;*/
+    /*visibility: hidden;*/
+    /*display: inline-block;*/
+    /*margin-right: 3%;*/
+  }
+  .content-right{
+    /*visibility: hidden;*/
+    width:25%;
+    height: 100%;
+    /*margin-left: 3%;*/
+    /*display: inline-block;*/
+  }
+}
+
 
 .content-middle{
   display: inline-block;
   width:40%;
+  min-width: 370px;
+  min-height: 600px;
   height: 100%;
 }
 
-.content-right{
-
-  width:25%;
-  height: 100%;
-
-  margin-left: 3%;
-  display: inline-block;
-
-
-}
