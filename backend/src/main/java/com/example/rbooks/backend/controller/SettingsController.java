@@ -1,5 +1,7 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.auth.Authorization;
+import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.entity.Information;
 import com.example.rbooks.backend.service.SettingsService;
 import java.io.File;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/settings")
+@Authorization(value = {IdentityEnums.VISITOR})
 public class SettingsController {
   // 只提供一个 更新接口即可
 

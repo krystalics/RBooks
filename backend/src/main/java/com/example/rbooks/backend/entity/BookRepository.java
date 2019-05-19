@@ -1,7 +1,6 @@
 package com.example.rbooks.backend.entity;
 
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 // 从 CrudRepository 到 PagingAndSortingRepository 是因为之后的有提供 排序和分页功能

@@ -1,5 +1,7 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.auth.Authorization;
+import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/write")
+@Authorization(value = {IdentityEnums.VISITOR})
 public class WriteController {
 
   private final WriteService writeServiceImpl;
@@ -51,15 +54,6 @@ public class WriteController {
 
   @RequestMapping(value = "/addchapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addChapter(@RequestBody Chapter chapter) { //格式因为复合主键，需要增加一层
-    /*
-       {
-        "chapterId":{
-          "bookid":1,
-          "chaptername":"第一章"
-         },
-        "content":"该内容"
-       }
-    * */
     writeServiceImpl.addChapter(chapter);
     return "保存成功";
   }

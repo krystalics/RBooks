@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let baseURL=`http://192.168.0.106:8080`;
+let baseURL=`http://localhost:8080`;
 
 
 //接下来三个方法是在 commentApp里的

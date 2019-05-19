@@ -13,7 +13,6 @@ import com.example.rbooks.backend.entity.FollowbookId;
 import com.example.rbooks.backend.entity.Information;
 import com.example.rbooks.backend.entity.User;
 import com.example.rbooks.backend.service.MyPageService;
-import com.example.rbooks.backend.service.ReadService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -47,6 +46,7 @@ public class MyPageServiceImpl implements MyPageService {
 
   @Override
   public Information getInformation(int userid) {
+
     return informationDaoImpl.getInformation(userid);
   }
 
@@ -101,6 +101,7 @@ public class MyPageServiceImpl implements MyPageService {
   }
 
   public Boolean isFollowAuthor(FollowauthorId followauthorId) {
+
     return followDaoImpl.exsitsFollowAuthor(followauthorId);
   }
 

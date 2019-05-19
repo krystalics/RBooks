@@ -1,5 +1,7 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.auth.Authorization;
+import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.entity.User;
 import com.example.rbooks.backend.service.UserService;
 import com.example.rbooks.backend.serviceImpl.UserServiceImpl;
@@ -37,7 +39,7 @@ public class UserController {
     return userServiceImpl.register(user.getName(), user.getPassword()); //失败返回一个 -1  成功则是该用户的 id
   }
 
-
+  @Authorization(value = {IdentityEnums.SUPER_ADMIN})
   @DeleteMapping(value = "/delete")
   public String delete(@RequestParam("name") String name) {
     userServiceImpl.delete(name);

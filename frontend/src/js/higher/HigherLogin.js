@@ -28,7 +28,7 @@ export default (WrappedComponent) => {
         return <WrappedComponent/>
       } else {
         // this.props.history.push('/home');  //使用React-router 重定向，但是这个组件需要使用 react-router 的服务
-        return <div>你还没有登录，请先登录！</div>
+        return <div className="nologin">你还没有登录，请先登录！</div>
       }
 
     }

@@ -1,5 +1,7 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.auth.Authorization;
+import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.entity.Comment;
 import com.example.rbooks.backend.service.MessageService;
 import java.util.List;
@@ -18,6 +20,7 @@ public class MessageController {
     this.messageServiceImpl = messageServiceImpl;
   }
 
+  @Authorization(value = {IdentityEnums.VISITOR})
   @RequestMapping(value = "/message")
   public List<Comment> getMessages(@RequestParam("commentuser") String commentuser) {
     return messageServiceImpl.getComments(commentuser);

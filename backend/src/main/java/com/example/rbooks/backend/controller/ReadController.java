@@ -1,5 +1,7 @@
 package com.example.rbooks.backend.controller;
 
+import com.example.rbooks.backend.auth.Authorization;
+import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.BookRepository;
 import com.example.rbooks.backend.entity.Chapter;
@@ -38,6 +40,7 @@ import org.springframework.web.bind.annotation.RestController;
 * */
 @RestController
 @RequestMapping("/read")
+@Authorization(value = {IdentityEnums.VISITOR})
 public class ReadController {
 
   @Autowired
