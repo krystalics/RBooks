@@ -278,4 +278,212 @@ public interface BookRepository extends CrudRepository<Book,Integer> {
 
 
 
-#### 缺点就是：或者说是面向对象的缺点就是好的代码结构中各种类和接口太多了，本来只需要一半的代码就可以搞定，但是愣是要多写接口，多写几个类来明确层次结构，减少耦合。对程序员的要求比较高。还好不用管理复杂的依赖关系，不然就gg了。
+##### 缺点就是：或者说是面向对象的缺点就是好的代码结构中各种类和接口太多了，本来只需要一半的代码就可以搞定，但是愣是要多写接口，多写几个类来明确层次结构，减少耦合。对程序员的要求比较高。还好不用管理复杂的依赖关系，不然就gg了。
+
+
+
+##### 2019.5.20  时隔好久，项目后期出现的都是一些小bug，就没有记录。
+
+不过在最新版本中，增加了鉴权模块，出现了一连串的bug：通用方案如下
+
+1.使用enum来标注三个权限
+
+```java
+public enum IdentityEnums {
+  VISITOR,  //整数值0
+  ADMIN,  //1
+  SUPER_ADMIN //2
+}
+```
+
+2.然后自定义一个权限注解
+
+```java
+@Target({ElementType.TYPE, ElementType.METHOD}) //意味着这个注解的适用对象 类，方法
+@Documented
+@Retention(RetentionPolicy.RUNTIME) //注解的生命周期在运行时依然有效，此时可以拿反射拿到注解的信息
+public @interface Authorization {
+
+  IdentityEnums[] value(); //使用刚才定义的enum
+
+}
+```
+
+3.在需要权限的方法或者类上 注解`@Authorization` 
+
+4.**设置拦截器，对部分请求进行权限检验**
+
+```java
+public class AuthInterceptor implements HandlerInterceptor {
+
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+      throws Exception {
+    Cookie cookies[] = request.getCookies();
+    //然后对cookie进行剥离，获得我们需要的，再对它的值进行检查
+    //用role来表示cookie中的权限
+      
+    //handler 是被访问的某个Controller方法的抽象，它是对象
+    if (handler instanceof HandlerMethod) {
+		//获取被Controller中被访问的方法
+      Method method = ((HandlerMethod) handler).getMethod();
+        //获取 该方法所在的是哪个Controller类
+      Class<?> clazz = method.getDeclaringClass();
+	  //获取在类上的Authorization注解
+      Authorization authClass = clazz.getAnnotation(Authorization.class);
+       //利用 handler 可以直接获取方法上的注解
+      Authorization authMethod = ((HandlerMethod) handler)
+          .getMethodAnnotation(Authorization.class);
+//方法上的注解粒度更小，优先级更高，所以在authMethod==null的情况下，才使用authClass
+      Authorization auth = authMethod == null ? authClass : authMethod;
+
+      if (auth == null) {
+        return true; //没有鉴权注解，表示该页面不需要权限
+      }
+
+      for (int i = 0; i < auth.value().length; i++) {
+        //如果鉴权注解中包含该用户的权限
+        if (auth.value()[i].ordinal() == role) {
+          return true;
+        }
+      }
+    }
+    response.sendRedirect(request.getContextPath() + "/error");
+    return false;
+  }
+
+  @Override
+  public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+      ModelAndView modelAndView) throws Exception {
+
+  }
+
+  @Override
+  public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
+      Object handler, Exception ex) throws Exception {
+
+  }
+}
+
+```
+
+但是在设置完拦截器之后，发现之前设置的跨域配置失效。
+
+浏览器发送真正请求之前会先发送一个OPTIONS的预检请求(Preflighted requests)，这个请求是用来验证本次请求是否安全的。而该预检请求会被拦截器拦截，后续真正的请求也不会发送。cors实现跨域就是在http的response里添加适当的header来实现的。
+
+我们知道http请求是走filter，到达Servlet之后才进行拦截器处理。所以如果把跨域配置放在filter中就可以生效。但是具体的细节还是要注意，前端要设置http请求带上cookie。即需要将 `withCredentials`设置为**true，**表示请求时会附带cookie，我使用的是axios，所以可以这样设置：代码如下：
+
+```js
+const service = axios.create({
+      withCredentials: true,
+      timeout: 5000
+    }
+);
+service.post(...);
+//还可以设置拦截器      
+             
+// request拦截器
+service.interceptors.request.use(
+  config => {
+    // 发送请求之前，要做的业务
+    return config
+  },
+  error => {
+    // 错误处理代码
+    
+    return Promise.reject(error)
+  }
+)
+
+// response拦截器
+service.interceptors.response.use(
+  response => {
+    // 数据响应之后，要做的业务
+    return response
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+```
+
+后端关于 鉴权和跨域代码如下：
+
+```java
+package com.example.rbooks.backend;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+// 使用过滤器 跨域，先于拦截器触发
+  @Bean
+  public CorsFilter corsFilter() {
+    //1. 添加 CORS配置信息
+    CorsConfiguration config = new CorsConfiguration();
+    //指定原始域
+    config.addAllowedOrigin("*");
+    //是否发送 Cookie
+    config.setAllowCredentials(true);
+    //放行哪些请求方式
+    config.addAllowedMethod("*");
+    //放行哪些原始请求头部信息
+    config.addAllowedHeader("*");
+    config.setMaxAge(3600L);
+    //2. 添加映射路径
+    UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
+    corsConfigurationSource.registerCorsConfiguration("/**", config);
+    //3. 返回新的CorsFilter
+    return new CorsFilter(corsConfigurationSource);
+  }
+
+
+  // 配置鉴权 拦截器
+ @Autowired
+ private AuthInterceptor authInterceptor;
+
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+
+    // 再对鉴权拦截器做配置
+    InterceptorRegistration registration = registry.addInterceptor(authInterceptor);
+
+    //排除 掉一些不需要鉴权的页面和资源
+    registration.excludePathPatterns("/user/login");
+    registration.excludePathPatterns("/user/register");
+    registration.excludePathPatterns("/home/getnew");
+    registration.excludePathPatterns("/home/gethot");
+    registration.excludePathPatterns("/home/getall");
+    registration.excludePathPatterns("/home/getsearch");
+
+    registration.addPathPatterns("/**"); //再将所有都添加路劲添加进去
+
+  }
+}
+```
+
+
+
+搞定。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

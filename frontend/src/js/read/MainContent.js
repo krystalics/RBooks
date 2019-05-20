@@ -5,12 +5,13 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import {ListGroup} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import {
   _addFollowAuthor,
   _addFollowBook,
-  _deleteChapter, _deleteFollowAuthor, _deleteFollowBook,
+  _deleteChapter,
+  _deleteFollowAuthor,
+  _deleteFollowBook,
   _getChapter,
   _isFollowAuthor,
   _isFollowBook
@@ -217,6 +218,7 @@ class MainContent extends Component {
       content: this.state.content
     };
     let time = this.state.datetime;
+
     let item = undefined;
 
     if (this.state.author === localStorage.getItem("name")) {

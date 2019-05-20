@@ -64,7 +64,7 @@ class Read extends Component {
                style={{marginLeft: "3%", width: "60%"}}>
 
             <Button onClick={this.handleStyleChange.bind(this)} className="mulu-left" variant="light">+</Button>
-            <Content data={this.props.location.state}/>
+            <Content data={this.props.location.state} bookid={this.state.bookid} author={this.state.author}/>
           </div>
 
           {/*<div className="content-right"*/}

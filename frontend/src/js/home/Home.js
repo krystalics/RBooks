@@ -101,6 +101,9 @@ class Home extends Component {
         break;
       case "last":
         dis = this.state.first - 10;  //这里因为还不知道 last有多少页，所以假设最后一页为10
+        break;
+      default:
+        dis=-1;
     }
     this.setState({
       first: this.state.first - dis,
