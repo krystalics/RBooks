@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://krystalics.github.io/frontend",
+
   "dependencies": {
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
@@ -40,6 +40,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "proxy": "http://192.168.0.106:8080"
+  ]
+
 }

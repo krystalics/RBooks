@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.RestController;
 * */
 @RestController
 @RequestMapping("/read")
-@Authorization(value = {IdentityEnums.VISITOR})
+//@Authorization(value = {IdentityEnums.VISITOR})  加了权限表示登录之后才能看文章
 public class ReadController {
 
   @Autowired

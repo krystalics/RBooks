@@ -26,7 +26,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     Cookie cookies[] = request.getCookies();
     String userid = "-1";
     if (cookies == null) {
-      response.sendRedirect(request.getContextPath() + "/error");
+//      response.sendRedirect(request.getContextPath() + "/error");
       return false;
     }
     for (Cookie cookie : cookies) {
@@ -37,7 +37,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
     int id = Integer.parseInt(userid);
     if (id < 0) {
-      response.sendRedirect(request.getContextPath() + "/error");
+//      response.sendRedirect(request.getContextPath() + "/error");
       return false;
     }
     User user = userRepository.findById(id);
@@ -67,7 +67,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
       }
     }
-    response.sendRedirect(request.getContextPath() + "/error");
+//    response.sendRedirect(request.getContextPath() + "/error");
     return false;
   }
 

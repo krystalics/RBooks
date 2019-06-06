@@ -30,6 +30,7 @@ class Read extends Component {
 
   async getData() {
     const res = await _getDirectory(this.state.bookid);
+    console.log(res.data);
     this.setState({directory: res.data});
   }
 
