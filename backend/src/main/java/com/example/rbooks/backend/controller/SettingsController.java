@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/settings")
-@Authorization(value = {IdentityEnums.VISITOR})
+@Authorization(value = {IdentityEnums.VISITOR,IdentityEnums.ADMIN,IdentityEnums.SUPER_ADMIN})
 public class SettingsController {
   // 只提供一个 更新接口即可
 

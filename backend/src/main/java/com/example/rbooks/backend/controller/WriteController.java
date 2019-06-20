@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/write")
-@Authorization(value = {IdentityEnums.VISITOR})
+@Authorization(value = {IdentityEnums.VISITOR,IdentityEnums.ADMIN,IdentityEnums.SUPER_ADMIN})
 public class WriteController {
 
   private final WriteService writeServiceImpl;

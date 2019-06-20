@@ -3,6 +3,7 @@ package com.example.rbooks.backend.controller.mypage;
 import com.example.rbooks.backend.auth.Authorization;
 import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.service.MyPageService;
+import javax.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ public class MyPageController {
     this.myPageServiceImpl = myPageServiceImpl;
   }
 
-  @Authorization(value = {IdentityEnums.VISITOR})
+  @Authorization(value = {IdentityEnums.VISITOR,IdentityEnums.ADMIN,IdentityEnums.SUPER_ADMIN})
   @RequestMapping(value = "/mypage")
   public String getInformation(@RequestParam("userid") int userid) {
     return myPageServiceImpl.myPage(userid);

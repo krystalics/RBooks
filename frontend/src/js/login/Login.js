@@ -57,9 +57,10 @@ class Login extends Component {
     if (res.status === 200) {
       if (res.data !== -1) {
         this.setState({userid: res.data}); //将返回的id赋给userid
+        // console.log(res)
         this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
         this.setLocalStorage(); //把数据顺便缓存到本地
-        this.props.history.push("/home"); //登录成功之后 重定向到 home
+        this.props.history.push("/"); //登录成功之后 重定向到 home
         window.location.reload();
 
       } else {

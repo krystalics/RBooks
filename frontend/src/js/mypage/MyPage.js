@@ -19,6 +19,7 @@ class MyPage extends Component {
 
   async getData() {
     const res = await _getMypage();
+    console.log(res)
     this.setState({data:res.data})
   }
 

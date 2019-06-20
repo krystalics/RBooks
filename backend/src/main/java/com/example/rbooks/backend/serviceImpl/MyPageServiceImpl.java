@@ -46,7 +46,6 @@ public class MyPageServiceImpl implements MyPageService {
 
   @Override
   public Information getInformation(int userid) {
-
     return informationDaoImpl.getInformation(userid);
   }
 

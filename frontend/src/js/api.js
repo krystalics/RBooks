@@ -1,7 +1,8 @@
 import service from './Service';
 
-let baseURL=`http://localhost:8080`;
-
+// let baseURL=`http://www.rbooks.top:8080`; //远程部署
+let baseURL=`http://localhost:8080`; //debug
+//
 
 //接下来三个方法是在 commentApp里的
 export function _getComments(data) {

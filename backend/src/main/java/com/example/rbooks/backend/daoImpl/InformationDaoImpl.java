@@ -24,6 +24,8 @@ public class InformationDaoImpl implements InformationDao {
 
   @Override
   public Information getInformation(int userId) {
+
     return informationRepository.findByUserid(userId);
+
   }
 }

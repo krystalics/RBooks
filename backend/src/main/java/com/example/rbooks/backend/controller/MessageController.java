@@ -20,7 +20,7 @@ public class MessageController {
     this.messageServiceImpl = messageServiceImpl;
   }
 
-  @Authorization(value = {IdentityEnums.VISITOR})
+  @Authorization(value = {IdentityEnums.VISITOR,IdentityEnums.ADMIN,IdentityEnums.SUPER_ADMIN})
   @RequestMapping(value = "/message")
   public List<Comment> getMessages(@RequestParam("commentuser") String commentuser) {
     return messageServiceImpl.getComments(commentuser);

@@ -72,6 +72,8 @@ public class WebConfig implements WebMvcConfigurer {
     registration.excludePathPatterns("/home/gethot");
     registration.excludePathPatterns("/home/getall");
     registration.excludePathPatterns("/home/getsearch");
+    registration.excludePathPatterns("/read/**");
+
 
     registration.addPathPatterns("/**"); //再将所有都添加路劲添加进去
 

@@ -30,7 +30,7 @@ class Read extends Component {
 
   async getData() {
     const res = await _getDirectory(this.state.bookid);
-    console.log(res.data);
+    // console.log(res.data); 之前是因为没有权限 和被拦截了
     this.setState({directory: res.data});
   }
 
