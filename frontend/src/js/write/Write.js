@@ -78,9 +78,11 @@ class Write extends Component {
     }
 
     let index = this.state.booklist.indexOf(book);
-    this.state.booklist.splice(index-1, 1);
-    this.setState({bookList: this.state.booklist});
 
+    this.state.booklist.splice(index, 1);
+
+    this.setState({bookList: this.state.booklist});
+    // console.log(this.state.booklist)
     const res = await _deleteBook(book.id);
     if (res.status !== 200) {
       alert(res.data);
@@ -129,7 +131,7 @@ class Write extends Component {
               </Col>
               <Col>
                 <Form.Group>
-                  <Form.Label>选择一个标签</Form.Label>
+                  <Form.Label>选择一个标签: </Form.Label>
                   <Form.Control as="select" onChange={this.handleLabelChange}>
                     <option>...</option>
                     <option>前端</option>

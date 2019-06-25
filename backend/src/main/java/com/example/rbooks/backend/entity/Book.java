@@ -27,11 +27,18 @@ public class Book implements Serializable {
   private Date datetime;
   private String photourl;
   private int love;
+  private String label;
 
   public Book() {
   }
 
+  public String getLabel() {
+    return label;
+  }
 
+  public void setLabel(String label) {
+    this.label = label;
+  }
 
   public int getId() {
     return id;
