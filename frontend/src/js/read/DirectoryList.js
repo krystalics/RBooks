@@ -11,6 +11,7 @@ class DirectoryList extends Component {
     for (let item of directory) {
       names.push(item);
     }
+
     return names;
 
   }
@@ -22,8 +23,7 @@ class DirectoryList extends Component {
 
           <Nav className="flex-column">
             {this.getNames().map((item, idx) => {
-              return <Directory key={idx} chaptername={item}
-                                param={this.props.param}/>
+              return <Directory key={idx} chaptername={item}/>
             })}
           </Nav>
 

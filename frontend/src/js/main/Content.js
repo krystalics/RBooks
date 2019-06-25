@@ -15,7 +15,6 @@ class Content extends Component {
   render() {
     return (
         <div>
-          {/*<Home/>*/}
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/write" component={Write}/>

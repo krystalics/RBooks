@@ -14,3 +14,17 @@
   justify-content: space-between;
   margin-bottom: 1%;
 }
+
+.title-author{
+  display: inline-block;
+}
+.title-date{
+  display: inline-block;
+
+}
+
+.wrapper{
+  width:90%;
+  /*margin: 10% auto;*/
+  margin: 5% auto 10%;
+}

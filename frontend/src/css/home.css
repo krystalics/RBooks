@@ -46,3 +46,11 @@
   height: 100%;
 }
 
+.mainContent{
+  position: absolute;
+  width:50%;
+  left: 25%;
+  min-width: 370px;
+  min-height: 600px;
+}
+

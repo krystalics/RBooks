@@ -24,18 +24,18 @@ class Content extends Component {
         增加章节</Button>
       </NavLink>
     }
-    if (typeof (this.props.data)=== 'undefined') {
-      item = <Route path="/read/:param/content/:chaptername"
+
+      item = <Route path="/read/:bookname/:chaptername"
                     component={MainContent}/>
-    } else {
-      item = <div>
-        {add}
-        <br/>
-        书本简介：
-        <hr/>
-        {this.props.data.des.description}
-      </div>
-    }
+    // } else {
+    //   item = <div>
+    //     {add}
+    //     <br/>
+    //     书本简介：
+    //     <hr/>
+    //     {localStorage.getItem("currentBookDes")}
+    //   </div>
+    // }
     return (
         item
     );

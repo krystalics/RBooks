@@ -3,18 +3,7 @@
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.title-author{
-    display: inline-block;
-}
-.title-date{
-  display: inline-block;
 
-}
-
-.wrapper{
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
 
 pre {
   display: block;

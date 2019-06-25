@@ -104,7 +104,11 @@
   text-align: center;
 }
 
+.menu-left{
+  display: inline;
 
+
+}
 
 @media screen and (max-width: 1600px){
   .introduction {
@@ -123,9 +127,7 @@
     margin-top: 5px;
     width: 80px;
   }
-  .mulu-left{
-    display: none;
-  }
+
 }
 
 
@@ -140,8 +142,6 @@
   .home-tag button {
     display: none;
   }
-  .mulu-left{
-    display: inline;
-  }
+
 }
 
