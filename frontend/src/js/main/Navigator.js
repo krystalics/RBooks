@@ -56,6 +56,7 @@ class Navigator extends Component {
           <li><Nav.Link href="/settings">设置</Nav.Link></li>
           <li><Nav.Link href="/message"> 消息</Nav.Link></li>
           {item}
+          <li><Nav.Link href="https://github.com/krystalics/rbooks">github</Nav.Link></li>
         </ul>
 
     </div>

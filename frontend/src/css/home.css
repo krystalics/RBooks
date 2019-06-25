@@ -50,7 +50,18 @@
   position: absolute;
   width:50%;
   left: 25%;
-  min-width: 370px;
+  min-width: 500px;
   min-height: 600px;
 }
+
+@media screen and (max-width: 600px){
+  .mainContent{
+    position: absolute;
+    width:100%;
+    left: 5px;
+    min-width: 500px;
+    min-height: 600px;
+  }
+}
+
 

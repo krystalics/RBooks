@@ -19,7 +19,20 @@ public class WriteServiceImpl implements WriteService {
 
   @Override
   public int addBook(Book book) { //需要返回 bookid
+
+
+
     bookDaoImpl.addBook(book);//先入库,入库之后找到它自增的id
+    // 新增书籍的时候 把简介直接加进文章里
+    int id=bookDaoImpl.getBookByNameAndAuthor(book.getName(), book.getAuthor()).getId();
+    ChapterId chapterId=new ChapterId();
+    chapterId.setBookid(id);
+    chapterId.setChaptername("序言");
+    Chapter chapter=new Chapter();
+    chapter.setChapterid(chapterId);
+    chapter.setContent(book.getDescription());
+    chapter.setDatetime(book.getDatetime());
+    chapterDaoImpl.addChapter(chapter);
     return bookDaoImpl.getBookByNameAndAuthor(book.getName(), book.getAuthor()).getId();
   }
 

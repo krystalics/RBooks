@@ -16,17 +16,12 @@ class DirectoryList extends Component {
 
   }
 
-
   render() {
 
     return (
-
-          <Nav className="flex-column">
-            {this.getNames().map((item, idx) => {
-              return <Directory key={idx} chaptername={item}/>
-            })}
-          </Nav>
-
+        this.getNames().map((item, idx) => {
+          return <Directory key={idx} chaptername={item}/>
+        })
     );
   }
 }

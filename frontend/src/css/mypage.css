@@ -25,7 +25,7 @@
   position: absolute;
   top:0;
   background: white;
-  z-index: 100;
+  z-index: 2;
   width:100%;
   height: 100%;
 
@@ -44,19 +44,7 @@
   width: 100%;
   list-style: none;
 
-  color: #87969d;
-  opacity: .5;
 
-  height: 50px;
-  padding: 0 10px;
-  border-bottom: 0;
-  line-height: 50px;
-  box-shadow: none!important;
-
-  font-size: 20px;
-  font-weight: 200;
-  z-index: 999;
-  text-shadow: 0 0 black;
   /*border-bottom: 1px solid rgba(0, 0, 0, 0.09) ;*/
 }
 .read-header-menu{
@@ -70,8 +58,22 @@
 
 .read-header-title{
   width: 100%;
-
+  position: absolute;
+  top:0;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  box-shadow: none!important;
+  z-index: -1;
 }
+
+.read-header-title span{
+  color: #87969d;
+  font-size: 20px;
+  font-weight: 200;
+  text-shadow: 0 0 black;
+}
+
 
 .read-header-right{
   display: flex;
@@ -87,6 +89,8 @@
   margin-right: 20px;
 }
 
+
+
 .read-content-middle{
   display: inline-block;
   width:100%;
@@ -100,8 +104,14 @@
   /*align-items: flex-start;*/
   /*justify-content: flex-start;*/
   /*flex-direction: column;*/
+  /*z-index:3;*/
+  /*background: white;*/
+  /*width:200px;*/
+  /*height: 100%;*/
+  /*border-right: 1px solid rgba(0, 0, 0, 0.1);*/
 
 }
+
 .directory button{
   font-size: 20px;
 }

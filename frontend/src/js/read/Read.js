@@ -48,13 +48,6 @@ class Read extends Component {
     this.setState({directory: res.data});
   }
 
-  styleIn = {
-    height: "800px", borderRight: "1px solid rgba(0,0,0,0.1)", width: "250px"
-  };
-  styleOut = {
-    display: "none"
-  };
-
   handleStyleChange() {
     if (this.state.style === this.styleOut) {
       this.setState({style: this.styleIn})
@@ -151,14 +144,29 @@ class Read extends Component {
     }
   }
 
+  styleIn = {
+    borderRight: "1px solid rgba(0,0,0,0.1)",
+    zIndex: "3",
+    background: "white",
+    width: "200px",
+    height: "100%",
+
+  };
+  styleOut = {
+    display: "none"
+  };
+
   render() {
 
     return (
         <div className="content-read">
-          <div className="content-left" style={this.state.style}>
-            <div className='directory'>
-              <DirectoryList directory={this.state.directory}/>
-            </div>
+
+          <div className='directory' style={this.state.style}>
+            <DirectoryList directory={this.state.directory}/>
+          </div>
+
+          <div className='read-header-title'>
+            <span>{localStorage.getItem('currentBookName')}</span>
           </div>
 
           <div className="read-content-middle">
@@ -169,9 +177,7 @@ class Read extends Component {
                         className="menu-left" variant="light">+</Button>
                 <li><NavLink href="/" variant='none'> RBooks</NavLink></li>
               </div>
-              <div className='read-header-title'>
-                <span>{localStorage.getItem('currentBookName')}</span>
-              </div>
+
               <div className='read-header-right'>
                 <li onClick={this.handleFollowBook}><Button
                     variant="info">{this.state.followbook}</Button>

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import HigherLogin from "../higher/HigherLogin";
-import {Form, InputGroup} from "react-bootstrap";
+import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import '../../css/main.css'
 import BookList from "../book/BookList";
 import {_addBook, _deleteBook, _getWrite} from '../api'
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 class Write extends Component {
   constructor(props) {
@@ -12,10 +14,12 @@ class Write extends Component {
     this.state = {
       bookname: '',
       description: '',
-      booklist: ''
+      booklist: '',
+      label:''
     };
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleLabelChange = this.handleLabelChange.bind(this);
+    this.handleDesChange = this.handleDesChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -23,11 +27,11 @@ class Write extends Component {
     this.getData();
   }
 
-  async getData(){
-    const res=await _getWrite(localStorage.getItem('name'));
-    if(res.status===200){
+  async getData() {
+    const res = await _getWrite(localStorage.getItem('name'));
+    if (res.status === 200) {
       this.setState({booklist: res.data})
-    }else {
+    } else {
       alert(res.data);
     }
   }
@@ -36,40 +40,49 @@ class Write extends Component {
     this.setState({bookname: e.target.value})
   }
 
-  handleChange(e) {
+  handleDesChange(e) {
     this.setState({description: e.target.value})
+  }
 
+  handleLabelChange(e){
+
+    this.setState({label: e.target.value})
   }
 
   async handleSubmit() {
     // id photourl love  都不填
+    if(this.state.label===""||this.state.label==="..."){
+      alert("请选择一个标签");
+      return
+    }
     let book = {
       name: this.state.bookname,
       author: localStorage.getItem('name'),
       description: this.state.description,
-      datetime: new Date()
+      datetime: new Date(),
+      label:this.state.label
     };
-
-    const res=await _addBook(book);
+    // alert(JSON.stringify(book));
+    const res = await _addBook(book);
     if (res.data !== -1) {
       window.location.reload();
-    }else {
+    } else {
       alert(res.data);
     }
   }
 
- async handleDeleteBook(book) {
+  async handleDeleteBook(book) {
     let del = window.confirm("是否删除本书");
     if (!del) {
       return;
     }
-    console.log(book);
+
     let index = this.state.booklist.indexOf(book);
-    this.state.booklist.splice(index - 1, 1);
+    this.state.booklist.splice(index-1, 1);
     this.setState({bookList: this.state.booklist});
 
-    const res=await _deleteBook(book.id);
-    if(res.status!==200){
+    const res = await _deleteBook(book.id);
+    if (res.status !== 200) {
       alert(res.data);
     }
 
@@ -81,12 +94,11 @@ class Write extends Component {
     if (this.state.booklist === 'undefined' || this.state.booklist.length
         === 0) {
       item = <div>
-        <h4>作品集: ></h4>
+        <h4>暂无作品</h4>
 
       </div>
     } else {
       item = <div>
-        之前的作品集
         <BookList onDeleteBook={this.handleDeleteBook.bind(this)}
                   data={this.state.booklist}/>
 
@@ -95,32 +107,61 @@ class Write extends Component {
 
     return (
         <div className="Content">
-          <div className="content-left">
-          {item}
-          </div>
+          <div className='content-left'></div>
           <div className="content-middle">
-            开始一本新书
-            <br/>
-            <InputGroup>
-              <Form.Control type="text"
-                            onChange={this.handleNameChange}
-                            placeholder="书名"
-                            value={this.state.bookname}
-                            name="bookname"/>
-              <InputGroup.Append>
-                <Button variant="success"
-                        onClick={this.handleSubmit}>保存</Button>
-              </InputGroup.Append>
-            </InputGroup>
 
+            写一本新书:
+            <br/>
+
+            <Form.Control type="text"
+                          onChange={this.handleNameChange}
+                          placeholder="书名"
+                          value={this.state.bookname}
+                          name="bookname"/>
+
+            <br/>
+
+            <Row>
+              <Col>
+                封面:
+                <Form.Control type="file" accept="image/png, image/jpg"
+                              onChange={this.handleFile}/>
+              </Col>
+              <Col>
+                <Form.Group>
+                  <Form.Label>选择一个标签</Form.Label>
+                  <Form.Control as="select" onChange={this.handleLabelChange}>
+                    <option>...</option>
+                    <option>前端</option>
+                    <option>后端</option>
+                    <option>云计算</option>
+                    <option>大数据</option>
+                    <option>Android</option>
+                    <option>数据库</option>
+                    <option>其他</option>
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
+            {/*封面:*/}
+            {/*<Form.Control type="file" accept="image/png, image/jpg"*/}
+            {/*onChange={this.handleFile}/>*/}
+            关于本书你想说些啥呢？
             <textarea className="Textarea_write"
-                      onChange={this.handleChange}
+                      onChange={this.handleDesChange}
                       value={this.state.description}
                       name="bookname"
-                      placeholder="关于本书你想说些啥呢？"
+                      placeholder="序言"
             />
-
+            <Button variant="success"
+                    onClick={this.handleSubmit}>保存</Button>
+            <br/>
+            <br/>
+            you writing before:
+            <hr/>
+            {item}
           </div>
+          {/*<div className="content-middle">*/}
 
         </div>
     );
