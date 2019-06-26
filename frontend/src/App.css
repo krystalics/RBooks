@@ -56,6 +56,10 @@ body {
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.Navigator button{
+  padding:.5rem 1rem;
+}
+
 .Content {
   position: relative;
   width:100%;

@@ -14,7 +14,7 @@ class Settings extends Component {
     this.state = {
       userid: localStorage.getItem('userid'),
       username: '',
-      email: '@qq.com',
+      email: '例如...@qq.com',
       githubpage: '',
       homepage: '',
       selfintroduction: '',

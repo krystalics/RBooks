@@ -33,6 +33,10 @@ export function _getSearch(word) {
   return service.get(`${baseURL}/home/getsearch?word=${word}`);
 }
 
+export function _getTag(word) {
+  return service.get(`${baseURL}/home/gettag?tag=${word}`);
+}
+
 //接下来2个方法是在 login组件中
 
 export function _login(data) {

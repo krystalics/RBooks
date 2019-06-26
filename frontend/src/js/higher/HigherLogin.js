@@ -19,7 +19,7 @@ export default (WrappedComponent) => {
 
     checkCookie() {
       let userid = this.getCookie("userid");
-      return !(userid === null || userid === -1);
+      return !(userid === null || userid === '-1');
       //默认是-1  而无该key 则为''
     }
 

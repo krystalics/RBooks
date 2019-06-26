@@ -112,7 +112,7 @@ class Write extends Component {
           <div className='content-left'></div>
           <div className="content-middle">
 
-            写一本新书:
+            写一本新书: 书名不要太长哦
             <br/>
 
             <Form.Control type="text"

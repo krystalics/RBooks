@@ -17,7 +17,8 @@ class BookList extends Component {
         description: data[index].description,
         datetime: data[index].datetime,
         photourl: data[index].photourl,
-        love: data[index].love
+        love: data[index].love,
+        label:data[index].label
       };
 
       datas.push(temp);

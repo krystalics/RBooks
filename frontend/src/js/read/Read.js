@@ -3,7 +3,9 @@ import DirectoryList from "./DirectoryList";
 import Content from "./Content";
 import {
   _addFollowAuthor,
-  _addFollowBook, _deleteFollowAuthor, _deleteFollowBook,
+  _addFollowBook,
+  _deleteFollowAuthor,
+  _deleteFollowBook,
   _getDirectory,
   _isFollowAuthor,
   _isFollowBook
@@ -11,7 +13,6 @@ import {
 
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
-import {Nav} from "react-bootstrap";
 import NavLink from "react-bootstrap/NavLink";
 // 由三个组件构成，目录 主要内容 评论列表
 // 这里的 CommentList和之前Message中的不一样，这里是需要根据 Chapterid 来确定评论的，而之前的是经过高级组件固定化的

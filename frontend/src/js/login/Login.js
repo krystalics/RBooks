@@ -10,7 +10,7 @@ class Login extends Component {
     this.state = {
       name: '',
       password: '',
-      userid: -1  // 这个用于设置cookie
+      userid: '-1'  // 这个用于设置cookie
     };
     this.handleUserInputChange = this.handleUserInputChange.bind(this);
     this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
@@ -42,8 +42,8 @@ class Login extends Component {
     localStorage.setItem('userid', this.state.userid);
   }
 
-  checkUserAndPass(username,password){
-    if(username.length<6||password.length<6){
+  checkUserAndPass(username, password) {
+    if (username.length < 6 || password.length < 6 || username.length > 20) {
       alert("账号或密码格式不正确");
       return false;
     }
@@ -73,7 +73,7 @@ class Login extends Component {
   }
 
   async handleRegisterSubmit() {
-    if(!this.checkUserAndPass(this.state.name,this.state.password)){
+    if (!this.checkUserAndPass(this.state.name, this.state.password)) {
       return;
     }
     const res = await _register(
@@ -103,7 +103,7 @@ class Login extends Component {
             <div className="mainLogin">
               <Form.Label>账号</Form.Label>
               <Form.Control type="text" value={this.state.name}
-                            placeholder="长度至少6位"
+                            placeholder="长度至少6位至多20位"
                             onChange={this.handleUserInputChange}/>
 
               <Form.Label>密码</Form.Label>

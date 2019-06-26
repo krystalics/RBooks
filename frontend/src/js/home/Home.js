@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {_getHot, _getNew, _getSearch} from '../api'
+import {_getHot, _getNew, _getSearch, _getTag} from '../api'
 import BookListInHome from "./BookListInHome";
 import '../../css/home.css'
 
@@ -51,8 +51,10 @@ class Home extends Component {
     this.searchSubmit(this.state.search);
   }
 
-  handleTag(e) {
-    this.searchSubmit(e.target.value);
+  async handleTag(e) {
+    // this.searchSubmit(e.target.value);
+    const res=await _getTag(e.target.value);
+    this.setState({data:res.data})
   }
 
   async searchSubmit(word) {
