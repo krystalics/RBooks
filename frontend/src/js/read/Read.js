@@ -3,17 +3,14 @@ import DirectoryList from "./DirectoryList";
 import Content from "./Content";
 import {
   _addFollowAuthor,
-  _addFollowBook,
   _deleteFollowAuthor,
-  _deleteFollowBook,
   _getDirectory,
-  _isFollowAuthor,
-  _isFollowBook
+  _isFollowAuthor
 } from '../api'
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
 import NavLink from "react-bootstrap/NavLink";
-
+import {checkCookie} from "../CookieService";
 
 class Read extends Component {
 
@@ -26,18 +23,16 @@ class Read extends Component {
       directory: [],
       description: localStorage.getItem('currentBookDes'),
       style: this.styleIn,
-      followauthor: "关注作者",
-      followbook: "点赞收藏"
-
+      followauthor: "关注作者"
     };
     this.handleFollowAuthor = this.handleFollowAuthor.bind(this);
-    this.handleFollowBook = this.handleFollowBook.bind(this);
+
   }
 
   componentDidMount() { //获得数据
 
     this.getData();
-    this.isFollowBook();
+
     this.isFollowAuthor();
   }
 
@@ -55,20 +50,7 @@ class Read extends Component {
     }
   }
 
-  async isFollowBook() {
-    let followbookid = {
-      bookid: this.state.bookid,
-      userid: localStorage.getItem('userid')
-    };
 
-    const res1 = await _isFollowBook(followbookid);
-    if (res1.data) { //如果已经点赞过了
-      this.setState({followbook: "取消点赞"});
-    } else {
-      this.setState({followbook: "点赞收藏"});
-    }
-
-  }
 
   async isFollowAuthor() {
     let param = {
@@ -84,40 +66,9 @@ class Read extends Component {
     }
   }
 
-  async handleFollowBook() { //需要bookid 和 userid
-
-    if (typeof (this.state.bookid) === "undefined" || localStorage.getItem(
-        'userid')
-        === "undefined") {
-      return;
-    }
-    let followbookid = {
-      bookid: this.state.bookid,
-      userid: localStorage.getItem('userid')
-    };
-
-    if (this.state.followbook === "点赞收藏") {
-      const res1 = await _addFollowBook(followbookid);
-      if (res1.status === 200) {
-        this.setState({followbook: "取消点赞"});
-      } else {
-        alert("收藏失败" + res1.data);
-      }
-
-    } else {
-      const res2 = await _deleteFollowBook(followbookid);
-      if (res2.status === 200) {
-        this.setState({followbook: "点赞收藏"});
-      } else {
-        alert("取消失败" + res2.data);
-      }
-    }
-
-  }
-
   async handleFollowAuthor() { //需要authorid 和 userid
-    if (typeof (this.state.author) === "undefined" || localStorage.getItem(
-        'userid') === "undefined") {
+    if (!checkCookie()) {
+      alert("你还没有登录，请先登录");
       return;
     }
     let param = {
@@ -178,9 +129,6 @@ class Read extends Component {
               </div>
 
               <div className='read-header-right'>
-                <li onClick={this.handleFollowBook}><Button
-                    variant="info">{this.state.followbook}</Button>
-                </li>
                 <li onClick={this.handleFollowAuthor}><Button
                     variant="primary">{this.state.followauthor}</Button>
                 </li>
@@ -191,11 +139,6 @@ class Read extends Component {
             <Content />
 
           </div>
-
-          {/*<div className="content-right"*/}
-          {/*style={{marginLeft: "3%", width: "150px"}}>*/}
-          {/*/!*<ReadSideBar id={this.state.bookid} author={this.state.author}/>*!/*/}
-          {/*</div>*/}
 
         </div>
     );

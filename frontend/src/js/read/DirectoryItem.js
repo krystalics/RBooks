@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
-import {_getChapter} from "../api";
 
 class DirectoryItem extends Component {
 
@@ -11,10 +10,6 @@ class DirectoryItem extends Component {
     this.state = {};
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this)
-  }
-
-  handleAdd() {
-
   }
 
   handleDelete() {
@@ -29,7 +24,7 @@ class DirectoryItem extends Component {
     if (chaptername === '序言') {
       return ''
     } else if(write===true){
-      return <Button onClick={this.handleDelete}>删除</Button>;
+      return <Button onClick={this.handleDelete} variant='none'>删除</Button>;
     }
   }
 
@@ -43,8 +38,8 @@ class DirectoryItem extends Component {
     let edit = '';
 
     if (typeof (this.props.write) !== 'undefined') {
-      edit = <NavLink to={{pathname: '/writing/chapter'}}>
-        <Button onClick={this.handleEdit} variant='link'>
+      edit = <NavLink to={{pathname: '/writing/chapter'}} style={{marginLeft:'100px'}}>
+        <Button onClick={this.handleEdit} variant='none'>
           编辑
         </Button>
       </NavLink>

@@ -13,6 +13,7 @@ class DirectoryList extends Component {
 
     names.sort();
     names=names.map(item=>{
+
       return item.split("~")[1];
     });
 

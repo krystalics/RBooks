@@ -65,6 +65,8 @@
   line-height: 50px;
   box-shadow: none!important;
   z-index: -1;
+  border-bottom: 1px solid beige;
+
 }
 
 .read-header-title span{

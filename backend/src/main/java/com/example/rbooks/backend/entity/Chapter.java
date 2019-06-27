@@ -3,6 +3,7 @@ package com.example.rbooks.backend.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -17,7 +18,11 @@ public class Chapter implements Serializable {
   private ChapterId chapterid;
   private String content;
   @JsonFormat(timezone = "GMT+8")
-  private Date datetime;
+  private Date createtime;
+  @JsonFormat(timezone = "GMT+8")
+  private Date updatetime;
+
+  private AtomicInteger love;
 
   public Chapter(){}
 
@@ -33,15 +38,31 @@ public class Chapter implements Serializable {
     return content;
   }
 
-  public Date getDatetime() {
-    return datetime;
+  public Date getCreatetime() {
+    return createtime;
   }
 
-  public void setDatetime(Date datetime) {
-    this.datetime = datetime;
+  public void setCreatetime(Date createtime) {
+    this.createtime = createtime;
   }
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public Date getUpdatetime() {
+    return updatetime;
+  }
+
+  public void setUpdatetime(Date updatetime) {
+    this.updatetime = updatetime;
+  }
+
+  public AtomicInteger getLove() {
+    return love;
+  }
+
+  public void setLove(AtomicInteger love) {
+    this.love = love;
   }
 }

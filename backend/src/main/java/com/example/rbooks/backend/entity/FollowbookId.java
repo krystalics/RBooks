@@ -10,7 +10,7 @@ public class FollowbookId implements Serializable {
 
   private int userid;
   private int bookid;
-
+  private String chaptername;
   public FollowbookId() {
   }
 
@@ -30,12 +30,20 @@ public class FollowbookId implements Serializable {
     this.bookid = bookid;
   }
 
+  public String getChaptername() {
+    return chaptername;
+  }
+
+  public void setChaptername(String chaptername) {
+    this.chaptername = chaptername;
+  }
+
   @Override
   public int hashCode() {
     // 定义一种hash算法，
     int result = 17;
-    result = 37 * result + getUserid();
-    result = 37 * result + getBookid();
+    result = 37 * result + getUserid()+getChaptername().hashCode();
+    result = 37 * result + getBookid()+getChaptername().hashCode();
     return result;
   }
 

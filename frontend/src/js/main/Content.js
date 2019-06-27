@@ -9,7 +9,7 @@ import Login from "../login/Login";
 import Settings from "../settings/Settings";
 import Read from "../read/Read";
 import '../../App.css'
-import Chapter from "../write/Chapter";
+import EditChapter from "../write/EditChapter";
 
 class Content extends Component {
   render() {
@@ -23,7 +23,7 @@ class Content extends Component {
             <Route path="/user/login" component={Login}/>
             <Route path="/settings" component={Settings}/>
             <Route path="/read" component={Read}/>
-            <Route path="/writing/chapter" component={Chapter}/>
+            <Route path="/writing/chapter" component={EditChapter}/>
 
           </Switch>
         </div>

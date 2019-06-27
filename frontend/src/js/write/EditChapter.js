@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
 import {_addChapter, _getChapter, _updateChapter} from '../api'
 
-class Chapter extends Component {
+class EditChapter extends Component {
 
   constructor(props) {
 
@@ -53,13 +53,16 @@ class Chapter extends Component {
         chaptername: this.state.chaptername
       },
       content: this.state.content,
-      datetime: new Date()
+
+      updatetime: new Date()
     };
 
     let res='';
     if(localStorage.getItem('editChapterName')===''){
+      chapter.createtime=new Date();
       res= await _addChapter(chapter);
     }else{
+
       res = await _updateChapter(chapter);
     }
     if (res.status === 200) {
@@ -107,4 +110,4 @@ class Chapter extends Component {
 
 }
 
-export default Chapter;
+export default EditChapter;

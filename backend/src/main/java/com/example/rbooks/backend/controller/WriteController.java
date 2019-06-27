@@ -6,6 +6,7 @@ import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
 import com.example.rbooks.backend.service.MyPageService;
+import com.example.rbooks.backend.service.ReadService;
 import com.example.rbooks.backend.service.WriteService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/write")
 @Authorization(value = {IdentityEnums.VISITOR,IdentityEnums.ADMIN,IdentityEnums.SUPER_ADMIN})
 public class WriteController {
+
+  @Autowired
+  private ReadService readService;
 
   private final WriteService writeServiceImpl;
   @Autowired
@@ -63,7 +67,10 @@ public class WriteController {
   @RequestMapping(value = "/updatechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String updateChapter(@RequestBody Chapter chapter) {
 
-    writeServiceImpl.updateChapter(chapter);
+    Chapter chapter1=readService.getChapter(chapter.getChapterid());
+    chapter1.setUpdatetime(chapter.getUpdatetime());
+    chapter1.setContent(chapter.getContent());
+    writeServiceImpl.updateChapter(chapter1);
 
     return "更新成功";
   }

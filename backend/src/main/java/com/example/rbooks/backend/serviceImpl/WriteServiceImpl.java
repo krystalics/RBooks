@@ -31,7 +31,8 @@ public class WriteServiceImpl implements WriteService {
     Chapter chapter=new Chapter();
     chapter.setChapterid(chapterId);
     chapter.setContent(book.getDescription());
-    chapter.setDatetime(book.getDatetime());
+    chapter.setCreatetime(book.getDatetime());
+    chapter.setUpdatetime(book.getDatetime());
     chapterDaoImpl.addChapter(chapter);
     return bookDaoImpl.getBookByNameAndAuthor(book.getName(), book.getAuthor()).getId();
   }

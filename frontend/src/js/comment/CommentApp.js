@@ -27,10 +27,8 @@ class CommentApp extends Component {
   }
 
   async getComments() {
-
     const res=await _getComments(this.props.chapterid);
     this.setState({comments:res.data});
-
   }
 
   async handleSubmitComment(comment) {
@@ -42,8 +40,6 @@ class CommentApp extends Component {
       return alert("你还没有输入评论内容");
     }
     // 将评论数据压入，，然后重新渲染
-
-    // console.log("commentApp " +new Date(comment.datetime)); 时间显示正常
     let newComment={
       commentid:{
         bookid:this.props.chapterid.bookid,
@@ -60,7 +56,6 @@ class CommentApp extends Component {
       comments: this.state.comments
     });
 
-
     await _addComment(newComment);
 
   }
@@ -72,11 +67,10 @@ class CommentApp extends Component {
       return;
     }
     let index=this.state.comments.indexOf(comment);
-    this.state.comments.splice(index,1); //删除该下标的一个元素
+    this.state.comments.splice(index-1,1); //删除该下标的一个元素
     this.setState({
       comments: this.state.comments
     });
-
 
     await _deleteComment(comment.commentid);
   }

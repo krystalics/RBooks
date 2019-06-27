@@ -5,7 +5,9 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import {_deleteChapter, _getChapter} from "../api"
+import {_getChapter} from "../api"
+
+import SideBar from "./SideBar";
 
 var chapterid = {};
 
@@ -14,7 +16,6 @@ class MainContent extends Component {
   constructor(props) {
     super(props);
 
-    // console.log(chapterid)
     this.state = {
       data: '',
       author: localStorage.getItem('currentBookAuthor'),
@@ -22,10 +23,9 @@ class MainContent extends Component {
       chaptername: this.props.match.params.chaptername,
       commentuser: '',
       content: '',
-      datetime: ''
+      updatetime: ''
 
     };
-    this.handleDeleteChapter = this.handleDeleteChapter.bind(this);
 
   }
 
@@ -57,7 +57,6 @@ class MainContent extends Component {
     let newChaptername = this.props.match.params.chaptername;
 
     if (chaptername !== newChaptername) {
-
       this.getData(newChaptername);
     }
   }
@@ -72,7 +71,6 @@ class MainContent extends Component {
       chaptername: chaptername
     };
 
-    // console.log(chapterid)
     const res = await _getChapter(chapterid);
     this.setState({data: res.data});
     this.analyse();
@@ -84,47 +82,25 @@ class MainContent extends Component {
     this.setState({
       chaptername: data.chapterid.chaptername,
       content: data.content,
-      datetime: data.datetime
+      updatetime: data.updatetime
     });
-
-  }
-
-  async handleDeleteChapter() {
-
-    let del = window.confirm("是否删除本章节");
-    if (!del) {
-      return;
-    }
-
-    let chapterid = {
-      bookid: this.state.bookid,
-      chaptername: this.state.chaptername
-    };
-
-    const res = await _deleteChapter(chapterid);
-    if (res.status === 404) {
-      alert(res.data);
-    }
-    window.history.back(-1);
 
   }
 
 
   render() {
 
-    let time = this.state.datetime;
+    let time = this.state.updatetime;
     return (
         <div className='mainContent'>
 
-          {/*{item}*/}
+          <SideBar/>
 
           <div className="title">
             <span><h3>{this.state.chaptername}</h3></span>
-
-            <span className="title-author">{this.state.author}</span>
+            <span className="title-author">作者: {this.state.author}</span>
             {' '}
-            <span className="title-date"><Time data={time}/></span>
-
+            <span className="title-date">更新时间: <Time data={time}/></span>
             <hr/>
           </div>
 

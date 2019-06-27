@@ -71,12 +71,12 @@ public class ReadServiceImpl implements ReadService {
   }
 
   @Override
-  public void addFollowBook(FollowbookId id) {
+  public void addLoveChapter(FollowbookId id) {
     followDaoImpl.addFollowBook(id);
   }
 
   @Override
-  public void deleteFollowBook(FollowbookId id) {
+  public void deleteLoveChapter(FollowbookId id) {
     followDaoImpl.deleteFollowBook(id);
   }
 
