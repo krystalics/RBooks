@@ -61,15 +61,17 @@ public class WriteController {
 
 
   @RequestMapping(value = "/updatechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public String updateChapter(@RequestParam String oldName,@RequestBody Chapter chapter) {
-    ChapterId chapterId=new ChapterId();
-    chapterId.setBookid(chapter.getChapterid().getBookid());
-    chapterId.setChaptername(oldName);
-    writeServiceImpl.deleteChapter(chapterId); //更新的时候，要先把原来的删除掉
+  public String updateChapter(@RequestBody Chapter chapter) {
 
     writeServiceImpl.updateChapter(chapter);
 
     return "更新成功";
+  }
+
+  @RequestMapping(value = "/deletechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+  public String deleteChapter(@RequestBody ChapterId chapterId) {
+    writeServiceImpl.deleteChapter(chapterId);
+    return "删除成功";
   }
 
 

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Directory from "./Directory";
-import {Nav} from 'react-bootstrap'
+import DirectoryItem from "./DirectoryItem";
 import '../../css/main.css'
 
 class DirectoryList extends Component {
@@ -12,6 +11,11 @@ class DirectoryList extends Component {
       names.push(item);
     }
 
+    names.sort();
+    names=names.map(item=>{
+      return item.split("~")[1];
+    });
+
     return names;
 
   }
@@ -20,7 +24,7 @@ class DirectoryList extends Component {
 
     return (
         this.getNames().map((item, idx) => {
-          return <Directory key={idx} chaptername={item}/>
+          return <DirectoryItem key={idx} chaptername={item} write={this.props.write} onDeleteChapter={this.props.onDeleteChapter}/>
         })
     );
   }

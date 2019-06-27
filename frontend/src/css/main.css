@@ -45,19 +45,6 @@
   margin-top: 5%;
 }
 
-.editchapter {
-  /*position: fixed;*/
-  /*right: 5%;*/
-  /*margin-top: 60px;*/
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-}
-
-.editchapter li {
-  margin-left: 10px;
-}
-
 
 .Textarea {
   padding: 10px;
@@ -94,8 +81,7 @@
 }
 
 .chaptername {
-  margin-top: 3%;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .nologin{
@@ -106,8 +92,6 @@
 
 .menu-left{
   display: inline;
-
-
 }
 
 @media screen and (max-width: 1600px){

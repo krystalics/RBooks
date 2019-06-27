@@ -42,4 +42,18 @@ public class HomeServiceImpl implements HomeService {
 
     return res;
   }
+
+  public List<Book> getTagBooks(String tag) {
+    List<Book> allbooks = bookDaoImpl.getAllBooks();
+    List<Book> res = new ArrayList<>();
+    for (Book book : allbooks) { //所有该标签的都返回
+      if (book.getLabel().equals(tag)) {
+        res.add(book);
+      }
+    }
+
+    return res;
+  }
+
+
 }

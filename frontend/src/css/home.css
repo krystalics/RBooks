@@ -67,10 +67,18 @@
 }
 
 .limit-length {
-  max-width: 100px;
+  width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.managebook{
+  position: absolute;
+  width:100%;
+  height: 100%;
+  background:white;
+
 }
 
 

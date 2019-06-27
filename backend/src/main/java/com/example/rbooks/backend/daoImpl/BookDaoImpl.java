@@ -18,6 +18,7 @@ public class BookDaoImpl implements BookDao {
 
   private final BookRepository bookRepository;
 
+
   @Autowired
   public BookDaoImpl(BookRepository bookRepository) {
     this.bookRepository = bookRepository;
@@ -75,16 +76,14 @@ public class BookDaoImpl implements BookDao {
     return getBooks("datetime",page);
   }
 
+
+
   public List<Book> getBooks(String properties,int page){
     Sort sort=new Sort(Direction.DESC,properties);
     Iterable<Book> iterable=bookRepository.findAll(sort);
     //
-
-
     List<Book> books=new ArrayList<>();
-
     // 获得第page页的内容
-
     int count=0;
     int i=0;
     int index=page*10;
@@ -103,4 +102,5 @@ public class BookDaoImpl implements BookDao {
     }
     return books;
   }
+
 }

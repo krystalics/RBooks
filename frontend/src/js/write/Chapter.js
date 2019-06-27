@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
-import {_updateChapter} from '../api'
+import {_addChapter, _getChapter, _updateChapter} from '../api'
 
 class Chapter extends Component {
 
@@ -11,39 +11,59 @@ class Chapter extends Component {
 
     super(props);
     this.state = {
-      content: typeof (this.props.location.state.data.content) === "undefined"
-          ? "" : this.props.location.state.data.content,
-      chaptername: typeof (this.props.location.state.data.chaptername)
-      === "undefined" ? "" : this.props.location.state.data.chaptername,
-      oldName: typeof (this.props.location.state.data.chaptername)
-      === "undefined" ? "" : this.props.location.state.data.chaptername
+      chaptername: localStorage.getItem('editChapterName'),
+      content: '',
+      readOnly: localStorage.getItem('editChapterName') !== ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
+  componentWillMount() {
+    this.getData()
+  }
+
   handleChange(event) {
     this.setState({content: event.target.value})
   }
 
+
+  async getData(){
+    if(localStorage.getItem('editChapterName')!==''){
+      let chapterid={
+        bookid:localStorage.getItem('currentBookId'),
+        chaptername:this.state.chaptername
+      };
+      const res=await _getChapter(chapterid);
+      if(res.status===200){
+        // console.log(res.data)
+        this.setState({content:res.data.content})
+      }else{
+        alert(res.data)
+      }
+    }
+  }
+
+
   async handleSubmit() {
     let chapter = {
       chapterid: {
-        bookid: this.props.location.state.data.bookid,
+        bookid: localStorage.getItem('currentBookId'),
         chaptername: this.state.chaptername
       },
       content: this.state.content,
       datetime: new Date()
     };
 
-    const res = await _updateChapter(this.state.oldName, chapter);
+    let res='';
+    if(localStorage.getItem('editChapterName')===''){
+      res= await _addChapter(chapter);
+    }else{
+      res = await _updateChapter(chapter);
+    }
     if (res.status === 200) {
-      if (this.state.oldName === this.state.chaptername) {
-        window.history.back(0);
-      } else {
-        window.history.back(-2); //更新名字了之后，之前的页面路径发送变化，获取不到后台数据，所以往回退两个页面
-      }
+      window.history.back(0);
     } else {
       alert(res.data);
     }
@@ -55,17 +75,19 @@ class Chapter extends Component {
   }
 
   render() {
-
+  // console.log(this.state)
     return (
         <div className="Content">
           <div className="content-left">
           </div>
           <div className="content-middle">
+            章节名一旦确定就无法更改:<br/>
             <InputGroup>
               <Form.Control type="text"
                             placeholder="请输入文章标题"
                             onChange={this.handleNameChange}
                             value={this.state.chaptername}
+                            readOnly={this.state.readOnly}
                             name="chaptername"/>
               <InputGroup.Append>
                 <Button onClick={this.handleSubmit}

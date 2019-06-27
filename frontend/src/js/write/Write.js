@@ -7,6 +7,7 @@ import BookList from "../book/BookList";
 import {_addBook, _deleteBook, _getWrite} from '../api'
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Median from "./Median";
 
 class Write extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Write extends Component {
       bookname: '',
       description: '',
       booklist: '',
-      label:''
+      label: ''
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -44,14 +45,14 @@ class Write extends Component {
     this.setState({description: e.target.value})
   }
 
-  handleLabelChange(e){
+  handleLabelChange(e) {
 
     this.setState({label: e.target.value})
   }
 
   async handleSubmit() {
     // id photourl love  都不填
-    if(this.state.label===""||this.state.label==="..."){
+    if (this.state.label === "" || this.state.label === "...") {
       alert("请选择一个标签");
       return
     }
@@ -60,7 +61,7 @@ class Write extends Component {
       author: localStorage.getItem('name'),
       description: this.state.description,
       datetime: new Date(),
-      label:this.state.label
+      label: this.state.label
     };
     // alert(JSON.stringify(book));
     const res = await _addBook(book);
@@ -103,16 +104,17 @@ class Write extends Component {
       item = <div>
         <BookList onDeleteBook={this.handleDeleteBook.bind(this)}
                   data={this.state.booklist}/>
-
       </div>
     }
 
     return (
+
         <div className="Content">
+          <div style={this.state.style}></div>
           <div className='content-left'></div>
           <div className="content-middle">
 
-            写一本新书: 书名不要太长哦
+            写一本新书:
             <br/>
 
             <Form.Control type="text"
@@ -120,7 +122,6 @@ class Write extends Component {
                           placeholder="书名"
                           value={this.state.bookname}
                           name="bookname"/>
-
             <br/>
 
             <Row>
@@ -164,7 +165,7 @@ class Write extends Component {
             {item}
           </div>
           {/*<div className="content-middle">*/}
-
+          <Median/>
         </div>
     );
   }

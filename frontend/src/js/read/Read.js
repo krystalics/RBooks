@@ -10,12 +10,10 @@ import {
   _isFollowAuthor,
   _isFollowBook
 } from '../api'
-
 import '../../css/main.css'
 import Button from "react-bootstrap/Button";
 import NavLink from "react-bootstrap/NavLink";
-// 由三个组件构成，目录 主要内容 评论列表
-// 这里的 CommentList和之前Message中的不一样，这里是需要根据 Chapterid 来确定评论的，而之前的是经过高级组件固定化的
+
 
 class Read extends Component {
 
@@ -31,7 +29,7 @@ class Read extends Component {
       followauthor: "关注作者",
       followbook: "点赞收藏"
 
-    }
+    };
     this.handleFollowAuthor = this.handleFollowAuthor.bind(this);
     this.handleFollowBook = this.handleFollowBook.bind(this);
   }
@@ -190,8 +188,7 @@ class Read extends Component {
             </div>
 
 
-            <Content data={this.state.description} bookid={this.state.bookid}
-                     author={this.state.author}/>
+            <Content />
 
           </div>
 

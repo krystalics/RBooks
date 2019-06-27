@@ -21,9 +21,9 @@ public interface ReadService {
 
   Chapter getChapter(ChapterId chapterId);
 
-  void deleteChapter(ChapterId chapterId);
 
-  void deleteBook(int bookid);
+
+
 
   void addComment(Comment comment);
 
@@ -37,6 +37,6 @@ public interface ReadService {
 
   List<Chapter> getBook(int bookid);
 
-  Book getBookById(int bookid);
+
 
 }

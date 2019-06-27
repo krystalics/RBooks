@@ -12,4 +12,6 @@ public interface HomeService {
   List<Book> getNewBooksInfo(int page);
 
   List<Book> getSearchBooksInfo(String word);
+
+  List<Book> getTagBooks(String tag);
 }

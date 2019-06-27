@@ -6,6 +6,8 @@ import Time from "../Time";
 
 class BookInfo extends Component {
 
+
+
   handleDelete() {
     this.props.onDeleteBook(this.props.data);
   }
@@ -17,30 +19,26 @@ class BookInfo extends Component {
     localStorage.setItem("currentBookName", this.props.data.name);
   }
 
-  handleEdit() {
 
-    alert('edit')
-  }
+    // alert('edit')
 
-  decision(deleteButton, eLink, path) {
+  decision(deleteButton, eLink) {
     if (typeof (this.props.onDeleteBook) !== "undefined") {
       deleteButton = <Button
           style={{position: "absolute", display: "inline", right: '5px'}}
           variant="danger"
           onClick={this.handleDelete.bind(this)}>删除</Button>;
-      eLink = <Button
-          variant="link"
-          onClick={this.handleEdit.bind(this)}>
-        <span className='limit-length' title={this.props.data.name}>{this.props.data.name}</span>
-
-
-      </Button>
+      eLink = <NavLink to={{pathname:`/write/${this.props.data.name}`}}>
+        <Button variant="link" onClick={this.handleInfoStore.bind(this)}>
+          <span className='limit-length' >{this.props.data.name}</span>
+        </Button>
+      </NavLink>
     } else {
       eLink = <NavLink to={{
-        pathname: `${path}`
+        pathname: `/read/${this.props.data.name}/序言`
       }}>
         <Button variant="link" onClick={this.handleInfoStore.bind(this)}>
-          <span className='limit-length' title={this.props.data.name}>{this.props.data.name}</span>
+          <span className='limit-length' >{this.props.data.name}</span>
         </Button>
       </NavLink>
     }
@@ -49,16 +47,13 @@ class BookInfo extends Component {
   }
 
   render() {
-
-    let path = `/read/${this.props.data.name}/序言`;  //传参数过去
-
     let deleteButton = undefined;
     let eLink = undefined;
     let obj = {
       deleteButton: '',
       eLink: ''
     };
-    obj = this.decision(deleteButton, eLink, path);
+    obj = this.decision(deleteButton, eLink);
     return (
         <div className="BookItem">
           <ListGroupItem variant="none">

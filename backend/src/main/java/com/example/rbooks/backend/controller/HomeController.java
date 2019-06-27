@@ -42,5 +42,10 @@ public class HomeController {
     return homeServiceImpl.getSearchBooksInfo(word);
   }
 
+  @RequestMapping("/gettag")
+  public List<Book> getTag(@RequestParam String tag) {
+    return homeServiceImpl.getTagBooks(tag);
+  }
+
 
 }

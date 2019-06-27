@@ -68,7 +68,7 @@ export function _getChapter(data) {
 }
 
 export function _deleteChapter(data) {
-  return service.post(`${baseURL}/read/deletechapter`,data);
+  return service.post(`${baseURL}/write/deletechapter`,data);
 }
 
 // Read组件
@@ -115,8 +115,12 @@ export function _getSettings(data) {
 
 
 // 在Chapter组件中
-export function _updateChapter(param,data) {
-  return service.post(`${baseURL}/write/updatechapter?oldName=${param}`, data);
+export function _updateChapter(data) {
+  return service.post(`${baseURL}/write/updatechapter`, data);
+}
+
+export function _addChapter(data) {
+  return service.post(`${baseURL}/write/addchapter`, data);
 }
 
 //Write组件

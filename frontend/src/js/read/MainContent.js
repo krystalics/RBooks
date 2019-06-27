@@ -111,49 +111,8 @@ class MainContent extends Component {
 
 
   render() {
-    let data = {
-      bookid: this.state.bookid,
-      chaptername: this.state.chaptername,
-      content: this.state.content
-    };
+
     let time = this.state.datetime;
-
-    // let item = undefined;
-
-    // if (this.state.author === localStorage.getItem("name")) {
-    //   item =
-    //       <div className="editchapter">
-    //         <li>
-    //           <NavLink to={{
-    //             pathname: '/writing/chapter',
-    //             state: {data}
-    //           }}><Button variant="outline-success">更新章节 </Button></NavLink>
-    //         </li>
-    //         <li>
-    //           <Button variant="danger"
-    //                   onClick={this.handleDeleteChapter}>删除章节</Button>
-    //         </li>
-    //         <li>
-    //           <NavLink to={{
-    //             pathname: '/writing/chapter',
-    //             state: {data}
-    //           }}><Button variant="outline-success">
-    //             增加章节</Button>
-    //           </NavLink>
-    //         </li>
-    //
-    //       </div>
-    // } else {
-    //   item = <div className="editchapter">
-    //     <li onClick={this.handleFollowBook}><Button
-    //         variant="info">{this.state.followbook}</Button>
-    //     </li>
-    //     <li onClick={this.handleFollowAuthor}><Button
-    //         variant="primary">{this.state.followauthor}</Button>
-    //     </li>
-    //   </div>
-    // }
-
     return (
         <div className='mainContent'>
 
@@ -184,9 +143,6 @@ class MainContent extends Component {
                 author={this.state.author}
                 chapterid={chapterid}/>
           </div>
-
-
-
 
         </div>
     );

@@ -1,7 +1,5 @@
 package com.example.rbooks.backend.controller;
 
-import com.example.rbooks.backend.auth.Authorization;
-import com.example.rbooks.backend.auth.IdentityEnums;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.BookRepository;
 import com.example.rbooks.backend.entity.Chapter;
@@ -64,10 +62,7 @@ public class ReadController {
   // 试过了 自增的id 是接着从user表中的id 开始的，并不是单独的表有单独的记录....如果作者不在数据库中，就会报错，，因为有外键约束
   @RequestMapping(value = "/addcomment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public String addComment(@RequestBody Comment comment) { //没加RequestBody 会导致数据为null
-//    System.out.println(comment.getDatetime());
-//    System.out.println(comment.getContent());
-//    System.out.println(comment.getCommentid());
-//    System.out.println(comment.getCommentuser());
+
     readServiceImpl.addComment(comment);
 
     return "添加成功"; //默认可以添加成功
@@ -84,32 +79,24 @@ public class ReadController {
 //  }
 
   @RequestMapping(value = "/getdirectory")
-  public List<String> getBook(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
+  public List<String> getDirectory(@RequestParam int bookid) { //数据格式 {bookid:1,chaptername:"第一章"}
     List<Chapter> books = readServiceImpl.getBook(bookid);  //测试成功，所以不用在打印了
-//    for(Chapter chapter:books){
-//      System.out.println(chapter.getCommentid());
-//      System.out.println(chapter.getDatetime());
-//      System.out.println(chapter.getContent());
-//    }
-    //直接获得整本书的内容，前端耦合程度太高了
+
     List<String> directory=new ArrayList<>();
     for(Chapter chapter:books){
-      directory.add(chapter.getChapterid().getChaptername());
+      //加时间是为了前端方便按时间排序
+      String item=chapter.getDatetime().toString()+"~"+chapter.getChapterid().getChaptername();
+      directory.add(item);
     }
     return directory;
   }
 
   @RequestMapping(value = "/getchapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public Chapter getChapter(@RequestBody ChapterId chapterId) {
-//    System.out.println(chapterId.getBookid()+chapterId.getChaptername());
     return readServiceImpl.getChapter(chapterId);
   }
 
-  @RequestMapping(value = "/deletechapter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public String deleteChapter(@RequestBody ChapterId chapterId) {
-    readServiceImpl.deleteChapter(chapterId);
-    return "删除成功";
-  }
+
 
   @RequestMapping(value = "/getcomments", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public List<Comment> getComments(@RequestBody ChapterId chapterId) {

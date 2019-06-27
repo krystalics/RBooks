@@ -1,10 +1,8 @@
 package com.example.rbooks.backend.serviceImpl;
 
-import com.example.rbooks.backend.dao.BookDao;
 import com.example.rbooks.backend.dao.ChapterDao;
 import com.example.rbooks.backend.dao.CommentDao;
 import com.example.rbooks.backend.dao.FollowDao;
-import com.example.rbooks.backend.daoImpl.BookDaoImpl;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
@@ -24,7 +22,7 @@ public class ReadServiceImpl implements ReadService {
 
   private final CommentDao commentDaoImpl;
 
-  private BookDao bookDaoImpl;
+
 
   @Autowired
   private FollowDao followDaoImpl;
@@ -37,7 +35,6 @@ public class ReadServiceImpl implements ReadService {
 
   @Override
   public List<Comment> getComments(ChapterId chapterId) {
-
     return commentDaoImpl.getCommentsByChapterId(chapterId);
   }
 
@@ -55,16 +52,6 @@ public class ReadServiceImpl implements ReadService {
   @Override
   public Chapter getChapter(ChapterId chapterId) {
     return chapterDaoImpl.getChapter(chapterId);
-  }
-
-  @Override
-  public void deleteChapter(ChapterId chapterId) {
-    chapterDaoImpl.deleteChapter(chapterId);
-  }
-
-  @Override
-  public void deleteBook(int bookid) {
-    bookDaoImpl.deleteBook(bookid);
   }
 
   @Override
@@ -98,8 +85,5 @@ public class ReadServiceImpl implements ReadService {
     return chapterDaoImpl.getBook(bookid);
   }
 
-  @Override
-  public Book getBookById(int bookid) {
-    return bookDaoImpl.getBookById(bookid);
-  }
+
 }
