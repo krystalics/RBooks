@@ -22,7 +22,7 @@ public class Chapter implements Serializable {
   @JsonFormat(timezone = "GMT+8")
   private Date updatetime;
 
-  private AtomicInteger love;
+  private int love;
 
   public Chapter(){}
 
@@ -58,11 +58,11 @@ public class Chapter implements Serializable {
     this.updatetime = updatetime;
   }
 
-  public AtomicInteger getLove() {
+  public int getLove() {
     return love;
   }
 
-  public void setLove(AtomicInteger love) {
+  public void setLove(int love) {
     this.love = love;
   }
 }

@@ -162,32 +162,33 @@ public class ReadController {
 
   public void loveChapter(FollowbookId id, boolean add) {
 
+    // bookRepository是单例，整个程序生命周期只有一个对象。可能发生的竞态条件如下
+    // 当一个用户正要执行到 setlove时，其他用户又getlove，那么getlove得到的是之前的值，所以对love这个变量需要线程安全保护
+    // 所以getlove 和 setlove。以及最后存储到数据库都要保证原子性
     Book book = bookRepository.findById(id.getBookid());
-
-    synchronized (this){  //因为很可能多个人同时点赞，所以需要 线程安全
-      int love = book.getLove();
-      if (add) {
-        love++;
-      } else {
-        love--;
-      }
-      book.setLove(love);
-      bookRepository.save(book);
-    }
 
     ChapterId chapterId = new ChapterId();
     chapterId.setChaptername(id.getChaptername());
     chapterId.setBookid(id.getBookid());
     Chapter chapter = readServiceImpl.getChapter(chapterId);
-    AtomicInteger love2 = chapter.getLove();
-    if (add) {
-      love2.incrementAndGet(); // 相当于 love++
-    } else {
-      love2.decrementAndGet(); // 相当于 love--
+
+
+    synchronized (this){
+      int love = book.getLove();
+      int love2 = chapter.getLove();
+      if (add) {
+        love++;
+        love2++;
+      } else {
+        love2--;
+        love--;
+      }
+      book.setLove(love);
+      bookRepository.save(book);
+      chapter.setLove(love2);
+      chapterRepository.save(chapter);
     }
 
-    chapter.setLove(love2);
-    chapterRepository.save(chapter);
   }
 
   public FollowauthorId genFollowAuthorId(int userid, String authorname) {

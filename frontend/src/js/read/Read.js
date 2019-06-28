@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import DirectoryList from "./DirectoryList";
-import Content from "./Content";
 import {
   _addFollowAuthor,
   _deleteFollowAuthor,
@@ -11,6 +10,8 @@ import '../../css/main.css'
 import Button from "react-bootstrap/Button";
 import NavLink from "react-bootstrap/NavLink";
 import {checkCookie} from "../CookieService";
+import MainContent from "./MainContent";
+import {Route} from "react-router-dom";
 
 class Read extends Component {
 
@@ -136,7 +137,8 @@ class Read extends Component {
             </div>
 
 
-            <Content />
+            <Route path="/read/:bookname/:chaptername"
+                   component={MainContent}/>
 
           </div>
 

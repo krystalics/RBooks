@@ -28,7 +28,6 @@ class SideBar extends Component{
     const res1 = await _isFollowBook(followbookid);
     // console.log(res1.data);
     if (res1.data) { //如果已经点赞过了
-
       this.setState({loveChapter: "取消"});
     } else {
       this.setState({loveChapter: "点赞"});
@@ -49,11 +48,11 @@ class SideBar extends Component{
       chaptername:localStorage.getItem('currentBookChapter')
     };
 
-    if (this.state.followbook === "点赞") {
+    if (this.state.loveChapter === "点赞") {
       const res1 = await _addFollowBook(followbookid);
       // console.log(res1.data);
       if (res1.status === 200) {
-        this.setState({followbook: "取消"});
+        this.setState({loveChapter: "取消"});
       } else {
         alert("收藏失败" + res1.data);
       }
@@ -61,7 +60,7 @@ class SideBar extends Component{
     } else {
       const res2 = await _deleteFollowBook(followbookid);
       if (res2.status === 200) {
-        this.setState({followbook: "点赞"});
+        this.setState({loveChapter: "点赞"});
       } else {
         alert("取消" + res2.data);
       }
