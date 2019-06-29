@@ -37,6 +37,11 @@ public class WriteController {
     return myPageServiceImpl.getBooks_write(author);
   }
 
+  @RequestMapping("/getallchapters")
+  public List<Chapter> getAllChapters(@RequestParam int bookid) {
+    return writeServiceImpl.getAllChapters(bookid);
+  }
+
   @RequestMapping(value = "/addbook", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public int addBook(@RequestBody Book book) { //需要返回ID
     return writeServiceImpl.addBook(book);

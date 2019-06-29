@@ -15,13 +15,14 @@ class EditChapter extends Component {
       content: '',
       readOnly: localStorage.getItem('editChapterName') !== ''
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
   componentWillMount() {
-    this.getData()
+    this.getData();
   }
 
   handleChange(event) {
@@ -79,6 +80,8 @@ class EditChapter extends Component {
 
   render() {
   // console.log(this.state)
+  //   console.log(this.props.location)
+
     return (
         <div className="Content">
           <div className="content-left">

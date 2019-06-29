@@ -93,7 +93,8 @@ class MainContent extends Component {
     let time = this.state.updatetime;
     return (
         <div className='mainContent'>
-
+          {/*用于锚点定位*/}
+          <div id='top'></div>
           <SideBar/>
 
           <div className="title">
@@ -114,6 +115,8 @@ class MainContent extends Component {
                 }}/>
           </div>
           <hr/>
+          {/*用于锚点定位*/}
+          <div id='bottom'></div>
           <div className="comment">
             <CommentApp
                 author={this.state.author}

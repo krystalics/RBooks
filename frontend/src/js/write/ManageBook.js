@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {_deleteChapter, _getDirectory} from "../api";
+import {_deleteChapter, _getAllChapters} from "../api";
 import {NavLink} from "react-router-dom";
-import DirectoryList from "../read/DirectoryList";
 import Button from "react-bootstrap/Button";
+import ChapterList from "./ChapterList";
 
 class ManageBook extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      directory: ''
+      chapters: []
     }
   }
 
@@ -18,11 +18,12 @@ class ManageBook extends Component {
   }
 
   async getData() {
-    const res = await _getDirectory(localStorage.getItem('currentBookId'));
-    // console.log(res.data); 之前是因为没有权限 和被拦截了
-    this.setState({directory: res.data});
+    const res = await _getAllChapters(localStorage.getItem('currentBookId'));
+    // console.log(res.data);// 之前是因为没有权限 和被拦截了
+    this.setState({chapters: res.data});
   }
 
+  // 暂时不可用。。
   async handleDeleteChapter(chapterid) {
     // console.log(chapterid)
     let result = window.confirm("确认删除该章节吗？");
@@ -32,13 +33,13 @@ class ManageBook extends Component {
       if (res.status !== 200) {
         alert(res.data);
       } else {
-        let index = this.state.directory.indexOf(chapterid.chaptername);
+        let index = this.state.chapters.indexOf(chapterid);
         // console.log(index);
         // console.log(this.state.directory);
 
-        this.state.directory.splice(index - 1, 1);
+        this.state.chapters.splice(index - 1, 1);
 
-        this.setState({directory: this.state.directory});
+        this.setState({chapters: this.state.chapters});
         // console.log(this.state.directory)
 
       }
@@ -47,7 +48,8 @@ class ManageBook extends Component {
   }
 
   render() {
-    // console.log(this.state.directory);
+    // console.log(this.state.chapters)
+
     return <div className='managebook'>
       <div className="Content">
         <div className='content-left'></div>
@@ -63,9 +65,12 @@ class ManageBook extends Component {
             </Button>
           </NavLink>
           <div className='write-directory'>
-            <DirectoryList directory={this.state.directory} write={true}
-                           onDeleteChapter={this.handleDeleteChapter.bind(this)}/>
+            {/*<DirectoryList directory={this.state.directory} write={true}*/}
+            {/*/>*/}
+            <ChapterList chapters={this.state.chapters} onDeleteChapter={this.handleDeleteChapter.bind(this)}/>
           </div>
+
+
         </div>
       </div>
     </div>

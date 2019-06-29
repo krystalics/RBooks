@@ -71,7 +71,7 @@ public class ReadController {
 
   @RequestMapping(value = "/getdirectory")
   public List<String> getDirectory(@RequestParam int bookid) { // 数据格式 {bookid:1,chaptername:"第一章"}
-    List<Chapter> books = readServiceImpl.getBook(bookid); // 测试成功，所以不用在打印了
+    List<Chapter> books = readServiceImpl.getAllChapters(bookid); // 测试成功，所以不用在打印了
 
     List<String> directory = new ArrayList<>();
     for (Chapter chapter : books) {

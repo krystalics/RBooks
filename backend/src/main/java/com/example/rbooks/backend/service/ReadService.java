@@ -31,7 +31,7 @@ public interface ReadService {
 
   void deleteLoveChapter(FollowbookId id);
 
-  List<Chapter> getBook(int bookid);
+  List<Chapter> getAllChapters(int bookid);
 
 
 }

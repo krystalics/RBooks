@@ -22,7 +22,7 @@
   .content-left {
     position: relative;
     top: 0;
-    width: 26%;
+    width: 0;
     height: 100%;
     /*min-width: 100px;*/
     /*visibility: hidden;*/
@@ -32,7 +32,7 @@
 
   .content-right {
     /*visibility: hidden;*/
-    width: 25%;
+    width: 0;
     height: 100%;
     /*margin-left: 3%;*/
     /*display: inline-block;*/
@@ -43,7 +43,7 @@
 .content-middle {
   display: inline-block;
   width: 40%;
-  min-width: 370px;
+  min-width: 400px;
   min-height: 600px;
   height: 100%;
   position: relative;
@@ -81,9 +81,50 @@
   background:white;
 }
 
-.sidebar{
-  position: absolute;
-  right: 0;
+  .sidebar{
+    position: fixed;
+    height: 400px;
+    top:20%;
+    right:17%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+  }
+
+
+@media screen and (max-width: 1000px) {
+  .sidebar{
+    position: fixed;
+    height: 400px;
+    top:20%;
+    right:8%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .sidebar{
+    position: fixed;
+    height: 50px;
+    top:0;
+    right:0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+  }
+}
+
+.sidebar button{
+  margin-top:5px;
 }
 
 

@@ -25,7 +25,7 @@ class DirectoryList extends Component {
 
     return (
         this.getNames().map((item, idx) => {
-          return <DirectoryItem key={idx} chaptername={item} write={this.props.write} onDeleteChapter={this.props.onDeleteChapter}/>
+          return <DirectoryItem key={idx} chaptername={item}/>
         })
     );
   }

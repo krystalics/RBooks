@@ -81,8 +81,8 @@ public class ReadServiceImpl implements ReadService {
   }
 
   @Override
-  public List<Chapter> getBook(int bookid) {
-    return chapterDaoImpl.getBook(bookid);
+  public List<Chapter> getAllChapters(int bookid) {
+    return chapterDaoImpl.getAllChapters(bookid);
   }
 
 

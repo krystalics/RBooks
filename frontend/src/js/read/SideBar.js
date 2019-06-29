@@ -1,18 +1,20 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 
 import {_addFollowBook, _deleteFollowBook, _isFollowBook} from "../api";
 import {Button} from "react-bootstrap";
 import {checkCookie} from "../CookieService";
 
-class SideBar extends Component{
+class SideBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state={
-      loveChapter:'点赞'
+    this.state = {
+      loveChapter: '点赞'
     };
 
-    this.handleFollowBook=this.handleFollowBook.bind(this);
+    this.handleFollowBook = this.handleFollowBook.bind(this);
+    this.handleTop = this.handleTop.bind(this);
+    this.handleBottom = this.handleBottom.bind(this);
   }
 
   componentWillMount() {
@@ -23,7 +25,7 @@ class SideBar extends Component{
     let followbookid = {
       bookid: localStorage.getItem('currentBookId'),
       userid: localStorage.getItem('userid'),
-      chaptername:localStorage.getItem('currentBookChapter')
+      chaptername: localStorage.getItem('currentBookChapter')
     };
     const res1 = await _isFollowBook(followbookid);
     // console.log(res1.data);
@@ -35,7 +37,6 @@ class SideBar extends Component{
 
   }
 
-
   async handleFollowBook() { //需要登录才能点赞
 
     if (!checkCookie()) {
@@ -45,7 +46,7 @@ class SideBar extends Component{
     let followbookid = {
       bookid: localStorage.getItem('currentBookId'),
       userid: localStorage.getItem('userid'),
-      chaptername:localStorage.getItem('currentBookChapter')
+      chaptername: localStorage.getItem('currentBookChapter')
     };
 
     if (this.state.loveChapter === "点赞") {
@@ -68,11 +69,22 @@ class SideBar extends Component{
 
   }
 
+  handleTop() {
+
+  }
+
+  handleBottom() {
+
+  }
 
   render() {
     return (
         <div className='sidebar'>
-          <Button variant="info" onClick={this.handleFollowBook}>{this.state.loveChapter}</Button>
+          <Button variant='info'><a href='#top' style={{color:'white'}}>顶部</a></Button>
+          <Button variant="info"
+                  onClick={this.handleFollowBook}>{this.state.loveChapter}</Button>
+
+          <Button variant='info'><a href='#bottom' style={{color:'white'}}>底部</a></Button>
         </div>
     );
   }
