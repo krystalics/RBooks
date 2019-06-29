@@ -3,6 +3,7 @@ package com.example.rbooks.backend.service;
 import com.example.rbooks.backend.entity.Book;
 import com.example.rbooks.backend.entity.Chapter;
 import com.example.rbooks.backend.entity.ChapterId;
+import java.util.List;
 
 public interface WriteService {
 
@@ -18,4 +19,6 @@ public interface WriteService {
   void deleteChapter(ChapterId chapterId);
 
   void updateChapter(Chapter chapter);
+
+  List<Chapter> getAllChapters(int bookid);
 }

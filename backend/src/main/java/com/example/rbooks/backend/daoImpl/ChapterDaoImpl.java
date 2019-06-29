@@ -42,7 +42,7 @@ public class ChapterDaoImpl implements ChapterDao {
   }
 
   @Override
-  public List<Chapter> getBook(int bookid) {
+  public List<Chapter> getAllChapters(int bookid) {
     return chapterRepository.findByChapterid_Bookid(bookid);
   }
 }

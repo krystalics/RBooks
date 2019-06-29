@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import '../../css/comment.css'
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+import {checkCookie} from "../CookieService";
 
 class CommentInput extends Component {
 
@@ -24,28 +25,8 @@ class CommentInput extends Component {
     })
   }
 
-  getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1, c.length);
-      }
-      if (c.indexOf(nameEQ) === 0) {
-        return c.substring(nameEQ.length, c.length);
-      }
-    }
-    return null;
-  }
-
-  checkCookie() {
-    let userid = this.getCookie("userid");
-    return !(userid === null || userid === -1);
-  }
-
   handleSubmit(e) {  //把onSubmit 提到父组件中是为了及时更新列表
-    if (this.checkCookie()) {
+    if (checkCookie()) {
       if (this.props.onSubmit) {  //判断是否传入了 onSubmit 属性，有的话就调用该函数
         let {content, datetime} = this.state;
         datetime = new Date().getTime();

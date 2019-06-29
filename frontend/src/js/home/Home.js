@@ -42,12 +42,7 @@ class Home extends Component {
   }
 
   handleSearchButton() {
-    // let {oldData} = this.state;
-    // let data = oldData.filter(item => {
-    //   return item.name.indexOf(this.state.search) !== -1 || item.id
-    //       === parseInt(this.state.search) || item.author.indexOf(
-    //           this.state.search) !== -1; //如果等于-1说明不在里面
-    // });
+
     this.searchSubmit(this.state.search);
   }
 

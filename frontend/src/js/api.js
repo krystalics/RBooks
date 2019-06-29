@@ -136,7 +136,10 @@ export function _deleteBook(param) {
   return service.get(`${baseURL}/write/deletebook?bookid=${param}`);
 }
 
+//EditChpater
 
-
+export function _getAllChapters(param) {
+  return service.get(`${baseURL}/write/getallchapters?bookid=${param}`);
+}
 
 

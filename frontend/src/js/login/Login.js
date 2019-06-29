@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form} from 'react-bootstrap'
 import '../../css/main.css'
 import {_login, _register} from '../api'
+import {setCookie} from "../CookieService";
 
 class Login extends Component {
 
@@ -26,16 +27,6 @@ class Login extends Component {
     this.setState({password: e.target.value});
   }
 
-  setCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toGMTString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-  }
-
   setLocalStorage() {
     localStorage.setItem('name', this.state.name); //把用户名name 缓存到本地
     // localStorage.setItem('password', this.state.password);
@@ -58,7 +49,7 @@ class Login extends Component {
       if (res.data !== -1) {
         this.setState({userid: res.data}); //将返回的id赋给userid
         // console.log(res)
-        this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
+        setCookie("userid", this.state.userid, 7); //设置7天的cookie
         this.setLocalStorage(); //把数据顺便缓存到本地
         this.props.history.push("/"); //登录成功之后 重定向到 home
         window.location.reload();

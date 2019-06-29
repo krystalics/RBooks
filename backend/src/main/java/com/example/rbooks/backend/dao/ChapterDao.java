@@ -14,5 +14,5 @@ public interface ChapterDao {
 
   Chapter getChapter(ChapterId chapterId); // 读取章节内容
 
-  List<Chapter> getBook(int bookid);
+  List<Chapter> getAllChapters(int bookid);
 }

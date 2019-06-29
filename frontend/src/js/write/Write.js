@@ -7,7 +7,9 @@ import BookList from "../book/BookList";
 import {_addBook, _deleteBook, _getWrite} from '../api'
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Median from "./Median";
+
+import ManageBook from "./ManageBook";
+import {Route} from "react-router-dom";
 
 class Write extends Component {
   constructor(props) {
@@ -165,7 +167,9 @@ class Write extends Component {
             {item}
           </div>
           {/*<div className="content-middle">*/}
-          <Median/>
+          <Route path="/write/:chaptername"
+                 component={ManageBook}/>
+          {/*<div className='content-right'></div>*/}
         </div>
     );
   }

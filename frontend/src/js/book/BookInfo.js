@@ -17,6 +17,7 @@ class BookInfo extends Component {
     localStorage.setItem("currentBookAuthor", this.props.data.author);
     localStorage.setItem("currentBookDes", this.props.data.description);
     localStorage.setItem("currentBookName", this.props.data.name);
+    localStorage.setItem('currentBookChapter','序言') //一进书中，开始就是序言
   }
 
 
