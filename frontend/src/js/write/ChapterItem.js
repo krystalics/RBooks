@@ -17,16 +17,19 @@ class ChapterItem extends Component {
   }
 
   handleDelete() {
-    this.props.onDeleteChapter(this.props.chapter.chapterid);
+    this.props.onDeleteChapter(this.props.chapter);
   }
 
   render() {
     const chapter = this.props.chapter;
     // console.log(chapter)
     let path = {
-      pathname: `/read/${localStorage.getItem('currentBookName')}/${chapter.chapterid.chaptername}`,
-      // state: {content:chapter.content,} //要将content包装成对象，传进state
+      pathname: `/read/${localStorage.getItem('currentBookName')}/${chapter.chapterid.chaptername}`
     };
+    let item='';
+    if(chapter.chapterid.chaptername!=='序言'){
+      item=<Button onClick={this.handleDelete} variant='none'>删除</Button>;
+    }
     return (
         <ListGroupItem>
           <NavLink to={path}>
@@ -49,7 +52,7 @@ class ChapterItem extends Component {
               </Button>
             </NavLink>
 
-            <Button onClick={this.handleDelete} variant='none'>删除</Button>
+            {item}
           </div>
           <br/>
 

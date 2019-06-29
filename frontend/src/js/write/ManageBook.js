@@ -24,23 +24,22 @@ class ManageBook extends Component {
   }
 
   // 暂时不可用。。
-  async handleDeleteChapter(chapterid) {
-    // console.log(chapterid)
+  async handleDeleteChapter(chapter) {
+
     let result = window.confirm("确认删除该章节吗？");
     // console.log(result);
     if (result) {
-      const res = await _deleteChapter(chapterid);
+      const res = await _deleteChapter(chapter.chapterid);
       if (res.status !== 200) {
         alert(res.data);
       } else {
-        let index = this.state.chapters.indexOf(chapterid);
+        let index = this.state.chapters.indexOf(chapter);
         // console.log(index);
-        // console.log(this.state.directory);
+        // console.log(this.state.chapters);
 
-        this.state.chapters.splice(index - 1, 1);
+        this.state.chapters.splice(index , 1);
 
         this.setState({chapters: this.state.chapters});
-        // console.log(this.state.directory)
 
       }
 
@@ -67,7 +66,8 @@ class ManageBook extends Component {
           <div className='write-directory'>
             {/*<DirectoryList directory={this.state.directory} write={true}*/}
             {/*/>*/}
-            <ChapterList chapters={this.state.chapters} onDeleteChapter={this.handleDeleteChapter.bind(this)}/>
+            <ChapterList chapters={this.state.chapters}
+                         onDeleteChapter={this.handleDeleteChapter.bind(this)}/>
           </div>
 
 

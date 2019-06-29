@@ -5,15 +5,9 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import {
-  _addFollowBook,
-  _deleteFollowBook,
-  _getChapter,
-  _isFollowBook
-} from "../api"
+import {_getChapter} from "../api"
 
 import SideBar from "./SideBar";
-import {checkCookie} from "../CookieService";
 
 var chapterid = {};
 
