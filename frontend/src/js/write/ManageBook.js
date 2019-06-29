@@ -34,10 +34,10 @@ class ManageBook extends Component {
         alert(res.data);
       } else {
         let index = this.state.chapters.indexOf(chapter);
-        // console.log(index);
-        // console.log(this.state.chapters);
+        console.log(index);
+        console.log(this.state.chapters);
 
-        this.state.chapters.splice(index , 1);
+        this.state.chapters.splice(index, 1);
 
         this.setState({chapters: this.state.chapters});
 

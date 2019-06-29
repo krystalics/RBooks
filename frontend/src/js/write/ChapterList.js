@@ -3,10 +3,7 @@ import ChapterItem from "./ChapterItem";
 import ListGroup from "react-bootstrap/ListGroup";
 
 class ChapterList extends Component {
-  constructor(props) {
-    super(props);
 
-  }
 
   analyseData() {
     let chapters = this.props.chapters;
@@ -25,7 +22,7 @@ class ChapterList extends Component {
       let date2 = new Date(t2);
       return date1 - date2;
     });
-    // console.log(chapters)
+
     return chapters;
 
   }

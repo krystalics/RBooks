@@ -40,6 +40,9 @@ class Write extends Component {
   }
 
   handleNameChange(e) {
+    if (e.target.value.length > 15) {
+      return
+    }
     this.setState({bookname: e.target.value})
   }
 
@@ -56,6 +59,10 @@ class Write extends Component {
     // id photourl love  都不填
     if (this.state.label === "" || this.state.label === "...") {
       alert("请选择一个标签");
+      return
+    }
+    if(this.state.bookname===''){
+      alert('书名不能为空');
       return
     }
     let book = {
@@ -79,10 +86,12 @@ class Write extends Component {
     if (!del) {
       return;
     }
+    // 对象数组和普通数组不一样，splice 是左闭的，而普通数组是 左开的
 
     let index = this.state.booklist.indexOf(book);
-
-    this.state.booklist.splice(index, 1);
+    console.log(index);
+    // console.log(this.state.booklist)
+    this.state.booklist.splice(index , 1);
 
     this.setState({bookList: this.state.booklist});
     // console.log(this.state.booklist)
@@ -116,7 +125,7 @@ class Write extends Component {
           <div className='content-left'></div>
           <div className="content-middle">
 
-            写一本新书:
+            写一本新书: 书名应在15字以内
             <br/>
 
             <Form.Control type="text"
@@ -166,10 +175,10 @@ class Write extends Component {
             <hr/>
             {item}
           </div>
-          {/*<div className="content-middle">*/}
+
           <Route path="/write/:chaptername"
                  component={ManageBook}/>
-          {/*<div className='content-right'></div>*/}
+
         </div>
     );
   }

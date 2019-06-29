@@ -6,8 +6,6 @@ import Time from "../Time";
 
 class BookInfo extends Component {
 
-
-
   handleDelete() {
     this.props.onDeleteBook(this.props.data);
   }
@@ -17,11 +15,10 @@ class BookInfo extends Component {
     localStorage.setItem("currentBookAuthor", this.props.data.author);
     localStorage.setItem("currentBookDes", this.props.data.description);
     localStorage.setItem("currentBookName", this.props.data.name);
-    localStorage.setItem('currentBookChapter','序言') //一进书中，开始就是序言
+    localStorage.setItem('currentBookChapter', '序言') //一进书中，开始就是序言
   }
 
-
-    // alert('edit')
+  // alert('edit')
 
   decision(deleteButton, eLink) {
     if (typeof (this.props.onDeleteBook) !== "undefined") {
@@ -29,9 +26,10 @@ class BookInfo extends Component {
           style={{position: "absolute", display: "inline", right: '5px'}}
           variant="danger"
           onClick={this.handleDelete.bind(this)}>删除</Button>;
-      eLink = <NavLink to={{pathname:`/write/${this.props.data.name}`}}>
+
+      eLink = <NavLink to={{pathname: `/write/${this.props.data.name}`}}>
         <Button variant="link" onClick={this.handleInfoStore.bind(this)}>
-          <span className='limit-length' >{this.props.data.name}</span>
+          <span className='limit-length'>{this.props.data.name}</span>
         </Button>
       </NavLink>
     } else {
@@ -39,7 +37,7 @@ class BookInfo extends Component {
         pathname: `/read/${this.props.data.name}/序言`
       }}>
         <Button variant="link" onClick={this.handleInfoStore.bind(this)}>
-          <span className='limit-length' >{this.props.data.name}</span>
+          <span className='limit-length'>{this.props.data.name}</span>
         </Button>
       </NavLink>
     }

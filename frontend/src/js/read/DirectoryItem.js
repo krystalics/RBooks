@@ -5,10 +5,6 @@ import Button from "react-bootstrap/Button";
 
 class DirectoryItem extends Component {
 
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     const chaptername = this.props.chaptername;

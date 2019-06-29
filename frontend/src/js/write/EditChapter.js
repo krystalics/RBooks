@@ -48,6 +48,11 @@ class EditChapter extends Component {
 
 
   async handleSubmit() {
+    if(this.state.chaptername===''){
+      alert('章节名不能为空');
+      return
+    }
+
     let chapter = {
       chapterid: {
         bookid: localStorage.getItem('currentBookId'),
@@ -75,6 +80,9 @@ class EditChapter extends Component {
   }
 
   handleNameChange(e) {
+    if(e.target.value.length>15){
+      return
+    }
     this.setState({chaptername: e.target.value})
   }
 
@@ -87,7 +95,7 @@ class EditChapter extends Component {
           <div className="content-left">
           </div>
           <div className="content-middle">
-            章节名一旦确定就无法更改:<br/>
+            章节名一旦确定就无法更改:长度不能超出15个字符<br/>
             <InputGroup>
               <Form.Control type="text"
                             placeholder="请输入文章标题"

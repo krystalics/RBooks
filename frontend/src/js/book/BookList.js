@@ -5,33 +5,17 @@ import ListGroup from "react-bootstrap/ListGroup";
 // 没经过高阶组件获取数据，可以为多个路径服务
 class BookList extends Component {
 
-  data() {
-    const data = this.props.data;
-    let datas = [];
-    for (let index in data) {
-      let temp;
-      temp = {
-        id: data[index].id,
-        name: data[index].name,
-        author: data[index].author,
-        description: data[index].description,
-        datetime: data[index].datetime,
-        photourl: data[index].photourl,
-        love: data[index].love,
-        label:data[index].label
-      };
-
-      datas.push(temp);
-    }
-
-    return datas;
-  }
-
   render() {
-
+    const data=this.props.data;
+    // 加这个判断是因为 在加载的时候，后端数据还没进来，组件开始渲染，碰到下面data.map会报错，cannot read property map..
+    // 所以加个判断防止组件渲染出错，导致后续数据进来也没用
+    if(data==='暂无数据'||data===undefined){
+      return '暂无数据'
+    }
+    // console.log(data)
     return (
         <ListGroup>
-          {this.data().map((item, idx) => {
+          {data.map((item, idx) => {
             return <BookInfo onDeleteBook={this.props.onDeleteBook} key={idx} data={item}/>
           })}
         </ListGroup>
