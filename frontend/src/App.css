@@ -31,6 +31,10 @@ body {
   width: 100%;
 }
 
+p{
+  margin-bottom: 0;
+}
+
 .Navigator{
   width: 100%;
   top:0;

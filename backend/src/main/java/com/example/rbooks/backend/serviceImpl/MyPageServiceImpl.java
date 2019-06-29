@@ -16,7 +16,9 @@ import com.example.rbooks.backend.service.MyPageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,12 +60,15 @@ public class MyPageServiceImpl implements MyPageService {
   public List<Book> getBooks_follow(int userid) {
     List<Followbook> all_follow_books = followDaoImpl.getAllBooks(); //要在这张表中寻找 含有userid的
     List<Book> followBooks = new ArrayList<>();
+    //Set用来去除重复的，因为这里使用的逻辑是之前点赞书本就是收藏的逻辑，现在改为了点赞章节，如果对一本书的几章点赞，就会得到几个重复的结果
+    Set<Book> bookSet=new HashSet<>();
+
     for (Followbook followbook : all_follow_books) {
       if (followbook.getFollowbookid().getUserid() == userid) {
-        followBooks.add(bookDaoImpl.getBookById(followbook.getFollowbookid().getBookid()));
+        bookSet.add(bookDaoImpl.getBookById(followbook.getFollowbookid().getBookid()));
       }
     }
-
+    followBooks.addAll(bookSet);
     return followBooks;
   }
 

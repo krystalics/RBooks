@@ -5,22 +5,21 @@ import {Button, ListGroupItem} from "react-bootstrap";
 import Time from "../Time";
 import hljs from "highlight.js";
 import marked from 'marked';
-import {NavLink} from "react-router-dom";
 
 class Comment extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.handleDelete=this.handleDelete.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDelete(){
+  handleDelete() {
     const {data} = this.props;
-    let comment={
-      commentid:data.commentid,
-      commentuser:data.commentuser,
-      content:data.content
+    let comment = {
+      commentid: data.commentid,
+      commentuser: data.commentuser,
+      content: data.content
     };
 
     this.props.onDelete(comment);
@@ -45,36 +44,35 @@ class Comment extends Component {
   render() {
     const {data} = this.props; //获取评论数据
     let datetime = data.commentid.datetime;  //在用户评论后更新评论列表时
-    let item=undefined;  //删除评论的原则是  自己发出的评论才能够由自己删除
+    let item = undefined;  //删除评论的原则是  自己发出的评论才能够由自己删除
     if (data.commentuser === localStorage.getItem("name")) {
-      item = <Button variant="outline-danger"  onClick={this.handleDelete}>删除</Button>
+      item = <Button variant="outline-danger"
+                     onClick={this.handleDelete}
+                     style={{position: 'absolute', right: '5px'}}
+      >删除</Button>
     }
-    let param = {
-      author: this.props.author,
-      bookid: data.commentid.bookid,
-    };
+    // let param = {
+    //   author: this.props.author,
+    //   bookid: data.commentid.bookid,
+    // };
     // console.log(param);
 
-    param = JSON.stringify(param);
-    let path = `/read/${param}/content/${data.commentid.chaptername}`;
+    // param = JSON.stringify(param);
+    // let path = `/read/${param}/content/${data.commentid.chaptername}`;
 
     return (
-        <ListGroupItem  variant="none">
-
-          <div className="comment-margin">
-            <span className="comment-user">{data.commentuser}{' '}:</span>
-            <span className="title-date"><Time data={datetime}/></span>
-            {item}
-          </div>
-          <NavLink to={{
-            pathname:`${path}`,
-          }}><p
+        <ListGroupItem variant="none">
+          <span className="comment-user">{data.commentuser}{' '}:</span>
+          {' '}
+          <span className="title-date"><Time data={datetime}/></span>
+          {item}
+          <p
               id="content"
               className="article-detail"
               dangerouslySetInnerHTML={{
                 __html: data.content ? marked(data.content) : null,
               }}/>
-          </NavLink>
+
 
         </ListGroupItem>
     );

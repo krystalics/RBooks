@@ -21,7 +21,7 @@ class Navigator extends Component {
 
 
   handleLogout() {
-    alert('登出');
+    // alert('登出');
     setCookie('userid',-1);
     localStorage.removeItem('name');
     localStorage.removeItem('userid');
@@ -55,7 +55,7 @@ class Navigator extends Component {
         <li><Nav.Link href="/"> RBooks</Nav.Link></li>
         <li><Nav.Link href="/write"> 写书</Nav.Link></li>
 
-        <li><Nav.Link href="/message"> 消息</Nav.Link></li>
+        {/*<li><Nav.Link href="/message"> 消息</Nav.Link></li>*/}
         {item}
         <li><Nav.Link
             href="https://github.com/krystalics/rbooks">github</Nav.Link></li>

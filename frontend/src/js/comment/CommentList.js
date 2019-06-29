@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Comment from "./Comment";
 import {ListGroup} from 'react-bootstrap'
+
 class CommentList extends Component {
 
   data() {
@@ -28,7 +29,7 @@ class CommentList extends Component {
 
       datas.push(temp);
     }
-    datas=datas.reverse(); //最新增加的评论显示在上层，所以需要 reverse
+    datas = datas.reverse(); //最新增加的评论显示在上层，所以需要 reverse
     return datas;
   }
 
@@ -36,9 +37,10 @@ class CommentList extends Component {
 
     return (
         <ListGroup>
-        {this.data().map((item, idx) => {
-          return <Comment key={idx} data={item} onDelete={this.props.onDelete} author={this.props.author}/>
-        })}
+          {this.data().map((item, idx) => {
+            return <Comment key={idx} data={item} onDelete={this.props.onDelete}
+                            author={this.props.author}/>
+          })}
         </ListGroup>
     );
   }
