@@ -5,9 +5,15 @@ import Time from "../Time";
 
 import marked from 'marked';
 import hljs from 'highlight.js';
-import {_getChapter} from "../api"
+import {
+  _addFollowBook,
+  _deleteFollowBook,
+  _getChapter,
+  _isFollowBook
+} from "../api"
 
 import SideBar from "./SideBar";
+import {checkCookie} from "../CookieService";
 
 var chapterid = {};
 
@@ -26,7 +32,6 @@ class MainContent extends Component {
       updatetime: ''
 
     };
-
   }
 
   componentWillMount() {
@@ -76,9 +81,10 @@ class MainContent extends Component {
     this.analyse();
   }
 
+
+
   analyse() {
     const data = this.state.data;
-    // console.log(data)
     this.setState({
       chaptername: data.chapterid.chaptername,
       content: data.content,
@@ -87,21 +93,19 @@ class MainContent extends Component {
 
   }
 
-
   render() {
 
-    let time = this.state.updatetime;
     return (
         <div className='mainContent'>
           {/*用于锚点定位*/}
           <div id='top'></div>
-          <SideBar/>
+          <SideBar chaptername={this.state.chaptername}/>
 
           <div className="title">
             <span><h3>{this.state.chaptername}</h3></span>
             <span className="title-author">作者: {this.state.author}</span>
             {' '}
-            <span className="title-date">更新时间: <Time data={time}/></span>
+            <span className="title-date">更新时间: <Time data={this.state.updatetime}/></span>
             <hr/>
           </div>
 

@@ -8,24 +8,34 @@ class SideBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+
+    this.state={
       loveChapter: '点赞'
     };
 
-    this.handleFollowBook = this.handleFollowBook.bind(this);
-    this.handleTop = this.handleTop.bind(this);
-    this.handleBottom = this.handleBottom.bind(this);
+    this.handleFollowBook=this.handleFollowBook.bind(this);
   }
 
   componentWillMount() {
     this.isFollowBook();
   }
 
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+
+    let chaptername = prevProps.chaptername;
+    let newChaptername = this.props.chaptername;
+
+    if (chaptername !== newChaptername) {
+      this.isFollowBook();
+    }
+  }
+
   async isFollowBook() {
     let followbookid = {
       bookid: localStorage.getItem('currentBookId'),
       userid: localStorage.getItem('userid'),
-      chaptername: localStorage.getItem('currentBookChapter')
+      chaptername: this.props.chaptername
     };
     const res1 = await _isFollowBook(followbookid);
     // console.log(res1.data);
@@ -66,14 +76,6 @@ class SideBar extends Component {
         alert("取消" + res2.data);
       }
     }
-
-  }
-
-  handleTop() {
-
-  }
-
-  handleBottom() {
 
   }
 
