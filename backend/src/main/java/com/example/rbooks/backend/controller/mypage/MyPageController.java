@@ -24,7 +24,8 @@ public class MyPageController {
 
   @Authorization(value = {IdentityEnums.VISITOR,IdentityEnums.ADMIN,IdentityEnums.SUPER_ADMIN})
   @RequestMapping(value = "/mypage")
-  public String getInformation(@RequestParam("userid") int userid) {
+  public String getInformation(@RequestParam int userid) {
+//    System.out.println("userid是  "+userid);
     return myPageServiceImpl.myPage(userid);
   }
 

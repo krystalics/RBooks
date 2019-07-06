@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Button, Form} from 'react-bootstrap'
 import '../../css/main.css'
-import {_login, _register} from '../api'
+import {_login} from '../api'
 import {setCookie} from "../CookieService";
+import {NavLink} from "react-router-dom";
 
 class Login extends Component {
 
@@ -63,28 +64,6 @@ class Login extends Component {
 
   }
 
-  async handleRegisterSubmit() {
-    if (!this.checkUserAndPass(this.state.name, this.state.password)) {
-      return;
-    }
-    const res = await _register(
-        {name: this.state.name, password: this.state.password});
-    if (res.status === 200) {
-      if (res.data !== -1) {
-        this.setState({userid: res.data}); //将返回的id赋给userid
-        this.setCookie("userid", this.state.userid, 7); //设置7天的cookie
-        this.setLocalStorage(); //把数据顺便缓存到本地
-        this.props.history.push("/settings"); //登录成功之后 重定向到 home
-        window.location.reload();
-      } else {
-        alert("账号已存在");
-      }
-    } else {
-      alert("网络错误");
-    }
-
-  }
-
   render() {
     return (
         <div className="Content">
@@ -107,10 +86,12 @@ class Login extends Component {
                         onClick={this.handleLoginSubmit}
                         size="lg"
                         value="login">登录</Button>
-                <Button variant="outline-primary"
-                        onClick={this.handleRegisterSubmit}
-                        size="lg"
-                        value="register">注册</Button>
+                <NavLink to="/register">
+                  <Button variant="outline-primary"
+
+                          size="lg"
+                          value="register">注册</Button>
+                </NavLink>
               </div>
             </div>
           </div>

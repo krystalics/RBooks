@@ -42,7 +42,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
     User user = userRepository.findById(id);
     int role = user.getRole();
-
+    System.out.println("用户权限界别："+role);
 //    System.out.println("role "+role);
 
     if (handler instanceof HandlerMethod) {

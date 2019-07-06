@@ -75,7 +75,8 @@ class Write extends Component {
     // alert(JSON.stringify(book));
     const res = await _addBook(book);
     if (res.data !== -1) {
-      window.location.reload();
+      console.log(res.data)
+      // window.location.reload();
     } else {
       alert(res.data);
     }

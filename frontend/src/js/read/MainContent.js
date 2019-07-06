@@ -106,7 +106,7 @@ class MainContent extends Component {
           <div>
             <div
                 id="content"
-                className="article-detail"
+                className="markdown-body"
                 dangerouslySetInnerHTML={{
                   __html: this.state.content ? marked(this.state.content)
                       : null,

@@ -32,6 +32,9 @@ class SideBar extends Component {
   }
 
   async isFollowBook() {
+    if(localStorage.getItem('userid')===null){
+      return
+    }
     let followbookid = {
       bookid: localStorage.getItem('currentBookId'),
       userid: localStorage.getItem('userid'),

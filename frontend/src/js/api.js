@@ -2,6 +2,13 @@ import service from './Service';
 
 // let baseURL=`http://www.rbooks.top:8080`; //远程部署
 let baseURL=`http://localhost:8080`; //debug
+
+const config={ //axios的配置
+  headers:{
+    "Content-Type":"application/x-www-form-urlencoded"
+  }
+};
+
 //
 // let baseURL='http://100.64.166.151:8080'; //让手机访问
 
@@ -44,7 +51,7 @@ export function _login(data) {
 }
 
 export function _register(data) {
-  return service.post(`${baseURL}/user/register`,data);
+  return service.post(`${baseURL}/user/register`,data,config);
 }
 
 

@@ -35,8 +35,8 @@ public class SettingsController {
   }
 
   @RequestMapping("/getsettings")
-  public Information getSettins(@RequestParam int userid){
-
+  public Information getSettings(@RequestParam int userid){
+//    System.out.println("userid是  "+userid);
     return settingsServiceImpl.getInformation(userid);
   }
 

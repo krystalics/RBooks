@@ -371,7 +371,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 浏览器发送真正请求之前会先发送一个OPTIONS的预检请求(Preflighted requests)，这个请求是用来验证本次请求是否安全的。而该预检请求会被拦截器拦截，后续真正的请求也不会发送。cors实现跨域就是在http的response里添加适当的header来实现的。
 
-我们知道http请求是走filter，到达Servlet之后才进行拦截器处理。所以如果把跨域配置放在filter中就可以生效。但是具体的细节还是要注意，前端要设置http请求带上cookie。即需要将 `withCredentials`设置为**true，**表示请求时会附带cookie，我使用的是axios，所以可以这样设置：代码如下：
+我们知道http请求是走filter，到达Servlet之后才进行拦截器处理。所以如果把跨域配置放在filter中就可以生效。但是具体的细节还是要注意，前端要设置http请求带上cookie，而axios是默认不发送cookie的，所以很多请求就被拦截下来了，也没有报错，但是前端就是获取不到信息。所以需要在axios中配置，代码如下：
 
 ```js
 const service = axios.create({
@@ -464,6 +464,84 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 搞定。
+
+---
+
+##### 7.6 在实习开始前无聊到改之前项目的东西
+
+之前的注册就是只需要用户名和密码，现在想要改成传输一组包含两个数据库表的数据组。所以前端需要使用的axios如下：因为axios默认是`application/json`类型
+
+```js
+const config={ //axios的配置
+  headers:{
+    "Content-Type":"application/x-www-form-urlencoded"
+  }
+};
+
+axios.post(`${baseURL}/user/register`,data,config);
+```
+
+后台这时就不能继续使用 `@RequestBody `获取数据了，应该换成`@RequestParam Map<String,String> body` ，不然会报错`Content-Type application/x-www-form-urlencoded;charset=utf-8 not surported` 的错误。
+
+之后依然还是出现了一个bug，前端传输过去的数据都在 body 的key中，如下图：
+
+<img src="./img/42.png">
+
+所以我专门写了一个方法来处理注册信息：
+
+```java
+public int analyseData(Map<String, String> body) {
+
+    List<String> data = new ArrayList<>();
+
+    body.forEach(
+        (k, v) -> {
+          String dataArray[] = k.toString().split(","); // 先是用 ， 隔开各个数据组
+          for (String s : dataArray) {
+            data.add(s.split("\"")[3]); //然后提取出信息
+          }
+        });
+
+    userServiceImpl.register(data.get(0), data.get(1)); //将用户名和密码存到user表中
+
+    User user = userServiceImpl.getUserByName(data.get(0)); //先获取刚才存到user中的记录的id，然后根据data构造information保存到information表
+    Information information = new Information();
+    information.setUserid(user.getId());
+    information.setUsername(data.get(0));
+    information.setEmail(data.get(3));
+    information.setGithubpage(data.get(4));
+    information.setHomepage(data.get(5));
+    information.setSelfintroduction(data.get(6));
+    information.setPhotourl(data.get(7).split("}")[0]); // 因为最后一个字符串 还含有一个大括号}
+
+    settingsService.update(information);
+
+    return user.getId();
+  }
+```
+
+最后顺利解决了。
+
+
+
+
+
+```js
+import axios from 'axios';
+
+const service = axios.create({
+      withCredentials: true,  // 因为axios默认不发送cookie，所以增加一个配置让它发送cookie，用于后台鉴权
+      timeout: 5000
+    }
+);
+
+export default service;
+
+//也可以 直接
+axios.defaults.withCredentials=true;
+```
+
+
 
 
 

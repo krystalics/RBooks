@@ -39,7 +39,7 @@ class Read extends Component {
 
   async getData() {
     const res = await _getDirectory(this.state.bookid);
-    // console.log(res.data); 之前是因为没有权限 和被拦截了
+    // console.log(res.data); //之前是因为没有权限 和被拦截了
     this.setState({directory: res.data});
   }
 
@@ -54,6 +54,9 @@ class Read extends Component {
 
 
   async isFollowAuthor() {
+    if(localStorage.getItem('userid')===null){
+      return
+    }
     let param = {
       userid: localStorage.getItem('userid'),
       authorname: this.state.author

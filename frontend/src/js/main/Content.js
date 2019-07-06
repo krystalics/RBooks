@@ -10,6 +10,7 @@ import Settings from "../settings/Settings";
 import Read from "../read/Read";
 import '../../App.css'
 import EditChapter from "../write/EditChapter";
+import Register from "../login/Register";
 
 class Content extends Component {
   render() {
@@ -24,6 +25,7 @@ class Content extends Component {
             <Route path="/settings" component={Settings}/>
             <Route path="/read" component={Read}/>
             <Route path="/writing/chapter" component={EditChapter}/>
+            <Route path="/register" component={Register}/>
 
           </Switch>
         </div>
