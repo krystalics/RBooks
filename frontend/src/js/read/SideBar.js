@@ -88,7 +88,7 @@ class SideBar extends Component {
           <Button variant='info'><a href='#top' style={{color:'white'}}>顶部</a></Button>
           <Button variant="info"
                   onClick={this.handleFollowBook}>{this.state.loveChapter}</Button>
-          <Button variant='info'><a href='#bottom' style={{color:'white'}}>底部</a></Button>
+          <Button variant='info' readOnly><a href='#bottom' style={{color:'white'}}>底部</a></Button>
         </div>
     );
   }

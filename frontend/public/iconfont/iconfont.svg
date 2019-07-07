@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="RectangleCopy" unicode="&#59045;" d="M676.441173 270.208L526.169173 420.437333a21.418667 21.418667 0 0 1-30.208 0L347.566507 272a21.418667 21.418667 0 0 1 15.061333-36.437333 21.418667 21.418667 0 0 1 15.146667 6.229333l133.333333 133.376 135.125333-135.125333a21.248 21.248 0 0 1 30.208 0 21.333333 21.333333 0 0 1 0 30.165333"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

@@ -12,6 +12,7 @@ import NavLink from "react-bootstrap/NavLink";
 import {checkCookie} from "../CookieService";
 import MainContent from "./MainContent";
 import {Route} from "react-router-dom";
+import Spinner from "../mypage/MyPage";
 
 class Read extends Component {
 
@@ -24,17 +25,20 @@ class Read extends Component {
       directory: [],
       description: localStorage.getItem('currentBookDes'),
       style: this.styleIn,
-      followauthor: "关注作者"
+      followauthor: "关注作者",
+      loading: false
     };
     this.handleFollowAuthor = this.handleFollowAuthor.bind(this);
 
   }
 
-  componentDidMount() { //获得数据
-
+  componentWillMount() {
     this.getData();
-
     this.isFollowAuthor();
+  }
+
+  componentDidMount() {
+    this.setState({loading: true})
   }
 
   async getData() {
@@ -51,10 +55,8 @@ class Read extends Component {
     }
   }
 
-
-
   async isFollowAuthor() {
-    if(localStorage.getItem('userid')===null){
+    if (localStorage.getItem('userid') === null) {
       return
     }
     let param = {
@@ -113,39 +115,43 @@ class Read extends Component {
   render() {
 
     return (
-        <div className="content-read">
+        this.state.loading ?
+            <div className="content-read">
 
-          <div className='directory' style={this.state.style}>
-            <DirectoryList directory={this.state.directory}/>
-          </div>
-
-          <div className='read-header-title'>
-            <span>{localStorage.getItem('currentBookName')}</span>
-          </div>
-
-          <div className="read-content-middle">
-
-            <div className='read-header'>
-              <div className="read-header-menu">
-                <Button onClick={this.handleStyleChange.bind(this)}
-                        className="menu-left" variant="light">+</Button>
-                <li><NavLink href="/" variant='none'> RBooks</NavLink></li>
+              <div className='directory' style={this.state.style}>
+                <DirectoryList directory={this.state.directory}/>
               </div>
 
-              <div className='read-header-right'>
-                <li onClick={this.handleFollowAuthor}><Button
-                    variant="primary">{this.state.followauthor}</Button>
-                </li>
+              <div className='read-header-title'>
+                <span>{localStorage.getItem('currentBookName')}</span>
               </div>
-            </div>
+
+              <div className="read-content-middle">
+
+                <div className='read-header'>
+                  <div className="read-header-menu">
+                    <Button onClick={this.handleStyleChange.bind(this)}
+                            className="menu-left" variant="light">+</Button>
+                    <li><NavLink href="/" variant='none'> RBooks</NavLink></li>
+                  </div>
+
+                  <div className='read-header-right'>
+                    <li onClick={this.handleFollowAuthor}><Button
+                        variant="primary">{this.state.followauthor}</Button>
+                    </li>
+                  </div>
+                </div>
 
 
-            <Route path="/read/:bookname/:chaptername"
-                   component={MainContent}/>
+                <Route path="/read/:bookname/:chaptername"
+                       component={MainContent}/>
 
-          </div>
+              </div>
 
-        </div>
+            </div> :
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
     );
   }
 }

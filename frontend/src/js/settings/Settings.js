@@ -14,7 +14,7 @@ class Settings extends Component {
     this.state = {
       userid: localStorage.getItem('userid'),
       username: '',
-      email: '例如...@qq.com',
+      email: '',
       githubpage: '',
       homepage: '',
       selfintroduction: '',
@@ -105,6 +105,7 @@ class Settings extends Component {
                 <Col sm="10">
                   <Form.Control type="email"
                                 name="email"
+                                placeholder="例如...@qq.com"
                                 onChange={this.handleInputChange}
                                 value={this.state.email}
                   />

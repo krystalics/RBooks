@@ -4,6 +4,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import {_getHot, _getNew, _getSearch, _getTag} from '../api'
 import BookListInHome from "./BookListInHome";
 import '../../css/home.css'
+import Spinner from "../comment/CommentApp";
 
 class Home extends Component {
 
@@ -15,7 +16,7 @@ class Home extends Component {
       color2: 'none',
       data: '暂无数据',
       oldData: '暂无数据',
-
+      loading:false,
       first: 1,
       second: 2,
       third: 3,
@@ -31,6 +32,12 @@ class Home extends Component {
 
   componentWillMount() {
     this.handleHot();
+  }
+
+  componentDidMount() {
+    this.setState({
+      loading:true
+    })
   }
 
   handleSearchChange(e) {
@@ -136,7 +143,9 @@ class Home extends Component {
   render() {
     let item = <div className="nodata">找不到该数据</div>;
     if (this.state.data.length > 0) {
-      item = <div><BookListInHome data={this.state.data}/></div>
+      item = this.state.loading?<div><BookListInHome data={this.state.data}/></div>:<Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
     }
     return (
 

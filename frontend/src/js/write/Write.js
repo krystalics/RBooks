@@ -10,6 +10,7 @@ import Row from "react-bootstrap/Row";
 
 import ManageBook from "./ManageBook";
 import {Route} from "react-router-dom";
+import Spinner from "../comment/CommentApp";
 
 class Write extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Write extends Component {
       bookname: '',
       description: '',
       booklist: '',
-      label: ''
+      label: '',
+      loading: false
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -28,6 +30,12 @@ class Write extends Component {
 
   componentWillMount() {
     this.getData();
+  }
+
+  componentDidMount() {
+    this.setState({
+      loading: true
+    })
   }
 
   async getData() {
@@ -61,7 +69,7 @@ class Write extends Component {
       alert("请选择一个标签");
       return
     }
-    if(this.state.bookname===''){
+    if (this.state.bookname === '') {
       alert('书名不能为空');
       return
     }
@@ -75,8 +83,8 @@ class Write extends Component {
     // alert(JSON.stringify(book));
     const res = await _addBook(book);
     if (res.data !== -1) {
-      console.log(res.data)
-      // window.location.reload();
+      // console.log(res.data)
+      window.location.reload();
     } else {
       alert(res.data);
     }
@@ -92,7 +100,7 @@ class Write extends Component {
     let index = this.state.booklist.indexOf(book);
     console.log(index);
     // console.log(this.state.booklist)
-    this.state.booklist.splice(index , 1);
+    this.state.booklist.splice(index, 1);
 
     this.setState({bookList: this.state.booklist});
     // console.log(this.state.booklist)
@@ -113,10 +121,12 @@ class Write extends Component {
 
       </div>
     } else {
-      item = <div>
+      item = this.state.loading ? <div>
         <BookList onDeleteBook={this.handleDeleteBook.bind(this)}
                   data={this.state.booklist}/>
-      </div>
+      </div> : <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
     }
 
     return (

@@ -3,6 +3,7 @@ import CommentInput from './CommentInput'
 import CommentList from './CommentList'
 import '../../css/comment.css'
 import {_addComment, _deleteComment, _getComments} from '../api';
+import Spinner from "react-bootstrap/Spinner";
 
 class CommentApp extends Component {
 
@@ -10,11 +11,18 @@ class CommentApp extends Component {
     super(props);
     this.state = {
       comments: [],
+      loading:false
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getComments();
+  }
+
+  componentDidMount() {
+    this.setState({
+      loading:true
+    })
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -77,10 +85,12 @@ class CommentApp extends Component {
 
   render() {
     return (
-        <div className="wrapper">
+         this.state.loading? <div className="wrapper">
           <CommentInput onSubmit={this.handleSubmitComment.bind(this)}/>
           <CommentList onDelete={this.handleDeleteComment.bind(this)} data={this.state.comments} author={this.props.author}/>
-        </div>
+        </div>:<Spinner animation="border" role="status">
+           <span className="sr-only">Loading...</span>
+         </Spinner>
     )
   }
 }

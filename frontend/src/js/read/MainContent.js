@@ -8,6 +8,7 @@ import hljs from 'highlight.js';
 import {_getChapter} from "../api"
 
 import SideBar from "./SideBar";
+import Spinner from "react-bootstrap/Spinner";
 
 var chapterid = {};
 
@@ -23,7 +24,9 @@ class MainContent extends Component {
       chaptername: this.props.match.params.chaptername,
       commentuser: '',
       content: '',
-      updatetime: ''
+      updatetime: '',
+      love: 0,
+      loading: false
 
     };
   }
@@ -47,6 +50,10 @@ class MainContent extends Component {
 
   }
 
+  componentDidMount() {
+    this.setState({loading: true})
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (typeof (this.props.match) === "undefined") {
       return;
@@ -61,7 +68,7 @@ class MainContent extends Component {
   }
 
   async getData(chaptername) {
-     if (typeof (this.props.match) === "undefined") {
+    if (typeof (this.props.match) === "undefined") {
       return;
     }
 
@@ -71,18 +78,18 @@ class MainContent extends Component {
     };
 
     const res = await _getChapter(chapterid);
+    // console.log(res)
     this.setState({data: res.data});
     this.analyse();
   }
-
-
 
   analyse() {
     const data = this.state.data;
     this.setState({
       chaptername: data.chapterid.chaptername,
       content: data.content,
-      updatetime: data.updatetime
+      updatetime: data.updatetime,
+      love: data.love
     });
 
   }
@@ -90,37 +97,51 @@ class MainContent extends Component {
   render() {
 
     return (
-        <div className='mainContent'>
-          {/*用于锚点定位*/}
-          <div id='top'></div>
-          <SideBar chaptername={this.state.chaptername}/>
+        <div>
+          {
+            this.state.loading ?
+                <div className='mainContent'>
+                  {/*用于锚点定位*/}
+                  <div id='top'></div>
+                  <SideBar chaptername={this.state.chaptername}/>
 
-          <div className="title">
-            <span><h3>{this.state.chaptername}</h3></span>
-            <span className="title-author">作者: {this.state.author}</span>
-            {' '}
-            <span className="title-date">更新时间: <Time data={this.state.updatetime}/></span>
-            <hr/>
-          </div>
+                  <div className="title">
+                    <span><h3>{this.state.chaptername}</h3></span>
+                    <span
+                        className="title-author">作者: {this.state.author}</span>
+                    {' '}
+                    <span className="title-date">更新时间: <Time
+                        data={this.state.updatetime}/></span>
+                    {' '}
+                    <span
+                        style={{marginLeft: '10px'}}>点赞数: {this.state.love}</span>
+                    <hr/>
+                  </div>
 
-          <div>
-            <div
-                id="content"
-                className="markdown-body"
-                dangerouslySetInnerHTML={{
-                  __html: this.state.content ? marked(this.state.content)
-                      : null,
-                }}/>
-          </div>
-          <hr/>
-          {/*用于锚点定位*/}
-          <div id='bottom'></div>
-          <div className="comment">
-            <CommentApp
-                author={this.state.author}
-                chapterid={chapterid}/>
-          </div>
+                  <div>
+                    <div
+                        id="content"
+                        className="markdown-body"
+                        dangerouslySetInnerHTML={{
+                          __html: this.state.content ? marked(
+                              this.state.content)
+                              : null,
+                        }}/>
+                  </div>
+                  <hr/>
+                  {/*用于锚点定位*/}
+                  <div id='bottom'></div>
+                  <div className="comment">
+                    <CommentApp
+                        author={this.state.author}
+                        chapterid={chapterid}/>
+                  </div>
 
+                </div> : <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+
+          }
         </div>
     );
   }
