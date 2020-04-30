@@ -11,7 +11,7 @@
     "gh-pages": "^2.0.1",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.6",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "markd": "^1.2.0",
     "mobx-react": "^5.4.3",
     "prop-types": "latest",
